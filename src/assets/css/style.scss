@@ -1,0 +1,143 @@
+@charset "utf-8";
+@import "../fonts/font.css";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+    color: #535353;
+    font-family: "Pretendard";
+}
+ul,
+li {
+    list-style: none;
+}
+a,
+a:link {
+    text-decoration: none;
+}
+/* colors */
+$PrimaryColor: #3f71d1;
+$textTitle: #2a2a2a;
+$textDefault: #535353;
+$textSecondary: #989898;
+/*text size*/
+$headerTitle : 30px;
+/* layout */
+section.backWrap {
+    width: 100%;
+    height: 100vh;
+    background: url(../images/background.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-y: hidden;
+    .wrap {
+        display: flex;
+        justify-content: right;
+        width: 1024px;
+        height: 100vh;
+        margin: 0 auto;
+    }
+}
+.containerWrap {
+    width: 530px;
+    height: 100vh;
+    background: hsl(0, 0%, 100%);
+    box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.containerWrap::-webkit-scrollbar {
+    width: 5px;
+}
+.containerWrap::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+.containerWrap::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $PrimaryColor;
+}
+.contentWrap {
+    height: 2000px;
+}
+
+
+
+/* header */
+.headerType {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    color: $PrimaryColor;
+    font-family: 'EunhasuR';
+    font-size: $headerTitle;
+}
+.headerType1 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    padding: 0 32px;
+    img {
+        width: 55px;
+        height: 44px;
+    }
+}
+.headerType2 {
+    position: fixed;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 530px;
+    height: 64px;
+    padding: 0 10px;
+    h2 {
+        flex: auto;
+        margin-left: -36px;
+        color: $PrimaryColor;
+        font-family: "EunhasuR";
+        font-size: 30px;
+        text-align: center;
+    }
+    h2.storeH2 {
+        margin-left: -60px;
+    }
+    .btnWrap {
+        flex: none;
+    }
+}
+/* menu */
+.menuWrap {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    gap : 20px;
+    width: 530px;
+    height: 60px;
+    bottom: 0;
+    background: #ffffff;
+    a {
+        
+        width: 100%;
+        height: 100%;
+        color: $textTitle;
+    }
+    a.active {
+        color: $PrimaryColor;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+}
