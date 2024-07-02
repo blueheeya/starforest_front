@@ -71,8 +71,14 @@ section.backWrap {
     background: $PrimaryColor;
 }
 .contentWrap {
+    min-height: 70vh;
 }
-
+.cntTop {
+    margin-top: 70px;
+}
+.cntBottom {
+    margin-bottom: 70px;
+}
 /* header */
 .headerType {
     display: flex;
@@ -112,6 +118,7 @@ section.backWrap {
         color: $PrimaryColor;
         font-family: "EunhasuR";
         font-size: 30px;
+        font-weight: normal;
         text-align: center;
     }
     h2.storeH2 {
@@ -270,6 +277,7 @@ section.backWrap {
         }
     }
 }
+
 /* icon */
 /****** home ******/
 /* icon */

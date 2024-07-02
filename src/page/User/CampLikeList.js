@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function CampLikeList() {
-  return (
-    <div>CampLikeList</div>
-  )
+    return (
+        <>
+            <div>CampLikeList</div>
+        </>
+    );
 }
 
-export default CampLikeList
+export default CampLikeList;

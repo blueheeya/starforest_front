@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function CampView() {
-  return (
-    <div>CampView</div>
-  )
+    return (
+        <>
+            <div>CampView</div>
+        </>
+    );
 }
 
-export default CampView
+export default CampView;

@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function CampReservationComplete() {
-  return (
-    <div>CampReservationComplete</div>
-  )
+    return (
+        <>
+            <div>CampReservationComplete</div>
+        </>
+    );
 }
 
-export default CampReservationComplete
+export default CampReservationComplete;

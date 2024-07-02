@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function EventSwiper() {
-  return (
-    <div>EventSwiper</div>
-  )
+    return (
+        <>
+            <div>EventSwiper</div>
+        </>
+    );
 }
 
-export default EventSwiper
+export default EventSwiper;

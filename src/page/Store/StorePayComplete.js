@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function StorePayComplete() {
-  return (
-    <div>StorePayComplete</div>
-  )
+    return (
+        <>
+            <div>StorePayComplete</div>
+        </>
+    );
 }
 
-export default StorePayComplete
+export default StorePayComplete;

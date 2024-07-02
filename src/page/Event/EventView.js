@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function EventView() {
-  return (
-    <div>EventView</div>
-  )
+    return (
+        <>
+            <div>EventView</div>
+        </>
+    );
 }
 
-export default EventView
+export default EventView;

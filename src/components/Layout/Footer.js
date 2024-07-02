@@ -1,6 +1,6 @@
 import React from "react";
 
-function Footer(className) {
+function Footer({ className }) {
     return (
         <div className={`footerWrap ${className}`}>
             <h2>별숲</h2>

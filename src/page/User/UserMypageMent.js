@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function UserMypageMent() {
-  return (
-    <div>UserMypageMent</div>
-  )
+    return (
+        <>
+            <div>UserMypageMent</div>
+        </>
+    );
 }
 
-export default UserMypageMent
+export default UserMypageMent;

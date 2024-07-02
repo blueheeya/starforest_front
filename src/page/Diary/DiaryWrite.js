@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function DiaryWrite() {
-  return (
-    <div>DiaryWrite</div>
-  )
+    return (
+        <>
+            <div>DiaryWrite</div>
+        </>
+    );
 }
 
-export default DiaryWrite
+export default DiaryWrite;

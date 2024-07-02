@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function DiaryView() {
-  return (
-    <div>DiaryView</div>
-  )
+    return (
+        <>
+            <div>DiaryView</div>
+        </>
+    );
 }
 
-export default DiaryView
+export default DiaryView;
