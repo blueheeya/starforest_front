@@ -1,10 +1,13 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function CampList() {
-  return (
-    <><div>CampList</div></>
-    
-  )
+    return (
+        <>
+            <Link to={"/"}>뒤로</Link>
+            <div>CampList</div>
+        </>
+    );
 }
 
-export default CampList
+export default CampList;

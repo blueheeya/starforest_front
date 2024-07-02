@@ -1,16 +1,17 @@
-import React from 'react'
-import ContentWrap from '../../components/Layout/ContentWrap'
-import { HeaderType } from '../../components/Layout/Header'
+import React from "react";
+import ContentWrap from "../../components/Layout/ContentWrap";
+import { HeaderType } from "../../components/Layout/Header";
+import EventSwiper from "../../components/Store/EventSwiper";
 
 function UserMypage() {
-  return (
-    <>
-        <HeaderType children={"내 정보"}/>
-        <ContentWrap>
-            별숲기록
-        </ContentWrap>
-    </>
-  )
+    return (
+        <>
+            <ContentWrap>
+                별숲기록
+                <EventSwiper />
+            </ContentWrap>
+        </>
+    );
 }
 
-export default UserMypage
+export default UserMypage;

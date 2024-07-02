@@ -2,45 +2,49 @@ import React from "react";
 import btnBack from "../../assets/images/btnBack.png";
 import logo from "../../assets/images/logoDefault.png";
 import storeHome from "../../assets/images/menuHome.png";
-
-function HeaderType({ className, children }) {
-    return (
-        <div className={`headerType ${className}`}>
-            {children}
-        </div>
-    );
-}
-function HeaderType1({ className }) {
+import { Link, useNavigate } from "react-router-dom";
+function HeaderType({ className }) {
     return (
         <div className={`headerType1 ${className}`}>
             <img src={logo} />
         </div>
     );
 }
+
+function HeaderType1({ className, children }) {
+    return <div className={`headerType ${className}`}>{children}</div>;
+}
+
 function HeaderType2({ children, className, titleStore, ...props }) {
+    const navigator = useNavigate();
+    const onBackClick = () => {
+        navigator(-1);
+    };
+    const btnStoreHome = () => {
+        navigator("/store/list");
+    };
     return (
-        <header {...props} className={`${className}`}>
+        <>
             {titleStore === true ? (
-                <>
-                    <div className="btnWrap">
+                <div className={`headerType2 ${className}`}>
+                    <button className="btnWrap" onClick={onBackClick}>
                         <img src={btnBack} />
-                    </div>
-                    <div>
+                    </button>
+                    <button className="btnWrap" onClick={btnStoreHome}>
                         <img src={storeHome} />
-                    </div>
+                    </button>
                     <h2 className="storeH2">{children}</h2>
-                </>
+                </div>
             ) : (
-                <>
-                    <div className="btnWrap">
+                <div className={`headerType2 ${className}`}>
+                    <button className="btnWrap" onClick={onBackClick}>
                         <img src={btnBack} />
-                    </div>
+                    </button>
                     <h2>{children}</h2>
-                </>
+                </div>
             )}
-        </header>
+        </>
     );
 }
 
 export { HeaderType, HeaderType1, HeaderType2 };
-
