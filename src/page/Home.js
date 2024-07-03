@@ -31,10 +31,13 @@ function Home() {
                 })}
             </ul>
             {/* E : 캠핑장 분류 */}
-            {/* <div className="campIcon  iconAnimal">adafsadfsdfads</div>
-            <div className="campIcon  iconAround">adafsadfsdfads</div>
-            <div className="textIconType1">특가상품</div>
-            <div className="textIconType2">무료배송</div> */}
+            {/* S : 별숲 기록 */}
+            <div className="titelWrap cntWarpPadding wrapMarginBottom">
+                <h3>별숲 기록</h3>
+                <Link to={"/store/view"}>전체보기</Link>
+            </div>
+            <div className="mainDiaryWrap"></div>
+            {/* E : 별숲 기록 */}
             {/* S : 스토어 TOP10 */}
             <StoreTopTen className="cntMarginBottom" />
             {/* E : 스토어 TOP10 */}
