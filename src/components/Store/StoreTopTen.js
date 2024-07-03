@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import { Link } from "react-router-dom";
 
 function StoreTopTen({ className }) {
     const storeTen = [
@@ -11,20 +12,113 @@ function StoreTopTen({ className }) {
             sale: "30%",
             price: "10,000원",
             image: "imgdefault.png",
-            link: "/store/store/view",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
+            starsale: "특가세일",
+            delivery: "무료배송",
+        },
+        {
+            brend: "캠핑덕",
+            name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
+            sale: "30%",
+            price: "10,000원",
+            image: "imgdefault.png",
+            link: "/store/view",
             starsale: "특가세일",
             delivery: "무료배송",
         },
     ];
     return (
         <div className={`${className}`}>
-            <h3 className="cntWarpPadding">스토어 TOP10</h3>
+            <div className="cntWarpPadding wrapMarginBottom">
+                <h3>스토어 TOP10</h3>
+                <Link to={"/store/view"}>전체보기</Link>
+            </div>
             <div className="storeTen">
                 <Swiper
                     slidesPerView={3}
-                    centeredSlides={true}
+                    centeredSlides={false}
                     spaceBetween={32}
-                    grabCursor={true}
+                    grabCursor={false}
                     pagination={{
                         clickable: true,
                     }}
@@ -37,16 +131,18 @@ function StoreTopTen({ className }) {
                                         src={
                                             process.env.PUBLIC_URL +
                                             "/assets/images/" +
-                                            storeitem.img
+                                            storeitem.image
                                         }
-                                        alt=""
+                                        alt={storeitem.name}
                                     />
                                     <div className="storeTenContent">
                                         <div>
                                             <p className="storeBrend">
                                                 {storeitem.brend}
                                             </p>
-                                            <h4>{storeitem.name}</h4>
+                                            <Link to={storeitem.link}>
+                                                <h4>{storeitem.name}</h4>
+                                            </Link>
                                         </div>
                                         <div className="storeTenPrice">
                                             <span>{storeitem.sale}</span>{" "}
