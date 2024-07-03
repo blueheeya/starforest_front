@@ -1,11 +1,11 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import "swiper/css";
 import { Link } from "react-router-dom";
+import "swiper/css";
 
 function StoreTopTen({ className }) {
-    const storeTen = [
+    const storeItem = [
         {
             brend: "캠핑덕",
             name: "편백나무 찜기 2단 인덕션 세이로무시 히노끼",
@@ -109,7 +109,7 @@ function StoreTopTen({ className }) {
     ];
     return (
         <div className={`${className}`}>
-            <div className="titelWrap cntWarpPadding wrapMarginBottom">
+            <div className="titleWrap cntWarpPadding wrapMarginBottom">
                 <h3>스토어 TOP10</h3>
                 <Link to={"/store/view"}>전체보기</Link>
             </div>
@@ -123,7 +123,7 @@ function StoreTopTen({ className }) {
                         clickable: true,
                     }}
                 >
-                    {storeTen.map((storeitem, index) => {
+                    {storeItem.map((storeitem, index) => {
                         return (
                             <SwiperSlide key={index}>
                                 <div className="storeTenCard">
