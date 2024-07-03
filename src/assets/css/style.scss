@@ -7,12 +7,27 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* colors */
+$PrimaryColor: #3f71d1;
+$textTitle: #2a2a2a;
+$textDefault: #535353;
+$textSecondary: #989898;
+$backColor: #f5f5f5;
+/* input */
+$inputColor: #dcdcdc;
+/* text size */
+$headerTitle: 30px;
+$defaultText: 15px;
+$defaultTitle: 24px;
+$secondText: 14px;
+$therdText: 13px;
 html,
 body {
     width: 100%;
     height: 100%;
     color: #535353;
     font-family: "Pretendard";
+    font-size: $defaultText;
 }
 ul,
 li {
@@ -20,22 +35,10 @@ li {
 }
 a,
 a:link {
+    color: $textDefault;
     text-decoration: none;
 }
-/* colors */
-$PrimaryColor: #3f71d1;
-$textTitle: #2a2a2a;
-$textDefault: #535353;
-$textSecondary: #989898;
-$backColor: #f5f5f5;
-/* text size */
-$headerTitle: 30px;
-$defualteText: 15px;
-$defualteTitle: 24px;
-$secondText: 14px;
-$therdText: 13px;
-/* input */
-$inputColor: #dcdcdc;
+
 /****** layout ******/
 /*continer*/
 section.backWrap {
@@ -279,7 +282,7 @@ section.backWrap {
         font-size: $therdText;
         line-height: 20px;
         :first-child {
-            font-size: $defualteText;
+            font-size: $defaultText;
             font-weight: bold;
         }
     }
@@ -325,8 +328,14 @@ section.backWrap {
 /* camp */
 .mainCampClass {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 0 32px;
+    li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 /* icon */
 .campClassIcon {
@@ -365,7 +374,57 @@ section.backWrap {
 /****** diary ******/
 
 /****** store ******/
+.storeTen {
+    .swiper {
+        padding: 0 32px;
+    }
+    .swiper-slide {
+    }
+    .storeTenCard {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .storeTenContent {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            h4 {
+                display: -webkit-box;
+                font-size: $defaultText;
+                font-weight: normal;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+            .storeBrend {
+                color: $textSecondary;
+                font-size: $therdText;
+            }
+            .storeTenPrice {
+                font-weight: 600;
+                span {
+                    color: #f24e1e;
+                    font-size: $secondText;
+                }
+            }
+            .storeEtc {
+                display: flex;
+                gap: 5px;
+            }
+        }
+    }
+}
 /****** user ******/
 
 /****** member ******/
@@ -393,6 +452,9 @@ button {
 }
 .wrapMarginBottom {
     margin-bottom: 20px;
+}
+.cntWarpPadding {
+    padding: 0 32px;
 }
 @media screen and (max-width: 1024px) {
     /****** layout ******/
@@ -544,7 +606,7 @@ button {
             font-size: $therdText;
             line-height: 20px;
             :first-child {
-                font-size: $defualteText;
+                font-size: $defaultText;
                 font-weight: bold;
             }
         }

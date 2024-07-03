@@ -16,7 +16,7 @@ function Home() {
             <EventSwiper className="cntMarginBottom" />
             {/* E : 이벤트 배너 */}
             {/* S : 캠핑장 분류 */}
-            <ul className="mainCampClass">
+            <ul className="mainCampClass cntMarginBottom">
                 {campCategory.map((categore, index) => {
                     return (
                         <Link key={index} to={categore.link}>
@@ -31,12 +31,12 @@ function Home() {
                 })}
             </ul>
             {/* E : 캠핑장 분류 */}
-            <div className="campIcon  iconAnimal">adafsadfsdfads</div>
+            {/* <div className="campIcon  iconAnimal">adafsadfsdfads</div>
             <div className="campIcon  iconAround">adafsadfsdfads</div>
             <div className="textIconType1">특가상품</div>
-            <div className="textIconType2">무료배송</div>
+            <div className="textIconType2">무료배송</div> */}
             {/* S : 스토어 TOP10 */}
-            <StoreTopTen />
+            <StoreTopTen className="cntMarginBottom" />
             {/* E : 스토어 TOP10 */}
         </div>
     );
