@@ -109,7 +109,7 @@ function StoreTopTen({ className }) {
     ];
     return (
         <div className={`${className}`}>
-            <div className="cntWarpPadding wrapMarginBottom">
+            <div className="titelWrap cntWarpPadding wrapMarginBottom">
                 <h3>스토어 TOP10</h3>
                 <Link to={"/store/view"}>전체보기</Link>
             </div>
