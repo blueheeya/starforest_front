@@ -31,6 +31,8 @@ function Home() {
                 })}
             </ul>
             {/* E : 캠핑장 분류 */}
+            <div className="campIcon  iconAnimal">adafsadfsdfads</div>
+            <div className="campIcon  iconAround">adafsadfsdfads</div>
             {/* S : 스토어 TOP10 */}
             <StoreTopTen />
             {/* E : 스토어 TOP10 */}

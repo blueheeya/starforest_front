@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import "../fonts/font.css";
+@import "icons.scss";
 // @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 * {
     margin: 0;
@@ -353,10 +354,12 @@ section.backWrap {
     width: 30px;
     height: 30px;
     font-size: 0;
-    background-repeat: no-repeat;
 }
 .iconAnimal {
-    background: url("../images/iconAnimal.png");
+    background: url("../images/iconAnimal.png") no-repeat;
+}
+.iconAround {
+    background: url("../images/iconAround.png") no-repeat;
 }
 
 /****** store ******/
