@@ -291,8 +291,9 @@ section.backWrap {
 /*swiper*/
 .swiperEvent {
     display: flex;
-    width: 466px;
+    width: 100%;
     margin: 0 auto;
+    padding: 0 32px;
     .swiper {
         width: 100%;
         height: 270px;
@@ -361,26 +362,24 @@ section.backWrap {
 .iconAround {
     background: url("../images/iconAround.png") no-repeat;
 }
+/****** diary ******/
 
 /****** store ******/
-/* icon */
 
 /****** user ******/
-/* icon */
 
 /****** member ******/
-/* icon */
 
 /****** Form ******/
+/* icon */
+
+/****** button ******/
 /* icon */
 /* button */
 button {
     border: none;
     background: none;
 }
-
-/****** button ******/
-/* icon */
 
 /* Layout margin & padding */
 .cntMarginTop {
@@ -436,6 +435,7 @@ button {
         background: none;
         .wrap {
             width: 100%;
+            padding: 0 0 0 0;
         }
     }
     .containerWrap {
@@ -458,6 +458,8 @@ button {
 
     /****** camp ******/
     /* icon */
+
+    /****** diary ******/
 
     /****** store ******/
     /* icon */
