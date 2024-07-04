@@ -364,9 +364,15 @@ section.backWrap {
   background: url("../images/iconAround.png") no-repeat;
 }
 /****** diary ******/
-.ground {
+.diary-bg {
   background-color: $backColor;
   margin: 0 auto;
+  height: 100vh;
+  // padding: 32px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
 }
 .editBtnForm {
   display: flex;
@@ -390,9 +396,9 @@ section.backWrap {
   border-radius: 10px;
 }
 
-.all-List {
+.diaryAll-List {
   background-color: orange;
-  height: 400px;
+  // height: 400px;
   margin: 0 auto;
   padding: 32px;
   .diaryCard {
@@ -402,6 +408,61 @@ section.backWrap {
   }
 }
 
+// 별숲기록 write
+.diaryWrite-form {
+  padding: 32px;
+}
+
+.diaryWriteWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.diaryWrite-input {
+  width: 466px;
+  height: 354px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.diaryWrite-imageCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  width: 466px;
+  height: 354px;
+  margin-bottom: 10px;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.diaryWrite-noticeWrap {
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  .header {
+    font-size: $secondText;
+  }
+  .notice {
+    font-size: $therdText;
+  }
+}
 /****** store ******/
 
 /****** user ******/
