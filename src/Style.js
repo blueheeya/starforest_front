@@ -55,7 +55,7 @@ function Style() {
                 <h3 style={{ fontFamily: "EunhasuR", marginBottom: "10px" }}>
                     별숲기록 태그용 아이콘
                 </h3>
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
                     <Icon iconName="iconShowers" />
                     <Icon iconName="iconTime" />
                     <Icon iconName="iconAddress" />
@@ -67,50 +67,42 @@ function Style() {
                     <Icon iconName="iconCampCategory" />
                     <Icon iconName="iconCleans" />
                     <Icon iconName="iconToilet" />
+                    <Icon iconName="iconCustomerCall" />
+                    <Icon iconName="iconDate" />
+                    <Icon iconName="iconDown" />
+                    <Icon iconName="iconEdit" />
+                    <Icon iconName="iconElec" />
+                    <Icon iconName="iconFire" />
+                    <Icon iconName="iconFoods" />
+                    <Icon iconName="iconGo" />
+                    <Icon iconName="iconHeating" />
+                    <Icon iconName="iconHompage" />
+                    <Icon iconName="iconLog" />
+                    <Icon iconName="iconPhone" />
+                    <Icon iconName="iconPlays" />
+                    <Icon iconName="iconReel" />
+                    <Icon iconName="iconRegion" />
+                    <Icon iconName="iconRegist" />
+                    <Icon iconName="iconReservation" />
+                    <Icon iconName="iconSerch" />
+                    <Icon iconName="iconShower" />
+                    <Icon iconName="iconSink" />
+                    <Icon iconName="iconSmiles" />
+                    <Icon iconName="iconStrore" />
+                    <Icon iconName="iconSwimming" />
+                    <Icon iconName="iconTableware" />
+                    <Icon iconName="iconTag" />
+                    <Icon iconName="iconTent" />
+                    <Icon iconName="iconTimes" />
+                    <Icon iconName="iconToilet" />
+                    <Icon iconName="iconUp" />
+                    <Icon iconName="iconWifi" />
+                    <Icon iconName="iconBaths" />
+                    <Icon iconName="iconShowers" />
+                    <Icon iconName="iconSwimmings" />
                 </div>
             </div>
         </div>
     );
 }
-// iconShowers,
-// iconTime,
-// iconAddress,
-// ,
-// ,
-// ,
-// ,
-// ,
-// ,
-// ,
-// iconCustomerCall,
-// iconDate,
-// iconDown,
-// iconEdit,
-// iconElec,
-// iconFire,
-// iconFoods,
-// iconGo,
-// iconHeating,
-// iconHompage,
-// iconLog,
-// iconPhone,
-// iconPlays,
-// iconReel,
-// iconRegion,
-// iconRegist,
-// iconReservation,
-// iconSerch,
-// iconShower,
-// iconSink,
-// iconSmiles,
-// iconStrore,
-// iconSwimming,
-// iconTableware,
-// iconTag,
-// iconTent,
-// iconTimes,
-// iconToilet,
-// iconUp,
-// iconWifi,
-// iconBaths,
 export default Style;

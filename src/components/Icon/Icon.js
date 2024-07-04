@@ -3,6 +3,8 @@ import iconAddress from "../../assets/images/iconAddress.svg";
 import iconAnimal from "../../assets/images/iconAnimal.svg";
 import iconAround from "../../assets/images/iconAround.svg";
 import iconBadding from "../../assets/images/iconBadding.svg";
+import iconBath from "../../assets/images/iconBath.svg";
+import iconBaths from "../../assets/images/iconBaths.svg";
 import iconBrazier from "../../assets/images/iconBrazier.svg";
 import iconBrend from "../../assets/images/iconBrend.svg";
 import iconCampCategory from "../../assets/images/iconCampCategory.svg";
@@ -31,6 +33,7 @@ import iconSink from "../../assets/images/iconSink.svg";
 import iconSmiles from "../../assets/images/iconSmiles.svg";
 import iconStrore from "../../assets/images/iconStrore.svg";
 import iconSwimming from "../../assets/images/iconSwimming.svg";
+import iconSwimmings from "../../assets/images/iconSwimmings.svg";
 import iconTableware from "../../assets/images/iconTableware.svg";
 import iconTag from "../../assets/images/iconTag.svg";
 import iconTent from "../../assets/images/iconTent.svg";
@@ -38,8 +41,6 @@ import iconTime from "../../assets/images/iconTime.svg";
 import iconToilet from "../../assets/images/iconToilet.svg";
 import iconUp from "../../assets/images/iconUp.svg";
 import iconWifi from "../../assets/images/iconWifi.svg";
-import iconBaths from "../../assets/images/iconBaths.svg";
-import iconBath from "../../assets/images/iconBath.svg";
 
 const icons = {
     iconShowers,
@@ -75,6 +76,7 @@ const icons = {
     iconSmiles,
     iconStrore,
     iconSwimming,
+    iconSwimmings,
     iconTableware,
     iconTag,
     iconTent,
