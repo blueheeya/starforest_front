@@ -39,9 +39,10 @@ import PwFind from "./page/Member/PwFind";
 import Terms from "./page/Member/Terms";
 import Register from "./page/Member/Register";
 import Complete from "./page/Member/Complete";
+import Style from "./Style";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
-const showFooterPath = ["/", "/store/view"];
+const showFooterPath = ["/", "/store/view", "/user/mypage"];
 function LayoutType() {
     const location = useLocation();
     const {
@@ -228,6 +229,7 @@ function App() {
                         index
                         element={<Complete />}
                     ></Route>
+                    <Route path="/style" element={<Style />}></Route>
                 </Route>
             </Routes>
         </>
