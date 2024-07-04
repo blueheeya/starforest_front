@@ -108,7 +108,7 @@ function App() {
                         index
                         element={<CampReservationComplete />}
                     ></Route>
-                    {/* diary  */}
+                    {/* diary-  */}
                     <Route
                         path="/diary/list"
                         index
