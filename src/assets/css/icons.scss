@@ -1,5 +1,24 @@
 @charset "utf-8";
-.textIconType1 {
+
+/* colors */
+$PrimaryColor: #3f71d1;
+$textTitle: #2a2a2a;
+$textDefault: #535353;
+$textSecondary: #989898;
+$backColor: #f5f5f5;
+/* text size */
+$headerTitle: 30px;
+$defualteText: 15px;
+$defualteTitle: 24px;
+$secondText: 14px;
+$therdText: 13px;
+/* input */
+$inputColor: #dcdcdc;
+
+.storeEtc {
+  display: flex;
+  gap: 5px;
+  .textIconType1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,8 +28,8 @@
     font-size: 13px;
     border-radius: 3px;
     background: #f24e1e;
-}
-.textIconType2 {
+  }
+  .textIconType2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,4 +39,41 @@
     font-size: 13px;
     border-radius: 3px;
     background: #5da27f;
+  }
+}
+.storeWrap {
+  // border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.storeCategory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 465px;
+  height: 40px;
+}
+
+.storeIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 108px;
+  height: 40px;
+  color: #989898;
+  //   font-size: $secondText;
+  border: 1px solid #989898;
+  border-radius: 20px;
+}
+
+.scIconWrap {
+  cursor: pointer;
+}
+
+.scIconWrap.active {
+  background-color: #3f71d1;
+
+  border-radius: 20px;
 }
