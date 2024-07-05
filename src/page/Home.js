@@ -34,9 +34,57 @@ function Home() {
             {/* S : 별숲 기록 */}
             <div className="titleWrap cntWarpPadding wrapMarginBottom">
                 <h3>별숲 기록</h3>
-                <Link to={"/store/view"}>전체보기</Link>
+                <Link to={"/diary/list"}>전체보기</Link>
             </div>
             <div className="mainDiaryWrap cntWarpPadding cntMarginBottom">
+                <div className="mainDiaryCard">
+                    <div className="imgWrap">
+                        <img src="" />
+                    </div>
+                    <ul className="textWrap">
+                        <li className="textTitle">
+                            시설 깨끗하고 아이들 놀거리가 많아요 ^^
+                        </li>
+                        <li className="textDate">오늘</li>
+                        <li className="textCamp">연천 평화강변 캠핑장</li>
+                    </ul>
+                </div>
+                <div className="mainDiaryCard">
+                    <div className="imgWrap">
+                        <img src="" />
+                    </div>
+                    <ul className="textWrap">
+                        <li className="textTitle">
+                            시설 깨끗하고 아이들 놀거리가 많아요 ^^
+                        </li>
+                        <li className="textDate">오늘</li>
+                        <li className="textCamp">연천 평화강변 캠핑장</li>
+                    </ul>
+                </div>
+                <div className="mainDiaryCard">
+                    <div className="imgWrap">
+                        <img src="" />
+                    </div>
+                    <ul className="textWrap">
+                        <li className="textTitle">
+                            시설 깨끗하고 아이들 놀거리가 많아요 ^^
+                        </li>
+                        <li className="textDate">오늘</li>
+                        <li className="textCamp">연천 평화강변 캠핑장</li>
+                    </ul>
+                </div>
+                <div className="mainDiaryCard">
+                    <div className="imgWrap">
+                        <img src="" />
+                    </div>
+                    <ul className="textWrap">
+                        <li className="textTitle">
+                            시설 깨끗하고 아이들 놀거리가 많아요 ^^
+                        </li>
+                        <li className="textDate">오늘</li>
+                        <li className="textCamp">연천 평화강변 캠핑장</li>
+                    </ul>
+                </div>
                 <div className="mainDiaryCard">
                     <div className="imgWrap">
                         <img src="" />

@@ -6,7 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 function HeaderType({ className }) {
     return (
         <div className={`headerType1 ${className}`}>
-            <img src={logo} />
+            <Link to="/ ">
+                <img src={logo} />
+            </Link>
         </div>
     );
 }

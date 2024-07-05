@@ -1,10 +1,11 @@
 import React from "react";
 import EventSwiper from "../../components/Store/EventSwiper";
+import UserCard from "../../components/User/UserCard";
 
 function UserMypage() {
     return (
         <>
-            <div>마이페이지</div>
+            <UserCard className="cntMarginTop cntMarginBottom" />
             <EventSwiper />
         </>
     );

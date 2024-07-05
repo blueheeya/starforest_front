@@ -226,23 +226,20 @@ section.backWrap {
         font-size: 0;
         background: url("../images/footerlogo.png") no-repeat;
     }
-    .customerLink::after,
-    .customerLink::before,
-    .copyright::before {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 1px;
-        background: $inputColor;
+    hr {
+        border-top: solid 1px $inputColor;
     }
     .customerLink {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+        display: grid;
+        grid-column: 4;
+        grid-template-columns: repeat(4, 1fr);
         gap: 10px;
-        width: 100%;
+        width: 100% !important;
         font-weight: bold;
+        li {
+            display: flex;
+            align-content: space-between;
+        }
     }
     .customerInfo {
         display: flex;
@@ -377,9 +374,13 @@ section.backWrap {
 }
 /* main diary*/
 .mainDiaryWrap {
-    display: flex;
+    display: grid;
     justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 32px;
     gap: 26px;
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1/2;
     .mainDiaryCard {
         border: solid 1px $inputColor;
         border-radius: $radiusDefault;
@@ -490,7 +491,74 @@ section.backWrap {
     }
 }
 /****** user ******/
-
+.userCardType1 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    width: 466px;
+    margin: 0 auto;
+    .imgWrap {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: url("../images/avatar.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+    }
+    .textWrap {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 10px;
+        .nickname {
+            font-size: $defaultText;
+            font-weight: bold;
+            color: $textTitle;
+        }
+    }
+}
+.userCardType2 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    width: 466px;
+    margin: 0 auto;
+    .imgWrap {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: url("../images/avatar.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+    }
+    .textWrap {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        gap: 10px;
+        .nickname {
+            font-size: $defaultText;
+            font-weight: bold;
+            color: $textTitle;
+        }
+        .date {
+            font-size: $therdText;
+            color: $textSecondary;
+        }
+    }
+}
 /****** member ******/
 
 /****** Form ******/
@@ -502,6 +570,7 @@ section.backWrap {
 button {
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 /* Layout margin & padding */
@@ -550,6 +619,11 @@ button {
 
     /****** Form ******/
     /* icon */
+    .imgIcons {
+        width: 20px;
+        height: 20px;
+        font-size: 0;
+    }
 
     /****** button ******/
     /* icon */
@@ -573,11 +647,11 @@ button {
         width: 100%;
     }
     /* footer */
-    .footerWrap {
-        .customerLink {
-            justify-content: start;
-        }
-    }
+    // .footerWrap {
+    //     .customerLink {
+    //         justify-content: start;
+    //     }
+    // }
     /****** home ******/
     /*swiper*/
     /* icon */
@@ -622,7 +696,7 @@ button {
     /* footer */
     .footerWrap {
         .customerLink {
-            justify-content: start;
+            // justify-content: start;
         }
         .customerInfo {
             display: flex;

@@ -1,16 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer({ className }) {
     return (
         <div className={`footerWrap ${className}`}>
             <h2>별숲</h2>
+            <hr />
             <ul className="customerLink">
                 <li>서비스 이용 약관</li>
                 <li>개인정보 처리 방침</li>
                 <li>캠핑장 제휴 신청</li>
                 <li>광고 제휴 문의</li>
                 <li>스토어 입점 신청</li>
+                <Link to={"/style"}>
+                    <li style={{ color: "red" }}>스타일가이드</li>
+                </Link>
             </ul>
+            <hr />
             <div className="customerInfo">
                 <button>고객센터</button>
                 <div>
@@ -22,6 +28,7 @@ function Footer({ className }) {
                     </p>
                 </div>
             </div>
+            <hr />
             <div className="copyright">
                 <p>ⓒstarforest.corp</p>
                 <p>
