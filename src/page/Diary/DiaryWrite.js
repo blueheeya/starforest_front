@@ -1,6 +1,6 @@
 import React from "react";
 import EditBtn from "../../components/Diary/EditBtn";
-import imgUpload from "../../assets/images/imgUpload.png";
+// import imgUpload from "../../assets/images/imgUpload.png";
 
 function DiaryWrite() {
   return (
@@ -20,7 +20,7 @@ function DiaryWrite() {
           {/* 이미지 추가 박스 */}
           <div className="diaryWrite-imageCard">
             <div>버튼을 눌러 이미지를 등록해 주세요.</div>
-            <img src={imgUpload} alt="이미지 추가" />
+            {/* <img src={imgUpload} alt="이미지 추가" /> */}
           </div>
         </div>
         <div className="diaryWrite-noticeWrap">
