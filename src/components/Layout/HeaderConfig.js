@@ -1,9 +1,9 @@
-import { HeaderType, HeaderType1, HeaderType2 } from "./Header";
+import { HeaderType, HeaderType1, HeaderType2, HeaderType3 } from "./Header";
 const headerConfig = {
     "/": { title: "홈", component: HeaderType },
     "/camp/list": {
         title: "캠핑장",
-        component: HeaderType2,
+        component: HeaderType3,
         titleStore: false,
     },
     "/camp/list/map": {

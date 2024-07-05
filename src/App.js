@@ -4,7 +4,11 @@ import { BackWrap } from "./components/Layout/BackWrap";
 import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
-import { HeaderType, HeaderType2 } from "./components/Layout/Header";
+import {
+    HeaderType,
+    HeaderType2,
+    HeaderType3,
+} from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
 import Home from "./page/Home";
@@ -42,7 +46,7 @@ import Complete from "./page/Member/Complete";
 import Style from "./Style";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
-const showFooterPath = ["/", "/store/view", "/user/mypage"];
+const showFooterPath = ["/", "/store/view", "/user/mypage", "/camp/list"];
 function LayoutType() {
     const location = useLocation();
     const {
@@ -57,13 +61,18 @@ function LayoutType() {
     const showMenu = showMenuPath.includes(location.pathname);
     const showFooter = showFooterPath.includes(location.pathname);
     const isHeaderType2 = HeaderComponent === HeaderType2;
+    const isHeaderType3 = HeaderComponent === HeaderType3;
     return (
         <BackWrap>
             <Container>
                 <HeaderComponent titleStore={titleStore}>
                     {title}
                 </HeaderComponent>
-                <ContentWrap className={`${isHeaderType2 ? "cntView" : ""} `}>
+                <ContentWrap
+                    className={`${isHeaderType2 ? "cntView" : ""} ${
+                        isHeaderType3 ? "cntSearchView" : ""
+                    }`}
+                >
                     <main>
                         <Outlet />
                     </main>
