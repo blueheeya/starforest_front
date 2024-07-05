@@ -53,10 +53,18 @@ function Style() {
             </div>
             <div className="cntMarginTop">
                 <h3 style={{ fontFamily: "EunhasuR", marginBottom: "10px" }}>
-                    별숲기록 태그용 아이콘
+                    아이콘 모음
                 </h3>
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                <div
+                    style={{
+                        display: "flex",
+                        gap: "10px",
+                        flexWrap: "wrap",
+                        background: "#ccc",
+                    }}
+                >
                     <Icon iconName="iconShowers" />
+                    <Icon iconName="iconShower" />
                     <Icon iconName="iconTime" />
                     <Icon iconName="iconAddress" />
                     <Icon iconName="iconAnimal" />
@@ -85,7 +93,6 @@ function Style() {
                     <Icon iconName="iconRegist" />
                     <Icon iconName="iconReservation" />
                     <Icon iconName="iconSerch" />
-                    <Icon iconName="iconShower" />
                     <Icon iconName="iconSink" />
                     <Icon iconName="iconSmiles" />
                     <Icon iconName="iconStrore" />
@@ -98,7 +105,6 @@ function Style() {
                     <Icon iconName="iconUp" />
                     <Icon iconName="iconWifi" />
                     <Icon iconName="iconBaths" />
-                    <Icon iconName="iconShowers" />
                     <Icon iconName="iconSwimmings" />
                 </div>
             </div>

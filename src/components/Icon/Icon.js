@@ -3,7 +3,6 @@ import iconAddress from "../../assets/images/iconAddress.svg";
 import iconAnimal from "../../assets/images/iconAnimal.svg";
 import iconAround from "../../assets/images/iconAround.svg";
 import iconBadding from "../../assets/images/iconBadding.svg";
-import iconBath from "../../assets/images/iconBath.svg";
 import iconBaths from "../../assets/images/iconBaths.svg";
 import iconBrazier from "../../assets/images/iconBrazier.svg";
 import iconBrend from "../../assets/images/iconBrend.svg";
@@ -37,7 +36,7 @@ import iconSwimmings from "../../assets/images/iconSwimmings.svg";
 import iconTableware from "../../assets/images/iconTableware.svg";
 import iconTag from "../../assets/images/iconTag.svg";
 import iconTent from "../../assets/images/iconTent.svg";
-import iconTime from "../../assets/images/iconTime.svg";
+import iconTime from "../../assets/images/iconTimes.svg";
 import iconToilet from "../../assets/images/iconToilet.svg";
 import iconUp from "../../assets/images/iconUp.svg";
 import iconWifi from "../../assets/images/iconWifi.svg";
@@ -84,7 +83,6 @@ const icons = {
     iconUp,
     iconWifi,
     iconBaths,
-    iconBath,
 };
 function Icon({ iconName, className, ...props }) {
     const iconSrc = icons[iconName];
