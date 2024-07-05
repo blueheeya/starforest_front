@@ -3,12 +3,13 @@
 @import "icons.scss";
 // @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 /* colors */
 $PrimaryColor: #3f71d1;
+$PrimaryOff: #92b1ed;
 $textTitle: #2a2a2a;
 $textDefault: #535353;
 $textSecondary: #989898;
@@ -28,536 +29,639 @@ $radiusSmall: 5px;
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    color: #535353;
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-size: 1em;
+  width: 100%;
+  height: 100%;
+  color: #535353;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-size: 1em;
 }
 ul,
 li {
-    list-style: none;
+  list-style: none;
 }
 a,
 a:link {
-    color: $textDefault;
-    text-decoration: none;
+  color: $textDefault;
+  text-decoration: none;
 }
 
 /****** layout ******/
 /*continer*/
 section.backWrap {
-    width: 100%;
+  width: 100%;
+  height: 100vh;
+  background: url("../images/background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-y: hidden;
+  .wrap {
+    display: flex;
+    justify-content: right;
+    width: 1024px;
     height: 100vh;
-    background: url("../images/background.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    overflow-y: hidden;
-    .wrap {
-        display: flex;
-        justify-content: right;
-        width: 1024px;
-        height: 100vh;
-        margin: 0 auto;
-        padding: 0 32px 0 0;
-    }
+    margin: 0 auto;
+    padding: 0 32px 0 0;
+  }
 }
 .containerWrap {
-    width: 530px;
-    height: 100vh;
-    background: hsl(0, 0%, 100%);
-    box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+  width: 530px;
+  height: 100vh;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .containerWrap::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 .containerWrap::-webkit-scrollbar-track {
-    background: #ffffff;
+  background: #ffffff;
 }
 .containerWrap::-webkit-scrollbar-thumb {
-    border-radius: $radiusDefault;
-    background: $PrimaryColor;
+  border-radius: $radiusDefault;
+  background: $PrimaryColor;
 }
 .contentWrap {
-    min-height: 70vh;
+  min-height: 70vh;
 }
 .cntView {
-    margin-top: 60px;
-    background: $backColor;
+  margin-top: 60px;
+  background: $backColor;
 }
 .footerBottom {
-    margin-bottom: 70px;
+  margin-bottom: 70px;
 }
 /* header */
 .headerType {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 64px;
-    color: $PrimaryColor;
-    font-family: "EunhasuR";
-    font-size: $headerTitle;
-    background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  color: $PrimaryColor;
+  font-family: "EunhasuR";
+  font-size: $headerTitle;
+  background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .headerType1 {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 64px;
-    padding: 0 32px;
-    img {
-        width: 55px;
-        height: 44px;
-    }
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  padding: 0 32px;
+  img {
+    width: 55px;
+    height: 44px;
+  }
 }
 .headerType2 {
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 530px;
-    height: 64px;
-    padding: 0 10px;
-    z-index: 9;
-    background: #ffffff;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 530px;
+  height: 64px;
+  padding: 0 10px;
+  z-index: 9;
+  background: #ffffff;
 
-    h2 {
-        flex: auto;
-        margin-left: -36px;
-        color: $PrimaryColor;
-        font-family: "EunhasuR";
-        font-size: 30px;
-        font-weight: normal;
-        text-align: center;
-    }
-    h2.storeH2 {
-        margin-left: -60px;
-    }
-    .btnWrap {
-        display: flex;
-        align-items: center;
-        flex: none;
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-        z-index: 2;
-    }
+  h2 {
+    flex: auto;
+    margin-left: -36px;
+    color: $PrimaryColor;
+    font-family: "EunhasuR";
+    font-size: 30px;
+    font-weight: normal;
+    text-align: center;
+  }
+  h2.storeH2 {
+    margin-left: -60px;
+  }
+  .btnWrap {
+    display: flex;
+    align-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    z-index: 2;
+  }
 }
 /* menu */
 .menuWrap {
-    position: fixed;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 530px;
+  height: 70px;
+  bottom: 0;
+  background: #ffffff;
+  box-shadow: 0 -2px 4px 0 rgba($color: #000000, $alpha: 0.25);
+  z-index: 10;
+  a {
+    width: 100%;
+    height: 100%;
+    color: $textTitle;
+  }
+  a.active {
+    color: $PrimaryColor;
+  }
+  ul {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    width: 530px;
-    height: 70px;
-    bottom: 0;
-    background: #ffffff;
-    box-shadow: 0 -2px 4px 0 rgba($color: #000000, $alpha: 0.25);
-    z-index: 10;
-    a {
-        width: 100%;
-        height: 100%;
-        color: $textTitle;
-    }
-    a.active {
-        color: $PrimaryColor;
-    }
-    ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        height: 100%;
-        font-size: $secondText;
-    }
-    .icon {
-        display: block;
-        width: 24px;
-        height: 24px;
-        font-size: 0;
-    }
-    .menuHome {
-        background: url("../images/menuHome.png") no-repeat;
-    }
-    .menuHomeActive {
-        background: url("../images/menuHomeActive.png") no-repeat;
-    }
-    .menuLog {
-        background: url("../images/menuLog.png") no-repeat;
-    }
-    .menuLogActive {
-        background: url("../images/menuLogActive.png") no-repeat;
-    }
-    .menuStore {
-        background: url("../images/menuStore.png") no-repeat;
-    }
-    .menuStoreActive {
-        background: url("../images/menuStroreActive.png") no-repeat;
-    }
-    .menuUser {
-        background: url("../images/menuUser.png") no-repeat;
-    }
-    .menuUserActive {
-        background: url("../images/menuUserActive.png") no-repeat;
-    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    font-size: $secondText;
+  }
+  .icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+  }
+  .menuHome {
+    background: url("../images/menuHome.png") no-repeat;
+  }
+  .menuHomeActive {
+    background: url("../images/menuHomeActive.png") no-repeat;
+  }
+  .menuLog {
+    background: url("../images/menuLog.png") no-repeat;
+  }
+  .menuLogActive {
+    background: url("../images/menuLogActive.png") no-repeat;
+  }
+  .menuStore {
+    background: url("../images/menuStore.png") no-repeat;
+  }
+  .menuStoreActive {
+    background: url("../images/menuStroreActive.png") no-repeat;
+  }
+  .menuUser {
+    background: url("../images/menuUser.png") no-repeat;
+  }
+  .menuUserActive {
+    background: url("../images/menuUserActive.png") no-repeat;
+  }
 }
 /* footer */
 .footerWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 30px 32px;
+  font-size: $secondText;
+  background: #f8fafb;
+  h2 {
+    display: flex;
+    width: 55px;
+    height: 45px;
+    font-size: 0;
+    background: url("../images/footerlogo.png") no-repeat;
+  }
+  hr {
+    border-top: solid 1px $inputColor;
+  }
+  .customerLink {
+    display: grid;
+    grid-column: 4;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100% !important;
+    font-weight: bold;
+    li {
+      display: flex;
+      align-content: space-between;
+    }
+  }
+  .customerInfo {
+    display: flex;
+    gap: 20px;
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 18px;
+      border: solid 1px $inputColor;
+      border-radius: $radiusDefault;
+      background: #ffffff;
+    }
+    button::before {
+      content: "";
+      display: flex;
+      width: 18px;
+      height: 19px;
+      border-radius: $radiusDefault;
+      background: url("../images/iconCustomerCall.png") no-repeat;
+    }
+    div {
+      display: flex;
+      flex: auto;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 10px;
+      p {
+        width: 100%;
+      }
+      span {
+        display: inline-block;
+        width: 30%;
+        font-weight: bold;
+      }
+    }
+  }
+  .copyright {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    padding: 30px 32px;
-    font-size: $secondText;
-    background: #f8fafb;
-    h2 {
-        display: flex;
-        width: 55px;
-        height: 45px;
-        font-size: 0;
-        background: url("../images/footerlogo.png") no-repeat;
+    gap: 10px;
+    font-size: $therdText;
+    line-height: 20px;
+    :first-child {
+      font-size: $defaultText;
+      font-weight: bold;
     }
-    hr {
-        border-top: solid 1px $inputColor;
-    }
-    .customerLink {
-        display: grid;
-        grid-column: 4;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        width: 100% !important;
-        font-weight: bold;
-        li {
-            display: flex;
-            align-content: space-between;
-        }
-    }
-    .customerInfo {
-        display: flex;
-        gap: 20px;
-        button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding: 18px;
-            border: solid 1px $inputColor;
-            border-radius: $radiusDefault;
-            background: #ffffff;
-        }
-        button::before {
-            content: "";
-            display: flex;
-            width: 18px;
-            height: 19px;
-            border-radius: $radiusDefault;
-            background: url("../images/iconCustomerCall.png") no-repeat;
-        }
-        div {
-            display: flex;
-            flex: auto;
-            flex-direction: column;
-            justify-content: center;
-            align-items: start;
-            gap: 10px;
-            p {
-                width: 100%;
-            }
-            span {
-                display: inline-block;
-                width: 30%;
-                font-weight: bold;
-            }
-        }
-    }
-    .copyright {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        font-size: $therdText;
-        line-height: 20px;
-        :first-child {
-            font-size: $defaultText;
-            font-weight: bold;
-        }
-    }
+  }
 }
 
 /* icon */
 .titleWrap {
-    display: flex;
-    justify-content: space-between;
-    h4 {
-        font-size: $titleText;
-    }
-    a {
-        color: $PrimaryColor;
-        font-size: $therdText;
-    }
+  display: flex;
+  justify-content: space-between;
+  h4 {
+    font-size: $titleText;
+  }
+  a {
+    color: $PrimaryColor;
+    font-size: $therdText;
+  }
 }
 
 /****** home ******/
 /*swiper*/
 .swiperEvent {
-    display: flex;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+  .swiper {
     width: 100%;
-    margin: 0 auto;
-    padding: 0 32px;
-    .swiper {
-        width: 100%;
-        height: 270px;
-    }
-    .swiper-slide {
-        height: 230px !important;
-        overflow: hidden;
-    }
-    .swiper-slide img {
-        width: 100%;
-        height: 100%;
-        border-radius: $radiusDefault;
-        overflow: hidden;
-    }
-    .swiper-pagination {
-        bottom: 0 !important;
-        padding: 10px;
-    }
-    .swiper-pagination-bullet {
-        width: 16px;
-        height: 16px;
-        background: url("../images/bullet.png") !important;
-        opacity: 0.5;
-    }
-    .swiper-pagination-bullet-active {
-        opacity: 1;
-    }
+    height: 270px;
+  }
+  .swiper-slide {
+    height: 230px !important;
+    overflow: hidden;
+  }
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    border-radius: $radiusDefault;
+    overflow: hidden;
+  }
+  .swiper-pagination {
+    bottom: 0 !important;
+    padding: 10px;
+  }
+  .swiper-pagination-bullet {
+    width: 16px;
+    height: 16px;
+    background: url("../images/bullet.png") !important;
+    opacity: 0.5;
+  }
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
 }
 /* main camp */
 .mainCampClass {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 32px;
+  li {
     display: flex;
-    justify-content: space-around;
-    padding: 0 32px;
-    li {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: $therdText;
-    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: $therdText;
+  }
 }
 .campClassIcon {
-    display: flex;
-    width: 58px;
-    height: 46px;
-    background-image: 100%;
-    background-position: center;
+  display: flex;
+  width: 58px;
+  height: 46px;
+  background-image: 100%;
+  background-position: center;
 }
 .campClass1 {
-    background: url("../images/campCate1.png") no-repeat;
+  background: url("../images/campCate1.png") no-repeat;
 }
 .campClass2 {
-    background: url("../images/campCate2.png") no-repeat;
+  background: url("../images/campCate2.png") no-repeat;
 }
 .campClass3 {
-    background: url("../images/campCate3.png") no-repeat;
+  background: url("../images/campCate3.png") no-repeat;
 }
 .campClass4 {
-    background: url("../images/campCate4.png") no-repeat;
+  background: url("../images/campCate4.png") no-repeat;
 }
 /* main diary*/
 .mainDiaryWrap {
-    display: grid;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 32px;
-    gap: 26px;
-    grid-template-columns: 1fr 1fr;
-    grid-column: 1/2;
-    .mainDiaryCard {
-        border: solid 1px $inputColor;
-        border-radius: $radiusDefault;
-        overflow: hidden;
-        .imgWrap {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            background: url("../images/imgdefault.png") no-repeat;
-            background-size: 100%;
-        }
-        .textWrap {
-            padding: 16px;
-            color: $textTitle;
-            font-size: $defaultText;
-            .textTitle {
-                display: -webkit-box;
-                font-size: $defaultText;
-                font-weight: normal;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-            }
-            .textDate {
-                margin-bottom: 16px;
-                font-size: $therdText;
-                color: $textSecondary;
-            }
-            .textCamp {
-                display: flex;
-                align-items: center;
-            }
-            .textCamp::before {
-                content: "";
-                display: flex;
-                width: 24px;
-                height: 24px;
-                background: url("../images/iconCampCategory.png") no-repeat;
-            }
-        }
+  display: grid;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 32px;
+  gap: 26px;
+  grid-template-columns: 1fr 1fr;
+  grid-column: 1/2;
+  .mainDiaryCard {
+    border: solid 1px $inputColor;
+    border-radius: $radiusDefault;
+    overflow: hidden;
+    .imgWrap {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: url("../images/imgdefault.png") no-repeat;
+      background-size: 100%;
     }
+    .textWrap {
+      padding: 16px;
+      color: $textTitle;
+      font-size: $defaultText;
+      .textTitle {
+        display: -webkit-box;
+        font-size: $defaultText;
+        font-weight: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .textDate {
+        margin-bottom: 16px;
+        font-size: $therdText;
+        color: $textSecondary;
+      }
+      .textCamp {
+        display: flex;
+        align-items: center;
+      }
+      .textCamp::before {
+        content: "";
+        display: flex;
+        width: 24px;
+        height: 24px;
+        background: url("../images/iconCampCategory.png") no-repeat;
+      }
+    }
+  }
 }
 /****** camp ******/
 /* icon */
 .campIcon {
-    width: 30px;
-    height: 30px;
-    font-size: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 0;
 }
 .iconAnimal {
-    background: url("../images/iconAnimal.png") no-repeat;
+  background: url("../images/iconAnimal.png") no-repeat;
 }
 .iconAround {
-    background: url("../images/iconAround.png") no-repeat;
+  background: url("../images/iconAround.png") no-repeat;
 }
 /****** diary ******/
+.diary-bg {
+  background-color: $backColor;
+  margin: 0 auto;
+  height: 100vh;
+  padding: 32px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
+}
+.diary-Wrap {
+  gap: 10px;
+}
+.editBtnWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 466px;
+  // height: 50px;
+  margin: 0 auto;
+  margin-bottom: 21px;
+  cursor: pointer;
+  // transition: 0.3s;
+}
+.editDiary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  color: white;
+  background-color: $PrimaryColor;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.editDiary:hover {
+  background-color: $PrimaryOff;
+}
+.diaryAll-List {
+  background-color: orange;
+  // height: 400px;
+  margin: 0 auto;
+  // padding: 32px;
+  .diaryCard {
+    background-color: pink;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+}
+
+// 별숲기록 write
+
+.diaryWriteWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.diaryWrite-input {
+  width: 466px;
+  height: 354px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.diaryWrite-imageCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  width: 466px;
+  height: 354px;
+  margin-bottom: 10px;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.diaryWrite-noticeWrap {
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  .header {
+    font-size: $secondText;
+  }
+  .notice {
+    font-size: $therdText;
+  }
+}
 
 /****** store ******/
 .storeTen {
-    .swiper {
-        padding: 0 32px;
+  .swiper {
+    padding: 0 32px;
+  }
+  .swiper-slide {
+  }
+  .storeTenCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: $radiusDefault;
     }
-    .swiper-slide {
-    }
-    .storeTenCard {
+    .storeTenContent {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      h4 {
+        display: -webkit-box;
+        font-size: $defaultText;
+        font-weight: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .storeBrend {
+        color: $textSecondary;
+        font-size: $therdText;
+      }
+      .storeTenPrice {
+        font-weight: 600;
+        span {
+          color: #f24e1e;
+          font-size: $secondText;
+        }
+      }
+      .storeEtc {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-        height: 100%;
-        img {
-            width: 100%;
-            height: 100%;
-            border-radius: $radiusDefault;
-        }
-        .storeTenContent {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            h4 {
-                display: -webkit-box;
-                font-size: $defaultText;
-                font-weight: normal;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-            }
-            .storeBrend {
-                color: $textSecondary;
-                font-size: $therdText;
-            }
-            .storeTenPrice {
-                font-weight: 600;
-                span {
-                    color: #f24e1e;
-                    font-size: $secondText;
-                }
-            }
-            .storeEtc {
-                display: flex;
-                gap: 5px;
-            }
-        }
+        gap: 5px;
+      }
     }
+  }
 }
 /****** user ******/
 .userCardType1 {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  width: 466px;
+  margin: 0 auto;
+  .imgWrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: url("../images/avatar.png") no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+  .textWrap {
     display: flex;
-    justify-content: start;
-    align-items: center;
+    flex-direction: column;
+    flex: 1;
     gap: 10px;
-    width: 466px;
-    margin: 0 auto;
-    .imgWrap {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: url("../images/avatar.png") no-repeat;
-        background-size: cover;
-        overflow: hidden;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-        }
+    .nickname {
+      font-size: $defaultText;
+      font-weight: bold;
+      color: $textTitle;
     }
-    .textWrap {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        gap: 10px;
-        .nickname {
-            font-size: $defaultText;
-            font-weight: bold;
-            color: $textTitle;
-        }
-    }
+  }
 }
 .userCardType2 {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  width: 466px;
+  margin: 0 auto;
+  .imgWrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: url("../images/avatar.png") no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+  .textWrap {
     display: flex;
-    justify-content: start;
     align-items: center;
+    flex: 1;
     gap: 10px;
-    width: 466px;
-    margin: 0 auto;
-    .imgWrap {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: url("../images/avatar.png") no-repeat;
-        background-size: cover;
-        overflow: hidden;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-        }
+    .nickname {
+      font-size: $defaultText;
+      font-weight: bold;
+      color: $textTitle;
     }
-    .textWrap {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        gap: 10px;
-        .nickname {
-            font-size: $defaultText;
-            font-weight: bold;
-            color: $textTitle;
-        }
-        .date {
-            font-size: $therdText;
-            color: $textSecondary;
-        }
+    .date {
+      font-size: $therdText;
+      color: $textSecondary;
     }
+  }
 }
 /****** member ******/
 
@@ -568,206 +672,206 @@ section.backWrap {
 /* icon */
 /* button */
 button {
-    border: none;
-    background: none;
-    cursor: pointer;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 /* Layout margin & padding */
 .cntMarginTop {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 .cntMarginBottom {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 .wrapMarginTop {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 .wrapMarginBottom {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .cntWarpPadding {
-    padding: 0 32px;
+  padding: 0 32px;
 }
 @media screen and (max-width: 1024px) {
-    /****** layout ******/
-    /* container */
-    section.backWrap {
-        background-position: -600px 0;
-        .wrap {
-            justify-content: right;
-        }
+  /****** layout ******/
+  /* container */
+  section.backWrap {
+    background-position: -600px 0;
+    .wrap {
+      justify-content: right;
     }
-    /* header */
-    /* menu */
-    /* footer */
+  }
+  /* header */
+  /* menu */
+  /* footer */
 
-    /****** home ******/
-    /*swiper*/
+  /****** home ******/
+  /*swiper*/
 
-    /****** camp ******/
-    /* icon */
+  /****** camp ******/
+  /* icon */
 
-    /****** store ******/
-    /* icon */
+  /****** store ******/
+  /* icon */
 
-    /****** user ******/
-    /* icon */
+  /****** user ******/
+  /* icon */
 
-    /****** member ******/
-    /* icon */
+  /****** member ******/
+  /* icon */
 
-    /****** Form ******/
-    /* icon */
-    .imgIcons {
-        width: 20px;
-        height: 20px;
-        font-size: 0;
-    }
+  /****** Form ******/
+  /* icon */
+  .imgIcons {
+    width: 20px;
+    height: 20px;
+    font-size: 0;
+  }
 
-    /****** button ******/
-    /* icon */
+  /****** button ******/
+  /* icon */
 }
 @media screen and (max-width: 768px) {
-    /****** layout ******/
-    /* container */
-    section.backWrap {
-        background: none;
-        .wrap {
-            width: 100%;
-            padding: 0 0 0 0;
-        }
+  /****** layout ******/
+  /* container */
+  section.backWrap {
+    background: none;
+    .wrap {
+      width: 100%;
+      padding: 0 0 0 0;
     }
-    .containerWrap {
-        width: 100%;
-    }
-    /* header */
-    /* menu */
-    .menuWrap {
-        width: 100%;
-    }
-    /* footer */
-    // .footerWrap {
-    //     .customerLink {
-    //         justify-content: start;
-    //     }
-    // }
-    /****** home ******/
-    /*swiper*/
-    /* icon */
+  }
+  .containerWrap {
+    width: 100%;
+  }
+  /* header */
+  /* menu */
+  .menuWrap {
+    width: 100%;
+  }
+  /* footer */
+  // .footerWrap {
+  //     .customerLink {
+  //         justify-content: start;
+  //     }
+  // }
+  /****** home ******/
+  /*swiper*/
+  /* icon */
 
-    /****** camp ******/
-    /* icon */
+  /****** camp ******/
+  /* icon */
 
-    /****** diary ******/
+  /****** diary ******/
 
-    /****** store ******/
-    /* icon */
+  /****** store ******/
+  /* icon */
 
-    /****** user ******/
-    /* icon */
+  /****** user ******/
+  /* icon */
 
-    /****** member ******/
-    /* icon */
+  /****** member ******/
+  /* icon */
 
-    /****** Form ******/
-    /* icon */
+  /****** Form ******/
+  /* icon */
 
-    /****** button ******/
-    /* icon */
+  /****** button ******/
+  /* icon */
 }
 @media screen and (max-width: 360px) {
-    /****** layout ******/
-    /* container */
-    section.backWrap {
-        background: none;
-        .wrap {
-            width: 100%;
-        }
+  /****** layout ******/
+  /* container */
+  section.backWrap {
+    background: none;
+    .wrap {
+      width: 100%;
     }
-    .containerWrap {
-        width: 100%;
+  }
+  .containerWrap {
+    width: 100%;
+  }
+  /* header */
+  /* menu */
+  .menuWrap {
+    width: 100%;
+  }
+  /* footer */
+  .footerWrap {
+    .customerLink {
+      // justify-content: start;
     }
-    /* header */
-    /* menu */
-    .menuWrap {
-        width: 100%;
+    .customerInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 18px;
+        border: solid 1px $inputColor;
+        border-radius: $radiusDefault;
+        background: #ffffff;
+      }
+      button::before {
+        content: "";
+        display: flex;
+        width: 18px;
+        height: 19px;
+        border-radius: $radiusDefault;
+        background: url("../images/iconCustomerCall.png") no-repeat;
+      }
+      div {
+        display: flex;
+        flex: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 10px;
+        p {
+          width: 100%;
+        }
+        span {
+          display: inline-block;
+          width: 30%;
+          font-weight: bold;
+        }
+      }
     }
-    /* footer */
-    .footerWrap {
-        .customerLink {
-            // justify-content: start;
-        }
-        .customerInfo {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            button {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                padding: 18px;
-                border: solid 1px $inputColor;
-                border-radius: $radiusDefault;
-                background: #ffffff;
-            }
-            button::before {
-                content: "";
-                display: flex;
-                width: 18px;
-                height: 19px;
-                border-radius: $radiusDefault;
-                background: url("../images/iconCustomerCall.png") no-repeat;
-            }
-            div {
-                display: flex;
-                flex: auto;
-                flex-direction: column;
-                justify-content: center;
-                align-items: start;
-                gap: 10px;
-                p {
-                    width: 100%;
-                }
-                span {
-                    display: inline-block;
-                    width: 30%;
-                    font-weight: bold;
-                }
-            }
-        }
-        .copyright {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            font-size: $therdText;
-            line-height: 20px;
-            :first-child {
-                font-size: $defaultText;
-                font-weight: bold;
-            }
-        }
+    .copyright {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: $therdText;
+      line-height: 20px;
+      :first-child {
+        font-size: $defaultText;
+        font-weight: bold;
+      }
     }
-    /****** home ******/
-    /* swiper */
-    /* icon */
+  }
+  /****** home ******/
+  /* swiper */
+  /* icon */
 
-    /****** camp ******/
-    /* icon */
+  /****** camp ******/
+  /* icon */
 
-    /****** store ******/
-    /* icon */
+  /****** store ******/
+  /* icon */
 
-    /****** user ******/
-    /* icon */
+  /****** user ******/
+  /* icon */
 
-    /****** member ******/
-    /* icon */
+  /****** member ******/
+  /* icon */
 
-    /****** Form ******/
-    /* icon */
+  /****** Form ******/
+  /* icon */
 
-    /****** button ******/
-    /* icon */
+  /****** button ******/
+  /* icon */
 }
