@@ -439,6 +439,10 @@ section.backWrap {
   background: url("../images/iconAround.png") no-repeat;
 }
 /****** diary ******/
+.diary-mb {
+  margin-bottom: 10px;
+}
+
 .diary-bg {
   background-color: $backColor;
   margin: 0 auto;
@@ -489,6 +493,10 @@ section.backWrap {
     margin-bottom: 10px;
   }
 }
+
+// .diaryCard-userCard {
+//   margin-bottom: 10px;
+// }
 
 // 별숲기록 write
 

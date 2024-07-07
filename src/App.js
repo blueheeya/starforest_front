@@ -46,9 +46,9 @@ const showFooterPath = [
   "/",
   "/store/view",
   "/user/mypage",
-  "/diary/view",
-  "/diary/list",
-  "/diary/write",
+  // "/diary/view",
+  // "/diary/list",
+  // "/diary/write",
 ];
 function LayoutType() {
   const location = useLocation();
