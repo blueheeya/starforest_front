@@ -1,11 +1,9 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import btnBack from "../../assets/images/btnBack.png";
 import logo from "../../assets/images/logoDefault.png";
 import storeHome from "../../assets/images/menuHome.png";
-import { Link, useNavigate } from "react-router-dom";
 import Input from "../Form/Input";
-import Button from "../Form/Button";
-import Icon from "../Icon/Icon";
 function HeaderType({ className }) {
     return (
         <div className={`headerType1 ${className}`}>

@@ -1,17 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Input from "../../components/Form/Input";
-import Button from "../../components/Form/Button";
+import CampSite from "../../components/Camp/CampGavisDate";
 import CampListCard from "../../components/Camp/CampListCard";
 
-function CampList() {
+function CampList({ campItem }) {
     return (
         <>
             <div>
-                <div>전체 :100개</div>
-                <CampListCard />
-                <CampListCard />
-                <CampListCard />
+                <div>전체 :{CampSite.length}개</div>
+                <CampListCard campItem={campItem} />
             </div>
         </>
     );

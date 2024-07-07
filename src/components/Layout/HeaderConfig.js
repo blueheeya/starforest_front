@@ -11,13 +11,13 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "/camp/view": {
-        title: "캠핑장",
+    "/camp/view/:id": {
+        title: "별숲",
         component: HeaderType2,
         titleStore: false,
     },
     "/camp/view/map": {
-        title: "캠핑장 보기 지도",
+        title: "캠핑장 지도",
         component: HeaderType2,
         titleStore: false,
     },

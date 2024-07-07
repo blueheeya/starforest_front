@@ -505,24 +505,105 @@ section.backWrap {
         background-size: cover;
         overflow: hidden;
     }
-    .campListText {
+    .campListWrap {
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
-    .campListTag {
-        width: 100%;
-        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        .swiper-slide {
-            font-size: 18px;
-            width: auto;
+        padding: 16px;
+
+        .campPrice {
             display: flex;
-            justify-content: start;
             align-items: center;
+            font-size: $therdText;
+            span {
+                font-size: $titleText;
+                font-weight: bold;
+            }
         }
     }
+}
+.campTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 70%;
+    li:nth-child(1) {
+        color: $textDefault;
+        font-size: $therdText;
+        span::after {
+            content: "\00B7";
+            padding: 0 5px;
+        }
+        span:last-child::after {
+            display: none;
+        }
+    }
+    li:nth-child(2) {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        color: $textTitle;
+        font-size: $titleText;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    li:nth-child(3) {
+        color: $textDefault;
+        font-size: $therdText;
+    }
+}
+.campListTag {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    .swiper {
+        width: 100%;
+    }
+    .swiper-slide {
+        font-size: 18px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.viewWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 20px 32px;
+    background: #ffffff;
+    h4 {
+        color: $textTitle;
+        padding: 10px 0;
+        font-size: $titleText;
+    }
+    li {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .facilityWrap {
+        display: flex;
+        gap: 10px;
+        div {
+            width: 50px;
+            text-align: center;
+            font-size: $therdText;
+        }
+    }
+    .etcSiteInfo {
+    }
+}
+.campViewTag {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 /* icon */
 
