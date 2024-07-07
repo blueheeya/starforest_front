@@ -690,6 +690,7 @@ section.backWrap {
   background-color: $inputColor;
 }
 
+//캠핑장 완료 페이지
 .completeContent {
   display: flex;
   justify-content: center;
@@ -723,6 +724,140 @@ section.backWrap {
     }
   }
 }
+//캠핑장 완료 페이지
+
+//캠핑장 결제 페이지
+.campPayPage {
+  border: 1px solid #000;
+  padding: 52px 32px 0 32px;
+  background-color: #ffffff;
+  .campPayInput {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+    .inputTitle {
+      font-size: $titleText;
+      color: $textTitle;
+      font-weight: bold;
+    }
+    .inputContent {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      .inputBox {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        .boxName {
+          font-size: $defaultText;
+          color: $textDefault;
+          font-weight: 600;
+          span {
+            color: #ff0000;
+          }
+        }
+        .boxInput {
+          padding: 0 10px;
+          width: 330px;
+          height: 100%;
+          border-style: solid;
+          border-radius: $radiusDefault;
+          border-color: $inputColor;
+        }
+        .boxInput::placeholder {
+          color: $textSecondary;
+        }
+      }
+      .boxAnother {
+        height: 150px;
+      }
+    }
+  }
+  .campPaySale {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+    .saleTitle {
+      font-size: $titleText;
+      color: $textTitle;
+      font-weight: bold;
+    }
+    .saleContent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .contentName {
+        font-size: $defaultText;
+        color: $textDefault;
+        font-weight: 600;
+      }
+      .contentSale {
+        font-size: $titleText;
+        color: #f24e1e;
+        font-weight: 600;
+      }
+    }
+  }
+  .campPayMoney {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+    .payMoneyTitle {
+      font-size: $titleText;
+      color: $textTitle;
+      font-weight: bold;
+    }
+    .payMoneyContent {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      .moneyContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .mContentName1 {
+          font-size: $defaultText;
+          color: $textDefault;
+          font-weight: 600;
+        }
+        .campPrice {
+          font-size: $titleText;
+          color: #f24e1e;
+          font-weight: 600;
+        }
+        .disprice {
+          font-size: $titleText;
+          color: $textDefault;
+          font-weight: 600;
+        }
+        .mContentName2 {
+          font-size: $titleText;
+          font-weight: bold;
+        }
+        .resultPrice {
+          display: flex;
+          gap: 10px;
+          .resultMainPirce {
+            font-size: $headerTitle;
+            font-weight: bold;
+            color: #f24e1e;
+          }
+          .resultSpan {
+            font-size: $titleText;
+            text-decoration: line-through;
+            color: $textSecondary;
+          }
+        }
+      }
+    }
+  }
+}
+
+//캠핑장 결제 페이지
 
 /* icon */
 
