@@ -1,11 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import CampSite from "../../components/Camp/CampGavisDate";
+import CampListCard from "../../components/Camp/CampListCard";
 
-function CampList() {
+function CampList({ campItem }) {
     return (
         <>
-            <Link to={"/"}>뒤로</Link>
-            <div>CampList</div>
+            <div>
+                <div>전체 :{CampSite.length}개</div>
+                <CampListCard campItem={campItem} />
+            </div>
         </>
     );
 }
