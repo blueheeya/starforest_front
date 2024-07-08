@@ -499,19 +499,15 @@ section.backWrap {
 //camp reservation
 .campReservation {
   .campInfo {
-    border-color: #dcdcdc;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $inputColor;
     padding: 20px 32px;
     background-color: #ffffff;
     margin-bottom: 10px;
 
     .infoInner {
-      border: 1px solid #000;
       display: flex;
 
       .innerImage {
-        border: 1px solid #000;
         width: 150px;
         height: 100px;
       }
@@ -706,10 +702,12 @@ section.backWrap {
   justify-content: center;
   gap: 20px;
   height: 50px;
+
   .completeBtnAll {
     .completeInner:hover {
       background-color: $PrimaryColor;
     }
+
     .completeInner {
       display: flex;
       align-items: center;
@@ -724,76 +722,105 @@ section.backWrap {
     }
   }
 }
+
 //캠핑장 완료 페이지
 
 //캠핑장 결제 페이지
 .campPayPage {
-  border: 1px solid #000;
-  padding: 52px 32px 0 32px;
-  background-color: #ffffff;
+  padding: 10px 0 0 0;
+  // background-color: #ffffff;
+
   .campPayInput {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-bottom: 50px;
+    padding: 20px 32px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+
     .inputTitle {
       font-size: $titleText;
       color: $textTitle;
       font-weight: bold;
     }
+
     .inputContent {
       display: flex;
       flex-direction: column;
       gap: 14px;
+
       .inputBox {
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: 50px;
+
         .boxName {
           font-size: $defaultText;
           color: $textDefault;
           font-weight: 600;
+
           span {
             color: #ff0000;
           }
         }
+
         .boxInput {
-          padding: 0 10px;
+          padding: 10px 10px;
           width: 330px;
           height: 100%;
+          border: 2px solid $inputColor;
           border-style: solid;
           border-radius: $radiusDefault;
           border-color: $inputColor;
         }
+
+        .boxInput:focus {
+          color: $textDefault;
+          outline: none;
+        }
+
+        textarea {
+          // font-weight: bold
+        }
+
         .boxInput::placeholder {
           color: $textSecondary;
+          font-weight: 400;
         }
       }
+
       .boxAnother {
         height: 150px;
       }
     }
   }
+
   .campPaySale {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-bottom: 50px;
+    padding: 20px 32px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+
     .saleTitle {
       font-size: $titleText;
       color: $textTitle;
       font-weight: bold;
     }
+
     .saleContent {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .contentName {
         font-size: $defaultText;
         color: $textDefault;
         font-weight: 600;
       }
+
       .contentSale {
         font-size: $titleText;
         color: #f24e1e;
@@ -801,51 +828,64 @@ section.backWrap {
       }
     }
   }
+
   .campPayMoney {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-bottom: 50px;
+    padding: 20px 32px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+
     .payMoneyTitle {
       font-size: $titleText;
       color: $textTitle;
       font-weight: bold;
     }
+
     .payMoneyContent {
       display: flex;
       flex-direction: column;
       gap: 14px;
+
       .moneyContent {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         .mContentName1 {
           font-size: $defaultText;
           color: $textDefault;
           font-weight: 600;
         }
+
         .campPrice {
           font-size: $titleText;
           color: #f24e1e;
           font-weight: 600;
         }
+
         .disprice {
           font-size: $titleText;
           color: $textDefault;
           font-weight: 600;
         }
+
         .mContentName2 {
           font-size: $titleText;
           font-weight: bold;
         }
+
         .resultPrice {
           display: flex;
           gap: 10px;
+
           .resultMainPirce {
             font-size: $headerTitle;
             font-weight: bold;
             color: #f24e1e;
           }
+
           .resultSpan {
             font-size: $titleText;
             text-decoration: line-through;
@@ -853,6 +893,57 @@ section.backWrap {
           }
         }
       }
+    }
+  }
+}
+
+.campPayMethod {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background-color: #ffffff;
+  padding: 20px 32px;
+
+  .methodName {
+    font-size: $titleText;
+    color: $textTitle;
+    font-weight: bold;
+  }
+
+  .methodKind {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    .kakao {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      width: 225px;
+      height: 55px;
+      // font-size: $btnText;
+      font-size: 18px;
+      font-weight: bold;
+      color: $textTitle;
+      border-radius: 4px;
+      background-color: #FEE500;
+    }
+
+    .naver {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      background-color: #03C75A;
+      // font-size: $btnText;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      width: 225px;
+      height: 55px;
+      border-radius: 4px;
     }
   }
 }
@@ -883,8 +974,7 @@ section.backWrap {
     padding: 0 32px;
   }
 
-  .swiper-slide {
-  }
+  .swiper-slide {}
 
   .storeTenCard {
     display: flex;
@@ -1054,6 +1144,7 @@ button {
 }
 
 @media screen and (max-width: 1024px) {
+
   /****** layout ******/
   /* container */
   section.backWrap {
@@ -1096,6 +1187,7 @@ button {
 }
 
 @media screen and (max-width: 768px) {
+
   /****** layout ******/
   /* container */
   section.backWrap {
@@ -1149,6 +1241,7 @@ button {
 }
 
 @media screen and (max-width: 360px) {
+
   /****** layout ******/
   /* container */
   section.backWrap {

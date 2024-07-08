@@ -20,7 +20,7 @@ function CampPayInput() {
           </div>
           <div className="inputBox boxAnother">
             <div className="boxName">요청사항</div>
-            <input
+            <textarea
               className="boxInput"
               type="text"
               placeholder="요청사항 입력"

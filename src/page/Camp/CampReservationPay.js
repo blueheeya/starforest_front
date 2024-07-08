@@ -1,5 +1,6 @@
 import React from "react";
 import CampPayInput from "../../components/Camp/CampPayInput";
+import CampPayMethod from "../../components/Camp/CampPayMethod";
 
 function CampReservationPay() {
   return (
@@ -36,7 +37,7 @@ function CampReservationPay() {
           </div>
         </div>
 
-        <div></div>
+        <CampPayMethod />
       </div>
     </>
   );
