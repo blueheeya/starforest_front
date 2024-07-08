@@ -42,6 +42,7 @@ import UserMypageMent from "./page/User/UserMypageMent";
 import Style from "./Style";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
+
 const showFooterPath = ["/", "/store/view", "/user/mypage", "/camp/list"];
 function LayoutType() {
 
