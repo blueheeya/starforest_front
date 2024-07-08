@@ -1,12 +1,22 @@
 @charset "utf-8";
 @import "../fonts/font.css";
 @import "icons.scss";
+@import "./datepicker.css";
+//main page
+@import "mainStyle.scss";
+//camping page
+@import "campStyle.scss";
+//diary page
+@import "diaryStyle.scss";
+//store page
+@import "storeStyle.scss";
 // @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 /* colors */
 $PrimaryColor: #3f71d1;
 $PrimaryOff: #92b1ed;
@@ -23,989 +33,413 @@ $defaultText: 0.94em; //15px
 $defaultTitle: 1.5em; //24px
 $secondText: 0.88em; //14px
 $therdText: 0.81em; //13px
+$btnText: 16px;
 /* radius */
 $radiusDefault: 10px;
 $radiusSmall: 5px;
 
 html,
 body {
-  width: 100%;
-  height: 100%;
-  color: #535353;
-  font-family: "Pretendard";
-  font-size: 16px;
-  font-size: 1em;
+    width: 100%;
+    height: 100%;
+    color: #535353;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-size: 1em;
 }
+
 ul,
 li {
-  list-style: none;
+    list-style: none;
 }
+
 a,
 a:link {
-  color: $textDefault;
-  text-decoration: none;
+    color: $textDefault;
+    text-decoration: none;
 }
 
 /****** layout ******/
 /*continer*/
 section.backWrap {
-  width: 100%;
-  height: 100vh;
-  background: url("../images/background.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow-y: hidden;
-  .wrap {
-    display: flex;
-    justify-content: right;
-    width: 1024px;
+    width: 100%;
     height: 100vh;
-    margin: 0 auto;
-    padding: 0 32px 0 0;
-  }
+    background: url("../images/background.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-y: hidden;
+
+    .wrap {
+        display: flex;
+        justify-content: right;
+        width: 1024px;
+        height: 100vh;
+        margin: 0 auto;
+        padding: 0 32px 0 0;
+    }
 }
+
 .containerWrap {
-  width: 530px;
-  height: 100vh;
-  background: hsl(0, 0%, 100%);
-  box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+    width: 530px;
+    height: 100vh;
+    background: hsl(0, 0%, 100%);
+    box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
+
 .containerWrap::-webkit-scrollbar {
-  width: 5px;
+    width: 5px;
 }
+
 .containerWrap::-webkit-scrollbar-track {
-  background: #ffffff;
+    background: #ffffff;
 }
+
 .containerWrap::-webkit-scrollbar-thumb {
-  border-radius: $radiusDefault;
-  background: $PrimaryColor;
+    border-radius: $radiusDefault;
+    background: $PrimaryColor;
 }
+
 .contentWrap {
-  min-height: 70vh;
+    min-height: 70vh;
 }
+
 .cntView {
-  margin-top: 64px;
-  background: $backColor;
+    margin-top: 64px;
+    background: $backColor;
 }
+
 .cntSearchView {
-  min-height: 80vh;
-  background: $backColor;
+    min-height: 80vh;
+    background: $backColor;
 }
+
 .footerBottom {
-  margin-bottom: 70px;
+    margin-bottom: 70px;
 }
+
 /* header */
 .headerType {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 64px;
-  color: $PrimaryColor;
-  font-family: "EunhasuR";
-  font-size: $headerTitle;
-  background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.headerType1 {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 64px;
-  padding: 0 32px;
-  img {
-    width: 55px;
-    height: 44px;
-  }
-}
-.headerType2 {
-  position: fixed;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 530px;
-  height: 64px;
-  padding: 0 10px;
-  z-index: 9;
-  background: #ffffff;
-
-  h2 {
-    flex: auto;
-    margin-left: -36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
     color: $PrimaryColor;
     font-family: "EunhasuR";
-    font-size: 30px;
-    font-weight: normal;
-    text-align: center;
-  }
-  h2.storeH2 {
-    margin-left: -60px;
-  }
-  .btnWrap {
+    font-size: $headerTitle;
+    background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.headerType1 {
     display: flex;
     align-items: center;
-    flex: none;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    z-index: 2;
-  }
-}
-.headerType3 {
-  display: flex;
-  flex-direction: column;
-  align-items: first baseline;
-  gap: 10px;
-  width: 100%;
-  height: auto;
-  padding: 10px 10px;
-  border-bottom: solid 1px $inputColor;
-  .serchWrap {
     width: 100%;
-    display: flex;
-    .serchBox {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      .searchInput {
-        width: 100%;
-      }
-      button {
-        width: 40px;
-        height: 40px;
-        font-size: 0;
-        border-radius: $radiusDefault;
-        background: $PrimaryColor url("../images/btnMap.png") no-repeat;
-        background-position: center;
-      }
+    height: 64px;
+    padding: 0 32px;
+
+    img {
+        width: 55px;
+        height: 44px;
     }
-    .btnWrap {
-      display: flex;
-      align-items: center;
-      flex: none;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-      z-index: 2;
-    }
-  }
-  .serchTypeWrap {
+}
+
+.headerType2 {
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    gap: 10px;
-    input {
-      flex: 1;
+    width: 530px;
+    height: 64px;
+    padding: 0 10px;
+    z-index: 9;
+    background: #ffffff;
+
+    h2 {
+        flex: auto;
+        margin-left: -36px;
+        color: $PrimaryColor;
+        font-family: "EunhasuR";
+        font-size: 30px;
+        font-weight: normal;
+        text-align: center;
     }
-    select {
-      flex: 1;
-      width: 120px;
-      height: 40px;
-      border: 1px solid $inputColor;
-      border-radius: $radiusDefault;
-      outline: none;
-      padding: 0 10px;
+
+    h2.storeH2 {
+        margin-left: -60px;
     }
-  }
+
+    .btnWrap {
+        display: flex;
+        align-items: center;
+        flex: none;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        z-index: 2;
+    }
 }
+
+.headerType3 {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    padding: 10px 10px;
+    border-bottom: solid 1px $inputColor;
+
+    .serchWrap {
+        width: 100%;
+        display: flex;
+
+        .serchBox {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+
+            .searchInput {
+                width: 100%;
+            }
+
+            button {
+                width: 40px;
+                height: 40px;
+                font-size: 0;
+                border-radius: $radiusDefault;
+                background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+                background-position: center;
+            }
+        }
+
+        .btnWrap {
+            display: flex;
+            align-items: center;
+            flex: none;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            z-index: 2;
+        }
+    }
+
+    .serchTypeWrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 10px;
+
+        input {
+            flex: 1;
+        }
+
+        //     flex: none;
+        //     width: 36px;
+        //     height: 36px;
+        //     cursor: pointer;
+        //     z-index: 2;
+
+        select {
+            flex: 1;
+            width: 120px;
+            height: 40px;
+            border: 1px solid $inputColor;
+            border-radius: $radiusDefault;
+            outline: none;
+            padding: 0 10px;
+        }
+    }
+}
+
 /* menu */
 .menuWrap {
-  position: fixed;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  width: 530px;
-  height: 70px;
-  bottom: 0;
-  background: #ffffff;
-  box-shadow: 0 -2px 4px 0 rgba($color: #000000, $alpha: 0.25);
-  z-index: 10;
-  a {
-    width: 100%;
-    height: 100%;
-    color: $textTitle;
-  }
-  a.active {
-    color: $PrimaryColor;
-  }
-  ul {
+    position: fixed;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    height: 100%;
-    font-size: $secondText;
-  }
-  .icon {
-    display: block;
-    width: 24px;
-    height: 24px;
-    font-size: 0;
-  }
-  .menuHome {
-    background: url("../images/menuHome.png") no-repeat;
-  }
-  .menuHomeActive {
-    background: url("../images/menuHomeActive.png") no-repeat;
-  }
-  .menuLog {
-    background: url("../images/menuLog.png") no-repeat;
-  }
-  .menuLogActive {
-    background: url("../images/menuLogActive.png") no-repeat;
-  }
-  .menuStore {
-    background: url("../images/menuStore.png") no-repeat;
-  }
-  .menuStoreActive {
-    background: url("../images/menuStroreActive.png") no-repeat;
-  }
-  .menuUser {
-    background: url("../images/menuUser.png") no-repeat;
-  }
-  .menuUserActive {
-    background: url("../images/menuUserActive.png") no-repeat;
-  }
+    justify-content: space-between;
+    gap: 20px;
+    width: 530px;
+    height: 70px;
+    bottom: 0;
+    background: #ffffff;
+    box-shadow: 0 -2px 4px 0 rgba($color: #000000, $alpha: 0.25);
+    z-index: 10;
+
+    a {
+        width: 100%;
+        height: 100%;
+        color: $textTitle;
+    }
+
+    a.active {
+        color: $PrimaryColor;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        height: 100%;
+        font-size: $secondText;
+    }
+
+    .icon {
+        display: block;
+        width: 24px;
+        height: 24px;
+        font-size: 0;
+    }
+
+    .menuHome {
+        background: url("../images/menuHome.png") no-repeat;
+    }
+
+    .menuHomeActive {
+        background: url("../images/menuHomeActive.png") no-repeat;
+    }
+
+    .menuLog {
+        background: url("../images/menuLog.png") no-repeat;
+    }
+
+    .menuLogActive {
+        background: url("../images/menuLogActive.png") no-repeat;
+    }
+
+    .menuStore {
+        background: url("../images/menuStore.png") no-repeat;
+    }
+
+    .menuStoreActive {
+        background: url("../images/menuStroreActive.png") no-repeat;
+    }
+
+    .menuUser {
+        background: url("../images/menuUser.png") no-repeat;
+    }
+
+    .menuUserActive {
+        background: url("../images/menuUserActive.png") no-repeat;
+    }
 }
+
 /* footer */
 .footerWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  padding: 30px 32px;
-  font-size: $secondText;
-  background: #f8fafb;
-  h2 {
-    display: flex;
-    width: 55px;
-    height: 45px;
-    font-size: 0;
-    background: url("../images/footerlogo.png") no-repeat;
-  }
-  hr {
-    border-top: solid 1px $inputColor;
-  }
-  .customerLink {
-    display: grid;
-    grid-column: 4;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    width: 100% !important;
-    font-weight: bold;
-    li {
-      display: flex;
-      align-content: space-between;
-    }
-  }
-  .customerInfo {
-    display: flex;
-    gap: 20px;
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      padding: 18px;
-      border: solid 1px $inputColor;
-      border-radius: $radiusDefault;
-      background: #ffffff;
-    }
-    button::before {
-      content: "";
-      display: flex;
-      width: 18px;
-      height: 19px;
-      border-radius: $radiusDefault;
-      background: url("../images/iconCustomerCall.png") no-repeat;
-    }
-    div {
-      display: flex;
-      flex: auto;
-      flex-direction: column;
-      justify-content: center;
-      align-items: start;
-      gap: 10px;
-      p {
-        width: 100%;
-      }
-      span {
-        display: inline-block;
-        width: 30%;
-        font-weight: bold;
-      }
-    }
-  }
-  .copyright {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: $therdText;
-    line-height: 20px;
-    :first-child {
-      font-size: $defaultText;
-      font-weight: bold;
+    gap: 15px;
+    width: 100%;
+    padding: 30px 32px;
+    font-size: $secondText;
+    background: #f8fafb;
+
+    h2 {
+        display: flex;
+        width: 55px;
+        height: 45px;
+        font-size: 0;
+        background: url("../images/footerlogo.png") no-repeat;
     }
-  }
+
+    hr {
+        border-top: solid 1px $inputColor;
+    }
+
+    .customerLink {
+        display: grid;
+        grid-column: 4;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        width: 100% !important;
+        font-weight: bold;
+
+        li {
+            display: flex;
+            align-content: space-between;
+        }
+    }
+
+    .customerInfo {
+        display: flex;
+        gap: 20px;
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 18px;
+            border: solid 1px $inputColor;
+            border-radius: $radiusDefault;
+            background: #ffffff;
+        }
+
+        button::before {
+            content: "";
+            display: flex;
+            width: 18px;
+            height: 19px;
+            border-radius: $radiusDefault;
+            background: url("../images/iconCustomerCall.png") no-repeat;
+        }
+
+        div {
+            display: flex;
+            flex: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            gap: 10px;
+
+            p {
+                width: 100%;
+            }
+
+            span {
+                display: inline-block;
+                width: 30%;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .copyright {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: $therdText;
+        line-height: 20px;
+
+        :first-child {
+            font-size: $defaultText;
+            font-weight: bold;
+        }
+    }
 }
 
 /* icon */
 .titleWrap {
-  display: flex;
-  justify-content: space-between;
-  h4 {
-    font-size: $titleText;
-  }
-  a {
-    color: $PrimaryColor;
-    font-size: $therdText;
-  }
-}
-
-/****** home ******/
-/*swiper*/
-.swiperEvent {
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 32px;
-  .swiper {
-    width: 100%;
-    height: 270px;
-  }
-  .swiper-slide {
-    height: 230px !important;
-    overflow: hidden;
-  }
-  .swiper-slide img {
-    width: 100%;
-    height: 100%;
-    border-radius: $radiusDefault;
-    overflow: hidden;
-  }
-  .swiper-pagination {
-    bottom: 0 !important;
-    padding: 10px;
-  }
-  .swiper-pagination-bullet {
-    width: 16px;
-    height: 16px;
-    background: url("../images/bullet.png") !important;
-    opacity: 0.5;
-  }
-  .swiper-pagination-bullet-active {
-    opacity: 1;
-  }
-}
-/* main camp */
-.mainCampClass {
-  display: flex;
-  justify-content: space-around;
-  padding: 0 32px;
-  li {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: $therdText;
-  }
-}
-.campClassIcon {
-  display: flex;
-  width: 58px;
-  height: 46px;
-  background-image: 100%;
-  background-position: center;
-}
-.campClass1 {
-  background: url("../images/campCate1.png") no-repeat;
-}
-.campClass2 {
-  background: url("../images/campCate2.png") no-repeat;
-}
-.campClass3 {
-  background: url("../images/campCate3.png") no-repeat;
-}
-.campClass4 {
-  background: url("../images/campCate4.png") no-repeat;
-}
-/* main diary*/
-.mainDiaryWrap {
-  display: grid;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 0 32px;
-  gap: 26px;
-  grid-template-columns: 1fr 1fr;
-  grid-column: 1/2;
-  .mainDiaryCard {
-    border: solid 1px $inputColor;
-    border-radius: $radiusDefault;
-    overflow: hidden;
-    .imgWrap {
-      width: 100%;
-      height: 220px;
-      overflow: hidden;
-      background: url("../images/imgdefault.png") no-repeat;
-      background-size: 100%;
-    }
-    .textWrap {
-      padding: 16px;
-      color: $textTitle;
-      font-size: $defaultText;
-      .textTitle {
-        display: -webkit-box;
-        font-size: $defaultText;
-        font-weight: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-      }
-      .textDate {
-        margin-bottom: 16px;
-        font-size: $therdText;
-        color: $textSecondary;
-      }
-      .textCamp {
-        display: flex;
-        align-items: center;
-      }
-      .textCamp::before {
-        content: "";
-        display: flex;
-        width: 24px;
-        height: 24px;
-        background: url("../images/iconCampCategory.png") no-repeat;
-      }
-    }
-  }
-}
-/****** camp ******/
-
-.campListCard {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 20px 32px;
-  background: #ffffff;
-  .campListImg {
-    width: 100%;
-    height: 250px;
-    font-size: 0;
-    background: #dcdcdc url("../images/noneImage.png") no-repeat;
-    background-size: cover;
-    overflow: hidden;
-  }
-  .campListWrap {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 16px;
 
-    .campPrice {
-      display: flex;
-      align-items: center;
-      font-size: $therdText;
-      span {
+    h4 {
         font-size: $titleText;
-        font-weight: bold;
-      }
     }
-  }
-}
-.campTitle {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  width: 70%;
-  li:nth-child(1) {
-    color: $textDefault;
-    font-size: $therdText;
-    span::after {
-      content: "\00B7";
-      padding: 0 5px;
-    }
-    span:last-child::after {
-      display: none;
-    }
-  }
-  li:nth-child(2) {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    color: $textTitle;
-    font-size: $titleText;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  li:nth-child(3) {
-    color: $textDefault;
-    font-size: $therdText;
-  }
-}
-.campListTag {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
-  .swiper {
-    width: 100%;
-  }
-  .swiper-slide {
-    font-size: 18px;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-.viewWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
-  // padding: 20px 32px;
-  background: #ffffff;
-  h4 {
-    color: $textTitle;
-    padding: 10px 0;
-    font-size: $titleText;
-  }
-  li {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .facilityWrap {
-    display: flex;
-    gap: 10px;
-    div {
-      width: 50px;
-      text-align: center;
-      font-size: $therdText;
-    }
-  }
-  .etcSiteInfo {
-  }
-}
-.campViewTag {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-/* icon */
-
-/****** diary ******/
-
-/****** store ******/
-.storeTen {
-  // background-color: #fff;
-  .swiper {
-    padding: 0 32px;
-  }
-  .swiper-slide {
-  }
-  .storeTenCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    height: 100%;
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: $radiusDefault;
-    }
-    .storeTenContent {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      h4 {
-        display: -webkit-box;
-        font-size: $defaultText;
-        font-weight: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-      }
-      .storeBrend {
-        color: $textSecondary;
-        font-size: $therdText;
-      }
-      .storeTenPrice {
-        font-weight: 600;
-        span {
-          color: #f24e1e;
-          font-size: $secondText;
-        }
-      }
-      .storeEtc {
-        display: flex;
-        gap: 5px;
-      }
-    }
-  }
-}
-
-//*******************store(list)**********
-.storeTop {
-  margin-top: 65px;
-  margin-bottom: 78px;
-}
-.cntWarpPadding {
-  display: flex;
-  padding-left: 23px;
-  margin-bottom: 23px;
-}
-.storeList {
-  display: flex;
-  //   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-left: 32px;
-  padding-right: 32px;
-  margin-top: 75px;
-  border-radius: 10px;
-
-  .product-item {
-    width: 220px;
-    height: 376px;
-    align-items: center;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    .productImg {
-      border-radius: 10px;
-    }
-    p {
-      font-size: $defaultTitle;
-    }
-  }
-}
-.priceWrap {
-  display: flex;
-  margin-bottom: 11px;
-  .sale {
-    font-size: $textSecondary;
-    color: #f24e1e;
-  }
-  .price {
-    font-size: $defaultText;
-  }
-}
-.nameWrap {
-  // gap: 5px;
-  margin-bottom: 11px;
-  .Bname {
-    font-size: $secondText;
-    margin-bottom: 5px;
-  }
-  .Pname {
-    font-size: $defaultText;
-  }
-}
-
-//*******************store(view)**********
-.viewWrap {
-  background-color: $backColor;
-}
-.productImageWrap {
-  background-color: #ffffff;
-  height: 489px;
-  margin-bottom: 10px;
-}
-.viewImg {
-  width: 530px;
-  height: 350px;
-  margin-bottom: 20px;
-}
-.productNameWrap {
-  margin: 10px 32px 10px 32px;
-  padding-top: 5px;
-  //   padding-bottom: 5px;
-  .nameWrap {
-    // margin-top: 10px;
-    // margin-bottom: 10px;
-    .category {
-      font-size: $therdText;
-      margin-bottom: 5px;
-    }
-    .productName {
-      font-size: $titleText;
-    }
-  }
-}
-.brandWrap {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  .brand {
-    font-size: $secondText;
-  }
-  .brandName {
-    font-size: $therdText;
-  }
-}
-
-.productPriceWrap {
-  //   border: 1px solid #000;
-  background-color: #fff;
-  height: 107px;
-  padding-top: 20px;
-  margin-bottom: 10px;
-  .priceWrap {
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 20px;
-    font-size: $defaultText;
-  }
-  .saleWrap {
-    display: flex;
-    gap: 10px;
-    margin-left: 32px;
-    margin-right: 32px;
-    .sale {
-      color: #f24e1e;
-      font-size: $defaultText;
-      text-decoration-line: line-through;
-    }
-    .saleprice {
-      font-size: $defaultTitle;
-    }
-  }
-}
-.productViewEtc {
-  //   border: 1px solid #000;
-  background-color: #fff;
-  height: 100px;
-  padding-top: 20px;
-  margin-bottom: 20px;
-  .pointWrap {
-    display: flex;
-    gap: 10px;
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 20px;
-    .point {
-      font-size: $secondText;
-    }
-    .pointDetails {
-      font-size: $therdText;
-    }
-  }
-  .deliveryWrap {
-    display: flex;
-    gap: 10px;
-    margin-left: 32px;
-    margin-right: 32px;
-    .delivery {
-      font-size: $secondText;
-    }
-    .deliveryDetails {
-      font-size: $therdText;
-    }
-  }
-}
-.buyWrap {
-  // border: 1px solid #000;
-  background-color: #fff;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  .btnWrap {
-    // border: 1px solid #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    background-color: #3f71d1;
-    width: 466px;
-    height: 50px;
-    .buyBtn {
-      margin: 10px 50px 10px 50px;
-      color: #ffffff;
-    }
-  }
-}
-.tabMenuWrap {
-  margin-top: 20px;
-}
-
-.tabList {
-  background-color: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  list-style: none;
-  width: 100%;
-  height: 40px;
-  padding: 0;
-  margin: 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.tabList li {
-  // margin-right: 10px;
-  font-size: $secondText;
-}
-
-.tabList li a {
-  display: inline-block;
-  // padding: 10px 20px;
-  text-decoration: none;
-  color: #333;
-  cursor: pointer;
-}
-
-.tabList li a.on {
-  font-weight: bold;
-  border-bottom: 2px solid #007bff;
-}
-
-.tabContent {
-  width: 100%;
-  width: 100%;
-  background-color: #fff;
-}
-.detailContent {
-  // display: flex;
-  justify-content: center;
-  align-items: center;
-  .detailImageWrapper {
-    // border: 1px solid #000;
-    width: 530px;
-    position: relative;
-    overflow: hidden;
-    transition: height 0.3s ease-in-out;
-    .detailImg {
-      width: 530px;
-      height: auto;
-    }
-    .moreBtn {
-      // border: 1px solid #000;
-      position: absolute;
-      width: 486px;
-      height: 50px;
-      bottom: 10px;
-      left: 50%;
-      border-radius: 10px;
-      transform: translateX(-50%);
-      padding: 10px 20px;
-      background-color: #fff;
-      color: $textTitle;
-      font-size: $defaultText;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-  }
-}
-.reviewContent {
-  .reviewItem {
-    // border: 1px solid #000;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 20px 32px 20px 32px;
-    margin-bottom: 10px;
-    background-color: #fff;
-
-    .reviewuserImg {
-      width: 80px;
-      height: 80px;
-      border-radius: 50px;
-    }
-    .reviewWrap {
-      display: flex;
-      // gap: 160px;
-      justify-content: space-between;
-      // width: 368px;
-      width: 100%;
-      height: 69px;
-      .reviewInfo {
-        .reviewUser {
-          display: flex;
-          gap: 10px;
-          margin-bottom: 15px;
-        }
-      }
-      .deleteReviewBtn {
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
+      a {
         color: $PrimaryColor;
-      }
+        font-size: $therdText;
     }
-  }
-}
-//*******************store(toggle)**********
-.storeToggle {
-  background-color: #fff;
-}
-.toggleMenu {
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  width: 100%;
-}
-.toggleHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 64px;
-  padding: 0 10px;
-  cursor: pointer;
-  font-size: $titleText;
-  padding-left: 32px;
-  padding-right: 32px;
-  border-top: 1px solid #989898;
-  border-bottom: 1px solid #989898;
-}
-.toggle {
-  // border: 1px solid #000;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.toggleWrap {
-  // border: 1px solid #000;
-  align-items: center;
 }
 
-.togglecontentWrap {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left: 32px;
-
-  .togglecontent {
-    font-size: $secondText;
-    .productReference {
-      font-style: $secondText;
-    }
-  }
-}
 //*******************store(modal)**********
 .modalOverlay {
   // position: absolute;
@@ -1085,307 +519,278 @@ section.backWrap {
 .purchaseBtn {
   background-color: #007bff;
   color: white;
-}
+=======
+
+
+
+/****** diary ******/
 
 /****** user ******/
 .userCardType1 {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
-  width: 466px;
-  margin: 0 auto;
-  .imgWrap {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: url("../images/avatar.png") no-repeat;
-    background-size: cover;
-    overflow: hidden;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: fill;
-    }
-  }
-  .textWrap {
     display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 10px;
-    .nickname {
-      font-size: $defaultText;
-      font-weight: bold;
-      color: $textTitle;
-    }
-  }
-}
-.userCardType2 {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
-  width: 466px;
-  margin: 0 auto;
-  .imgWrap {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: url("../images/avatar.png") no-repeat;
-    background-size: cover;
-    overflow: hidden;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: fill;
-    }
-  }
-  .textWrap {
-    display: flex;
+    justify-content: start;
     align-items: center;
-    flex: 1;
     gap: 10px;
-    .nickname {
-      font-size: $defaultText;
-      font-weight: bold;
-      color: $textTitle;
+    width: 466px;
+    margin: 0 auto;
+
+    .imgWrap {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: url("../images/avatar.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
     }
-    .date {
-      font-size: $therdText;
-      color: $textSecondary;
+
+    .textWrap {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 10px;
+
+        .nickname {
+            font-size: $defaultText;
+            font-weight: bold;
+            color: $textTitle;
+        }
     }
-  }
 }
-/****** member ******/
+
+.userCardType2 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    width: 466px;
+    margin: 0 auto;
+
+    .imgWrap {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: url("../images/avatar.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+    }
+
+    .textWrap {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        gap: 10px;
+
+        .nickname {
+            font-size: $defaultText;
+            font-weight: bold;
+            color: $textTitle;
+        }
+
+        .date {
+            font-size: $therdText;
+            color: $textSecondary;
+        }
+    }
+}
 
 /****** Form ******/
 /* input */
 .searchInput {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  height: 40px;
-  padding: 10px 15px;
-  border: solid 1px $inputColor;
-  border-radius: $radiusDefault;
-  input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     width: 100%;
-    border: none;
-  }
-  input:hover {
-    border: none;
-  }
-  input:focus {
-    outline: none;
-  }
+    height: 40px;
+    padding: 10px 15px;
+    border: solid 1px $inputColor;
+    border-radius: $radiusDefault;
+
+    input {
+        width: 100%;
+        border: none;
+    }
+
+    input:hover {
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
 }
+
 /* icon */
 
 /****** button ******/
 /* icon */
 /* button */
 button {
-  border: none;
-  background: none;
-  cursor: pointer;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 /* Layout margin & padding */
 .cntMarginTop {
-  margin-top: 50px;
+    margin-top: 50px;
 }
+
 .cntMarginBottom {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
+
 .wrapMarginTop {
-  margin-top: 20px;
+    margin-top: 20px;
 }
+
 .wrapMarginBottom {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .cntWarpPadding {
-  padding: 0 32px;
+    padding: 0 32px;
 }
+
 @media screen and (max-width: 1024px) {
-  /****** layout ******/
-  /* container */
-  section.backWrap {
-    background-position: -600px 0;
-    .wrap {
-      justify-content: right;
+    /****** layout ******/
+    /* container */
+    section.backWrap {
+        background-position: -600px 0;
+
+        .wrap {
+            justify-content: right;
+        }
     }
-  }
-  /* header */
-  /* menu */
-  /* footer */
 
-  /****** home ******/
-  /*swiper*/
+    /* icon */
+    .imgIcons {
+        width: 20px;
+        height: 20px;
+        font-size: 0;
+    }
 
-  /****** camp ******/
-  /* icon */
-
-  /****** store ******/
-  /* icon */
-
-  /****** user ******/
-  /* icon */
-
-  /****** member ******/
-  /* icon */
-
-  /****** Form ******/
-  /* icon */
-  .imgIcons {
-    width: 20px;
-    height: 20px;
-    font-size: 0;
-  }
-
-  /****** button ******/
-  /* icon */
+    /****** button ******/
+    /* icon */
 }
+
 @media screen and (max-width: 768px) {
-  /****** layout ******/
-  /* container */
-  section.backWrap {
-    background: none;
-    .wrap {
-      width: 100%;
-      padding: 0 0 0 0;
+    /****** layout ******/
+    /* container */
+    section.backWrap {
+        background: none;
+
+        .wrap {
+            width: 100%;
+            padding: 0 0 0 0;
+        }
     }
-  }
-  .containerWrap {
-    width: 100%;
-  }
-  /* header */
-  /* menu */
-  .menuWrap {
-    width: 100%;
-  }
-  /* footer */
-  // .footerWrap {
-  //     .customerLink {
-  //         justify-content: start;
-  //     }
-  // }
-  /****** home ******/
-  /*swiper*/
-  /* icon */
 
-  /****** camp ******/
-  /* icon */
+    .containerWrap {
+        width: 100%;
+    }
 
-  /****** diary ******/
-
-  /****** store ******/
-  /* icon */
-
-  /****** user ******/
-  /* icon */
-
-  /****** member ******/
-  /* icon */
-
-  /****** Form ******/
-  /* icon */
-
-  /****** button ******/
-  /* icon */
+    /* header */
+    /* menu */
+    .menuWrap {
+        width: 100%;
+    }
 }
+
 @media screen and (max-width: 360px) {
-  /****** layout ******/
-  /* container */
-  section.backWrap {
-    background: none;
-    .wrap {
-      width: 100%;
-    }
-  }
-  .containerWrap {
-    width: 100%;
-  }
-  /* header */
-  /* menu */
-  .menuWrap {
-    width: 100%;
-  }
-  /* footer */
-  .footerWrap {
-    .customerLink {
-      // justify-content: start;
-    }
-    .customerInfo {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        padding: 18px;
-        border: solid 1px $inputColor;
-        border-radius: $radiusDefault;
-        background: #ffffff;
-      }
-      button::before {
-        content: "";
-        display: flex;
-        width: 18px;
-        height: 19px;
-        border-radius: $radiusDefault;
-        background: url("../images/iconCustomerCall.png") no-repeat;
-      }
-      div {
-        display: flex;
-        flex: auto;
-        flex-direction: column;
-        justify-content: center;
-        align-items: start;
-        gap: 10px;
-        p {
-          width: 100%;
+    /****** layout ******/
+    /* container */
+    section.backWrap {
+        background: none;
+
+        .wrap {
+            width: 100%;
         }
-        span {
-          display: inline-block;
-          width: 30%;
-          font-weight: bold;
+    }
+
+    .containerWrap {
+        width: 100%;
+    }
+
+    /* header */
+    /* menu */
+    .menuWrap {
+        width: 100%;
+    }
+
+    /* footer */
+    .footerWrap {
+        .customerLink {
+            // justify-content: start;
         }
-      }
+
+        .customerInfo {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                padding: 18px;
+                border: solid 1px $inputColor;
+                border-radius: $radiusDefault;
+                background: #ffffff;
+            }
+
+            button::before {
+                content: "";
+                display: flex;
+                width: 18px;
+                height: 19px;
+                border-radius: $radiusDefault;
+                background: url("../images/iconCustomerCall.png") no-repeat;
+            }
+
+            div {
+                display: flex;
+                flex: auto;
+                flex-direction: column;
+                justify-content: center;
+                align-items: start;
+                gap: 10px;
+
+                p {
+                    width: 100%;
+                }
+
+                span {
+                    display: inline-block;
+                    width: 30%;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .copyright {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: $therdText;
+            line-height: 20px;
+
+            :first-child {
+                font-size: $defaultText;
+                font-weight: bold;
+            }
+        }
     }
-    .copyright {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      font-size: $therdText;
-      line-height: 20px;
-      :first-child {
-        font-size: $defaultText;
-        font-weight: bold;
-      }
-    }
-  }
-  /****** home ******/
-  /* swiper */
-  /* icon */
-
-  /****** camp ******/
-  /* icon */
-
-  /****** store ******/
-  /* icon */
-
-  /****** user ******/
-  /* icon */
-
-  /****** member ******/
-  /* icon */
-
-  /****** Form ******/
-  /* icon */
-
-  /****** button ******/
-  /* icon */
 }

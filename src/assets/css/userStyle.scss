@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* colors */
+$PrimaryColor: #3f71d1;
+$PrimaryOff: #92b1ed;
+$textTitle: #2a2a2a;
+$textDefault: #535353;
+$textSecondary: #989898;
+$backColor: #f5f5f5;
+/* input */
+$inputColor: #dcdcdc;
+/* text size */
+$headerTitle: 1.88em; //30px
+$titleText: 1.25em; //20px
+$defaultText: 0.94em; //15px
+$defaultTitle: 1.5em; //24px
+$secondText: 0.88em; //14px
+$therdText: 0.81em; //13px
+$btnText: 16px;
+/* radius */
+$radiusDefault: 10px;
+$radiusSmall: 5px;
+
+/****** user ******/
+.userCardType1 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    width: 466px;
+    margin: 0 auto;
+
+    .imgWrap {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: url("../images/avatar.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+    }
+
+    .textWrap {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 10px;
+
+        .nickname {
+            font-size: $defaultText;
+            font-weight: bold;
+            color: $textTitle;
+        }
+    }
+}
+
+.userCardType2 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    width: 466px;
+    margin: 0 auto;
+
+    .imgWrap {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: url("../images/avatar.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+    }
+
+    .textWrap {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        gap: 10px;
+
+        .nickname {
+            font-size: $defaultText;
+            font-weight: bold;
+            color: $textTitle;
+        }
+
+        .date {
+            font-size: $therdText;
+            color: $textSecondary;
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 360px) {
+}
