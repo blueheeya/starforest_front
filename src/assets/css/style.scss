@@ -1028,6 +1028,185 @@ section.backWrap {
   }
 }
 
+//store pay
+.storePayBox {
+  padding: 20px 32px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+
+  .storePayInner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    .innerTitleEx {
+      display: flex;
+      gap: 10px;
+
+      .innerTitle {
+        font-size: $defaultText;
+        font-weight: bold;
+        color: $textDefault;
+      }
+
+      .innerEx {
+        font-size: $defaultText;
+        font-weight: bold;
+        color: $textDefault;
+      }
+    }
+
+    .innerMain {
+      display: flex;
+      gap: 10px;
+
+      .innerMainImg {
+        width: 65px;
+        height: 65px;
+        border-radius: $radiusSmall;
+      }
+
+      .innerMainContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+
+        .contentName {
+          font-size: $secondText;
+          color: $textSecondary;
+          font-weight: bold;
+        }
+
+        .contentBrand {
+          font-size: $titleText;
+          color: $textTitle;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .innerCount {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+
+      .innerPlusMinus {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        div {
+          color: $textDefault;
+        }
+      }
+
+      .innerPrice {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .priceSpan {
+          text-decoration: line-through;
+          color: $textSecondary;
+          font-size: $defaultText;
+          font-weight: bold;
+        }
+
+        .priceMain {
+          font-size: $defaultTitle;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.storePayUser {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 32px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+
+  .payUserTitle {
+    font-size: $titleText;
+    color: $textTitle;
+    font-weight: bold;
+  }
+
+  .payUserContent {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    .contentName {
+      font-size: $defaultText;
+      color: $textTitle;
+      font-weight: bold;
+    }
+
+    .contentUserName {
+      font-size: $titleText;
+      color: $textDefault;
+      font-weight: bold;
+    }
+  }
+}
+
+.storePayUserInfo {
+  padding: 20px 32px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+
+  .storePayUserInfoInner {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .innerTitle {
+      font-size: $titleText;
+      color: $textTitle;
+      font-weight: bold;
+    }
+
+    .innerContent {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      .innerBox {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+
+        .boxName {
+          color: $textDefault;
+          font-size: $secondText;
+          font-weight: bold;
+        }
+
+        input {
+          padding: 0 10px;
+          border: 2px solid $inputColor;
+          border-radius: $radiusDefault;
+          width: 350px;
+          height: 100%;
+        }
+
+        .boxInput:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+//store pay
+
+
 /****** user ******/
 .userCardType1 {
   display: flex;
