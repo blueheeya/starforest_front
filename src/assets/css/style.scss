@@ -89,6 +89,7 @@ section.backWrap {
 .cntView {
 
 
+
     margin-top: 64px;
     background: $backColor;
 }
@@ -159,64 +160,64 @@ section.backWrap {
   }
 }
 .headerType3 {
-    display: flex;
-    flex-direction: column;
-    align-items: first baseline;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+  gap: 10px;
+  width: 100%;
+  height: auto;
+  padding: 10px 10px;
+  border-bottom: solid 1px $inputColor;
+  .serchWrap {
     width: 100%;
-    height: auto;
-    padding: 10px 10px;
-    border-bottom: solid 1px $inputColor;
-    .serchWrap {
+    display: flex;
+    .serchBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      .searchInput {
         width: 100%;
-        display: flex;
-        .serchBox {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            .searchInput {
-                width: 100%;
-            }
-            button {
-                width: 40px;
-                height: 40px;
-                font-size: 0;
-                border-radius: $radiusDefault;
-                background: $PrimaryColor url("../images/btnMap.png") no-repeat;
-                background-position: center;
-            }
-        }
-        .btnWrap {
-            display: flex;
-            align-items: center;
-            flex: none;
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            z-index: 2;
-        }
+      }
+      button {
+        width: 40px;
+        height: 40px;
+        font-size: 0;
+        border-radius: $radiusDefault;
+        background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+        background-position: center;
+      }
     }
-    .serchTypeWrap {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        gap: 10px;
-        input {
-            flex: 1;
-        }
-        select {
-            flex: 1;
-            width: 120px;
-            height: 40px;
-            border: 1px solid $inputColor;
-            border-radius: $radiusDefault;
-            outline: none;
-            padding: 0 10px;
-        }
+    .btnWrap {
+      display: flex;
+      align-items: center;
+      flex: none;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      z-index: 2;
     }
+  }
+  .serchTypeWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    input {
+      flex: 1;
+    }
+    select {
+      flex: 1;
+      width: 120px;
+      height: 40px;
+      border: 1px solid $inputColor;
+      border-radius: $radiusDefault;
+      outline: none;
+      padding: 0 10px;
+    }
+  }
 }
 /* menu */
 .menuWrap {
@@ -496,120 +497,120 @@ section.backWrap {
 /****** camp ******/
 
 .campListCard {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 20px 32px;
+  background: #ffffff;
+  .campListImg {
     width: 100%;
-    margin-bottom: 10px;
-    padding: 20px 32px;
-    background: #ffffff;
-    .campListImg {
-        width: 100%;
-        height: 250px;
-        font-size: 0;
-        background: #dcdcdc url("../images/noneImage.png") no-repeat;
-        background-size: cover;
-        overflow: hidden;
-    }
-    .campListWrap {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px;
+    height: 250px;
+    font-size: 0;
+    background: #dcdcdc url("../images/noneImage.png") no-repeat;
+    background-size: cover;
+    overflow: hidden;
+  }
+  .campListWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
 
-        .campPrice {
-            display: flex;
-            align-items: center;
-            font-size: $therdText;
-            span {
-                font-size: $titleText;
-                font-weight: bold;
-            }
-        }
+    .campPrice {
+      display: flex;
+      align-items: center;
+      font-size: $therdText;
+      span {
+        font-size: $titleText;
+        font-weight: bold;
+      }
     }
+  }
 }
 .campTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 70%;
+  li:nth-child(1) {
+    color: $textDefault;
+    font-size: $therdText;
+    span::after {
+      content: "\00B7";
+      padding: 0 5px;
+    }
+    span:last-child::after {
+      display: none;
+    }
+  }
+  li:nth-child(2) {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 70%;
-    li:nth-child(1) {
-        color: $textDefault;
-        font-size: $therdText;
-        span::after {
-            content: "\00B7";
-            padding: 0 5px;
-        }
-        span:last-child::after {
-            display: none;
-        }
-    }
-    li:nth-child(2) {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        color: $textTitle;
-        font-size: $titleText;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    li:nth-child(3) {
-        color: $textDefault;
-        font-size: $therdText;
-    }
+    align-items: center;
+    width: 100%;
+    color: $textTitle;
+    font-size: $titleText;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  li:nth-child(3) {
+    color: $textDefault;
+    font-size: $therdText;
+  }
 }
 .campListTag {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  .swiper {
     width: 100%;
+  }
+  .swiper-slide {
+    font-size: 18px;
+    width: auto;
     display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    .swiper {
-        width: 100%;
-    }
-    .swiper-slide {
-        font-size: 18px;
-        width: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    justify-content: center;
+    align-items: center;
+  }
 }
 .viewWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+  // padding: 20px 32px;
+  background: #ffffff;
+  h4 {
+    color: $textTitle;
+    padding: 10px 0;
+    font-size: $titleText;
+  }
+  li {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  .facilityWrap {
+    display: flex;
     gap: 10px;
-    margin-bottom: 10px;
-    padding: 20px 32px;
-    background: #ffffff;
-    h4 {
-        color: $textTitle;
-        padding: 10px 0;
-        font-size: $titleText;
+    div {
+      width: 50px;
+      text-align: center;
+      font-size: $therdText;
     }
-    li {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-    .facilityWrap {
-        display: flex;
-        gap: 10px;
-        div {
-            width: 50px;
-            text-align: center;
-            font-size: $therdText;
-        }
-    }
-    .etcSiteInfo {
-    }
+  }
+  .etcSiteInfo {
+  }
 }
 .campViewTag {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 /* icon */
 
@@ -689,7 +690,6 @@ section.backWrap {
   border-radius: 10px;
 
   .product-item {
-    // border: 1px solid #000;
     width: 220px;
     height: 376px;
     align-items: center;
@@ -731,19 +731,16 @@ section.backWrap {
   background-color: $backColor;
 }
 .productImageWrap {
-  //   border: 1px solid #000;
   background-color: #ffffff;
   height: 489px;
   margin-bottom: 10px;
 }
 .viewImg {
-  // border: 1px solid #000;
   width: 530px;
   height: 350px;
   margin-bottom: 20px;
 }
 .productNameWrap {
-  //   border: 1px solid #000;
   margin: 10px 32px 10px 32px;
   padding-top: 5px;
   //   padding-bottom: 5px;
@@ -858,13 +855,12 @@ section.backWrap {
 }
 
 .tabList {
-  // border: 1px solid #000;
   background-color: #fff;
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
-  width: 530px;
+  width: 100%;
   height: 40px;
   padding: 0;
   margin: 0;
@@ -872,13 +868,13 @@ section.backWrap {
 }
 
 .tabList li {
-  margin-right: 10px;
+  // margin-right: 10px;
   font-size: $secondText;
 }
 
 .tabList li a {
   display: inline-block;
-  padding: 10px 20px;
+  // padding: 10px 20px;
   text-decoration: none;
   color: #333;
   cursor: pointer;
@@ -890,8 +886,9 @@ section.backWrap {
 }
 
 .tabContent {
-  border: 1px solid #ddd;
-  width: 530px;
+  width: 100%;
+  width: 100%;
+  background-color: #fff;
 }
 .detailContent {
   // display: flex;
@@ -899,11 +896,12 @@ section.backWrap {
   align-items: center;
   .detailImageWrapper {
     // border: 1px solid #000;
+    width: 530px;
     position: relative;
     overflow: hidden;
     transition: height 0.3s ease-in-out;
     .detailImg {
-      width: 100%;
+      width: 530px;
       height: auto;
     }
     .moreBtn {
@@ -941,10 +939,11 @@ section.backWrap {
       border-radius: 50px;
     }
     .reviewWrap {
-      // border: 1px solid #000;
       display: flex;
-      gap: 116px;
-      width: 368px;
+      // gap: 160px;
+      justify-content: space-between;
+      // width: 368px;
+      width: 100%;
       height: 69px;
       .reviewInfo {
         .reviewUser {
@@ -973,12 +972,13 @@ section.backWrap {
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  width: 100%;
 }
 .toggleHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 530px;
+  width: 100%;
   height: 64px;
   padding: 0 10px;
   cursor: pointer;
@@ -990,7 +990,7 @@ section.backWrap {
 }
 .toggle {
   // border: 1px solid #000;
-  width: 530px;
+  width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -1167,24 +1167,24 @@ section.backWrap {
 /****** Form ******/
 /* input */
 .searchInput {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  padding: 10px 15px;
+  border: solid 1px $inputColor;
+  border-radius: $radiusDefault;
+  input {
     width: 100%;
-    height: 40px;
-    padding: 10px 15px;
-    border: solid 1px $inputColor;
-    border-radius: $radiusDefault;
-    input {
-        width: 100%;
-        border: none;
-    }
-    input:hover {
-        border: none;
-    }
-    input:focus {
-        outline: none;
-    }
+    border: none;
+  }
+  input:hover {
+    border: none;
+  }
+  input:focus {
+    outline: none;
+  }
 }
 /* icon */
 
