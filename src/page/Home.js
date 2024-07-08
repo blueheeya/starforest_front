@@ -36,7 +36,7 @@ function Home() {
                 <h3>별숲 기록</h3>
                 <Link to={"/diary/list"}>전체보기</Link>
             </div>
-            <div className="mainDiaryWrap cntWarpPadding cntMarginBottom">
+            <div className="mainDiaryWrap cntMarginBottom">
                 <div className="mainDiaryCard">
                     <div className="imgWrap">
                         <img src="" />
