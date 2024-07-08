@@ -1,0 +1,54 @@
+import React from "react";
+import CampSelectCard from "../Camp/CampSelectCard";
+import Icon from "../Icon/Icon";
+import diary_camp_img from "../../assets/images/diary_camp_img.svg";
+
+function DiaryListCard() {
+  return (
+    <div className="diaryCard">
+      {/* 유저정보 카드 */}
+      <div className="diary-mb">유저정보</div>
+
+      {/* 태그 1 S*/}
+
+      <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          오토캠핑장
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          오토캠핑장
+        </span>
+      </div>
+
+      {/* 태그 1 E */}
+
+      {/* content S */}
+      <div className="diary-mb">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non debitis
+        aliquam beatae officiis quo sequi accusamus rem laboriosam iste
+        cupiditate.
+      </div>
+      {/* content E */}
+
+      {/* 태그 2 S */}
+      <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+        <span className="hashTag">#오토캠핑장</span>
+        <span className="hashTag">#오토캠핑장</span>
+      </div>
+      {/* 태그 2 E */}
+
+      {/* 이미지 S */}
+      <div className="diary-mb">
+        <img src={diary_camp_img} alt="" />
+      </div>
+      {/* 이미지 E */}
+
+      {/* 캠프셀렉트카드 */}
+      <CampSelectCard />
+    </div>
+  );
+}
+
+export default DiaryListCard;
