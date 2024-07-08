@@ -12,9 +12,9 @@
 @import "storeStyle.scss";
 // @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* colors */
@@ -40,404 +40,404 @@ $radiusSmall: 5px;
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    color: #535353;
-    font-family: "Pretendard";
-    font-size: 16px;
-    font-size: 1em;
+  width: 100%;
+  height: 100%;
+  color: #535353;
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-size: 1em;
 }
 
 ul,
 li {
-    list-style: none;
+  list-style: none;
 }
 
 a,
 a:link {
-    color: $textDefault;
-    text-decoration: none;
+  color: $textDefault;
+  text-decoration: none;
 }
 
 /****** layout ******/
 /*continer*/
 section.backWrap {
-    width: 100%;
-    height: 100vh;
-    background: url("../images/background.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    overflow-y: hidden;
+  width: 100%;
+  height: 100vh;
+  background: url("../images/background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-y: hidden;
 
-    .wrap {
-        display: flex;
-        justify-content: right;
-        width: 1024px;
-        height: 100vh;
-        margin: 0 auto;
-        padding: 0 32px 0 0;
-    }
+  .wrap {
+    display: flex;
+    justify-content: right;
+    width: 1024px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0 32px 0 0;
+  }
 }
 
 .containerWrap {
-    width: 530px;
-    height: 100vh;
-    background: hsl(0, 0%, 100%);
-    box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+  width: 530px;
+  height: 100vh;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .containerWrap::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 
 .containerWrap::-webkit-scrollbar-track {
-    background: #ffffff;
+  background: #ffffff;
 }
 
 .containerWrap::-webkit-scrollbar-thumb {
-    border-radius: $radiusDefault;
-    background: $PrimaryColor;
+  border-radius: $radiusDefault;
+  background: $PrimaryColor;
 }
 
 .contentWrap {
-    min-height: 70vh;
+  min-height: 70vh;
 }
 
 .cntView {
-    margin-top: 64px;
-    background: $backColor;
+  margin-top: 64px;
+  background: $backColor;
 }
 
 .cntSearchView {
-    min-height: 80vh;
-    background: $backColor;
+  min-height: 80vh;
+  background: $backColor;
 }
 
 .footerBottom {
-    margin-bottom: 70px;
+  margin-bottom: 70px;
 }
 
 /* header */
 .headerType {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 64px;
-    color: $PrimaryColor;
-    font-family: "EunhasuR";
-    font-size: $headerTitle;
-    background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  color: $PrimaryColor;
+  font-family: "EunhasuR";
+  font-size: $headerTitle;
+  background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .headerType1 {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 64px;
-    padding: 0 32px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  padding: 0 32px;
 
-    img {
-        width: 55px;
-        height: 44px;
-    }
+  img {
+    width: 55px;
+    height: 44px;
+  }
 }
 
 .headerType2 {
-    position: fixed;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 530px;
+  height: 64px;
+  padding: 0 10px;
+  z-index: 9;
+  background: #ffffff;
+
+  h2 {
+    flex: auto;
+    margin-left: -36px;
+    color: $PrimaryColor;
+    font-family: "EunhasuR";
+    font-size: 30px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  h2.storeH2 {
+    margin-left: -60px;
+  }
+
+  .btnWrap {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 530px;
-    height: 64px;
-    padding: 0 10px;
-    z-index: 9;
-    background: #ffffff;
-
-    h2 {
-        flex: auto;
-        margin-left: -36px;
-        color: $PrimaryColor;
-        font-family: "EunhasuR";
-        font-size: 30px;
-        font-weight: normal;
-        text-align: center;
-    }
-
-    h2.storeH2 {
-        margin-left: -60px;
-    }
-
-    .btnWrap {
-        display: flex;
-        align-items: center;
-        flex: none;
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-        z-index: 2;
-    }
+    flex: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    z-index: 2;
+  }
 }
 
 .headerType3 {
-    display: flex;
-    flex-direction: column;
-    align-items: first baseline;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+  gap: 10px;
+  width: 100%;
+  height: auto;
+  padding: 10px 10px;
+  border-bottom: solid 1px $inputColor;
+
+  .serchWrap {
     width: 100%;
-    height: auto;
-    padding: 10px 10px;
-    border-bottom: solid 1px $inputColor;
+    display: flex;
 
-    .serchWrap {
+    .serchBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+
+      .searchInput {
         width: 100%;
-        display: flex;
+      }
 
-        .serchBox {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-
-            .searchInput {
-                width: 100%;
-            }
-
-            button {
-                width: 40px;
-                height: 40px;
-                font-size: 0;
-                border-radius: $radiusDefault;
-                background: $PrimaryColor url("../images/btnMap.png") no-repeat;
-                background-position: center;
-            }
-        }
-
-        .btnWrap {
-            display: flex;
-            align-items: center;
-            flex: none;
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            z-index: 2;
-        }
+      button {
+        width: 40px;
+        height: 40px;
+        font-size: 0;
+        border-radius: $radiusDefault;
+        background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+        background-position: center;
+      }
     }
 
-    .serchTypeWrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        gap: 10px;
-
-        input {
-            flex: 1;
-        }
-
-        //     flex: none;
-        //     width: 36px;
-        //     height: 36px;
-        //     cursor: pointer;
-        //     z-index: 2;
-
-        select {
-            flex: 1;
-            width: 120px;
-            height: 40px;
-            border: 1px solid $inputColor;
-            border-radius: $radiusDefault;
-            outline: none;
-            padding: 0 10px;
-        }
+    .btnWrap {
+      display: flex;
+      align-items: center;
+      flex: none;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      z-index: 2;
     }
+  }
+
+  .serchTypeWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+
+    input {
+      flex: 1;
+    }
+
+    //     flex: none;
+    //     width: 36px;
+    //     height: 36px;
+    //     cursor: pointer;
+    //     z-index: 2;
+
+    select {
+      flex: 1;
+      width: 120px;
+      height: 40px;
+      border: 1px solid $inputColor;
+      border-radius: $radiusDefault;
+      outline: none;
+      padding: 0 10px;
+    }
+  }
 }
 
 /* menu */
 .menuWrap {
-    position: fixed;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 530px;
+  height: 70px;
+  bottom: 0;
+  background: #ffffff;
+  box-shadow: 0 -2px 4px 0 rgba($color: #000000, $alpha: 0.25);
+  z-index: 10;
+
+  a {
+    width: 100%;
+    height: 100%;
+    color: $textTitle;
+  }
+
+  a.active {
+    color: $PrimaryColor;
+  }
+
+  ul {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    width: 530px;
-    height: 70px;
-    bottom: 0;
-    background: #ffffff;
-    box-shadow: 0 -2px 4px 0 rgba($color: #000000, $alpha: 0.25);
-    z-index: 10;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    font-size: $secondText;
+  }
 
-    a {
-        width: 100%;
-        height: 100%;
-        color: $textTitle;
-    }
+  .icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+  }
 
-    a.active {
-        color: $PrimaryColor;
-    }
+  .menuHome {
+    background: url("../images/menuHome.png") no-repeat;
+  }
 
-    ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        height: 100%;
-        font-size: $secondText;
-    }
+  .menuHomeActive {
+    background: url("../images/menuHomeActive.png") no-repeat;
+  }
 
-    .icon {
-        display: block;
-        width: 24px;
-        height: 24px;
-        font-size: 0;
-    }
+  .menuLog {
+    background: url("../images/menuLog.png") no-repeat;
+  }
 
-    .menuHome {
-        background: url("../images/menuHome.png") no-repeat;
-    }
+  .menuLogActive {
+    background: url("../images/menuLogActive.png") no-repeat;
+  }
 
-    .menuHomeActive {
-        background: url("../images/menuHomeActive.png") no-repeat;
-    }
+  .menuStore {
+    background: url("../images/menuStore.png") no-repeat;
+  }
 
-    .menuLog {
-        background: url("../images/menuLog.png") no-repeat;
-    }
+  .menuStoreActive {
+    background: url("../images/menuStroreActive.png") no-repeat;
+  }
 
-    .menuLogActive {
-        background: url("../images/menuLogActive.png") no-repeat;
-    }
+  .menuUser {
+    background: url("../images/menuUser.png") no-repeat;
+  }
 
-    .menuStore {
-        background: url("../images/menuStore.png") no-repeat;
-    }
-
-    .menuStoreActive {
-        background: url("../images/menuStroreActive.png") no-repeat;
-    }
-
-    .menuUser {
-        background: url("../images/menuUser.png") no-repeat;
-    }
-
-    .menuUserActive {
-        background: url("../images/menuUserActive.png") no-repeat;
-    }
+  .menuUserActive {
+    background: url("../images/menuUserActive.png") no-repeat;
+  }
 }
 
 /* footer */
 .footerWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 30px 32px;
+  font-size: $secondText;
+  background: #f8fafb;
+
+  h2 {
+    display: flex;
+    width: 55px;
+    height: 45px;
+    font-size: 0;
+    background: url("../images/footerlogo.png") no-repeat;
+  }
+
+  hr {
+    border-top: solid 1px $inputColor;
+  }
+
+  .customerLink {
+    display: grid;
+    grid-column: 4;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100% !important;
+    font-weight: bold;
+
+    li {
+      display: flex;
+      align-content: space-between;
+    }
+  }
+
+  .customerInfo {
+    display: flex;
+    gap: 20px;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 18px;
+      border: solid 1px $inputColor;
+      border-radius: $radiusDefault;
+      background: #ffffff;
+    }
+
+    button::before {
+      content: "";
+      display: flex;
+      width: 18px;
+      height: 19px;
+      border-radius: $radiusDefault;
+      background: url("../images/iconCustomerCall.png") no-repeat;
+    }
+
+    div {
+      display: flex;
+      flex: auto;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 10px;
+
+      p {
+        width: 100%;
+      }
+
+      span {
+        display: inline-block;
+        width: 30%;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .copyright {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    padding: 30px 32px;
-    font-size: $secondText;
-    background: #f8fafb;
+    gap: 10px;
+    font-size: $therdText;
+    line-height: 20px;
 
-    h2 {
-        display: flex;
-        width: 55px;
-        height: 45px;
-        font-size: 0;
-        background: url("../images/footerlogo.png") no-repeat;
+    :first-child {
+      font-size: $defaultText;
+      font-weight: bold;
     }
-
-    hr {
-        border-top: solid 1px $inputColor;
-    }
-
-    .customerLink {
-        display: grid;
-        grid-column: 4;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        width: 100% !important;
-        font-weight: bold;
-
-        li {
-            display: flex;
-            align-content: space-between;
-        }
-    }
-
-    .customerInfo {
-        display: flex;
-        gap: 20px;
-
-        button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding: 18px;
-            border: solid 1px $inputColor;
-            border-radius: $radiusDefault;
-            background: #ffffff;
-        }
-
-        button::before {
-            content: "";
-            display: flex;
-            width: 18px;
-            height: 19px;
-            border-radius: $radiusDefault;
-            background: url("../images/iconCustomerCall.png") no-repeat;
-        }
-
-        div {
-            display: flex;
-            flex: auto;
-            flex-direction: column;
-            justify-content: center;
-            align-items: start;
-            gap: 10px;
-
-            p {
-                width: 100%;
-            }
-
-            span {
-                display: inline-block;
-                width: 30%;
-                font-weight: bold;
-            }
-        }
-    }
-
-    .copyright {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        font-size: $therdText;
-        line-height: 20px;
-
-        :first-child {
-            font-size: $defaultText;
-            font-weight: bold;
-        }
-    }
+  }
 }
 
 /* icon */
 .titleWrap {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    h4 {
-        font-size: $titleText;
-    }
-      a {
-        color: $PrimaryColor;
-        font-size: $therdText;
-    }
+  h4 {
+    font-size: $titleText;
+  }
+  a {
+    color: $PrimaryColor;
+    font-size: $therdText;
+  }
 }
 
 //*******************store(modal)**********
@@ -519,116 +519,114 @@ section.backWrap {
 .purchaseBtn {
   background-color: #007bff;
   color: white;
-=======
-
-
+}
 
 /****** diary ******/
 
 /****** user ******/
 .userCardType1 {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  width: 466px;
+  margin: 0 auto;
+
+  .imgWrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: url("../images/avatar.png") no-repeat;
+    background-size: cover;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+
+  .textWrap {
     display: flex;
-    justify-content: start;
-    align-items: center;
+    flex-direction: column;
+    flex: 1;
     gap: 10px;
-    width: 466px;
-    margin: 0 auto;
 
-    .imgWrap {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: url("../images/avatar.png") no-repeat;
-        background-size: cover;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-        }
+    .nickname {
+      font-size: $defaultText;
+      font-weight: bold;
+      color: $textTitle;
     }
-
-    .textWrap {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        gap: 10px;
-
-        .nickname {
-            font-size: $defaultText;
-            font-weight: bold;
-            color: $textTitle;
-        }
-    }
+  }
 }
 
 .userCardType2 {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  width: 466px;
+  margin: 0 auto;
+
+  .imgWrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: url("../images/avatar.png") no-repeat;
+    background-size: cover;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+
+  .textWrap {
     display: flex;
-    justify-content: start;
     align-items: center;
+    flex: 1;
     gap: 10px;
-    width: 466px;
-    margin: 0 auto;
 
-    .imgWrap {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: url("../images/avatar.png") no-repeat;
-        background-size: cover;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-        }
+    .nickname {
+      font-size: $defaultText;
+      font-weight: bold;
+      color: $textTitle;
     }
 
-    .textWrap {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        gap: 10px;
-
-        .nickname {
-            font-size: $defaultText;
-            font-weight: bold;
-            color: $textTitle;
-        }
-
-        .date {
-            font-size: $therdText;
-            color: $textSecondary;
-        }
+    .date {
+      font-size: $therdText;
+      color: $textSecondary;
     }
+  }
 }
 
 /****** Form ******/
 /* input */
 .searchInput {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  padding: 10px 15px;
+  border: solid 1px $inputColor;
+  border-radius: $radiusDefault;
+
+  input {
     width: 100%;
-    height: 40px;
-    padding: 10px 15px;
-    border: solid 1px $inputColor;
-    border-radius: $radiusDefault;
+    border: none;
+  }
 
-    input {
-        width: 100%;
-        border: none;
-    }
+  input:hover {
+    border: none;
+  }
 
-    input:hover {
-        border: none;
-    }
-
-    input:focus {
-        outline: none;
-    }
+  input:focus {
+    outline: none;
+  }
 }
 
 /* icon */
@@ -637,160 +635,160 @@ section.backWrap {
 /* icon */
 /* button */
 button {
-    border: none;
-    background: none;
-    cursor: pointer;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 /* Layout margin & padding */
 .cntMarginTop {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .cntMarginBottom {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .wrapMarginTop {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .wrapMarginBottom {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .cntWarpPadding {
-    padding: 0 32px;
+  padding: 0 32px;
 }
 
 @media screen and (max-width: 1024px) {
-    /****** layout ******/
-    /* container */
-    section.backWrap {
-        background-position: -600px 0;
+  /****** layout ******/
+  /* container */
+  section.backWrap {
+    background-position: -600px 0;
 
-        .wrap {
-            justify-content: right;
-        }
+    .wrap {
+      justify-content: right;
     }
+  }
 
-    /* icon */
-    .imgIcons {
-        width: 20px;
-        height: 20px;
-        font-size: 0;
-    }
+  /* icon */
+  .imgIcons {
+    width: 20px;
+    height: 20px;
+    font-size: 0;
+  }
 
-    /****** button ******/
-    /* icon */
+  /****** button ******/
+  /* icon */
 }
 
 @media screen and (max-width: 768px) {
-    /****** layout ******/
-    /* container */
-    section.backWrap {
-        background: none;
+  /****** layout ******/
+  /* container */
+  section.backWrap {
+    background: none;
 
-        .wrap {
-            width: 100%;
-            padding: 0 0 0 0;
-        }
+    .wrap {
+      width: 100%;
+      padding: 0 0 0 0;
     }
+  }
 
-    .containerWrap {
-        width: 100%;
-    }
+  .containerWrap {
+    width: 100%;
+  }
 
-    /* header */
-    /* menu */
-    .menuWrap {
-        width: 100%;
-    }
+  /* header */
+  /* menu */
+  .menuWrap {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 360px) {
-    /****** layout ******/
-    /* container */
-    section.backWrap {
-        background: none;
+  /****** layout ******/
+  /* container */
+  section.backWrap {
+    background: none;
 
-        .wrap {
-            width: 100%;
-        }
+    .wrap {
+      width: 100%;
+    }
+  }
+
+  .containerWrap {
+    width: 100%;
+  }
+
+  /* header */
+  /* menu */
+  .menuWrap {
+    width: 100%;
+  }
+
+  /* footer */
+  .footerWrap {
+    .customerLink {
+      // justify-content: start;
     }
 
-    .containerWrap {
-        width: 100%;
-    }
+    .customerInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
 
-    /* header */
-    /* menu */
-    .menuWrap {
-        width: 100%;
-    }
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 18px;
+        border: solid 1px $inputColor;
+        border-radius: $radiusDefault;
+        background: #ffffff;
+      }
 
-    /* footer */
-    .footerWrap {
-        .customerLink {
-            // justify-content: start;
+      button::before {
+        content: "";
+        display: flex;
+        width: 18px;
+        height: 19px;
+        border-radius: $radiusDefault;
+        background: url("../images/iconCustomerCall.png") no-repeat;
+      }
+
+      div {
+        display: flex;
+        flex: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 10px;
+
+        p {
+          width: 100%;
         }
 
-        .customerInfo {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-
-            button {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                padding: 18px;
-                border: solid 1px $inputColor;
-                border-radius: $radiusDefault;
-                background: #ffffff;
-            }
-
-            button::before {
-                content: "";
-                display: flex;
-                width: 18px;
-                height: 19px;
-                border-radius: $radiusDefault;
-                background: url("../images/iconCustomerCall.png") no-repeat;
-            }
-
-            div {
-                display: flex;
-                flex: auto;
-                flex-direction: column;
-                justify-content: center;
-                align-items: start;
-                gap: 10px;
-
-                p {
-                    width: 100%;
-                }
-
-                span {
-                    display: inline-block;
-                    width: 30%;
-                    font-weight: bold;
-                }
-            }
+        span {
+          display: inline-block;
+          width: 30%;
+          font-weight: bold;
         }
-
-        .copyright {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            font-size: $therdText;
-            line-height: 20px;
-
-            :first-child {
-                font-size: $defaultText;
-                font-weight: bold;
-            }
-        }
+      }
     }
+
+    .copyright {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: $therdText;
+      line-height: 20px;
+
+      :first-child {
+        font-size: $defaultText;
+        font-weight: bold;
+      }
+    }
+  }
 }
