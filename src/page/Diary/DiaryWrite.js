@@ -61,21 +61,76 @@ function DiaryWrite() {
       <div className="diary-mb">캠핑장 간략 내용 카드</div>
 
       {/* 태그 1 */}
-      <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginBottom: "10px",
+          flexWrap: "wrap",
+        }}
+      >
         <span className="userTag">
           <Icon iconName="iconShowers" />
-          오토캠핑장
+          매너타임
         </span>
         <span className="userTag">
           <Icon iconName="iconShowers" />
-          오토캠핑장
+          친절함
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          청결함
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          수영장
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          놀이시설
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          개별 화장실
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          개별 샤워실
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          매점 운영
         </span>
       </div>
 
       {/* 태그 2 */}
-      <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginBottom: "10px",
+          flexWrap: "wrap",
+        }}
+      >
         <span className="hashTag">#오토캠핑장</span>
-        <span className="hashTag">#오토캠핑장</span>
+        <span className="hashTag">#글램핑</span>
+        <span className="hashTag">#카라반</span>
+        <span className="hashTag">#봄</span>
+        <span className="hashTag">#여름</span>
+        <span className="hashTag">#가을</span>
+        <span className="hashTag">#겨울</span>
+        <span className="hashTag">#가족</span>
+        <span className="hashTag">#친구</span>
+        <span className="hashTag">#연인</span>
+        <span className="hashTag">#부부</span>
+        <span className="hashTag">#반려동물</span>
+        <span className="hashTag">#솔캠</span>
+        <span className="hashTag">#단체</span>
+        <span className="hashTag">#산</span>
+        <span className="hashTag">#계곡</span>
+        <span className="hashTag">#바다</span>
+        <span className="hashTag">#호수</span>
+        <span className="hashTag">#강</span>
       </div>
 
       <div className="diaryWriteWrap">

@@ -12,14 +12,45 @@ function DiaryView() {
         <div className="diary-mb">캠핑장 간략 정보</div>
 
         {/* 태그 1 */}
-        <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+            marginBottom: "10px",
+            flexWrap: "wrap",
+          }}
+        >
           <span className="userTag">
             <Icon iconName="iconShowers" />
-            오토캠핑장
+            매너타임
           </span>
           <span className="userTag">
             <Icon iconName="iconShowers" />
-            오토캠핑장
+            친절함
+          </span>
+          <span className="userTag">
+            <Icon iconName="iconShowers" />
+            청결함
+          </span>
+          <span className="userTag">
+            <Icon iconName="iconShowers" />
+            수영장
+          </span>
+          <span className="userTag">
+            <Icon iconName="iconShowers" />
+            놀이시설
+          </span>
+          <span className="userTag">
+            <Icon iconName="iconShowers" />
+            개별 화장실
+          </span>
+          <span className="userTag">
+            <Icon iconName="iconShowers" />
+            개별 샤워실
+          </span>
+          <span className="userTag">
+            <Icon iconName="iconShowers" />
+            매점 운영
           </span>
         </div>
 
@@ -32,8 +63,8 @@ function DiaryView() {
 
         {/* 태그 2 S */}
         <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-          <span className="hashTag">#오토캠핑장</span>
-          <span className="hashTag">#오토캠핑장</span>
+          <span className="hashTag">#오토캠핑</span>
+          <span className="hashTag">#오토캠핑</span>
         </div>
         {/* 태그 2 E */}
 

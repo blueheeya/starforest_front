@@ -446,7 +446,7 @@ section.backWrap {
 .diary-bg {
   background-color: $backColor;
   margin: 0 auto;
-  height: 100vh;
+  height: auto;
   padding: 32px;
   // display: flex;
   // justify-content: center;
@@ -517,6 +517,7 @@ section.backWrap {
   border: solid 1px $inputColor;
   border-radius: 10px;
   margin-bottom: 10px;
+  // outline: none;
 }
 
 .diaryWrite-imageCard {
