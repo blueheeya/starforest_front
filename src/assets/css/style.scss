@@ -9,6 +9,7 @@
 }
 /* colors */
 $PrimaryColor: #3f71d1;
+$PrimaryOff: #92b1ed;
 $textTitle: #2a2a2a;
 $textDefault: #535353;
 $textSecondary: #989898;
@@ -86,12 +87,16 @@ section.backWrap {
   min-height: 70vh;
 }
 .cntView {
-  margin-top: 64px;
-  background: $backColor;
+
+
+
+    margin-top: 64px;
+    background: $backColor;
 }
 .cntSearchView {
-  min-height: 80vh;
-  background: $backColor;
+    min-height: 80vh;
+    background: $backColor;
+
 }
 .footerBottom {
   margin-bottom: 70px;
@@ -235,6 +240,7 @@ section.backWrap {
     color: $PrimaryColor;
   }
   ul {
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1056,6 +1062,7 @@ section.backWrap {
   align-items: center;
   gap: 10px;
   margin: 10px 0;
+
 }
 .priceInfo {
   display: flex;
