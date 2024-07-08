@@ -3,6 +3,8 @@ import EditBtn from "../../components/Diary/EditBtn";
 import imgUpload from "../../assets/images/imgUpload.png";
 import Icon from "../../components/Icon/Icon";
 import { Link } from "react-router-dom";
+import HashTags from "../../components/Diary/HashTags";
+import UserTags from "../../components/Diary/UserTags";
 
 function DiaryWrite() {
   // // 이미지 추가 const
@@ -61,7 +63,8 @@ function DiaryWrite() {
       <div className="diary-mb">캠핑장 간략 내용 카드</div>
 
       {/* 태그 1 */}
-      <div
+      <UserTags />
+      {/* <div
         style={{
           display: "flex",
           gap: "10px",
@@ -101,37 +104,10 @@ function DiaryWrite() {
           <Icon iconName="iconShowers" />
           매점 운영
         </span>
-      </div>
+      </div> */}
 
       {/* 태그 2 */}
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginBottom: "10px",
-          flexWrap: "wrap",
-        }}
-      >
-        <span className="hashTag">#오토캠핑장</span>
-        <span className="hashTag">#글램핑</span>
-        <span className="hashTag">#카라반</span>
-        <span className="hashTag">#봄</span>
-        <span className="hashTag">#여름</span>
-        <span className="hashTag">#가을</span>
-        <span className="hashTag">#겨울</span>
-        <span className="hashTag">#가족</span>
-        <span className="hashTag">#친구</span>
-        <span className="hashTag">#연인</span>
-        <span className="hashTag">#부부</span>
-        <span className="hashTag">#반려동물</span>
-        <span className="hashTag">#솔캠</span>
-        <span className="hashTag">#단체</span>
-        <span className="hashTag">#산</span>
-        <span className="hashTag">#계곡</span>
-        <span className="hashTag">#바다</span>
-        <span className="hashTag">#호수</span>
-        <span className="hashTag">#강</span>
-      </div>
+      <HashTags />
 
       <div className="diaryWriteWrap">
         {/* diaryWrite-input */}
