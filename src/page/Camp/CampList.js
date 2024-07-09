@@ -6,7 +6,7 @@ function CampList({ campItem }) {
     return (
         <>
             <div>
-                <div>전체 :{CampSite.length}개</div>
+                <div className="campViewWrap">전체 :{CampSite.length}개</div>
                 <CampListCard campItem={campItem} />
             </div>
         </>

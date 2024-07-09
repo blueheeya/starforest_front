@@ -3,7 +3,7 @@ import Icon from "./components/Icon/Icon";
 
 function Style() {
     return (
-        <div className="cntWarpPadding">
+        <div className="">
             <h2 style={{ textAlign: "center", fontFamily: "EunhasuR" }}>
                 아이콘 가이드
             </h2>

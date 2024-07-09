@@ -522,6 +522,11 @@ $radiusSmall: 5px;
         background: #dcdcdc url("../images/noneImage.png") no-repeat;
         background-size: cover;
         overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     .campListWrap {
@@ -598,13 +603,38 @@ $radiusSmall: 5px;
         align-items: center;
     }
 }
+.campViewSwiper {
+    width: 100%;
+    height: 350px;
+    background: url("../images/noneImage.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .swiper-pagination-bullet {
+        width: 16px;
+        height: 16px;
+        background: url("../images/bulletWhite.png") !important;
+        opacity: 0.5;
+    }
 
-.viewWrap {
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+    }
+}
+.campViewWrap {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
-    // padding: 20px 32px;
+    padding: 20px 32px;
     background: #ffffff;
 
     h4 {
