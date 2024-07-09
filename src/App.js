@@ -43,7 +43,7 @@ import Style from "./Style";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
-const showFooterPath = ["/", "/store/view", "/user/mypage", "/camp/list"];
+const showFooterPath = ["/", "/store/view", "/user/mypage", "/camp/list", "/camp/reservation", "/camp/pay", "/store/pay"];
 function LayoutType() {
 
     const location = useLocation();
@@ -67,9 +67,8 @@ function LayoutType() {
                     {title}
                 </HeaderComponent>
                 <ContentWrap
-                    className={`${isHeaderType2 ? "cntView" : ""} ${
-                        isHeaderType3 ? "cntSearchView" : ""
-                    }`}
+                    className={`${isHeaderType2 ? "cntView" : ""} ${isHeaderType3 ? "cntSearchView" : ""
+                        }`}
                 >
                     <main>
                         <Outlet />
