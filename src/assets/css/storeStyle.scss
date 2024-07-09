@@ -1,4 +1,6 @@
 @charset "utf-8";
+@import "./StorePayMethod.scss";
+
 /* colors */
 $PrimaryColor: #3f71d1;
 $PrimaryOff: #92b1ed;
@@ -22,13 +24,13 @@ $radiusSmall: 5px;
 
 /****** store ******/
 .storeTen {
+
     // background-color: #fff;
     .swiper {
         padding: 0 32px;
     }
 
-    .swiper-slide {
-    }
+    .swiper-slide {}
 
     .storeTenCard {
         display: flex;
@@ -172,6 +174,7 @@ $radiusSmall: 5px;
 
     //   padding-bottom: 5px;
     .nameWrap {
+
         // margin-top: 10px;
         // margin-bottom: 10px;
         .category {
@@ -563,6 +566,7 @@ $radiusSmall: 5px;
     background-color: #007bff;
     color: white;
 }
+
 //store pay
 .storePayBox {
     padding: 20px 32px;
@@ -740,11 +744,8 @@ $radiusSmall: 5px;
 }
 
 //store pay
-@media screen and (max-width: 1024px) {
-}
+@media screen and (max-width: 1024px) {}
 
-@media screen and (max-width: 768px) {
-}
+@media screen and (max-width: 768px) {}
 
-@media screen and (max-width: 360px) {
-}
+@media screen and (max-width: 360px) {}
