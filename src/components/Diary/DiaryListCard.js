@@ -40,8 +40,11 @@ function DiaryListCard() {
       {/* 태그 2 E */}
 
       {/* 이미지 S */}
-      <div className="diary-mb">
-        <img src={diary_camp_img} alt="" />
+      <div className="diary-mb img-wrap">
+        <img
+          src={diary_camp_img}
+          style={{ objectFit: "cover", width: "100%" }}
+        />
       </div>
       {/* 이미지 E */}
 

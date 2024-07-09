@@ -5,7 +5,10 @@ import toggleTo from "../../assets/images/toggleTo.png";
 function CampSelectCard() {
   return (
     <div className="CampSelectCardWrap">
-      <div className="CampSelect-content">
+      <div
+        //   className="CampSelect-content"
+        style={{ display: "flex" }}
+      >
         <img
           src={diary_camp_img}
           alt="캠핑장 사진"
@@ -20,9 +23,7 @@ function CampSelectCard() {
             width: "100%",
           }}
         >
-          <div
-            style={{ gap: "10px", display: "flex", flexDirection: "column" }}
-          >
+          <div style={{ gap: "5px", display: "flex", flexDirection: "column" }}>
             <div>오토 캠핑</div> <div>캠핑장 이름</div>
           </div>
           <img src={toggleTo} />

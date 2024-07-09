@@ -1,6 +1,7 @@
 import React from "react";
 import diary_camp_img from "../../assets/images/diary_camp_img.svg";
 import Icon from "../../components/Icon/Icon";
+import UserTags from "../../components/Diary/UserTags";
 
 function DiaryView() {
   return (
@@ -12,7 +13,8 @@ function DiaryView() {
         <div className="diary-mb">캠핑장 간략 정보</div>
 
         {/* 태그 1 */}
-        <div
+        <UserTags />
+        {/* <div
           style={{
             display: "flex",
             gap: "10px",
@@ -52,7 +54,7 @@ function DiaryView() {
             <Icon iconName="iconShowers" />
             매점 운영
           </span>
-        </div>
+        </div> */}
 
         {/* 컨텐츠 내용 */}
         <div className="diary-mb">

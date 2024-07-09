@@ -1,16 +1,17 @@
 import React from "react";
 import Icon from "../Icon/Icon";
 
-function UserTags() {
+function UserTags({ selectedUserTags, onTagToggle }) {
+  console.log("selectedUserTags:", selectedUserTags);
   const tags = [
-    { icon: "", text: "매너타임" },
-    { icon: "", text: "친절함" },
-    { icon: "", text: "청결함" },
-    { icon: "", text: "수영장" },
-    { icon: "", text: "놀이시설" },
-    { icon: "", text: "개별 화장실" },
+    { icon: "iconTime", text: "매너타임" },
+    { icon: "iconSmiles", text: "친절함" },
+    { icon: "iconCleans", text: "청결함" },
+    { icon: "iconSwimmings", text: "수영장" },
+    { icon: "iconPlays", text: "놀이시설" },
+    { icon: "iconBaths", text: "개별 화장실" },
     { icon: "iconShowers", text: "개별 샤워실" },
-    { icon: "", text: "매점 운영" },
+    { icon: "iconFoods", text: "매점 운영" },
   ];
 
   return (
@@ -23,7 +24,13 @@ function UserTags() {
       }}
     >
       {tags.map((tag, index) => (
-        <span key={index} className="userTag">
+        <span
+          key={index}
+          className={`userTag ${
+            selectedUserTags.includes(tag.text) ? "selected" : ""
+          }`}
+          onClick={() => onTagToggle(tag.text)}
+        >
           <Icon iconName={tag.icon} />
           {tag.text}
         </span>
