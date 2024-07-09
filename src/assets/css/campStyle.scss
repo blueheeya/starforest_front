@@ -149,8 +149,10 @@ $radiusSmall: 5px;
   align-items: center;
   background-color: #ffffff;
   color: $textTitle;
-  font-size: $titleText;
+  font-size: $defaultText;
+  font-weight: bold;
   padding: 20px 32px;
+
   .clearReservation {
     display: flex;
     align-items: center;
@@ -164,10 +166,12 @@ $radiusSmall: 5px;
     font-weight: bold;
     padding-right: 5px;
   }
+
   .clearReservation:hover {
     background-color: $PrimaryColor;
   }
 }
+
 .reservationBox {
   display: flex;
   justify-content: center;
@@ -176,6 +180,7 @@ $radiusSmall: 5px;
   height: 150px;
   padding-bottom: 50px;
   background-color: #ffffff;
+
   .reservationBtn {
     display: flex;
     align-items: center;
@@ -185,16 +190,19 @@ $radiusSmall: 5px;
     background-color: $PrimaryOff;
     width: 466px;
     height: 50px;
+
     .btnFont {
       color: #ffffff;
       font-size: $btnText;
       font-weight: bold;
     }
   }
+
   .reservationBtn:hover {
     background-color: $PrimaryColor;
   }
 }
+
 //수정 완료
 
 .rangback {
@@ -678,8 +686,7 @@ $radiusSmall: 5px;
     }
   }
 
-  .etcSiteInfo {
-  }
+  .etcSiteInfo {}
 }
 
 .campViewTag {
@@ -692,11 +699,8 @@ $radiusSmall: 5px;
 
 /* icon */
 
-@media screen and (max-width: 1024px) {
-}
+@media screen and (max-width: 1024px) {}
 
-@media screen and (max-width: 768px) {
-}
+@media screen and (max-width: 768px) {}
 
-@media screen and (max-width: 360px) {
-}
+@media screen and (max-width: 360px) {}
