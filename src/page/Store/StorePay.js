@@ -2,6 +2,7 @@ import React from "react";
 import StorePayProduct from "../../components/Store/StorePayProduct";
 import StorePayUserInfo from "../../components/Store/StorePayUserInfo";
 import StorePayMethod from "../../components/Store/StorePayMethod";
+import CampPayMethod from "../../components/Camp/CampPayMethod"
 
 function StorePay() {
     return (
@@ -19,6 +20,7 @@ function StorePay() {
 
             <StorePayUserInfo />
             <StorePayMethod />
+            <CampPayMethod />
         </>
     );
 }

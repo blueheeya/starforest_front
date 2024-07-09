@@ -1,4 +1,6 @@
 @charset "utf-8";
+@import "./StorePayMethod.scss";
+
 /* colors */
 $PrimaryColor: #3f71d1;
 $PrimaryOff: #92b1ed;
@@ -44,7 +46,7 @@ $radiusSmall: 5px;
       height: 100%;
       border-radius: $radiusDefault;
     }
-
+    
     .storeTenContent {
       display: flex;
       flex-direction: column;
@@ -178,7 +180,7 @@ $radiusSmall: 5px;
       font-size: $therdText;
       margin-bottom: 5px;
     }
-
+    
     .productName {
       font-size: $titleText;
     }
@@ -561,6 +563,7 @@ $radiusSmall: 5px;
   background-color: #007bff;
   color: white;
 }
+
 //store pay
 .storePayBox {
   padding: 20px 32px;
@@ -773,11 +776,8 @@ $radiusSmall: 5px;
   margin-top: 10px;
 }
 //store pay
-@media screen and (max-width: 1024px) {
-}
+@media screen and (max-width: 1024px) {}
 
-@media screen and (max-width: 768px) {
-}
+@media screen and (max-width: 768px) {}
 
-@media screen and (max-width: 360px) {
-}
+@media screen and (max-width: 360px) {}
