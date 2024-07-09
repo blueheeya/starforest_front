@@ -40,66 +40,74 @@ import iconTime from "../../assets/images/iconTimes.svg";
 import iconToilet from "../../assets/images/iconToilet.svg";
 import iconUp from "../../assets/images/iconUp.svg";
 import iconWifi from "../../assets/images/iconWifi.svg";
+import iconCheckActive from "../../assets/images/iconCheckActive.svg";
+import iconCheckDefault from "../../assets/images/iconCheckDefault.svg";
+import iconMinus from "../../assets/images/iconMinus.svg";
+import iconPlus from "../../assets/images/iconPlus.svg";
 
 const icons = {
-    iconShowers,
-    iconTime,
-    iconAddress,
-    iconAnimal,
-    iconAround,
-    iconBadding,
-    iconBrazier,
-    iconBrend,
-    iconCampCategory,
-    iconCleans,
-    iconCustomerCall,
-    iconDate,
-    iconDown,
-    iconEdit,
-    iconElec,
-    iconFire,
-    iconFoods,
-    iconGo,
-    iconHeating,
-    iconHompage,
-    iconLog,
-    iconPhone,
-    iconPlays,
-    iconReel,
-    iconRegion,
-    iconRegist,
-    iconReservation,
-    iconSerch,
-    iconShower,
-    iconSink,
-    iconSmiles,
-    iconStrore,
-    iconSwimming,
-    iconSwimmings,
-    iconTableware,
-    iconTag,
-    iconTent,
-    iconToilet,
-    iconUp,
-    iconWifi,
-    iconBaths,
+  iconShowers,
+  iconTime,
+  iconAddress,
+  iconAnimal,
+  iconAround,
+  iconBadding,
+  iconBrazier,
+  iconBrend,
+  iconCampCategory,
+  iconCleans,
+  iconCustomerCall,
+  iconDate,
+  iconDown,
+  iconEdit,
+  iconElec,
+  iconFire,
+  iconFoods,
+  iconGo,
+  iconHeating,
+  iconHompage,
+  iconLog,
+  iconPhone,
+  iconPlays,
+  iconReel,
+  iconRegion,
+  iconRegist,
+  iconReservation,
+  iconSerch,
+  iconShower,
+  iconSink,
+  iconSmiles,
+  iconStrore,
+  iconSwimming,
+  iconSwimmings,
+  iconTableware,
+  iconTag,
+  iconTent,
+  iconToilet,
+  iconUp,
+  iconWifi,
+  iconBaths,
+  iconCheckActive,
+  iconCheckDefault,
+  iconMinus,
+  iconPlus,
 };
 function Icon({ iconName, className, ...props }) {
-    const iconSrc = icons[iconName];
-    if (!iconSrc) {
-        console.error(`Icon '${iconName}' not found.`);
-        return null;
-    }
-    return (
-        <>
-            <img
-                src={iconSrc}
-                alt={iconName}
-                {...props}
-                className={`imgIcons ${className}`}
-            />
-        </>
-    );
+  const iconSrc = icons[iconName];
+  if (!iconSrc) {
+    console.error(`Icon '${iconName}' not found.`);
+    return null;
+  }
+  return (
+    <>
+      <img
+        src={iconSrc}
+        alt={iconName}
+        {...props}
+        className={`imgIcons ${className}`}
+      />
+    </>
+  );
 }
 
 export default Icon;
