@@ -6,6 +6,7 @@ import StoreToggle from "../../components/Store/StoreToggle";
 import EventSwiper from "../../components/Store/EventSwiper";
 import StoreTopTen from "../../components/Store/StoreTopTen";
 import PurchaseModal from "../../components/Store/PurchaseModal";
+import Icon from "../../components/Icon/Icon";
 
 const productview = {
   id: 1,
@@ -35,14 +36,16 @@ const reviews = [
   {
     id: 1,
     img: "imgdefault.png",
-    level: "등급",
+    level: "lavel lavel01",
+    name: "샛별",
     user: "웅크린양과같은사나이",
     content: "리뷰리뷰리뷰리뷰리뷰리뷰",
   },
   {
     id: 2,
     img: "imgdefault.png",
-    level: "등급",
+    level: "lavel lavel03",
+    name: "뭇별",
     user: "웅크린양과같은사나이",
     content: "리뷰리뷰리뷰리뷰리뷰리뷰",
   },
@@ -81,7 +84,6 @@ function StoreView() {
   const toggleImage = () => {
     setShowFulllImage(!showFullImage);
   };
-
   const renderTabContent = () => {
     switch (activeTab) {
       case "details":
@@ -112,7 +114,7 @@ function StoreView() {
       case "reviews":
         return (
           <div className="reviewContent">
-            {reviewList.map((review) => (
+            {reviews.map((review) => (
               <div key={review.id} className="reviewItem">
                 <img
                   className="reviewuserImg"
@@ -122,7 +124,7 @@ function StoreView() {
                 <div className="reviewWrap">
                   <div className="reviewInfo">
                     <div className="reviewUser">
-                      <p className="reviewLevel">{review.level}</p>
+                      <p className={review.level}>{review.name}</p>
                       <p className="reviewUser">{review.user}</p>
                     </div>
                     <p className="reviewText">{review.content}</p>
@@ -158,6 +160,7 @@ function StoreView() {
           </div>
 
           <div className="brandWrap">
+            <Icon iconName="iconBrend" />
             <p className="brand"> {productview.brand} </p>
             <p className="brandName">{productview.brandName}</p>
           </div>
@@ -172,10 +175,12 @@ function StoreView() {
       </div>
       <div className="productViewEtc">
         <div className="pointWrap">
+          <Icon iconName="iconBrend" />
           <p className="point">{productview.point}</p>
           <p className="pointDetails">{productview.pointDetails}</p>
         </div>
         <div className="deliveryWrap">
+          <Icon iconName="iconBrend" />
           <p className="delivery">{productview.delivery}</p>
           <p className="deliveryDetails">{productview.deliveryDetails}</p>
         </div>
