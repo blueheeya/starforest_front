@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import EditBtn from "../../components/Diary/EditBtn";
 import imgUpload from "../../assets/images/imgUpload.png";
 import Icon from "../../components/Icon/Icon";
 import { Link } from "react-router-dom";
+import HashTags from "../../components/Diary/HashTags";
+import UserTags from "../../components/Diary/UserTags";
+import CampSelectCard from "../../components/Camp/CampSelectCard";
 
 function DiaryWrite() {
   // // 이미지 추가 const
@@ -31,10 +34,12 @@ function DiaryWrite() {
   //   };
   // };
 
-  // 이미지 상태관리
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([]); // 이미지 상태관리
+  const [selectedUserTags, setSelectedUserTags] = useState([]); // 선택된 태그 상태관리
+  const [content, setContent] = useState(""); // 글 작성 내용 상태관리
+  const fileInputRef = useRef(null); // file input ref
 
-  // 이미지 등록
+  // 이미지 change 확인
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     if (images.length + files.length > 5) {
@@ -55,106 +60,51 @@ function DiaryWrite() {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
+  // 찐 이미지 등록
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleTagToggle = (tag) => {
+    setSelectedUserTags((prevTags) =>
+      prevTags.includes(tag)
+        ? prevTags.filter((t) => t !== tag)
+        : [...prevTags, tag]
+    );
+  };
+
   return (
     <div className="diary-bg">
       <div className="diary-mb">유저정보</div>
-      <div className="diary-mb">캠핑장 간략 내용 카드</div>
+      <div className="diary-mb">
+        <CampSelectCard />
+      </div>
 
       {/* 태그 1 */}
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginBottom: "10px",
-          flexWrap: "wrap",
-        }}
-      >
-        <span className="userTag">
-          <Icon iconName="iconShowers" />
-          매너타임
-        </span>
-        <span className="userTag">
-          <Icon iconName="iconShowers" />
-          친절함
-        </span>
-        <span className="userTag">
-          <Icon iconName="iconShowers" />
-          청결함
-        </span>
-        <span className="userTag">
-          <Icon iconName="iconShowers" />
-          수영장
-        </span>
-        <span className="userTag">
-          <Icon iconName="iconShowers" />
-          놀이시설
-        </span>
-        <span className="userTag">
-          <Icon iconName="iconShowers" />
-          개별 화장실
-        </span>
-        <span className="userTag">
-          <Icon iconName="iconShowers" />
-          개별 샤워실
-        </span>
-        <span className="userTag">
-          <Icon iconName="iconShowers" />
-          매점 운영
-        </span>
-      </div>
+      <UserTags
+        selectedUserTags={selectedUserTags}
+        onTagToggle={handleTagToggle}
+        isClickable={true}
+      />
 
       {/* 태그 2 */}
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginBottom: "10px",
-          flexWrap: "wrap",
-        }}
-      >
-        <span className="hashTag">#오토캠핑장</span>
-        <span className="hashTag">#글램핑</span>
-        <span className="hashTag">#카라반</span>
-        <span className="hashTag">#봄</span>
-        <span className="hashTag">#여름</span>
-        <span className="hashTag">#가을</span>
-        <span className="hashTag">#겨울</span>
-        <span className="hashTag">#가족</span>
-        <span className="hashTag">#친구</span>
-        <span className="hashTag">#연인</span>
-        <span className="hashTag">#부부</span>
-        <span className="hashTag">#반려동물</span>
-        <span className="hashTag">#솔캠</span>
-        <span className="hashTag">#단체</span>
-        <span className="hashTag">#산</span>
-        <span className="hashTag">#계곡</span>
-        <span className="hashTag">#바다</span>
-        <span className="hashTag">#호수</span>
-        <span className="hashTag">#강</span>
-      </div>
+      <HashTags />
 
+      {/* input Wrap */}
       <div className="diaryWriteWrap">
         {/* diaryWrite-input */}
-        <input
+        <textarea
           className="diaryWrite-input"
-          type="text"
           placeholder="내용을 입력해주세요."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         />
 
-        {/* 이미지 추가 박스 */}
-        <div className="diaryWrite-imageCard">
-          <div>버튼을 눌러 이미지를 등록해 주세요.</div>
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleImageUpload}
-          />
-          <img src={imgUpload} alt="이미지 추가" />
-
-          <div>
+        {/* 이미지 추가됐을시 보이는박스 */}
+        {images.length > 0 && (
+          <div className="uploaded-images diary-mb">
             {images.map((image, index) => (
-              <div key={index}>
+              <div key={index} className="image-item">
                 <img
                   src={image.preview}
                   alt={`업로드된 이미지 ${index + 1}`}
@@ -164,17 +114,50 @@ function DiaryWrite() {
                     objectFit: "cover",
                   }}
                 />
+                {/* 이미지 삭제 버튼 */}
                 <button
                   onClick={() => {
                     removeImage(index);
                   }}
                 >
-                  삭제
+                  <img src="../../assets/images/btnClose.ong" />
                 </button>
               </div>
             ))}
           </div>
-        </div>
+        )}
+
+        {/* 이미지 추가 박스 */}
+
+        <button onClick={triggerFileInput}>
+          <div className="diaryWrite-imageCard">
+            <div>버튼을 눌러 이미지를 등록해 주세요.</div>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={handleImageUpload}
+            />
+            <img src={imgUpload} alt="이미지 추가" />
+            {/* <div>
+              {images.map((image, index) => (
+                <div key={index}>
+                  <img
+                    src={image.preview}
+                    alt={`업로드된 이미지 ${index + 1}`}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              ))}
+            </div> */}
+          </div>
+        </button>
       </div>
 
       {/* 별숲기록 주의사향 */}
