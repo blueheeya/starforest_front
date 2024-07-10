@@ -1,33 +1,72 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { A11y, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import CampSite from "../../components/Camp/CampGavisDate";
 import CampGavisImg from "../../components/Camp/CampGavisImg";
 import CampTag from "../../components/Camp/CampTag";
+import StoreTopten from "../../components/Store/StoreTopTen";
 import Icon from "../../components/Icon/Icon";
 import Footer from "../../components/Layout/Footer";
-
 function CampView() {
-    const { id } = useParams();
-    const campItem = CampSite.find((item) => item.id === parseInt(id));
-    if (!campItem) {
-        return <div>캠핑장 정보를 찾을 수 없습니다.</div>;
-    }
-    // 이미지 URL 매칭 함수
-    const getImageUrlById = (id) => {
-        const imgObj = CampGavisImg.find((img) => img.id === id);
-        return imgObj ? imgObj.imageURL : null;
-    };
+    //주소 복사
+    const addressRef = useRef(null);
 
-    // CampSite 데이터에 imageUrl 추가
-    const CampSiteWithImages = CampSite.map((camp) => ({
-        ...camp,
-        imageUrl: getImageUrlById(camp.id),
-    }));
+    const copyAddress = () => {
+        if (addressRef.current) {
+            const text = addressRef.current.innerText;
+            navigator.clipboard
+                .writeText(text)
+                .then(() => {
+                    alert("주소가 복사되었습니다!");
+                })
+                .catch((err) => {
+                    console.error("주소 복사 실패:", err);
+                });
+        }
+    };
+    const { id } = useParams();
+    const [campItem, setCampItem] = useState(null);
+
+    useEffect(() => {
+        const campItem = CampSite.find((item) => item.id === parseInt(id));
+        setCampItem(campItem);
+    }, [id]);
+
+    if (!campItem) {
+        return <div>로딩중</div>;
+    }
+    const sbrsCl = campItem.sbrsCl || [];
+    const eqpmnLendCl = campItem.eqpmnLendCl || [];
+    // 이미지 URL 매칭 함수
+    const getImageUrlsById = (id) => {
+        const imgObj = CampGavisImg.find((img) => img.id === id);
+        return imgObj ? imgObj.imageURL : [];
+    };
+    const imageUrls = getImageUrlsById(campItem.id);
+
     return (
         <>
             <div>
-                <div>이미지</div>
-                <ul className="viewWrap">
+                <div className="campViewSwiper">
+                    <Swiper
+                        modules={[Pagination, A11y]}
+                        spaceBetween={0}
+                        slidesPerView={1}
+                        pagination={true}
+                    >
+                        {imageUrls.map((url, index) => (
+                            <SwiperSlide key={index}>
+                                <img key={index} src={url} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+                <ul className="campViewWrap">
                     <li>
                         <ul className="campTitle">
                             <li>
@@ -46,7 +85,8 @@ function CampView() {
                     </li>
                     <li>
                         <Icon iconName="iconAddress" />
-                        {campItem.address}
+                        <span ref={addressRef}>{campItem.addr1}</span>
+                        <button onClick={copyAddress}>복사하기</button>
                     </li>
                     <li>
                         <Icon iconName="iconPhone" />
@@ -54,10 +94,19 @@ function CampView() {
                     </li>
                     <li>
                         <Icon iconName="iconHompage" />
-                        {campItem.url}
+                        {campItem.homepage &&
+                        campItem.homepage.trim() !== "" ? (
+                            <button
+                                onClick={() =>
+                                    window.open(campItem.homepage, "_blank")
+                                }
+                            >
+                                홈페이지 바로가기
+                            </button>
+                        ) : null}
                     </li>
                     <li>
-                        <Icon iconName="iconLog" />
+                        <Icon iconName="iconLog" /> <strong>주변환경</strong>
                         {campItem.lctCl}
                     </li>
                     <li>
@@ -65,69 +114,69 @@ function CampView() {
                     </li>
                     <li>
                         <CampTag
-                            tags={campItem.themaEnvrnC}
+                            tags={campItem.themaEnvrnCl}
                             isListPage={false}
                         />
                     </li>
                 </ul>
-                <div className="viewWrap">
+                <div className="campViewWrap">
                     <div>
                         <h4>캠핑장 소개</h4>
                     </div>
-                    <div>{campItem.intro}</div>
+                    <div className="campIntro">{campItem.intro}</div>
                 </div>
-                <div className="viewWrap">
+                <div className="campViewWrap">
                     <h4>시설 및 레저</h4>
                     <div className="facilityWrap">
-                        {campItem.sbrsCl.includes("전기") && (
+                        {sbrsCl.includes("전기") && (
                             <div>
                                 <Icon iconName="iconElec" />
                                 <p>전기</p>
                             </div>
                         )}
-                        {campItem.sbrsCl.includes("화장실") && (
+                        {sbrsCl.includes("화장실") && (
                             <div>
                                 <Icon iconName="iconToilet" />
                                 <p>화장실</p>
                             </div>
                         )}
-                        {campItem.sbrsCl.includes("샤워장") && (
+                        {sbrsCl.includes("샤워장") && (
                             <div>
                                 <Icon iconName="iconShower" />
                                 <p>샤워장</p>
                             </div>
                         )}
-                        {campItem.sbrsCl.includes("온수") && (
+                        {sbrsCl.includes("온수") && (
                             <div>
                                 <Icon iconName="iconSink" />
                                 <p>온수</p>
                             </div>
                         )}
-                        {campItem.sbrsCl.includes("마트.편의점") && (
+                        {sbrsCl.includes("마트.편의점") && (
                             <div>
                                 <Icon iconName="iconStrore" />
                                 <p>편의점</p>
                             </div>
                         )}
-                        {campItem.sbrsCl.includes("수영장") && (
+                        {sbrsCl.includes("수영장") && (
                             <div>
                                 <Icon iconName="iconSwimming" />
                                 <p>수영장</p>
                             </div>
                         )}
-                        {campItem.sbrsCl.includes("장작") && (
+                        {sbrsCl.includes("장작") && (
                             <div>
                                 <Icon iconName="iconFire" />
                                 <p>장작판매</p>
                             </div>
                         )}
-                        {campItem.sbrsCl.includes("wifi") && (
+                        {sbrsCl.includes("wifi") && (
                             <div>
                                 <Icon iconName="iconWifi" />
                                 <p>wifi</p>
                             </div>
                         )}
-                        {campItem.sbrsCl.includes("반려동물") && (
+                        {sbrsCl.includes("반려동물") && (
                             <div>
                                 <Icon iconName="iconStrore" />
                                 <p>반려동물</p>
@@ -135,40 +184,40 @@ function CampView() {
                         )}
                     </div>
                 </div>
-                <div className="viewWrap">
+                <div className="campViewWrap">
                     <h4>장비 대여</h4>
                     <div className="facilityWrap">
-                        {campItem.lendEquipment.includes("텐트") && (
+                        {eqpmnLendCl.includes("텐트") && (
                             <div>
                                 <Icon iconName="iconTent" />
                                 <p>텐트</p>
                             </div>
                         )}
-                        {campItem.lendEquipment.includes("릴선") && (
+                        {eqpmnLendCl.includes("릴선") && (
                             <div>
                                 <Icon iconName="iconReel" />
                                 <p>릴선</p>
                             </div>
                         )}
-                        {campItem.lendEquipment.includes("화로대") && (
+                        {eqpmnLendCl.includes("화로대") && (
                             <div>
                                 <Icon iconName="iconBrazier" />
                                 <p>화로대</p>
                             </div>
                         )}
-                        {campItem.lendEquipment.includes("난방기구") && (
+                        {eqpmnLendCl.includes("난방기구") && (
                             <div>
                                 <Icon iconName="iconReel" />
                                 <p>난방기구</p>
                             </div>
                         )}
-                        {campItem.lendEquipment.includes("식기") && (
+                        {eqpmnLendCl.includes("식기") && (
                             <div>
                                 <Icon iconName="iconTableware" />
                                 <p>식기</p>
                             </div>
                         )}
-                        {campItem.lendEquipment.includes("침낭") && (
+                        {eqpmnLendCl.includes("침낭") && (
                             <div>
                                 <Icon iconName="iconBadding" />
                                 <p>침낭</p>
@@ -176,28 +225,12 @@ function CampView() {
                         )}
                     </div>
                 </div>
-                <div className="viewWrap">
-                    <h4>기타 주요시설</h4>
-                    <ul className="etcSiteInfo">
-                        <li>
-                            <span>주요시설</span>
-                        </li>
-                        <li>
-                            <span>기타 정보</span>
-                        </li>
-                        <li>
-                            <span>사이트 간격</span>
-                        </li>
-                        <li>
-                            <span>바닥 형태</span>
-                        </li>
-                        <li>
-                            <span>화로대</span>
-                        </li>
-                        <li>
-                            <span>안전시설</span>
-                        </li>
-                    </ul>
+                <div className="campViewWrap">
+                    <h4>환불규정</h4>
+                    <p></p>
+                </div>
+                <div className="campBinWrap">
+                    <StoreTopten />
                 </div>
             </div>
             <Footer />

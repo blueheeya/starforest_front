@@ -2,6 +2,7 @@ import React from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 function CampTag({ tags, isListPage }) {
+    const validtags = Array.isArray(tags) ? tags : [];
     return (
         <>
             {isListPage ? (
@@ -16,18 +17,18 @@ function CampTag({ tags, isListPage }) {
                         }}
                         initialSlide={0}
                     >
-                        {tags.map((tagItem, index) => (
+                        {validtags.map((tagItem, index) => (
                             <SwiperSlide key={index}>
-                                <span className="hashTag">#{tagItem.tag}</span>
+                                <span className="hashTag">#{tagItem}</span>
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
             ) : (
                 <div className="campViewTag">
-                    {tags.map((tagItem, index) => (
+                    {validtags.map((tagItem, index) => (
                         <span key={index} className="hashTag">
-                            #{tagItem.tag}
+                            #{tagItem}
                         </span>
                     ))}
                 </div>

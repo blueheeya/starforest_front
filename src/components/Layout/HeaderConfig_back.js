@@ -17,7 +17,7 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "/camp/view/:id": {
+    "/camp/view": {
         title: "캠핑장보기",
         component: HeaderType4,
         titleStore: false,
