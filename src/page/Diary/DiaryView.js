@@ -12,6 +12,7 @@ function DiaryView() {
         margin: "0 auto",
         height: "auto",
         padding: "32px",
+        borderTop: "1px solid #dcdcdc",
       }}
     >
       <div className="diary-Wrap">

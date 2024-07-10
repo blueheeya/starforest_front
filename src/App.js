@@ -43,44 +43,53 @@ import Style from "./Style";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
-
-const showFooterPath = ["/", "/store/view", "/user/mypage", "/camp/list", "/camp/reservation", "/camp/pay", "/store/pay"];
+const showFooterPath = [
+  "/",
+  "/store/view",
+  "/user/mypage",
+  "/camp/list",
+  "/camp/reservation",
+  "/camp/pay",
+  "/store/pay",
+  "/diary/list",
+  "/diary/write",
+  "/diary/view",
+];
 function LayoutType() {
-    const location = useLocation();
-    const {
-        title,
-        component: HeaderComponent,
-        titleStore,
-    } = headerConfig[location.pathname] || {
-        title: "캠핑장",
-        component: HeaderType2,
-        titleStore: false,
-    };
-    const showMenu = showMenuPath.includes(location.pathname);
-    const showFooter = showFooterPath.includes(location.pathname);
-    const isHeaderType2 = HeaderComponent === HeaderType2;
-    const isHeaderType3 = HeaderComponent === HeaderType3;
-    return (
-        <BackWrap>
-            <Container>
-                <HeaderComponent titleStore={titleStore}>
-                    {title}
-                </HeaderComponent>
-                <ContentWrap
-                    className={`${isHeaderType2 ? "cntView" : ""} ${isHeaderType3 ? "cntSearchView" : ""
-                        }`}
-                >
-                    <main>
-                        <Outlet />
-                    </main>
-                </ContentWrap>
-                {showFooter && (
-                    <Footer className={`${showMenu ? "footerBottom" : ""}`} />
-                )}
-                {showMenu && <Menu />}
-            </Container>
-        </BackWrap>
-    );
+  const location = useLocation();
+  const {
+    title,
+    component: HeaderComponent,
+    titleStore,
+  } = headerConfig[location.pathname] || {
+    title: "캠핑장",
+    component: HeaderType2,
+    titleStore: false,
+  };
+  const showMenu = showMenuPath.includes(location.pathname);
+  const showFooter = showFooterPath.includes(location.pathname);
+  const isHeaderType2 = HeaderComponent === HeaderType2;
+  const isHeaderType3 = HeaderComponent === HeaderType3;
+  return (
+    <BackWrap>
+      <Container>
+        <HeaderComponent titleStore={titleStore}>{title}</HeaderComponent>
+        <ContentWrap
+          className={`${isHeaderType2 ? "cntView" : ""} ${
+            isHeaderType3 ? "cntSearchView" : ""
+          }`}
+        >
+          <main>
+            <Outlet />
+          </main>
+        </ContentWrap>
+        {showFooter && (
+          <Footer className={`${showMenu ? "footerBottom" : ""}`} />
+        )}
+        {showMenu && <Menu />}
+      </Container>
+    </BackWrap>
+  );
 }
 function App() {
   return (
