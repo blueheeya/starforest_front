@@ -574,6 +574,7 @@ $radiusSmall: 5px;
         width: 100%;
         color: $textTitle;
         font-size: $titleText;
+        font-weight: bold;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -584,7 +585,9 @@ $radiusSmall: 5px;
         font-size: $therdText;
     }
 }
-
+.campIntro {
+    line-height: 1.5em;
+}
 .campListTag {
     width: 100%;
     display: flex;
@@ -647,6 +650,11 @@ $radiusSmall: 5px;
         display: flex;
         align-items: center;
         gap: 5px;
+        font-size: $defaultText;
+        button {
+            color: $PrimaryColor;
+            font-weight: bold;
+        }
     }
 
     .facilityWrap {
@@ -659,11 +667,13 @@ $radiusSmall: 5px;
             font-size: $therdText;
         }
     }
-
-    .etcSiteInfo {
-    }
 }
-
+.campBinWrap {
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 20px 0px;
+    background: #ffffff;
+}
 .campViewTag {
     width: 100%;
     display: flex;

@@ -24,7 +24,7 @@ import iconPlays from "../../assets/images/iconPlays.svg";
 import iconReel from "../../assets/images/iconReel.svg";
 import iconRegion from "../../assets/images/iconRegion.svg";
 import iconRegist from "../../assets/images/iconRegist.svg";
-import iconReservation from "../../assets/images/iconReservation.svg";
+import iconReservation from "../../assets/images/iconReservation.png";
 import iconSerch from "../../assets/images/iconSerch.svg";
 import iconShower from "../../assets/images/iconShower.svg";
 import iconShowers from "../../assets/images/iconShowers.svg";
@@ -40,6 +40,15 @@ import iconTime from "../../assets/images/iconTimes.svg";
 import iconToilet from "../../assets/images/iconToilet.svg";
 import iconUp from "../../assets/images/iconUp.svg";
 import iconWifi from "../../assets/images/iconWifi.svg";
+import level1 from "../../assets/images/level1.png";
+import level2 from "../../assets/images/level2.png";
+import level3 from "../../assets/images/level3.png";
+import level4 from "../../assets/images/level4.png";
+import iconCart from "../../assets/images/iconCart.png";
+import iconDelivery from "../../assets/images/iconDelivery.png";
+import iconMyLike from "../../assets/images/iconMyLike.png";
+import iconMyLog from "../../assets/images/iconMyLog.png";
+import iconMyReview from "../../assets/images/iconMyReview.png";
 
 const icons = {
     iconShowers,
@@ -83,6 +92,15 @@ const icons = {
     iconUp,
     iconWifi,
     iconBaths,
+    level1,
+    level2,
+    level3,
+    level4,
+    iconCart,
+    iconDelivery,
+    iconMyLike,
+    iconMyLog,
+    iconMyReview,
 };
 function Icon({ iconName, className, ...props }) {
     const iconSrc = icons[iconName];

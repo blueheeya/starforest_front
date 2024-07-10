@@ -1,10 +1,20 @@
-import { Outlet, Route, Routes, useLocation } from "react-router-dom";
+import {
+    matchPath,
+    Outlet,
+    Route,
+    Routes,
+    useLocation,
+} from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
 import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
-import { HeaderType2, HeaderType3 } from "./components/Layout/Header";
+import {
+    HeaderType2,
+    HeaderType3,
+    HeaderType4,
+} from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
 import CampList from "./page/Camp/CampList";
@@ -45,21 +55,41 @@ const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
 const showFooterPath = ["/", "/store/view", "/user/mypage", "/camp/list"];
 function LayoutType() {
-
+    function getHeaderConfig(pathname) {
+        for (const [path, config] of Object.entries(headerConfig)) {
+            if (matchPath(path, pathname)) {
+                return config;
+            }
+        }
+        return (
+            headerConfig["/"] || {
+                title: "홈",
+                component: HeaderType2,
+                titleStore: false,
+            }
+        ); // 기본 설정
+    }
     const location = useLocation();
     const {
-        title,
-        component: HeaderComponent,
-        titleStore,
-    } = headerConfig[location.pathname] || {
-        title: "캠핑장",
-        component: HeaderType2,
-        titleStore: false,
-    };
+        title = "홈",
+        component: HeaderComponent = HeaderType2,
+        titleStore = false,
+    } = getHeaderConfig(location.pathname) ?? {};
+
+    // const {
+    //     title,
+    //     component: HeaderComponent,
+    //     titleStore,
+    // } = headerConfig[location.pathname] || {
+    //     title: "캠핑장",
+    //     component: HeaderType2,
+    //     titleStore: false,
+    // };
     const showMenu = showMenuPath.includes(location.pathname);
     const showFooter = showFooterPath.includes(location.pathname);
     const isHeaderType2 = HeaderComponent === HeaderType2;
     const isHeaderType3 = HeaderComponent === HeaderType3;
+    const isHeaderType4 = HeaderComponent === HeaderType4;
     return (
         <BackWrap>
             <Container>
@@ -69,7 +99,7 @@ function LayoutType() {
                 <ContentWrap
                     className={`${isHeaderType2 ? "cntView" : ""} ${
                         isHeaderType3 ? "cntSearchView" : ""
-                    }`}
+                    } ${isHeaderType4 ? "cntSearchView" : ""}`}
                 >
                     <main>
                         <Outlet />

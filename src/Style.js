@@ -108,6 +108,19 @@ function Style() {
                     <Icon iconName="iconSwimmings" />
                 </div>
             </div>
+            <div className="cntMarginTop">
+                <h3 style={{ fontFamily: "EunhasuR", marginBottom: "10px" }}>
+                    장바구니
+                </h3>
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <Icon iconName="iconCart" />
+                    <Icon iconName="iconDelivery" />
+                    <Icon iconName="iconMyLike" />
+                    <Icon iconName="iconMyLog" />
+                    <Icon iconName="iconMyReview" />
+                    <Icon iconName="iconReservation" />
+                </div>
+            </div>
         </div>
     );
 }
