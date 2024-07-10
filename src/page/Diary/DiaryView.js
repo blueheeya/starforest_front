@@ -5,7 +5,15 @@ import UserTags from "../../components/Diary/UserTags";
 
 function DiaryView() {
   return (
-    <div className="diary-bg">
+    // <div className="diary-bg">
+    <div
+      style={{
+        backgroundColor: "#ffffff",
+        margin: "0 auto",
+        height: "auto",
+        padding: "32px",
+      }}
+    >
       <div className="diary-Wrap">
         {/* 유저 정보 */}
         <div className="diary-mb">유저</div>
@@ -13,8 +21,8 @@ function DiaryView() {
         <div className="diary-mb">캠핑장 간략 정보</div>
 
         {/* 태그 1 */}
-        <UserTags />
-        {/* <div
+        {/* <UserTags /> */}
+        <div
           style={{
             display: "flex",
             gap: "10px",
@@ -38,7 +46,7 @@ function DiaryView() {
             <Icon iconName="iconShowers" />
             수영장
           </span>
-          <span className="userTag">
+          {/* <span className="userTag">
             <Icon iconName="iconShowers" />
             놀이시설
           </span>
@@ -53,8 +61,8 @@ function DiaryView() {
           <span className="userTag">
             <Icon iconName="iconShowers" />
             매점 운영
-          </span>
-        </div> */}
+          </span> */}
+        </div>
 
         {/* 컨텐츠 내용 */}
         <div className="diary-mb">

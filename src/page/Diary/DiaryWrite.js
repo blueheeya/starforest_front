@@ -5,6 +5,7 @@ import Icon from "../../components/Icon/Icon";
 import { Link } from "react-router-dom";
 import HashTags from "../../components/Diary/HashTags";
 import UserTags from "../../components/Diary/UserTags";
+import CampSelectCard from "../../components/Camp/CampSelectCard";
 
 function DiaryWrite() {
   // // 이미지 추가 const
@@ -34,7 +35,7 @@ function DiaryWrite() {
   // };
 
   const [images, setImages] = useState([]); // 이미지 상태관리
-  const [selectedTags, setSelectedTags] = useState([]); // 선택된 태그 상태관리
+  const [selectedUserTags, setSelectedUserTags] = useState([]); // 선택된 태그 상태관리
   const [content, setContent] = useState(""); // 글 작성 내용 상태관리
   const fileInputRef = useRef(null); // file input ref
 
@@ -65,7 +66,7 @@ function DiaryWrite() {
   };
 
   const handleTagToggle = (tag) => {
-    setSelectedTags((prevTags) =>
+    setSelectedUserTags((prevTags) =>
       prevTags.includes(tag)
         ? prevTags.filter((t) => t !== tag)
         : [...prevTags, tag]
@@ -75,10 +76,16 @@ function DiaryWrite() {
   return (
     <div className="diary-bg">
       <div className="diary-mb">유저정보</div>
-      <div className="diary-mb">캠핑장 간략 내용 카드</div>
+      <div className="diary-mb">
+        <CampSelectCard />
+      </div>
 
       {/* 태그 1 */}
-      <UserTags selectedTags={selectedTags} onTagToggle={handleTagToggle} />
+      <UserTags
+        selectedUserTags={selectedUserTags}
+        onTagToggle={handleTagToggle}
+        isClickable={true}
+      />
 
       {/* 태그 2 */}
       <HashTags />

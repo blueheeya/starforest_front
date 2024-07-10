@@ -7,7 +7,7 @@ function CampSelectCard() {
     <div className="CampSelectCardWrap">
       <div
         //   className="CampSelect-content"
-        style={{ display: "flex" }}
+        style={{ display: "flex", gap: "10px" }}
       >
         <img
           src={diary_camp_img}
@@ -19,7 +19,7 @@ function CampSelectCard() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor: "skyblue",
+            // backgroundColor: "skyblue",
             width: "100%",
           }}
         >

@@ -29,6 +29,7 @@ function UserTags({ selectedUserTags, onTagToggle }) {
           className={`userTag ${
             selectedUserTags.includes(tag.text) ? "selected" : ""
           }`}
+          // } ${isClickable ? "clickable" : ""}`}
           onClick={() => onTagToggle(tag.text)}
         >
           <Icon iconName={tag.icon} />

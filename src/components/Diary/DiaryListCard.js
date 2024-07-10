@@ -11,16 +11,42 @@ function DiaryListCard() {
 
       {/* 태그 1 S*/}
 
-      <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginBottom: "10px",
+          flexWrap: "wrap",
+        }}
+      >
         <span className="userTag">
           <Icon iconName="iconShowers" />
-          오토캠핑장
+          매너타임
         </span>
         <span className="userTag">
           <Icon iconName="iconShowers" />
-          오토캠핑장
+          친절함
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          청결함
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          수영장
         </span>
       </div>
+
+      {/* <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          오토캠핑장
+        </span>
+        <span className="userTag">
+          <Icon iconName="iconShowers" />
+          오토캠핑장
+        </span>
+      </div> */}
 
       {/* 태그 1 E */}
 
