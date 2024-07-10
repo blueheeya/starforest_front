@@ -53,7 +53,18 @@ import Style from "./Style";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
-const showFooterPath = ["/", "/store/view", "/user/mypage", "/camp/list"];
+const showFooterPath = [
+    "/",
+    "/store/view",
+    "/user/mypage",
+    "/camp/list",
+    "/camp/reservation",
+    "/camp/pay",
+    "/store/pay",
+    "/diary/list",
+    "/diary/write",
+    "/diary/view",
+];
 function LayoutType() {
     function getHeaderConfig(pathname) {
         for (const [path, config] of Object.entries(headerConfig)) {

@@ -12,7 +12,6 @@ function DiaryList() {
         </Link>
         {/* 별숲 기록 전체 리스트 */}
         <div className="diaryAll-List">
-          별숲 기록 전체 리스트
           {/* 별숲 기록 카드 */}
           <DiaryListCard />
           <DiaryListCard />
