@@ -226,6 +226,20 @@ $radiusSmall: 5px;
         justify-content: space-between;
     }
 }
+/*customer*/
+.customerToggle {
+    margin: 10px 0;
+    .toggleTitle {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 32px;
+        border-top: solid 1px $inputColor;
+        border-bottom: solid 1px $inputColor;
+    }
+    .toggleContent {
+        padding: 20px 32px;
+    }
+}
 @media screen and (max-width: 1024px) {
 }
 

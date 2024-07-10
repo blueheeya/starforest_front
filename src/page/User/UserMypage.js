@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Icon from "../../components/Icon/Icon";
 import EventSwiper from "../../components/Store/EventSwiper";
 import UserCard from "../../components/User/UserCard";
-import Icon from "../../components/Icon/Icon";
-import { Link } from "react-router-dom";
 
 function UserMypage() {
     const [tabButton, setTabButton] = useState("tab1");
@@ -33,7 +33,7 @@ function UserMypage() {
             <div className="myPageDate cntMarginBottom">
                 {tabButton === "tab1" && (
                     <>
-                        <Link to="/user/diary/list">
+                        <Link to="/user/camp/reservation/list">
                             <ul>
                                 <li>
                                     <Icon iconName="iconReservation" />
@@ -42,7 +42,7 @@ function UserMypage() {
                                 <li>0건</li>
                             </ul>
                         </Link>
-                        <Link to="/user/diary/list">
+                        <Link to="/user/camp/like/list">
                             <ul>
                                 <li>
                                     <Icon iconName="iconMyLike" />
@@ -64,27 +64,33 @@ function UserMypage() {
                 )}
                 {tabButton === "tab2" && (
                     <>
-                        <ul>
-                            <li>
-                                <Icon iconName="iconDelivery" />
-                            </li>
-                            <li>주문/배송</li>
-                            <li>0건</li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <Icon iconName="iconCart" />
-                            </li>
-                            <li>장바구니</li>
-                            <li>0건</li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <Icon iconName="iconMyReview" />
-                            </li>
-                            <li>리뷰</li>
-                            <li>0건</li>
-                        </ul>
+                        <Link to="/user/store/order/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconDelivery" />
+                                </li>
+                                <li>주문/배송</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
+                        <Link to="/user/store/cart/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconCart" />
+                                </li>
+                                <li>장바구니</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
+                        <Link to="/user/store/review/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconMyReview" />
+                                </li>
+                                <li>리뷰</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
                     </>
                 )}
             </div>
@@ -208,10 +214,16 @@ function UserMypage() {
             <div className="customerWrap cntMarginBottom">
                 <h4>고객센터</h4>
                 <div>
-                    자주하는 질문 <Link to="/user/qna">바로가기</Link>
+                    자주하는 질문{" "}
+                    <Link to="/user/qna">
+                        <Icon iconName="toggleTo" />
+                    </Link>
                 </div>
                 <div>
-                    공지사항 <Link to="/user/notice">바로가기</Link>
+                    공지사항{" "}
+                    <Link to="/user/notice">
+                        <Icon iconName="toggleTo" />
+                    </Link>
                 </div>
             </div>
             <EventSwiper className=" cntMarginBottom" />

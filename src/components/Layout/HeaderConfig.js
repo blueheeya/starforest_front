@@ -107,22 +107,22 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "user/store/order/list": {
+    "/user/store/order/list": {
         title: "주문/배송",
         component: HeaderType2,
         titleStore: false,
     },
-    "user/store/order/view": {
+    "/user/store/order/view": {
         title: "주문/배송",
         component: HeaderType2,
         titleStore: false,
     },
-    "user/store/cart/list": {
+    "/user/store/cart/list": {
         title: "장바구니",
         component: HeaderType2,
         titleStore: false,
     },
-    "user/store/review/list": {
+    "/user/store/review/list": {
         title: "나의 리뷰",
         component: HeaderType2,
         titleStore: false,
