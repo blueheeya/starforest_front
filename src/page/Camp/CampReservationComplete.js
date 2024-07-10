@@ -13,21 +13,21 @@ function CampReservationComplete() {
 
   const [paymentInfo, setPaymentInfo] = useState(null);
 
-  useEffect(() => {
-    const fetchPaymentInfo = async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const pgToken = urlParams.get('pg_token');
-      console.log("pg토큰 : " + pgToken);
-      try {
-        const response = await axios.get(`http://localhost:8082/kakaoPaySuccess?pg_token=${pgToken}`);
-        setPaymentInfo(response.data);
-      } catch (error) {
-        console.error('결제 정보 조회 중 오류 발생:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchPaymentInfo = async () => {
+  //     const urlParams = new URLSearchParams(window.location.search);
+  //     const pgToken = urlParams.get('pg_token');
+  //     console.log("pg토큰 : " + pgToken);
+  //     try {
+  //       const response = await axios.get(`http://localhost:8082/kakaoPaySuccess/${pgToken}`);
+  //       setPaymentInfo(response.data);
+  //     } catch (error) {
+  //       console.error('결제 정보 조회 중 오류 발생:', error);
+  //     }
+  //   };
 
-    fetchPaymentInfo();
-  }, []);
+  //   fetchPaymentInfo();
+  // }, []);
 
   return (
     <>

@@ -1,0 +1,65 @@
+$PrimaryColor: #3f71d1;
+$textTitle: #2a2a2a;
+$inputColor: #dcdcdc;
+
+img {
+    vertical-align: top;
+}
+
+.mapWrap {
+    position: relative;
+    width: 530px;
+    height: calc(100vh - 65px);
+    background-color: rgba(0, 0, 0, 0.589);
+
+    .map {
+        position: absolute;
+        bottom: 0;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        width: 530px;
+        height: 800px;
+
+        .serchLocal {
+            display: none;
+
+            .localInner {
+                display: flex;
+                gap: 10px;
+                position: absolute;
+                left: 50%;
+                top: 10px;
+                transform: translate(-50%);
+                z-index: 99999;
+                border: 1px solid $inputColor;
+                border-radius: 10px;
+                padding: 10px 20px;
+                background-color: #f5f5f5;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                div {
+                    color: $textTitle;
+                }
+            }
+        }
+    }
+
+
+    .mapClose {
+        position: absolute;
+        top: 42px;
+        left: 50%;
+        transform: translate(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 100px;
+        background-color: $PrimaryColor;
+    }
+}
