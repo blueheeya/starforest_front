@@ -44,6 +44,7 @@ import iconCheckActive from "../../assets/images/iconCheckActive.svg";
 import iconCheckDefault from "../../assets/images/iconCheckDefault.svg";
 import iconMinus from "../../assets/images/iconMinus.svg";
 import iconPlus from "../../assets/images/iconPlus.svg";
+import iconClose from "../../assets/images/iconClose.svg";
 
 const icons = {
   iconShowers,
@@ -91,6 +92,7 @@ const icons = {
   iconCheckDefault,
   iconMinus,
   iconPlus,
+  iconClose,
 };
 function Icon({ iconName, className, ...props }) {
   const iconSrc = icons[iconName];

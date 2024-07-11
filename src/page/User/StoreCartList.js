@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Icon from "../../components/Icon/Icon";
 import "../../assets/css/storeStyle.scss";
 import StoreCart from "../../components/Store/StoreCart";
+import StorePayMethod from "../../components/Store/StorePayMethod";
+import StoreTopTen from "../../components/Store/StoreTopTen";
+import { Navigate, useNavigate } from "react-router-dom";
 function StoreCartList() {
   const [cartItems, setCartItems] = useState([
     { id: 1, name: "상품1", price: 10000, quantity: 1, selected: false },
@@ -22,6 +25,12 @@ function StoreCartList() {
   );
   const selectedCount = cartItems.filter((item) => item.selected).length;
 
+  const navigate = useNavigate();
+
+  const handlePurchaseClick = () => {
+    navigate("/store/pay");
+  };
+
   return (
     <div className="storeCart">
       <div className="cartProductWrap">
@@ -37,23 +46,17 @@ function StoreCartList() {
         ))}
       </div>
       <div className="cartPriceWrap">
-        <div className="cartPriceTitle">
-          <p>예상 결제 금액</p>
+        <StorePayMethod />
+      </div>
+      <div className="storeCartBtnWrap">
+        <div className="storeCartBtn">
+          <button className="storeCartBtn" onClick={handlePurchaseClick}>
+            주문하기
+          </button>
         </div>
-        <div className="storePayment">
-          <div className="totalamount">
-            <p>총 상품금액</p>
-            <p>{totalPrice.toLocaleString()}원</p>
-          </div>
-          <div className="shippingFee">
-            <p>배송비</p>
-            <p>무료</p>
-          </div>
-          <div className="finalTotal">
-            <p>총 주문금액</p>
-            <p>{totalPrice.toLocaleString()}원</p>
-          </div>
-        </div>
+      </div>
+      <div>
+        <StoreTopTen />
       </div>
     </div>
   );
