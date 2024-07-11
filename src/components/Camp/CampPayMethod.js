@@ -9,6 +9,8 @@ function CampPayMethod() {
         try {
             const res = await axios.post('http://localhost:8082/kakaoPay');
             // 카카오페이 결제 페이지로 리다이렉트
+            console.log(res.data);
+            console.log("결제 시도!!!!!!");
             window.location.href = res.data.next_redirect_pc_url;
         } catch (error) {
             console.error('결제 요청 중 오류 발생:', error);
