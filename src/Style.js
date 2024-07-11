@@ -121,6 +121,17 @@ function Style() {
                     <Icon iconName="iconReservation" />
                 </div>
             </div>
+            <div className="cntMarginTop">
+                <h3 style={{ fontFamily: "EunhasuR", marginBottom: "10px" }}>
+                    기타
+                </h3>
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <Icon iconName="toggleTo" />
+                    <Icon iconName="btnUserModify" />
+                    <Icon iconName="toggleOpen" />
+                    <Icon iconName="btnClose" />
+                </div>
+            </div>
         </div>
     );
 }
