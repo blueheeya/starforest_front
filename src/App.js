@@ -62,6 +62,7 @@ const showFooterPath = [
     "/camp/list",
     "/user/notice",
     "/user/qna",
+    "/user/mypage/management",
     "/camp/reservation",
     "/camp/pay",
     "/store/pay",

@@ -137,6 +137,26 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
+    "/member/login": {
+        title: "로그인",
+        component: HeaderType1,
+        titleStore: false,
+    },
+    "/member/terms": {
+        title: "회원가입",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/pwfind": {
+        title: "비밀번호찾기",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/register": {
+        title: "회원가입",
+        component: HeaderType2,
+        titleStore: false,
+    },
 };
 
 export default headerConfig;

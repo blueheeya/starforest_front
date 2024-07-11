@@ -21,6 +21,45 @@ $radiusDefault: 10px;
 $radiusSmall: 5px;
 
 /****** member ******/
+.memberContainer {
+    padding: 20px 32px;
+    .logoWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $PrimaryColor;
+        text-align: center;
+    }
+    .memberInfoText {
+        font-size: $titleText;
+        text-align: center;
+    }
+    .memberLink {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        width: 80%;
+        margin: 40px auto 0 auto;
+        p {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            color: $textDefault;
+            font-size: $secondText;
+            font-weight: bold;
+            a {
+                color: $PrimaryColor;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+.memberInputWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 @media screen and (max-width: 1024px) {
 }
