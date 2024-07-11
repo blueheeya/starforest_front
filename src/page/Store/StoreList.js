@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EventSwiper from "../../components/Store/EventSwiper";
 import StoreTopTen from "../../components/Store/StoreTopTen";
 import { Link } from "react-router-dom";
+import "../../assets/css/storeStyle.scss";
 
 const storeCategory = [
   { name: "전체", StoreIcon: "전체", link: "/store/list" },
@@ -97,7 +98,7 @@ const products = [
   },
   {
     id: 8,
-    brandNamed: "브랜드명8",
+    brandName: "브랜드명8",
     productName: "상품명블라블라8",
     Category: "캠핑푸드",
     price: 1000000,
@@ -182,14 +183,14 @@ function StoreList() {
                 }
                 alt=""
               />
-              <div className="nameWrap">
+              <div className="storeNameWrap">
                 <div className="Bname">{products.brandName}</div>
                 <div className="Pname">{products.productName}</div>
-                <div className="Pname">{products.Category}</div>
+                {/* <div className="Pname">{products.Category}</div> */}
               </div>
-              <div className="priceWrap">
-                <p className="sale">{products.sale}</p>
-                <p className="price">{products.price.toLocaleString()}원</p>
+              <div className="storePriceWrap">
+                <div className="sale">{products.sale}</div>
+                <div className="price">{products.price.toLocaleString()}원</div>
               </div>
               <div className="storeEtc">
                 <span className="textIconType1">{products.starsale}</span>

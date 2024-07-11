@@ -19,6 +19,12 @@
     box-sizing: border-box;
 }
 
+img {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+
 /* colors */
 $PrimaryColor: #3f71d1;
 $PrimaryOff: #92b1ed;

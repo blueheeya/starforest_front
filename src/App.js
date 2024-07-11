@@ -50,6 +50,8 @@ import StoreReviewList from "./page/User/StoreReviewList";
 import UserMypage from "./page/User/UserMypage";
 import UserMypageMent from "./page/User/UserMypageMent";
 import Style from "./Style";
+import CampPayFail from "./page/Camp/CampPayFail";
+import CampPayCancel from "./page/Camp/CampPayCancel";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 

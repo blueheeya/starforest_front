@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Tabs from "../../components/Store/Tabs";
 import StoreToggle from "../../components/Store/StoreToggle";
 import EventSwiper from "../../components/Store/EventSwiper";
 import StoreTopTen from "../../components/Store/StoreTopTen";
-import PurchaseModal from "../../components/Store/PurchaseModal";
 import Icon from "../../components/Icon/Icon";
 import "../../assets/css/storeStyle.scss";
+import PurchaseModal from "../../components/Store/PurchaseModal";
 
 const productview = {
   id: 1,
@@ -33,7 +33,7 @@ const tabBar = [
 const detailView = {
   detailImg: "미라클스크린텐트.jpg",
 };
-const reviewsArr = [
+const reviews = [
   {
     id: 1,
     img: "imgdefault.png",
@@ -55,19 +55,31 @@ const reviewsArr = [
 function StoreView() {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState(tabBar[0].id);
-  const [reviewList, setReviewList] = useState(reviewsArr);
+  const [reviewList, setReviewList] = useState(reviews);
   const [showFullImage, setShowFulllImage] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const product = productview;
 
-  //모달
-  const openModal = () => {
-    setIsModalOpen(true);
+  const navigate = useNavigate();
+
+  const handleCartClick = () => {
+    onclose();
+    navigate("/user/sotre/cart/;ist");
+  };
+
+  const handlePurchaseClick = () => {
+    onclose();
+    navigate("/store/pay");
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    onclose();
+  };
+
+  //모달
+  const modal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
   //탭메뉴
@@ -76,16 +88,9 @@ function StoreView() {
     setShowFulllImage(false);
   };
 
-  const changeUnderLine = (e) => {
-    setActiveTab(e.target.value);
-  };
-
   //리뷰
-  const deleteReview = (id) => {
-    console.log("Deleting review with id:", id);
-    setReviewList((prevReviewList) =>
-      prevReviewList.filter((review) => review.id !== id)
-    );
+  const deleteReview = (reviewId) => {
+    setReviewList(reviewList.filter((review) => review.id !== reviewId));
   };
 
   //상세정보
@@ -122,7 +127,7 @@ function StoreView() {
       case "reviews":
         return (
           <div className="reviewContent">
-            {reviewList.map((review) => (
+            {reviews.map((review) => (
               <div key={review.id} className="reviewItem">
                 <img
                   className="reviewuserImg"
@@ -154,23 +159,25 @@ function StoreView() {
   };
 
   return (
-    <div className="storeViewWrap">
-      <div className="viewWrapInner">
-        <PurchaseModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          productName={productview.productName}
-          price={productview.price}
-        />
+    <div className="viewWrap">
+      <div className="modalview">
+        <div className={`modalviewInner ${isModalOpen ? "modalOpen" : ""}`}>
+          <div className="modalContent">
+            <button className="modalButton" onClick={handleCartClick}>
+              장바구니로 이동
+            </button>
+            <button className="modalButton" onClick={handleCartClick}>
+              결제하기
+            </button>
+          </div>
+        </div>
       </div>
-
       <div className="productImageWrap">
         <img
           className="viewImg"
           src={process.env.PUBLIC_URL + `/assets/images/${productview.image}`}
           alt={productview.productName}
         />
-
         <div className="productNameWrap">
           <div className="nameWrap">
             <p className="category">{productview.Category}</p>
@@ -198,10 +205,8 @@ function StoreView() {
           <p className="pointDetails">{productview.pointDetails}</p>
         </div>
         <div className="deliveryWrap">
-          <div className="iconDeliverySet">
-            <Icon iconName="iconBrend" />
-            <p className="delivery">{productview.delivery}</p>
-          </div>
+          <Icon iconName="iconBrend" />
+          <p className="delivery">{productview.delivery}</p>
           <p className="deliveryDetails">{productview.deliveryDetails}</p>
         </div>
       </div>
@@ -209,22 +214,11 @@ function StoreView() {
 
       <div className="buyWrap">
         <div className="btnWrap">
-          <button
-            className="buyBtn"
-            onClick={() => {
-              openModal();
-            }}
-          >
+          <button className="buyBtn" onClick={modal}>
             구매하기
           </button>
         </div>
       </div>
-      {/* <PurchaseModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        productName={productview.productName}
-        price={productview.price}
-      /> */}
 
       <div>
         <div className="tabMenuWrap">
@@ -232,6 +226,7 @@ function StoreView() {
             {tabBar.map((tab) => (
               <li
                 key={tab.id}
+                id={tab.id}
                 className={activeTab === tab.id ? "on" : ""}
                 onClick={() => changeTab(tab.id)}
               >

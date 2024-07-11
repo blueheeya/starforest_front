@@ -23,6 +23,7 @@ $radiusDefault: 10px;
 $radiusSmall: 5px;
 
 /****** store ******/
+
 .storeTen {
   // background-color: #fff;
   .swiper {
@@ -46,7 +47,7 @@ $radiusSmall: 5px;
       height: 100%;
       border-radius: $radiusDefault;
     }
-    
+
     .storeTenContent {
       display: flex;
       flex-direction: column;
@@ -86,14 +87,18 @@ $radiusSmall: 5px;
 
 //*******************store(list)**********
 .storeTop {
-  margin-top: 65px;
-  margin-bottom: 78px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .cntWarpPadding {
   display: flex;
   padding-left: 23px;
   margin-bottom: 23px;
+  // background-color: #fff;
 }
 
 .storeList {
@@ -123,12 +128,14 @@ $radiusSmall: 5px;
   }
 }
 
-.priceWrap {
+.storePriceWrap {
   display: flex;
   margin-bottom: 11px;
+  font-weight: bold;
+  gap: 5px;
 
   .sale {
-    font-size: $textSecondary;
+    font-size: $secondText;
     color: #f24e1e;
   }
 
@@ -137,12 +144,12 @@ $radiusSmall: 5px;
   }
 }
 
-.nameWrap {
+.storeNameWrap {
   // gap: 5px;
   margin-bottom: 11px;
 
   .Bname {
-    font-size: $secondText;
+    font-size: $therdText;
     margin-bottom: 5px;
   }
 
@@ -152,10 +159,76 @@ $radiusSmall: 5px;
 }
 
 //*******************store(view)**********
-.viewWrap {
+.storeViewWrap {
+  // border: 1px solid #000;
   background-color: $backColor;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalOverlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: rgba(0, 0, 0, 0.5); /* 배경 투명도 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* 하단에 정렬 */
+  }
+}
+.modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px 20px 0 0; /* 모서리 둥글게 */
+  width: 100%;
+  max-width: 530px; /* 최대 너비 설정 */
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+  .modalClose {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .modalNumWrap {
+    display: flex;
+    align-items: center;
+  }
+  .modalNumSelector {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    // background: #007bff;
+  }
 }
 
+.priceInfo,
+.deliveryInfo {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cartBtn {
+  background-color: #fff;
+}
+.purchaseBtn {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border: none;
+  background: #92b1ed;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
 .productImageWrap {
   background-color: #ffffff;
   height: 489px;
@@ -171,7 +244,6 @@ $radiusSmall: 5px;
 .productNameWrap {
   margin: 10px 32px 10px 32px;
   padding-top: 5px;
-
   //   padding-bottom: 5px;
   .nameWrap {
     // margin-top: 10px;
@@ -180,7 +252,7 @@ $radiusSmall: 5px;
       font-size: $therdText;
       margin-bottom: 5px;
     }
-    
+
     .productName {
       font-size: $titleText;
     }
@@ -189,11 +261,13 @@ $radiusSmall: 5px;
 
 .brandWrap {
   display: flex;
+  align-items: center;
   gap: 10px;
   margin-top: 10px;
 
   .brand {
     font-size: $secondText;
+    font-weight: bold;
   }
 
   .brandName {
@@ -207,6 +281,7 @@ $radiusSmall: 5px;
   height: 107px;
   padding-top: 20px;
   margin-bottom: 10px;
+  font-weight: bold;
 
   .priceWrap {
     margin-left: 32px;
@@ -249,6 +324,7 @@ $radiusSmall: 5px;
 
     .point {
       font-size: $secondText;
+      font-weight: bold;
     }
 
     .pointDetails {
@@ -258,18 +334,23 @@ $radiusSmall: 5px;
 
   .deliveryWrap {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     margin-left: 32px;
     margin-right: 32px;
 
     .delivery {
       font-size: $secondText;
+      font-weight: bold;
     }
 
     .deliveryDetails {
       font-size: $therdText;
     }
   }
+}
+.iconDeliverySet {
+  display: flex;
+  gap: 10px;
 }
 
 .buyWrap {
@@ -313,24 +394,29 @@ $radiusSmall: 5px;
   padding: 0;
   margin: 0;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 5px;
 }
 
 .tabList li {
-  // margin-right: 10px;
   font-size: $secondText;
-}
-
-.tabList li a {
-  display: inline-block;
-  // padding: 10px 20px;
-  text-decoration: none;
-  color: #333;
   cursor: pointer;
+  position: relative; /* 추가 */
+  padding: 10px 100px;
+  // border: 1px solid #000;
+}
+.tabList li.on {
+  font-weight: bold;
 }
 
-.tabList li a.on {
-  font-weight: bold;
-  border-bottom: 2px solid #007bff;
+.tabList li.on::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #007bff; /* 밑줄 색상 */
+  // border-bottom: #007bff;
 }
 
 .tabContent {
@@ -378,12 +464,11 @@ $radiusSmall: 5px;
 
 .reviewContent {
   .reviewItem {
-    // border: 1px solid #000;
     display: flex;
     align-items: center;
     gap: 18px;
     padding: 20px 32px 20px 32px;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
     background-color: #fff;
 
     .reviewuserImg {
@@ -394,7 +479,6 @@ $radiusSmall: 5px;
 
     .reviewWrap {
       display: flex;
-      // gap: 160px;
       justify-content: space-between;
       // width: 368px;
       width: 100%;
@@ -424,6 +508,7 @@ $radiusSmall: 5px;
 //*******************store(toggle)**********
 .storeToggle {
   background-color: #fff;
+  margin-top: 10px;
 }
 
 .toggleMenu {
@@ -444,20 +529,21 @@ $radiusSmall: 5px;
   font-size: $titleText;
   padding-left: 32px;
   padding-right: 32px;
-  border-top: 1px solid #989898;
-  border-bottom: 1px solid #989898;
 }
 
 .toggle {
   width: 100%;
-  margin-top: 10px;
+  // margin-top: 10px;
   // margin-bottom: 10px;
 }
 
 .toggleWrap {
   align-items: center;
 }
-
+.toggleHeader {
+  font-size: $titleText;
+  font-weight: bold;
+}
 .togglecontentWrap {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -470,64 +556,6 @@ $radiusSmall: 5px;
       font-style: $secondText;
     }
   }
-}
-
-//*******************store(modal)**********
-.modalOverlay {
-  // position: absolute;
-  position: fixed !important;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  // bottom: 0;
-  left: 0;
-  // right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: flex-end; //모달내용하단에위치
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.3s ease;
-  // z-index: 5;
-}
-
-.modalOverlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modalContent {
-  background-color: white;
-  position: absolute;
-  // position: fixed;
-  // justify-content: center;
-  bottom: 0;
-  width: 530px;
-  height: 208px;
-  // margin-left: 48%;
-  padding: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  transform: translateY(100%); //처음엔 화면밖에 위치해있음.
-  transition: transform 0.5s ease-out;
-}
-
-.modalClose {
-  display: flex;
-  justify-content: space-between;
-}
-
-.modalOverlay.open .modalContent {
-  transform: translateY(0); //모달이 위로 슬라이스
-}
-
-.numSelector {
-  display: flex;
-  // justify-content: space-around;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0;
 }
 
 .priceInfo {
@@ -557,11 +585,13 @@ $radiusSmall: 5px;
 .cartBtn {
   background-color: #fff;
   border: 1px solid $textSecondary;
+  font-weight: bold;
 }
 
 .purchaseBtn {
   background-color: #007bff;
   color: white;
+  font-weight: bold;
 }
 
 //store pay
@@ -756,6 +786,23 @@ $radiusSmall: 5px;
 .deleteCartBtn {
   // border: 1px solid #000;
 }
+.storeCartBtnWrap {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+  margin-bottom: 20px;
+  .storeCartBtn {
+    // border: 1px solid #000;
+    background-color: $PrimaryColor;
+    color: #ffffff;
+    width: 466px;
+    height: 50px;
+    border-radius: 10px;
+  }
+}
 
 //*******************store(cartlist)**********
 .storeCart {
@@ -775,9 +822,15 @@ $radiusSmall: 5px;
   // border: 1px solid #000;
   margin-top: 10px;
 }
+
+//*******************store(modal)**********
+
 //store pay
-@media screen and (max-width: 1024px) {}
+@media screen and (max-width: 1024px) {
+}
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+}
 
-@media screen and (max-width: 360px) {}
+@media screen and (max-width: 360px) {
+}
