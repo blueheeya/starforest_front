@@ -217,6 +217,10 @@ $radiusSmall: 5px;
     height: 100%;
     padding: 20px 32px;
     background: #ffffff;
+    .userProfile {
+        display: flex;
+        flex-direction: column;
+    }
 }
 .userInfoWrap {
     display: flex;
