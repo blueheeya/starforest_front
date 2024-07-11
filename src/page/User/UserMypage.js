@@ -15,7 +15,10 @@ function UserMypage() {
     };
     return (
         <>
-            <UserCard className="cntMarginTop cntMarginBottom" />
+            <UserCard
+                className="cntMarginTop cntMarginBottom"
+                userMyCard={false}
+            />
             <div className="myTabWrap">
                 <div
                     onClick={() => handleTabChange("tab1")}

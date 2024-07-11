@@ -84,7 +84,7 @@ const headerConfig = {
     },
     "/user/mypage/management": {
         title: "내 정보 관리",
-        component: HeaderType1,
+        component: HeaderType2,
         titleStore: false,
     },
     "/user/camp/reservation/list": {

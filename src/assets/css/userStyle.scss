@@ -40,7 +40,7 @@ $radiusSmall: 5px;
         img {
             width: 100%;
             height: 100%;
-            object-fit: fill;
+            object-fit: cover;
         }
     }
 
@@ -77,7 +77,7 @@ $radiusSmall: 5px;
         img {
             width: 100%;
             height: 100%;
-            object-fit: fill;
+            object-fit: cover;
         }
     }
 
@@ -211,6 +211,29 @@ $radiusSmall: 5px;
         }
     }
 }
+/*userMypageMent*/
+.userMypageMent {
+    width: 100%;
+    height: 100%;
+    padding: 20px 32px;
+    background: #ffffff;
+}
+.userInfoWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 0;
+    .userInfoBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        span {
+            width: 130px;
+            font-size: $secondText;
+        }
+    }
+}
 /*customer*/
 .customerWrap {
     display: flex;
@@ -228,16 +251,34 @@ $radiusSmall: 5px;
 }
 /*customer*/
 .customerToggle {
-    margin: 10px 0;
+    padding-top: 10px;
     .toggleTitle {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 15px 32px;
         border-top: solid 1px $inputColor;
         border-bottom: solid 1px $inputColor;
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            li:nth-child(1) {
+                color: $textTitle;
+                font-size: $secondText;
+                font-weight: bold;
+            }
+            li:nth-child(2) {
+                color: $textSecondary;
+                font-size: $therdText;
+            }
+        }
     }
     .toggleContent {
         padding: 20px 32px;
+        font-size: $secondText;
+        line-height: 1.825em;
+        border-bottom: solid 1px $inputColor;
     }
 }
 @media screen and (max-width: 1024px) {

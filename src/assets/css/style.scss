@@ -108,7 +108,7 @@ section.backWrap {
 .contentWrap {
     position: relative;
     width: 100%;
-    min-height: 70vh;
+    min-height: 100%;
 }
 
 .cntView {
@@ -138,6 +138,7 @@ section.backWrap {
     background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    border-bottom: solid 1px $inputColor;
 }
 
 .headerType1 {
@@ -162,6 +163,7 @@ section.backWrap {
     height: 64px;
     padding: 0 10px;
     z-index: 9;
+    border-bottom: solid 1px $inputColor;
     background: #ffffff;
 
     h2 {
@@ -202,14 +204,12 @@ section.backWrap {
     .serchWrap {
         width: 100%;
         display: flex;
-
         .serchBox {
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 10px;
             width: 100%;
-
             .searchInput {
                 width: 100%;
             }
@@ -246,12 +246,6 @@ section.backWrap {
             flex: 1;
         }
 
-        //     flex: none;
-        //     width: 36px;
-        //     height: 36px;
-        //     cursor: pointer;
-        //     z-index: 2;
-
         select {
             flex: 1;
             width: 120px;
@@ -272,6 +266,7 @@ section.backWrap {
     height: 64px;
     top: 0;
     padding: 0 10px;
+    border-bottom: solid 1px $inputColor;
     z-index: 9;
     h2 {
         flex: auto;
@@ -578,6 +573,7 @@ section.backWrap {
     padding: 10px 15px;
     border: solid 1px $inputColor;
     border-radius: $radiusDefault;
+    background: #ffffff;
 
     input {
         width: 100%;

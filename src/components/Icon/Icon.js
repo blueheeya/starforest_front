@@ -53,6 +53,7 @@ import level4 from "../../assets/images/level4.png";
 import toggleClose from "../../assets/images/toggleClose.png";
 import toggleOpen from "../../assets/images/toggleOpen.png";
 import toggleTo from "../../assets/images/toggleTo.png";
+import btnClose from "../../assets/images/btnClose.png";
 
 const icons = {
     iconShowers,
@@ -109,6 +110,7 @@ const icons = {
     btnUserModify,
     toggleOpen,
     toggleClose,
+    btnClose,
 };
 function Icon({ iconName, className, ...props }) {
     const iconSrc = icons[iconName];
