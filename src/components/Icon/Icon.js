@@ -7,9 +7,11 @@ import iconBaths from "../../assets/images/iconBaths.svg";
 import iconBrazier from "../../assets/images/iconBrazier.svg";
 import iconBrend from "../../assets/images/iconBrend.svg";
 import iconCampCategory from "../../assets/images/iconCampCategory.svg";
+import iconCart from "../../assets/images/iconCart.png";
 import iconCleans from "../../assets/images/iconCleans.svg";
 import iconCustomerCall from "../../assets/images/iconCustomerCall.svg";
 import iconDate from "../../assets/images/iconDate.svg";
+import iconDelivery from "../../assets/images/iconDelivery.png";
 import iconDown from "../../assets/images/iconDown.svg";
 import iconEdit from "../../assets/images/iconEdit.svg";
 import iconElec from "../../assets/images/iconElec.svg";
@@ -19,12 +21,15 @@ import iconGo from "../../assets/images/iconGo.svg";
 import iconHeating from "../../assets/images/iconHeating.svg";
 import iconHompage from "../../assets/images/iconHompage.svg";
 import iconLog from "../../assets/images/iconLog.svg";
+import iconMyLike from "../../assets/images/iconMyLike.png";
+import iconMyLog from "../../assets/images/iconMyLog.png";
+import iconMyReview from "../../assets/images/iconMyReview.png";
 import iconPhone from "../../assets/images/iconPhone.svg";
 import iconPlays from "../../assets/images/iconPlays.svg";
 import iconReel from "../../assets/images/iconReel.svg";
 import iconRegion from "../../assets/images/iconRegion.svg";
 import iconRegist from "../../assets/images/iconRegist.svg";
-import iconReservation from "../../assets/images/iconReservation.svg";
+import iconReservation from "../../assets/images/iconReservation.png";
 import iconSerch from "../../assets/images/iconSerch.svg";
 import iconShower from "../../assets/images/iconShower.svg";
 import iconShowers from "../../assets/images/iconShowers.svg";
@@ -88,6 +93,15 @@ const icons = {
   iconUp,
   iconWifi,
   iconBaths,
+   level1,
+    level2,
+    level3,
+    level4,
+    iconCart,
+    iconDelivery,
+    iconMyLike,
+    iconMyLog,
+    iconMyReview,
   iconCheckActive,
   iconCheckDefault,
   iconMinus,
@@ -95,21 +109,21 @@ const icons = {
   iconClose,
 };
 function Icon({ iconName, className, ...props }) {
-  const iconSrc = icons[iconName];
-  if (!iconSrc) {
-    console.error(`Icon '${iconName}' not found.`);
-    return null;
-  }
-  return (
-    <>
-      <img
-        src={iconSrc}
-        alt={iconName}
-        {...props}
-        className={`imgIcons ${className}`}
-      />
-    </>
-  );
+    const iconSrc = icons[iconName];
+    if (!iconSrc) {
+        console.error(`Icon '${iconName}' not found.`);
+        return null;
+    }
+    return (
+        <>
+            <img
+                src={iconSrc}
+                alt={iconName}
+                {...props}
+                className={`imgIcons ${className}`}
+            />
+        </>
+    );
 }
 
 export default Icon;
