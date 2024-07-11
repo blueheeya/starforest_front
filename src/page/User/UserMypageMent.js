@@ -4,8 +4,8 @@ import Input from "../../components/Form/Input";
 function UserMypageMent() {
     return (
         <div className="userMypageMent">
-            <div>
-                <div>유저이미지</div>
+            <div className="userProfile">
+                <div className="imgWrap">유저이미지</div>
                 <div>버튼</div>
             </div>
             <div>

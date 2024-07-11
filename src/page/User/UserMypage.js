@@ -17,7 +17,7 @@ function UserMypage() {
         <>
             <UserCard
                 className="cntMarginTop cntMarginBottom"
-                userMyCard={false}
+                userMyCard={true}
             />
             <div className="myTabWrap">
                 <div
