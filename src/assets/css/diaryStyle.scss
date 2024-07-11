@@ -22,6 +22,195 @@ $radiusSmall: 5px;
 
 /****** diary ******/
 
+.diary-mb {
+  margin-bottom: 10px;
+}
+
+.diary-bg {
+  background-color: $backColor;
+  margin: 0 auto;
+  height: auto;
+  padding: 32px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
+}
+.diary-Wrap {
+  gap: 10px;
+}
+.diary-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+.img-wrap img {
+  width: 100%;
+  max-width: 466px;
+  height: auto;
+  border-radius: $radiusDefault;
+}
+.editBtnWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 466px;
+  // height: 50px;
+  margin: 0 auto;
+  margin-bottom: 21px;
+  cursor: pointer;
+  // padding: 32px;
+  // transition: 0.3s;
+}
+.editDiary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  color: white;
+  background-color: $PrimaryOff;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.editDiary:hover {
+  background-color: $PrimaryColor;
+}
+.diaryAll-List {
+  // background-color: orange;
+  // height: 400px;
+  margin: 0 auto;
+  // padding: 32px;
+  .diaryCard {
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border: 1px solid $inputColor;
+    border-radius: $radiusDefault;
+    padding: 5px 10px;
+  }
+}
+
+// .diaryCard-userCard {
+//   margin-bottom: 10px;
+// }
+
+// 별숲기록 Write
+
+.diaryWriteWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.diaryWrite-input {
+  width: 100%;
+  height: 354px;
+  padding: 10px;
+  text-align: left;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  resize: none;
+}
+.diaryWrite-input::placeholder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.diaryWrite-imageCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  width: 466px;
+  height: 354px;
+  margin-bottom: 10px;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.uploaded-images {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 5px;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid $inputColor;
+  border-radius: $radiusDefault;
+  background-color: #ffffff;
+}
+.image-item {
+  position: relative;
+  aspect-ratio: 1 /1;
+  //   top: 2px;
+  border-radius: $radiusDefault;
+}
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image-item:nth-child(n + 4) {
+  grid-column: auto / span 1;
+  justify-content: center;
+  align-items: center;
+}
+.uploaded-images:has(image-item:nth-child(-n + 3):last-child) {
+  justify-content: center;
+  align-items: center;
+}
+.image-item button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.diaryWrite-noticeWrap {
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+  border: solid 1px $inputColor;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  .header {
+    font-size: $secondText;
+  }
+  .notice {
+    font-size: $therdText;
+  }
+}
+.userTag {
+  gap: 5px;
+}
+.userTag.selected {
+  background-color: $PrimaryOff;
+  color: white;
+  cursor: pointer;
+}
+/****** 스크린별 구조 ******/
 @media screen and (max-width: 1024px) {
 }
 
