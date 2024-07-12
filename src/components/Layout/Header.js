@@ -66,17 +66,26 @@ function HeaderType3({ className }) {
                         <img src={btnBack} />
                     </button>
                     <div className="serchBox">
-                        <Input iconName="iconSerch" className="searchInput" />
+                        <Input
+                            iconName="iconSerch"
+                            className="searchInput"
+                            placeholder="검색어를 입력하세요."
+                        />
                         <button className="btnWrap" onClick={onBackClick}>
                             맵
                         </button>
                     </div>
                 </div>
                 <div className="serchTypeWrap">
-                    <Input iconName="iconDate" className="searchInput" />
+                    <Input
+                        iconName="iconDate"
+                        className="searchInput"
+                        placeholder=""
+                    />
                     <Input
                         iconName="iconRegion"
                         className="searchInput"
+                        placeholder=""
                     ></Input>
                     <select>
                         <option value="">전체</option>

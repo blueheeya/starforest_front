@@ -1,9 +1,8 @@
-import Input from "../../components/Form/Input";
+import React from "react";
 import Button from "../../components/Form/Button";
 import Icon from "../../components/Icon/Icon";
-import Email from "../../components/Member/Email";
 
-function PwFind() {
+function PwChangeComplete() {
     return (
         <div className="memberContainer cntMarginTop cntMarginBottom">
             <div
@@ -17,21 +16,19 @@ function PwFind() {
                 <Icon iconName="logoDefault" />
             </div>
             <div className="memberInfoText cntMarginBottom">
-                본인 확인을 위해 <br />
-                이메일 인증을 해주세요!
-            </div>
-            <div className="memberInputWrap cntMarginBottom">
-                <Email placeholder="가입하신 이메일을 입력하세요." />
+                비밀번호 변경이 완료 되었습니다.
+                <br />
+                로그인하여 이용해 주세요.
             </div>
             <Button
                 defaultBtn={true}
                 className="wrapMarginBottom"
-                to={"/member/pwfind/auth"}
+                to={"/member/login"}
             >
-                이메일 인증하기
+                로그인하기
             </Button>
         </div>
     );
 }
 
-export default PwFind;
+export default PwChangeComplete;

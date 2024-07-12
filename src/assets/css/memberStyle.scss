@@ -6,6 +6,8 @@ $textTitle: #2a2a2a;
 $textDefault: #535353;
 $textSecondary: #989898;
 $backColor: #f5f5f5;
+$errerColor: #c50000;
+$completeColor: #00ac1a;
 /* input */
 $inputColor: #dcdcdc;
 /* text size */
@@ -21,7 +23,80 @@ $radiusDefault: 10px;
 $radiusSmall: 5px;
 
 /****** member ******/
-
+.memberContainer {
+    padding: 20px 32px;
+    .logoWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $PrimaryColor;
+        text-align: center;
+    }
+    .memberInfoText {
+        font-size: $titleText;
+        text-align: center;
+    }
+    .memberLink {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        width: 80%;
+        margin: 40px auto 0 auto;
+        p {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            color: $textDefault;
+            font-size: $secondText;
+            font-weight: bold;
+            a {
+                color: $PrimaryColor;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+.memberInputWrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.timeWrap {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    top: 40%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: $therdText;
+}
+.errerMessge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    color: $errerColor;
+    font-size: $therdText;
+    text-align: center;
+}
+.completeMessge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    color: $completeColor;
+    font-size: $therdText;
+    text-align: center;
+}
+/* trim */
+.trimWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 @media screen and (max-width: 1024px) {
 }
 
