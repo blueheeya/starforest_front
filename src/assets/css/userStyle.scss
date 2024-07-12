@@ -40,7 +40,7 @@ $radiusSmall: 5px;
         img {
             width: 100%;
             height: 100%;
-            object-fit: fill;
+            object-fit: cover;
         }
     }
 
@@ -77,7 +77,7 @@ $radiusSmall: 5px;
         img {
             width: 100%;
             height: 100%;
-            object-fit: fill;
+            object-fit: cover;
         }
     }
 
@@ -97,6 +97,192 @@ $radiusSmall: 5px;
             font-size: $therdText;
             color: $textSecondary;
         }
+    }
+}
+/*mypage Tab*/
+.myTabWrap {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 0 32px;
+    div {
+        width: 100%;
+        color: $textSecondary;
+        text-align: center;
+        border-bottom: solid 3px $inputColor;
+    }
+    div.active {
+        color: $textDefault;
+        border-bottom: solid 3px $PrimaryColor;
+    }
+}
+.myPageDate {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 0 32px;
+    a {
+        width: 100%;
+        height: auto;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 10px;
+        border: solid 1px $inputColor;
+        border-radius: 10px;
+        background: $backColor;
+        li {
+            gap: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: $defaultText;
+            color: $textSecondary;
+        }
+    }
+}
+/*membership*/
+.membershipWrap {
+    padding: 20px 32px;
+    h4 {
+        margin-bottom: 20px;
+        font-size: $titleText;
+    }
+    .memberWrap {
+        padding: 50px 45px;
+        color: #ffffff;
+        background: #0c2c5c;
+        border-radius: $radiusDefault;
+        .memberTab {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            height: 190px;
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                padding: 10px 0;
+                border: solid 1px #144287;
+                border-radius: $radiusDefault;
+                background: #144287;
+            }
+            div:nth-child(1) {
+                height: 100px;
+            }
+            div:nth-child(2) {
+                height: 130px;
+            }
+            div:nth-child(3) {
+                height: 160px;
+            }
+            div:nth-child(4) {
+                height: 190px;
+            }
+            div.active {
+                color: #fcc21b;
+                border: solid 1px #fcc21b;
+            }
+        }
+        .memberInfo {
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 30px;
+            }
+            h4 {
+                font-size: $titleText;
+                font-weight: normal;
+            }
+            p {
+                display: flex;
+                gap: 10px;
+                font-size: $therdText;
+            }
+        }
+    }
+}
+/*userMypageMent*/
+.userMypageMent {
+    width: 100%;
+    height: 100%;
+    padding: 20px 32px;
+    background: #ffffff;
+    .userProfile {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.userInfoWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 0;
+    .userInfoBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        span {
+            width: 130px;
+            font-size: $secondText;
+        }
+    }
+}
+/*customer*/
+.customerWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 32px;
+    h4 {
+        margin-bottom: 20px;
+        font-size: $titleText;
+    }
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+/*customer*/
+.customerToggle {
+    padding-top: 10px;
+    .toggleTitle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 32px;
+        border-top: solid 1px $inputColor;
+        border-bottom: solid 1px $inputColor;
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            li:nth-child(1) {
+                color: $textTitle;
+                font-size: $secondText;
+                font-weight: bold;
+            }
+            li:nth-child(2) {
+                color: $textSecondary;
+                font-size: $therdText;
+            }
+        }
+    }
+    .toggleContent {
+        padding: 20px 32px;
+        font-size: $secondText;
+        line-height: 1.825em;
+        border-bottom: solid 1px $inputColor;
     }
 }
 @media screen and (max-width: 1024px) {
