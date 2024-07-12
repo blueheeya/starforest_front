@@ -55,6 +55,8 @@ import CampPayCancel from "./page/Camp/CampPayCancel";
 import PwFindAuth from "./page/Member/PwFindAuth";
 import PwFindChange from "./page/Member/PwFindChange";
 import PwChangeComplete from "./page/Member/PwChangeComplete";
+import Modal from "./components/Modal/Modal";
+import { useEffect, useState } from "react";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -95,23 +97,49 @@ function LayoutType() {
         titleStore = false,
     } = getHeaderConfig(location.pathname) ?? {};
 
-    // const {
-    //     title,
-    //     component: HeaderComponent,
-    //     titleStore,
-    // } = headerConfig[location.pathname] || {
-    //     title: "캠핑장",
-    //     component: HeaderType2,
-    //     titleStore: false,
-    // };
+    // 메뉴
     const showMenu = showMenuPath.includes(location.pathname);
     const showFooter = showFooterPath.includes(location.pathname);
     const isHeaderType2 = HeaderComponent === HeaderType2;
     const isHeaderType3 = HeaderComponent === HeaderType3;
     const isHeaderType4 = HeaderComponent === HeaderType4;
+
+    //모달
+    const [modalNum, setModalNum] = useState(0);
+    const [modalView, setModalView] = useState(true);
+    const modalData = [<Modal modalOpen={modalOpen} />];
+    function modalOpen(idx) {
+        setModalView(true);
+        setModalNum(idx);
+    }
+
+    function modalClose() {
+        setModalView(false);
+    }
+    useEffect(() => {
+        var containerWrapElement = document.querySelector(".containerWrap");
+
+        if (modalView) {
+            containerWrapElement.style.overflow = "hidden";
+        } else {
+            containerWrapElement.style.overflow = "auto";
+        }
+
+        // 컴포넌트가 언마운트될 때 클래스를 제거합니다.
+        return () => {
+            containerWrapElement.style.overflow = "auto";
+        };
+    }, [modalView]);
     return (
         <BackWrap>
             <Container>
+                {modalView && (
+                    <Modal
+                        onClick={modalClose}
+                        viewlistData={modalData}
+                        modalNum={modalNum}
+                    />
+                )}
                 <HeaderComponent titleStore={titleStore}>
                     {title}
                 </HeaderComponent>

@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* colors */
+$PrimaryColor: #3f71d1;
+$PrimaryOff: #92b1ed;
+$textTitle: #2a2a2a;
+$textDefault: #535353;
+$textSecondary: #989898;
+$backColor: #f5f5f5;
+$pointColor: #f24e1e;
+/* input */
+$inputColor: #dcdcdc;
+/* text size */
+$headerTitle: 1.88em; //30px
+$titleText: 1.25em; //20px
+$defaultText: 0.94em; //15px
+$defaultTitle: 1.5em; //24px
+$secondText: 0.88em; //14px
+$therdText: 0.81em; //13px
+$btnText: 16px;
+/* radius */
+$radiusDefault: 10px;
+$radiusSmall: 5px;
+.modalWrap {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: rgba($color: #000000, $alpha: 0.5);
+    z-index: 99;
+}
+.modal {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    padding: 20px 32px;
+    bottom: 0;
+    left: 0;
+    border-radius: 10px 10px 0 0;
+    background: #ffffff;
+    box-shadow: 0 -4px 4px 0 rgba($color: #000000, $alpha: 0.15);
+    z-index: 100;
+}
+.modal_Content {
+}
+.btnCloseType1 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: $PrimaryColor;
+    box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
+    z-index: 100;
+}

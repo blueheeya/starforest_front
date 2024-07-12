@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "../Icon/Icon";
+import { Link } from "react-router-dom";
 
 function Input({
     children,
@@ -9,10 +10,15 @@ function Input({
     onChange,
     placeholder,
     type,
+    linkTo,
 }) {
     return (
         <div className={`${className}`}>
-            {iconName && <Icon iconName={iconName} />}
+            {iconName && (
+                <Link to={linkTo}>
+                    <Icon iconName={iconName} />
+                </Link>
+            )}
             <input
                 type={type}
                 className={`serchInput`}
