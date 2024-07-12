@@ -84,7 +84,6 @@ img {
 
 //커스텀 오버레이
 .customOverlay {
-    opacity: 0;
     display: flex;
     align-items: center;
     position: absolute;
@@ -145,8 +144,9 @@ img {
 //
 //
 //
-.wrap {
+.wrapBox {
     position: absolute;
+    z-index: 99999;
     left: 0;
     bottom: 40px;
     width: 288px;
@@ -159,12 +159,12 @@ img {
     line-height: 1.5;
 }
 
-.wrap * {
+.wrapBox * {
     padding: 0;
     margin: 0;
 }
 
-.wrap .info {
+.wrapBox .info {
     width: 286px;
     height: 120px;
     border-radius: 5px;
@@ -174,12 +174,12 @@ img {
     background: #fff;
 }
 
-.wrap .info:nth-child(1) {
+.wrapBox .info:nth-child(1) {
     border: 0;
     box-shadow: 0px 1px 2px #888;
 }
 
-.info .title {
+.wrapBox .title {
     padding: 5px 0 0 10px;
     height: 30px;
     background: #eee;
