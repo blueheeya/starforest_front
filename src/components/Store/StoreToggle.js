@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import StoreTopTen from "./StoreTopTen";
+import Icon from "../Icon/Icon";
 
 const StoreToggle = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +40,9 @@ const StoreToggle = ({ title, children }) => {
       <div className="toggleMenu">
         <div className="toggleHeader" onClick={toggleOpen}>
           <span>{title}</span>
-          <span className="toggleArrow">{isOpen ? "▲" : "▼"}</span>
+          <span className="toggleArrow">
+            {isOpen ? <Icon iconName="iconUp" /> : <Icon iconName="iconDown" />}
+          </span>
         </div>
         <div
           className="toggleContent"

@@ -1,10 +1,20 @@
-import { Outlet, Route, Routes, useLocation } from "react-router-dom";
+import {
+    matchPath,
+    Outlet,
+    Route,
+    Routes,
+    useLocation,
+} from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
 import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
-import { HeaderType2, HeaderType3 } from "./components/Layout/Header";
+import {
+    HeaderType2,
+    HeaderType3,
+    HeaderType4,
+} from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
 import CampList from "./page/Camp/CampList";
@@ -40,26 +50,65 @@ import StoreReviewList from "./page/User/StoreReviewList";
 import UserMypage from "./page/User/UserMypage";
 import UserMypageMent from "./page/User/UserMypageMent";
 import Style from "./Style";
+import CampPayFail from "./page/Camp/CampPayFail";
+import CampPayCancel from "./page/Camp/CampPayCancel";
+import PwFindAuth from "./page/Member/PwFindAuth";
+import PwFindChange from "./page/Member/PwFindChange";
+import PwChangeComplete from "./page/Member/PwChangeComplete";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
-const showFooterPath = ["/", "/store/view", "/user/mypage", "/camp/list", "/camp/reservation", "/camp/pay", "/store/pay"];
+const showFooterPath = [
+    "/",
+    "/store/view",
+    "/user/mypage",
+    "/camp/list",
+    "/user/notice",
+    "/user/qna",
+    "/user/mypage/management",
+    "/camp/reservation",
+    "/camp/pay",
+    "/store/pay",
+    "/diary/list",
+    "/diary/write",
+    "/diary/view",
+];
 function LayoutType() {
-
+    function getHeaderConfig(pathname) {
+        for (const [path, config] of Object.entries(headerConfig)) {
+            if (matchPath(path, pathname)) {
+                return config;
+            }
+        }
+        return (
+            headerConfig["/"] || {
+                title: "홈",
+                component: HeaderType2,
+                titleStore: false,
+            }
+        ); // 기본 설정
+    }
     const location = useLocation();
     const {
-        title,
-        component: HeaderComponent,
-        titleStore,
-    } = headerConfig[location.pathname] || {
-        title: "캠핑장",
-        component: HeaderType2,
-        titleStore: false,
-    };
+        title = "홈",
+        component: HeaderComponent = HeaderType2,
+        titleStore = false,
+    } = getHeaderConfig(location.pathname) ?? {};
+
+    // const {
+    //     title,
+    //     component: HeaderComponent,
+    //     titleStore,
+    // } = headerConfig[location.pathname] || {
+    //     title: "캠핑장",
+    //     component: HeaderType2,
+    //     titleStore: false,
+    // };
     const showMenu = showMenuPath.includes(location.pathname);
     const showFooter = showFooterPath.includes(location.pathname);
     const isHeaderType2 = HeaderComponent === HeaderType2;
     const isHeaderType3 = HeaderComponent === HeaderType3;
+    const isHeaderType4 = HeaderComponent === HeaderType4;
     return (
         <BackWrap>
             <Container>
@@ -67,12 +116,11 @@ function LayoutType() {
                     {title}
                 </HeaderComponent>
                 <ContentWrap
-                    className={`${isHeaderType2 ? "cntView" : ""} ${isHeaderType3 ? "cntSearchView" : ""
-                        }`}
+                    className={` ${
+                        isHeaderType3 || isHeaderType4 ? "cntSearchView" : ""
+                    } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
                 >
-                    <main>
-                        <Outlet />
-                    </main>
+                    <Outlet />
                 </ContentWrap>
                 {showFooter && (
                     <Footer className={`${showMenu ? "footerBottom" : ""}`} />
@@ -219,6 +267,21 @@ function App() {
                         path="/member/pwfind"
                         index
                         element={<PwFind />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/auth"
+                        index
+                        element={<PwFindAuth />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/change"
+                        index
+                        element={<PwFindChange />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/complete"
+                        index
+                        element={<PwChangeComplete />}
                     ></Route>
                     <Route
                         path="/member/terms"

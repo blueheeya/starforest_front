@@ -1,8 +1,11 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import btnBack from "../../assets/images/btnBack.png";
+import btnBackWhite from "../../assets/images/btnBackWhite.png";
 import logo from "../../assets/images/logoDefault.png";
+import logoWhite from "../../assets/images/logoWhite.png";
 import storeHome from "../../assets/images/menuHome.png";
+import btnMap from "../../assets/images/btnMap.png";
 import Input from "../Form/Input";
 function HeaderType({ className }) {
     return (
@@ -19,6 +22,7 @@ function HeaderType1({ className, children }) {
 }
 
 function HeaderType2({ children, className, titleStore, ...props }) {
+    // const { id } = useParams();
     const navigator = useNavigate();
     const onBackClick = () => {
         navigator(-1);
@@ -62,17 +66,26 @@ function HeaderType3({ className }) {
                         <img src={btnBack} />
                     </button>
                     <div className="serchBox">
-                        <Input iconName="iconSerch" className="searchInput" />
+                        <Input
+                            iconName="iconSerch"
+                            className="searchInput"
+                            placeholder="검색어를 입력하세요."
+                        />
                         <button className="btnWrap" onClick={onBackClick}>
                             맵
                         </button>
                     </div>
                 </div>
                 <div className="serchTypeWrap">
-                    <Input iconName="iconDate" className="searchInput" />
+                    <Input
+                        iconName="iconDate"
+                        className="searchInput"
+                        placeholder=""
+                    />
                     <Input
                         iconName="iconRegion"
                         className="searchInput"
+                        placeholder=""
                     ></Input>
                     <select>
                         <option value="">전체</option>
@@ -85,5 +98,28 @@ function HeaderType3({ className }) {
         </>
     );
 }
-
-export { HeaderType, HeaderType1, HeaderType2, HeaderType3 };
+function HeaderType4({ children, className, titleStore, ...props }) {
+    // const { id } = useParams();
+    const navigator = useNavigate();
+    const onBackClick = () => {
+        navigator(-1);
+    };
+    return (
+        <>
+            <div className={`headerType4 ${className}`}>
+                <button className="btnWrap" onClick={onBackClick}>
+                    <img src={btnBackWhite} />
+                </button>
+                <Link to="/ ">
+                    <h2>
+                        <img src={logoWhite} />
+                    </h2>
+                </Link>
+                <Link to="/camp/view/map" className="btnMap">
+                    <img src={btnMap} />
+                </Link>
+            </div>
+        </>
+    );
+}
+export { HeaderType, HeaderType1, HeaderType2, HeaderType3, HeaderType4 };

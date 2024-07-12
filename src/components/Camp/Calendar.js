@@ -62,7 +62,7 @@ function Calender() {
     }
   };
 
-  //시작일, 마지막일 저장
+  //시작일, 마지막일 저장 <예약하기 버튼 클릭함수>
   const handleReservation = async () => {
     if (startDate && endDate) {
       if (isReservationOverlap(startDate, endDate)) {
@@ -80,21 +80,25 @@ function Calender() {
       console.log("시작일 = " + adjustedStartDate);
       console.log("마지막일 = " + adjustedEndDate);
 
-      const response = await axios.post("http://localhost:8082/reservation", {
-        startDate: adjustedStartDate,
-        endDate: adjustedEndDate,
-      });
-      console.log(response);
-      setReservations(response.data);
-      fetchReservations();
-      alert(
-        "<캠핑 예약 선택일> \n" +
+      try {
+        const response = await axios.post("http://localhost:8082/reservation", {
+          startDate: adjustedStartDate,
+          endDate: adjustedEndDate,
+        });
+        console.log(response);
+        setReservations(response.data);
+        fetchReservations();
+        alert(
+          "<캠핑 예약 선택일> \n" +
           response.data.startDate +
           " ~ " +
           response.data.endDate +
           "\n" +
           response.data.message
-      );
+        );
+      } catch (error) {
+        alert('예약 중 오류가 발생했습니다.');
+      }
     }
   };
 
@@ -262,19 +266,6 @@ function Calender() {
 
   return (
     <div>
-      {/* <h1>예약 시스템</h1>
-            <div>날씨 정보</div>
-
-            <div>지역 : {weatherData?.name}</div>
-            <div>날씨 : {weatherData?.weather[0].description}</div>
-            <div>날씨 : {weatherData?.weather[0].main}</div>
-            <img className='weatherIcon'></img>
-            <div>온도 : {weatherData?.main.temp}도</div>
-            <div>체감온도 : {weatherData?.main.feels_like}도</div>
-            <div>최저기온 : {weatherData?.main.temp_min}도</div>
-            <div>최고기온 : {weatherData?.main.temp_max}도</div>
-            <div>풍속 : 초속 {weatherData?.wind.speed}m</div> */}
-
       <div className="reservationWeatherInfo">
         <div className="infoContent">
           <div className="infoName">가산</div>
@@ -316,35 +307,38 @@ function Calender() {
           <div className="rangEndDate">{endDate ? formattedEndDate : ""}</div>
         </div>
       </div>
-      <DatePicker
-        calendarClassName="custom-datepicker"
-        selectsRange={true}
-        dateFormat="yyyy년 MM월 dd일"
-        dateFormatCalendar="yyyy년 MM월"
-        locale="ko"
-        selected={startDate}
-        onChange={(update) => setDataRange(update)}
-        selectsStart
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate ? startDate : new Date()}
-        excludeDates={startDate ? [startDate] : []}
-        filterDate={(date) => !isDateDisabled(date)}
-        inline={true}
-        isClearable={true}
-        renderDayContents={renderDayContents}
-      />
 
-      <div className="reservationBox">
-        <button className="reservationBtn">
-          <div>
-            <img src={iconEdit} alt="" />
-          </div>
-          <div className="btnFont" onClick={handleReservation}>
-            예약하기
-          </div>
-        </button>
-      </div>
+      <form action="" onSubmit={handleReservation}>
+        <DatePicker
+          calendarClassName="custom-datepicker"
+          selectsRange={true}
+          dateFormat="yyyy년 MM월 dd일"
+          dateFormatCalendar="yyyy년 MM월"
+          locale="ko"
+          selected={startDate}
+          onChange={(update) => setDataRange(update)}
+          selectsStart
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate ? startDate : new Date()}
+          excludeDates={startDate ? [startDate] : []}
+          filterDate={(date) => !isDateDisabled(date)}
+          inline={true}
+          isClearable={true}
+          renderDayContents={renderDayContents}
+        />
+
+        <div className="reservationBox">
+          <button className="reservationBtn">
+            <div>
+              <img src={iconEdit} alt="" />
+            </div>
+            <button className="btnFont" type="submit">
+              예약하기
+            </button>
+          </button>
+        </div>
+      </form>
 
       {/* 사용자 예약 날짜 달력 */}
       {/* <h1>사용자 예약 달력s</h1>

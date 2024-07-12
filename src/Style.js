@@ -3,7 +3,7 @@ import Icon from "./components/Icon/Icon";
 
 function Style() {
     return (
-        <div className="cntWarpPadding">
+        <div className="">
             <h2 style={{ textAlign: "center", fontFamily: "EunhasuR" }}>
                 아이콘 가이드
             </h2>
@@ -106,6 +106,38 @@ function Style() {
                     <Icon iconName="iconWifi" />
                     <Icon iconName="iconBaths" />
                     <Icon iconName="iconSwimmings" />
+                </div>
+            </div>
+            <div className="cntMarginTop">
+                <h3 style={{ fontFamily: "EunhasuR", marginBottom: "10px" }}>
+                    장바구니
+                </h3>
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <Icon iconName="iconCart" />
+                    <Icon iconName="iconDelivery" />
+                    <Icon iconName="iconMyLike" />
+                    <Icon iconName="iconMyLog" />
+                    <Icon iconName="iconMyReview" />
+                    <Icon iconName="iconReservation" />
+                </div>
+            </div>
+            <div className="cntMarginTop">
+                <h3 style={{ fontFamily: "EunhasuR", marginBottom: "10px" }}>
+                    기타
+                </h3>
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <Icon iconName="toggleTo" />
+                    <Icon iconName="btnUserModify" />
+                    <Icon iconName="toggleOpen" />
+                    <Icon iconName="btnClose" />
+                </div>
+            </div>
+            <div className="cntMarginTop">
+                <h3 style={{ fontFamily: "EunhasuR", marginBottom: "10px" }}>
+                    유저 인증
+                </h3>
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <div className="iconUserAuth">인증완료</div>
                 </div>
             </div>
         </div>

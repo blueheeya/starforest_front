@@ -1,4 +1,10 @@
-import { HeaderType, HeaderType1, HeaderType2, HeaderType3 } from "./Header";
+import {
+    HeaderType,
+    HeaderType1,
+    HeaderType2,
+    HeaderType3,
+    HeaderType4,
+} from "./Header";
 const headerConfig = {
     "/": { title: "홈", component: HeaderType },
     "/camp/list": {
@@ -12,8 +18,8 @@ const headerConfig = {
         titleStore: false,
     },
     "/camp/view/:id": {
-        title: "별숲",
-        component: HeaderType2,
+        title: "캠핑장보기",
+        component: HeaderType4,
         titleStore: false,
     },
     "/camp/view/map": {
@@ -78,7 +84,7 @@ const headerConfig = {
     },
     "/user/mypage/management": {
         title: "내 정보 관리",
-        component: HeaderType1,
+        component: HeaderType2,
         titleStore: false,
     },
     "/user/camp/reservation/list": {
@@ -101,22 +107,22 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "user/store/order/list": {
+    "/user/store/order/list": {
         title: "주문/배송",
         component: HeaderType2,
         titleStore: false,
     },
-    "user/store/order/view": {
+    "/user/store/order/view": {
         title: "주문/배송",
         component: HeaderType2,
         titleStore: false,
     },
-    "user/store/cart/list": {
+    "/user/store/cart/list": {
         title: "장바구니",
         component: HeaderType2,
         titleStore: false,
     },
-    "user/store/review/list": {
+    "/user/store/review/list": {
         title: "나의 리뷰",
         component: HeaderType2,
         titleStore: false,
@@ -129,6 +135,46 @@ const headerConfig = {
     "/user/qna": {
         title: "자주하는 질문",
         component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/login": {
+        title: "로그인",
+        component: HeaderType1,
+        titleStore: false,
+    },
+    "/member/terms": {
+        title: "회원가입",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/pwfind": {
+        title: "비밀번호찾기",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/pwfind/auth": {
+        title: "비밀번호변경",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/pwfind/change": {
+        title: "비밀번호변경",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/pwfind/complete": {
+        title: "비밀번호변경",
+        component: HeaderType1,
+        titleStore: false,
+    },
+    "/member/register": {
+        title: "회원가입",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/register/complete": {
+        title: "회원가입완료",
+        component: HeaderType1,
         titleStore: false,
     },
 };

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../assets/css/storeStyle.scss";
+import Icon from "../Icon/Icon";
 
 const PurchaseModal = ({ isOpen, onClose, productName, price }) => {
   const [quantity, setQuantity] = useState(1);
@@ -27,37 +29,43 @@ const PurchaseModal = ({ isOpen, onClose, productName, price }) => {
   };
 
   return (
-    <div className={`modalOverlay ${isOpen ? "open" : ""}`}>
-      <div className="modalContent">
-        <div className="modalClose">
-          <h3>{productName}</h3>
-          <button className="closeModalBtn" onClick={closeModal}>
-            X
+    // <div className={`modalOverlay ${isOpen ? "open" : ""}`}>
+    <div className="modalContent">
+      <div className="modalClose">
+        <h3>{productName}</h3>
+        <button className="closeModalBtn" onClick={closeModal}>
+          <Icon iconName="iconClose" />
+        </button>
+      </div>
+      <div className="modalNumWrap">
+        <div className="modalNumSelector">
+          <button onClick={decreaseQuantity}>
+            <Icon iconName="iconMinus" />
           </button>
-        </div>
-        <div className="numSelector">
-          <button onClick={decreaseQuantity}>-</button>
-          <span>{quantity}</span>
-          <button onClick={increaseQuantity}>+</button>
-        </div>
-        <div className="priceInfo">
-          <span>총 상품금액</span>
-          <span>{totalPrice.toLocaleString()}원</span>
-        </div>
-        <div className="deliveryInfo">
-          <span>배송비</span>
-          <span>무료배송</span>
-        </div>
-        <div className="buttonGroup">
-          <button className="cartBtn" onClick={handleCartClick}>
-            장바구니
-          </button>
-          <button className="purchaseBtn" onClick={handlePurchaseClick}>
-            구매하기
+          <span className="quantity">{quantity}</span>
+          <button onClick={increaseQuantity}>
+            <Icon iconName="iconPlus" />
           </button>
         </div>
       </div>
+      <div className="priceInfo">
+        <span>총 상품금액</span>
+        <span>{totalPrice.toLocaleString()}원</span>
+      </div>
+      <div className="deliveryInfo">
+        <span>배송비</span>
+        <span>무료배송</span>
+      </div>
+      <div className="buttonGroup">
+        <button className="cartBtn" onClick={handleCartClick}>
+          장바구니
+        </button>
+        <button className="purchaseBtn" onClick={handlePurchaseClick}>
+          구매하기
+        </button>
+      </div>
     </div>
+    // </div>
   );
 };
 

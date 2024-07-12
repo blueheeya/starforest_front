@@ -44,7 +44,7 @@ function CampListCard({ className, campItem }) {
                             </Link>
                             <div style={{ padding: "0 16px" }}>
                                 <CampTag
-                                    tags={campItem.themaEnvrnC}
+                                    tags={campItem.themaEnvrnCl}
                                     isListPage={true}
                                 />
                             </div>

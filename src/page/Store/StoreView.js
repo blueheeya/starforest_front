@@ -7,6 +7,7 @@ import EventSwiper from "../../components/Store/EventSwiper";
 import StoreTopTen from "../../components/Store/StoreTopTen";
 import PurchaseModal from "../../components/Store/PurchaseModal";
 import Icon from "../../components/Icon/Icon";
+import "../../assets/css/storeStyle.scss";
 
 const productview = {
   id: 1,
@@ -32,7 +33,7 @@ const tabBar = [
 const detailView = {
   detailImg: "미라클스크린텐트.jpg",
 };
-const reviews = [
+const reviewsArr = [
   {
     id: 1,
     img: "imgdefault.png",
@@ -54,7 +55,7 @@ const reviews = [
 function StoreView() {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState(tabBar[0].id);
-  const [reviewList, setReviewList] = useState(reviews);
+  const [reviewList, setReviewList] = useState(reviewsArr);
   const [showFullImage, setShowFulllImage] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -75,9 +76,16 @@ function StoreView() {
     setShowFulllImage(false);
   };
 
+  const changeUnderLine = (e) => {
+    setActiveTab(e.target.value);
+  };
+
   //리뷰
-  const deleteReview = (reviewId) => {
-    setReviewList(reviewList.filter((review) => review.id !== reviewId));
+  const deleteReview = (id) => {
+    console.log("Deleting review with id:", id);
+    setReviewList((prevReviewList) =>
+      prevReviewList.filter((review) => review.id !== id)
+    );
   };
 
   //상세정보
@@ -114,7 +122,7 @@ function StoreView() {
       case "reviews":
         return (
           <div className="reviewContent">
-            {reviews.map((review) => (
+            {reviewList.map((review) => (
               <div key={review.id} className="reviewItem">
                 <img
                   className="reviewuserImg"
@@ -146,13 +154,23 @@ function StoreView() {
   };
 
   return (
-    <div className="viewWrap">
+    <div className="storeViewWrap">
+      <div className="viewWrapInner">
+        <PurchaseModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          productName={productview.productName}
+          price={productview.price}
+        />
+      </div>
+
       <div className="productImageWrap">
         <img
           className="viewImg"
           src={process.env.PUBLIC_URL + `/assets/images/${productview.image}`}
           alt={productview.productName}
         />
+
         <div className="productNameWrap">
           <div className="nameWrap">
             <p className="category">{productview.Category}</p>
@@ -180,8 +198,10 @@ function StoreView() {
           <p className="pointDetails">{productview.pointDetails}</p>
         </div>
         <div className="deliveryWrap">
-          <Icon iconName="iconBrend" />
-          <p className="delivery">{productview.delivery}</p>
+          <div className="iconDeliverySet">
+            <Icon iconName="iconBrend" />
+            <p className="delivery">{productview.delivery}</p>
+          </div>
           <p className="deliveryDetails">{productview.deliveryDetails}</p>
         </div>
       </div>
@@ -189,17 +209,22 @@ function StoreView() {
 
       <div className="buyWrap">
         <div className="btnWrap">
-          <button className="buyBtn" onClick={openModal}>
-            바로 구매하기
+          <button
+            className="buyBtn"
+            onClick={() => {
+              openModal();
+            }}
+          >
+            구매하기
           </button>
         </div>
       </div>
-      <PurchaseModal
+      {/* <PurchaseModal
         isOpen={isModalOpen}
         onClose={closeModal}
         productName={productview.productName}
         price={productview.price}
-      />
+      /> */}
 
       <div>
         <div className="tabMenuWrap">
@@ -207,7 +232,6 @@ function StoreView() {
             {tabBar.map((tab) => (
               <li
                 key={tab.id}
-                id={tab.id}
                 className={activeTab === tab.id ? "on" : ""}
                 onClick={() => changeTab(tab.id)}
               >
