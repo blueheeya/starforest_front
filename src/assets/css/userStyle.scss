@@ -37,25 +37,24 @@ $radiusSmall: 5px;
     background-size: cover;
     overflow: hidden;
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
+}
 
-  .textWrap {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 10px;
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
 
-    .nickname {
-      font-size: $defaultText;
-      font-weight: bold;
-      color: $textTitle;
-    }
+  .nickname {
+    font-size: $defaultText;
+    font-weight: bold;
+    color: $textTitle;
   }
 }
 
@@ -75,32 +74,32 @@ $radiusSmall: 5px;
     background-size: cover;
     overflow: hidden;
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-  }
-
-  .textWrap {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    gap: 10px;
-
-    .nickname {
-      font-size: $defaultText;
-      font-weight: bold;
-      color: $textTitle;
-    }
-
-    .date {
-      font-size: $therdText;
-      color: $textSecondary;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 }
+
+.textWrap {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 10px;
+
+  .nickname {
+    font-size: $defaultText;
+    font-weight: bold;
+    color: $textTitle;
+  }
+
+  .date {
+    font-size: $therdText;
+    color: $textSecondary;
+  }
+}
+
 /*mypage Tab*/
 .myTabWrap {
   display: flex;
@@ -160,11 +159,11 @@ $radiusSmall: 5px;
     margin-bottom: 20px;
     padding: 0 32px;
     div {
-        width: 100%;
-        color: $textSecondary;
-        text-align: center;
-        border-bottom: solid 3px $inputColor;
-        transition: 0.3s;
+      width: 100%;
+      color: $textSecondary;
+      text-align: center;
+      border-bottom: solid 3px $inputColor;
+      transition: 0.3s;
     }
 
     .userOrdercontentBrand {
@@ -470,7 +469,6 @@ $radiusSmall: 5px;
   align-items: center;
   gap: 10px;
   .userReviewModalProductInner {
-
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -618,106 +616,107 @@ $radiusSmall: 5px;
 }
 /*userMypageMent*/
 .userMypageMent {
-    width: 100%;
-    padding-top: 10px;
-    .userProfile {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        padding: 50px 32px 0px 32px;
-        background: #ffffff;
-        .imgWrap {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: url("../images/avatar.png") no-repeat;
-            background-size: cover;
-            overflow: hidden;
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-        .btnModify {
-            padding: 5px 10px;
-            color: $textSecondary;
-            font-size: $therdText;
-            border: solid 1px $inputColor;
-            border-radius: $radiusSmall;
-            transition: 0.3s;
-        }
-        .btnModify:hover {
-            color: $textDefault;
-            border: solid 1px $textDefault;
-        }
-    }
-    .userBtnWrap {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 20px 32px 50px 32px;
-        background: #ffffff;
-    }
-}
-.userInfoWrap {
+  width: 100%;
+  padding-top: 10px;
+  .userProfile {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
-    padding: 30px 32px;
+    padding: 50px 32px 0px 32px;
     background: #ffffff;
-    .userInfoBox {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-        span {
-            width: 130px;
-            color: $textTitle;
-            font-weight: bold;
-            font-size: $secondText;
-        }
+    .imgWrap {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: url("../images/avatar.png") no-repeat;
+      background-size: cover;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
+    .btnModify {
+      padding: 5px 10px;
+      color: $textSecondary;
+      font-size: $therdText;
+      border: solid 1px $inputColor;
+      border-radius: $radiusSmall;
+      transition: 0.3s;
+    }
+    .btnModify:hover {
+      color: $textDefault;
+      border: solid 1px $textDefault;
+    }
+  }
+  .userBtnWrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px 32px 50px 32px;
+    background: #ffffff;
+  }
+}
+.userInfoWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px 32px;
+  background: #ffffff;
+  .userInfoBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    span {
+      width: 130px;
+      color: $textTitle;
+      font-weight: bold;
+      font-size: $secondText;
+    }
+  }
 }
 /*customer*/
 .customerWrap {
-.customerToggle {
+  .customerToggle {
     padding-top: 10px;
     .toggleTitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 32px;
+      border-top: solid 1px $inputColor;
+      border-bottom: solid 1px $inputColor;
+      ul {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 32px;
-        border-top: solid 1px $inputColor;
-        border-bottom: solid 1px $inputColor;
-        ul {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            li:nth-child(1) {
-                color: $textTitle;
-                font-size: $secondText;
-                font-weight: bold;
-            }
-            li:nth-child(2) {
-                color: $textSecondary;
-                font-size: $therdText;
-            }
+        flex-direction: column;
+        gap: 10px;
+        li:nth-child(1) {
+          color: $textTitle;
+          font-size: $secondText;
+          font-weight: bold;
         }
+        li:nth-child(2) {
+          color: $textSecondary;
+          font-size: $therdText;
+        }
+      }
     }
     .toggleContent {
-        padding: 20px 32px;
-        font-size: $secondText;
-        line-height: 1.825em;
-        border-bottom: solid 1px $inputColor;
+      padding: 20px 32px;
+      font-size: $secondText;
+      line-height: 1.825em;
+      border-bottom: solid 1px $inputColor;
     }
-}
-@media screen and (max-width: 1024px) {
-}
+  }
+  @media screen and (max-width: 1024px) {
+  }
 
-@media screen and (max-width: 768px) {
-}
-@media screen and (max-width: 360px) {
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 360px) {
+  }
 }
