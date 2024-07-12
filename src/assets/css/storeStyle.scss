@@ -100,7 +100,18 @@ $radiusSmall: 5px;
   margin-bottom: 23px;
   // background-color: #fff;
 }
-
+.storeWrap {
+  gap: 10px;
+  .storeCategory {
+    .scIconWrap {
+      background-color: $backColor;
+      border-radius: 20px;
+    }
+    .scIconWrap.active {
+      background-color: $PrimaryColor;
+    }
+  }
+}
 .storeList {
   display: flex;
   //   flex-direction: column;
@@ -164,25 +175,48 @@ $radiusSmall: 5px;
   background-color: $backColor;
   position: relative;
   width: 100%;
+  // height: 100%;
+  // background: blue;
+}
+.modalContainer {
+  position: relative;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 100%; /* 부모 요소가 전체 화면을 덮도록 설정 */
   height: 100%;
-  .modalOverlay {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    background: rgba(0, 0, 0, 0.5); /* 배경 투명도 설정 */
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; /* 하단에 정렬 */
-  }
+  // background: red;
+}
+.overlay {
+  position: absolute;
+  // position: sticky;
+  // width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .modalContent {
   background: #fff;
+  position: sticky;
+  left: 0;
+  top: calc(100vh - 430px);
+
+  // top: 10000px;
   padding: 20px;
   border-radius: 20px 20px 0 0; /* 모서리 둥글게 */
   width: 100%;
-  max-width: 530px; /* 최대 너비 설정 */
+  // height: 100%;
+  // bottom: 0;
+  // top: 0;
+  z-index: 99999;
+
+  //max-width: 530px; /* 최대 너비 설정 */
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
   .modalClose {
     display: flex;
@@ -824,6 +858,8 @@ $radiusSmall: 5px;
 }
 
 //*******************store(modal)**********
+
+//*******************store(overlay)**********
 
 //store pay
 @media screen and (max-width: 1024px) {
