@@ -26,16 +26,15 @@ img {
 .mapWrap {
     position: relative;
     width: 530px;
-    height: calc(100vh - 65px);
-    background-color: rgba(0, 0, 0, 0.589);
+    height: 100vh;
+    background-color: #5085BB;
 
     .map {
-        position: absolute;
-        bottom: 0;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
+        // position: absolute;
+        // bottom: 0;
+        top: 64px;
         width: 530px;
-        height: 800px;
+        height: calc(100% - 64px);
 
         .serchLocal {
             display: none;
@@ -45,7 +44,7 @@ img {
                 gap: 10px;
                 position: absolute;
                 left: 50%;
-                top: 10px;
+                top: 20px;
                 transform: translate(-50%);
                 z-index: 999;
                 border: 1px solid $inputColor;
@@ -69,7 +68,7 @@ img {
 
     .mapClose {
         position: absolute;
-        top: 42px;
+        top: 100px;
         left: 50%;
         transform: translate(-50%);
         display: flex;

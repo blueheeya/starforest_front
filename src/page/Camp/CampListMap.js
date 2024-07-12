@@ -270,7 +270,7 @@ function CampListMap() {
 
     return (
         <div className="mapWrap">
-            <button className="mapClose" onClick={() => { pageclose() }}><img src={mapClose} alt="" /></button>
+            {/* <button className="mapClose" onClick={() => { pageclose() }}><img src={mapClose} alt="" /></button> */}
             <div id="map" className="map">
                 <button className="serchLocal" onClick={() => { findRange() }}>
                     <div className="localInner">
