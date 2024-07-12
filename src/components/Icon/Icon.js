@@ -50,6 +50,12 @@ import iconCheckDefault from "../../assets/images/iconCheckDefault.svg";
 import iconMinus from "../../assets/images/iconMinus.svg";
 import iconPlus from "../../assets/images/iconPlus.svg";
 import iconClose from "../../assets/images/iconClose.svg";
+import level1 from "../../assets/images/level1.png";
+import level2 from "../../assets/images/level2.png";
+import level3 from "../../assets/images/level3.png";
+import level4 from "../../assets/images/level4.png";
+import iconReviewComplete from "../../assets/images/iconReviewComplete.svg";
+import iconReviewWrite from "../../assets/images/iconReviewWrite.svg";
 
 const icons = {
   iconShowers,
@@ -93,37 +99,39 @@ const icons = {
   iconUp,
   iconWifi,
   iconBaths,
-   level1,
-    level2,
-    level3,
-    level4,
-    iconCart,
-    iconDelivery,
-    iconMyLike,
-    iconMyLog,
-    iconMyReview,
+  level1,
+  level2,
+  level3,
+  level4,
+  iconCart,
+  iconDelivery,
+  iconMyLike,
+  iconMyLog,
+  iconMyReview,
   iconCheckActive,
   iconCheckDefault,
   iconMinus,
   iconPlus,
   iconClose,
+  iconReviewWrite,
+  iconReviewComplete,
 };
 function Icon({ iconName, className, ...props }) {
-    const iconSrc = icons[iconName];
-    if (!iconSrc) {
-        console.error(`Icon '${iconName}' not found.`);
-        return null;
-    }
-    return (
-        <>
-            <img
-                src={iconSrc}
-                alt={iconName}
-                {...props}
-                className={`imgIcons ${className}`}
-            />
-        </>
-    );
+  const iconSrc = icons[iconName];
+  if (!iconSrc) {
+    console.error(`Icon '${iconName}' not found.`);
+    return null;
+  }
+  return (
+    <>
+      <img
+        src={iconSrc}
+        alt={iconName}
+        {...props}
+        className={`imgIcons ${className}`}
+      />
+    </>
+  );
 }
 
 export default Icon;
