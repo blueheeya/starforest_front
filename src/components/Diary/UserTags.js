@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "../Icon/Icon";
+import { useLocation } from "react-router-dom";
 
 function UserTags({ selectedUserTags, onTagToggle }) {
   console.log("selectedUserTags:", selectedUserTags);
@@ -13,28 +14,37 @@ function UserTags({ selectedUserTags, onTagToggle }) {
     { icon: "iconShowers", text: "개별 샤워실" },
     { icon: "iconFoods", text: "매점 운영" },
   ];
+  const location = useLocation();
+  // path확인
+  const isDiaryListOrView =
+    location.pathname.includes("/diary/list") ||
+    location.pathname.includes("/diary/view");
 
   return (
     <div
       style={{
         display: "flex",
+        flexWrap: "wrap",
         gap: "10px",
         marginBottom: "10px",
-        flexWrap: "wrap",
       }}
     >
       {tags.map((tag, index) => (
-        <span
+        <label
           key={index}
           className={`userTag ${
             selectedUserTags.includes(tag.text) ? "selected" : ""
-          }`}
-          // } ${isClickable ? "clickable" : ""}`}
-          onClick={() => onTagToggle(tag.text)}
+          } ${!isDiaryListOrView ? "userTag-clickable" : ""}`}
         >
+          <input
+            type="checkbox"
+            checked={selectedUserTags.includes(tag.text)}
+            onChange={() => onTagToggle(tag.text)}
+            style={{ marginRight: "5px" }}
+          />
           <Icon iconName={tag.icon} />
           {tag.text}
-        </span>
+        </label>
       ))}
     </div>
   );
