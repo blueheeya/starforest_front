@@ -114,7 +114,7 @@ function DiaryWrite() {
 
           {/* 이미지 추가됐을시 보이는박스 */}
           {images.length > 0 && (
-            <div className="uploaded-images diary-mb">
+            <div className="uploaded-images diary-mb images-count-${images.length}">
               {images.map((image, index) => (
                 <div key={index} className="image-item">
                   <img
@@ -129,6 +129,7 @@ function DiaryWrite() {
 
                   {/* 이미지 삭제 버튼 */}
                   <button
+                    className="remove-image"
                     onClick={() => {
                       removeImage(index);
                     }}
