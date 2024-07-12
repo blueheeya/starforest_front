@@ -143,11 +143,67 @@ $radiusSmall: 5px;
 }
 
 .dateRangePick {
-    background-color: #ffffff;
-    color: $textTitle;
-    font-size: $titleText;
-    padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  color: $textTitle;
+  font-size: $defaultText;
+  font-weight: bold;
+  padding: 20px 32px;
+
+  .clearReservation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $radiusDefault;
+    width: 130px;
+    height: 45px;
+    background-color: $PrimaryOff;
+    font-size: $btnText;
+    color: white;
+    font-weight: bold;
+    padding-right: 5px;
+  }
+
+  .clearReservation:hover {
+    background-color: $PrimaryColor;
+  }
 }
+
+.reservationBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  padding-bottom: 50px;
+  background-color: #ffffff;
+
+  .reservationBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: $radiusDefault;
+    background-color: $PrimaryOff;
+    width: 466px;
+    height: 50px;
+
+    .btnFont {
+      color: #ffffff;
+      font-size: $btnText;
+      font-weight: bold;
+    }
+  }
+
+  .reservationBtn:hover {
+    background-color: $PrimaryColor;
+  }
+}
+
+//수정 완료
+
 
 .rangback {
     display: flex;
@@ -255,7 +311,28 @@ $radiusSmall: 5px;
     padding: 10px 0 0 0;
     // background-color: #ffffff;
 
-    .campPayInput {
+
+  .campPayInput {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px 32px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+
+    .inputTitle {
+      font-size: $titleText;
+      color: $textTitle;
+      font-weight: bold;
+    }
+
+    .inputContent {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      .inputBox {
+
         display: flex;
         flex-direction: column;
         gap: 30px;
@@ -352,6 +429,28 @@ $radiusSmall: 5px;
                 font-weight: 600;
             }
         }
+
+      }
+
+      .boxAnother {
+        height: 150px;
+      }
+    }
+  }
+
+  .campPaySale {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px 32px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+
+    .saleTitle {
+      font-size: $titleText;
+      color: $textTitle;
+      font-weight: bold;
+
     }
 
     .campPayMoney {
@@ -426,6 +525,10 @@ $radiusSmall: 5px;
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    padding: 30px 32px;
+    margin-bottom: 10px;
+
     background-color: #ffffff;
     padding: 20px 32px;
 
@@ -471,6 +574,59 @@ $radiusSmall: 5px;
             border-radius: 4px;
         }
     }
+  }
+}
+
+.campPayMethod {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background-color: #ffffff;
+  padding: 30px 32px;
+
+  .methodName {
+    font-size: $titleText;
+    color: $textTitle;
+    font-weight: bold;
+  }
+
+  .methodKind {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    .kakao {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      width: 225px;
+      height: 55px;
+      // font-size: $btnText;
+      font-size: 18px;
+      font-weight: bold;
+      color: $textTitle;
+      border-radius: 4px;
+      background-color: #fee500;
+    }
+
+    .naver {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      background-color: #03c75a;
+      // font-size: $btnText;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      width: 225px;
+      height: 55px;
+      border-radius: 4px;
+    }
+  }
+
 }
 
 //캠핑장 결제 페이지
@@ -646,6 +802,7 @@ $radiusSmall: 5px;
         font-size: $titleText;
     }
 
+
     li {
         display: flex;
         align-items: center;
@@ -660,6 +817,7 @@ $radiusSmall: 5px;
     .facilityWrap {
         display: flex;
         gap: 10px;
+
 
         div {
             width: 50px;
@@ -684,11 +842,8 @@ $radiusSmall: 5px;
 
 /* icon */
 
-@media screen and (max-width: 1024px) {
-}
+@media screen and (max-width: 1024px) {}
 
-@media screen and (max-width: 768px) {
-}
+@media screen and (max-width: 768px) {}
 
-@media screen and (max-width: 360px) {
-}
+@media screen and (max-width: 360px) {}
