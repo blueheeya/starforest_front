@@ -1,107 +1,115 @@
 import React, { useState } from "react";
+import Icon from "../../components/Icon/Icon";
 import EventSwiper from "../../components/Store/EventSwiper";
 import UserCard from "../../components/User/UserCard";
-import Icon from "../../components/Icon/Icon";
 import { Link, useNavigate } from "react-router-dom";
 
+//   const navigate = useNavigate();
+//   const orderMove = () => {
+//     navigate("/user/store/order/list");
+//   };
+//   const cartMove = () => {
+//     navigate("/user/store/cart/list");
+//   };
+//   const reviewMove = () => {
+//     alert("dd");
+//     navigate("/user/store/review/list");
+//   };
+
 function UserMypage() {
-  const [tabButton, setTabButton] = useState("tab1");
-  const handleTabChange = (tab) => {
-    setTabButton(tab);
-  };
-  const [memberButton, setMemberButton] = useState("member1");
-  const handleMemberChange = (member) => {
-    setMemberButton(member);
-  };
-
-  const navigate = useNavigate();
-  const orderMove = () => {
-    navigate("/user/store/order/list");
-  };
-  const cartMove = () => {
-    navigate("/user/store/cart/list");
-  };
-  const reviewMove = () => {
-    alert("dd");
-    navigate("/user/store/review/list");
-  };
-
-  return (
-    <>
-      <UserCard className="cntMarginTop cntMarginBottom" />
-      <div className="myTabWrap">
-        <div
-          onClick={() => handleTabChange("tab1")}
-          className={tabButton === "tab1" ? "active" : ""}
-        >
-          내 캠핑 보기
-        </div>
-        <div
-          onClick={() => handleTabChange("tab2")}
-          className={tabButton === "tab2" ? "active" : ""}
-        >
-          내 쇼핑 보기
-        </div>
-      </div>
-      <div className="myPageDate cntMarginBottom">
-        {tabButton === "tab1" && (
-          <>
-            <Link to="/user/diary/list">
-              <ul>
-                <li>
-                  <Icon iconName="iconReservation" />
-                </li>
-                <li>예약 목록</li>
-                <li>0건</li>
-              </ul>
-            </Link>
-            <Link to="/user/diary/list">
-              <ul>
-                <li>
-                  <Icon iconName="iconMyLike" />
-                </li>
-                <li>찜 목록</li>
-                <li>0건</li>
-              </ul>
-            </Link>
-            <Link to="/user/diary/list">
-              <ul>
-                <li>
-                  <Icon iconName="iconMyLog" />
-                </li>
-                <li>별숲 기록</li>
-                <li>0건</li>
-              </ul>
-            </Link>
-          </>
-        )}
-        {tabButton === "tab2" && (
-          <>
-            <ul>
-              <li>
-                <Icon iconName="iconDelivery" />
-              </li>
-              <li onClick={orderMove}>주문/배송</li>
-              <li>1건</li>
-            </ul>
-            <ul>
-              <li>
-                <Icon iconName="iconCart" />
-              </li>
-              <li onClick={cartMove}>장바구니</li>
-              <li>1건</li>
-            </ul>
-            <ul>
-              <li>
-                <Icon iconName="iconMyReview" />
-              </li>
-              <li onClick={reviewMove}>리뷰</li>
-              <li>1건</li>
-            </ul>
-          </>
-        )}
-      </div>
-      <div className="membershipWrap cntMarginBottom">
+    const [tabButton, setTabButton] = useState("tab1");
+    const handleTabChange = (tab) => {
+        setTabButton(tab);
+    };
+    const [memberButton, setMemberButton] = useState("member1");
+    const handleMemberChange = (member) => {
+        setMemberButton(member);
+    };
+    return (
+        <>
+            <UserCard
+                className="cntMarginTop cntMarginBottom"
+                userMyCard={true}
+            />
+            <div className="myTabWrap">
+                <div
+                    onClick={() => handleTabChange("tab1")}
+                    className={tabButton === "tab1" ? "active" : ""}
+                >
+                    내 캠핑 보기
+                </div>
+                <div
+                    onClick={() => handleTabChange("tab2")}
+                    className={tabButton === "tab2" ? "active" : ""}
+                >
+                    내 쇼핑 보기
+                </div>
+            </div>
+            <div className="myPageDate cntMarginBottom">
+                {tabButton === "tab1" && (
+                    <>
+                        <Link to="/user/camp/reservation/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconReservation" />
+                                </li>
+                                <li>예약 목록</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
+                        <Link to="/user/camp/like/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconMyLike" />
+                                </li>
+                                <li>찜 목록</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
+                        <Link to="/user/diary/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconMyLog" />
+                                </li>
+                                <li>별숲 기록</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
+                    </>
+                )}
+                {tabButton === "tab2" && (
+                    <>
+                        <Link to="/user/store/order/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconDelivery" />
+                                </li>
+                                <li>주문/배송</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
+                        <Link to="/user/store/cart/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconCart" />
+                                </li>
+                                <li>장바구니</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
+                        <Link to="/user/store/review/list">
+                            <ul>
+                                <li>
+                                    <Icon iconName="iconMyReview" />
+                                </li>
+                                <li>리뷰</li>
+                                <li>0건</li>
+                            </ul>
+                        </Link>
+                    </>
+                )}
+            </div>
+ <div className="membershipWrap cntMarginBottom">
         <h4>멤버쉽 등급</h4>
         <div className="memberWrap">
           <div className="memberTab">
@@ -118,7 +126,6 @@ function UserMypage() {
             >
               <Icon iconName="level2" />
               잔별
-            </div>
             <div
               onClick={() => handleMemberChange("member3")}
               className={memberButton === "member3" ? "active" : ""}

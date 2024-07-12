@@ -11,23 +11,24 @@ import btnClose from "../../assets/images/btnClose.png"
 
 const { kakao } = window;
 
-let currentOverlay = null;//커스텀 오버레이상태
+
 var imageSrc = mapPointerOn;
 var imageSize = new kakao.maps.Size(40, 40);
 var imageOption = { offset: new kakao.maps.Point(20, 42) }; // 마커이미지의 옵션입니다.
 function CampListMap() {
+    const [currentOverlay, setCurrentOverlay] = useState(null);
     const navigate = useNavigate()
     const [map, setMap] = useState(null); //카카오 map
     const [dragMapCenter, setDragMapCenter] = useState(); //드래그시 맵 중심 좌표
     const [circles, setCircles] = useState([
-        { name: "힐링피아 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 1111 61-75", mapX: 127.4947241, mapY: 37.5978864 },
-        { name: "1111 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 2222 61-75", mapX: 126.6806875, mapY: 37.3241008 },
-        { name: "2222 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 3333 61-75", mapX: 127.455147, mapY: 37.50762979 },
-        { name: "3333 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 4444 61-75", mapX: 127.4947099, mapY: 37.6012926 },
-        { name: "4444 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 5555 61-75", mapX: 127.5124645, mapY: 37.7467558 },
-        { name: "5555 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 6666 61-75", mapX: 126.9161565, mapY: 37.25773423 },
-        { name: "6666 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 7777 61-75", mapX: 127.1889864, mapY: 37.9617314 },
-        { name: "7777 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 8888 61-75", mapX: 127.5140734, mapY: 37.8552141 },
+        { name: "힐링피아 카라반 글램핑 풀 캠핑장", "addr1": "경기 가평군 설악면 1111 61-75", mapX: 127.4947241, mapY: 37.5978864 },
+        { name: "1111 카라반 글램핑 풀 캠핑장", "addr1": "경기 가평군 설악면 2222 61-75", mapX: 126.6806875, mapY: 37.3241008 },
+        { name: "2222 카라반 글램핑 풀 캠핑장", "addr1": "경기 가평군 설악면 3333 61-75", mapX: 127.455147, mapY: 37.50762979 },
+        { name: "3333 카라반 글램핑 풀 캠핑장", "addr1": "경기 가평군 설악면 4444 61-75", mapX: 127.4947099, mapY: 37.6012926 },
+        { name: "4444 카라반 글램핑 풀 캠핑장", "addr1": "경기 가평군 설악면 5555 61-75", mapX: 127.5124645, mapY: 37.7467558 },
+        { name: "5555 카라반 글램핑 풀 캠핑장", "addr1": "경기 가평군 설악면 6666 61-75", mapX: 126.9161565, mapY: 37.25773423 },
+        { name: "6666 카라반 글램핑 풀 캠핑장", "addr1": "경기 가평군 설악면 7777 61-75", mapX: 127.1889864, mapY: 37.9617314 },
+        { name: "7777 카라반 글램핑 풀 캠핑장", "addr1": "경기 가평군 설악면 8888 61-75", mapX: 127.5140734, mapY: 37.8552141 },
     ]); //모임 배열
     const [markers, setMarkers] = useState([]); //마커들 표시
     const [markersInitialized, setMarkersInitialized] = useState(false);
@@ -42,7 +43,7 @@ function CampListMap() {
 
     //초기 카카오 맵 설정
     const mapscript = () => {
-        // console.log("mapscript시작");
+        console.log("mapscript시작");
         var mapContainer = document.getElementById("map"),
             mapOption = {
                 center: new kakao.maps.LatLng(37.5978864, 127.4947241), // 지도의 중심좌표
@@ -61,7 +62,7 @@ function CampListMap() {
 
     //드래그위치 가져오는 함수
     const getDragLocation = () => {
-        // console.log("드래그 위치 시작");
+        console.log("드래그 위치 시작");
 
         //드래그 중심좌표 얻어오는 함수
         kakao.maps.event.addListener(map, "dragend", function () {
@@ -93,12 +94,12 @@ function CampListMap() {
 
     //모임 마커 추가
     const initializeMarkers = (map) => {
-        // console.log("초기 마커 추가");
-        // console.log(circles);
+        console.log("초기 마커 추가");
+        console.log(circles);
 
         clearMarkers();
         const newMarkers = [];
-        // console.log(circles);
+        console.log(circles);
         if (circles && circles.length > 0) {
             //기존 마커 배열 지도에 표시
             for (let i = 0; i < circles.length; i++) {
@@ -107,7 +108,7 @@ function CampListMap() {
                     circles[i].mapX
                 );
                 // console.log(latlng);
-                const marker = addMarker(latlng, map, imageSrc, imageSize, imageOption, circles[i], i);
+                const marker = addMarker(latlng, map, imageSrc, imageSize, imageOption, circles);
                 newMarkers.push(marker);
             }
             setMarkers(newMarkers);
@@ -126,13 +127,12 @@ function CampListMap() {
         }
     };
 
-
+    let mapContainer = null;
     //마커 생성
-    const addMarker = (latlng, map, imageSrc, imageSize, imageOption, circleData, index) => {
+    const addMarker = (latlng, map, imageSrc, imageSize, imageOption, circles) => {
         if (!map) return;
 
         console.log("마커 생성(addMarker)");
-        // console.log(i);
 
         // 마커 이미지를 생성합니다
         var markerImage = new kakao.maps.MarkerImage(
@@ -146,14 +146,17 @@ function CampListMap() {
             position: latlng, // 마커를 표시할 위치
             image: markerImage, // 마커 이미지
         });
-        // // 커스텀 오버레이 내용을 생성합니다
-        // createOverlayContent(circleData)
+
+        // 커스텀 오버레이 내용을 생성합니다
+        createOverlayContent()
 
         // 마커를 클릭했을 때 커스텀 오버레이를 표시+ 지도가 이동
         kakao.maps.event.addListener(marker, 'click', function () {
 
             if (currentOverlay) {
+                document.body.removeChild(currentOverlay);
                 currentOverlay.setMap(null);
+                setCurrentOverlay(null);
             }
 
             var position = marker.getPosition();
@@ -164,7 +167,7 @@ function CampListMap() {
             map.panTo(moveLatLon);
 
             // 커스텀 오버레이 내용을 생성합니다
-            const content = createOverlayContent(circleData);
+            const content = createOverlayContent();
 
             // 마커 위에 커스텀오버레이를 표시합니다
 
@@ -172,9 +175,23 @@ function CampListMap() {
                 content: content,
                 clickable: true,
                 map: map,//null
-                position: marker.getPosition(),
+                position: map.getCenter(),
             });
-            currentOverlay = overlay;
+
+            // 오버레이 컨테이너를 생성하고 스타일을 설정합니다
+            const overlayContainer = document.createElement('div');
+            overlayContainer.style.position = 'fixed';
+            overlayContainer.style.bottom = '0';
+            overlayContainer.style.left = '0';
+            overlayContainer.style.width = '100%';
+            overlayContainer.style.zIndex = '1000';
+            overlayContainer.appendChild(content);
+
+            // currentOverlay = overlay;
+            setCurrentOverlay(overlayContainer);
+
+            // body에 오버레이를 추가합니다
+            document.body.appendChild(overlayContainer);
 
             // DOM이 업데이트될 시간을 준 후에 닫기 버튼에 이벤트 리스너를 추가합니다
             setTimeout(() => {
@@ -197,14 +214,9 @@ function CampListMap() {
     const pageclose = () => {
         navigate("/camp/list")
     }
-    // 페이지 이동 함수
-    const handleOverlayClick = (circleData) => {
-        navigate(`/detail/${circleData.name}`); // 적절한 url로 수정 필요
-    };
 
 
-    //
-    //
+
     //
     //
     //
@@ -215,18 +227,17 @@ function CampListMap() {
     //
     //
     // 커스텀 오버레이 내용을 생성합니다
-    function createOverlayContent(circleData) {
-
+    function createOverlayContent() {
         const wrap = document.createElement('div');
         wrap.className = 'customOverlay';
-        // 클릭 이벤트 추가
-        wrap.style.cursor = 'pointer';
-        wrap.addEventListener('click', (e) => {
-            // 닫기 버튼 클릭 시 이벤트 전파 방지
-            if (!e.target.closest('.contentCloseBtn')) {
-                handleOverlayClick(circleData);
-            }
-        });
+        wrap.style.position = 'fixed';
+        // wrap.style.left = '0';
+        wrap.style.right = '0';
+        wrap.style.bottom = '0';
+        // wrap.style.width = '100%';
+        wrap.style.backgroundColor = 'white';
+        wrap.style.boxShadow = '0px -2px 10px rgba(0, 0, 0, 0.1)';
+        wrap.style.zIndex = '1000';
 
         const overlayImg = document.createElement('div');
         overlayImg.className = 'overlayImg';
@@ -245,7 +256,7 @@ function CampListMap() {
         overContentWrap.className = 'overContentWrap';
         overlayContent.appendChild(overContentWrap);
 
-        const items = ['오픈 캠핑장', circleData.name, circleData.addr1, '50,000원 부터'];
+        const items = ['오픈 캠핑장', '충북카누캠핑장', '충북 충주시 동량면 지등로', '50,000원 부터'];
         items.forEach(item => {
             const li = document.createElement('li');
             li.textContent = item;
