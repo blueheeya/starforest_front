@@ -12,7 +12,7 @@ function CampSelectCard() {
         <img
           src={diary_camp_img}
           alt="캠핑장 사진"
-          style={{ width: "65px", height: "65px" }}
+          style={{ width: "65px", height: "65px", borderRadius: "10px" }}
         />
         <div
           style={{
