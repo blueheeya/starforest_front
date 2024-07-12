@@ -8,12 +8,13 @@ function Input({
     value,
     onChange,
     placeholder,
+    type,
 }) {
     return (
         <div className={`${className}`}>
             {iconName && <Icon iconName={iconName} />}
             <input
-                type="text"
+                type={type}
                 className={`serchInput`}
                 value={value}
                 onChange={onChange}

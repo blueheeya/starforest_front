@@ -52,6 +52,9 @@ import UserMypageMent from "./page/User/UserMypageMent";
 import Style from "./Style";
 import CampPayFail from "./page/Camp/CampPayFail";
 import CampPayCancel from "./page/Camp/CampPayCancel";
+import PwFindAuth from "./page/Member/PwFindAuth";
+import PwFindChange from "./page/Member/PwFindChange";
+import PwChangeComplete from "./page/Member/PwChangeComplete";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -113,13 +116,11 @@ function LayoutType() {
                     {title}
                 </HeaderComponent>
                 <ContentWrap
-                    className={`${isHeaderType2 ? "cntView" : ""} ${
-                        isHeaderType3 ? "cntSearchView" : ""
-                    } ${isHeaderType4 ? "cntSearchView" : ""}`}
+                    className={` ${
+                        isHeaderType3 || isHeaderType4 ? "cntSearchView" : ""
+                    } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
                 >
-                    <main>
-                        <Outlet />
-                    </main>
+                    <Outlet />
                 </ContentWrap>
                 {showFooter && (
                     <Footer className={`${showMenu ? "footerBottom" : ""}`} />
@@ -266,6 +267,21 @@ function App() {
                         path="/member/pwfind"
                         index
                         element={<PwFind />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/auth"
+                        index
+                        element={<PwFindAuth />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/change"
+                        index
+                        element={<PwFindChange />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/complete"
+                        index
+                        element={<PwChangeComplete />}
                     ></Route>
                     <Route
                         path="/member/terms"

@@ -69,6 +69,8 @@ import inputIconNick from "../../assets/images/inputIconNick.png";
 import inputIconId from "../../assets/images/inputIconId.png";
 import inputIconEmail from "../../assets/images/inputIconEmail.png";
 import logoDefault from "../../assets/images/logoDefault.png";
+import iconDanger from "../../assets/images/iconDanger.png";
+import iconComplete from "../../assets/images/iconComplete.png";
 
 const icons = {
     iconShowers,
@@ -141,6 +143,8 @@ const icons = {
     inputIconId,
     inputIconEmail,
     logoDefault,
+    iconDanger,
+    iconComplete,
 };
 function Icon({ iconName, className, ...props }) {
     const iconSrc = icons[iconName];

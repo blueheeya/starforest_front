@@ -152,9 +152,29 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
+    "/member/pwfind/auth": {
+        title: "비밀번호변경",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/pwfind/change": {
+        title: "비밀번호변경",
+        component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/pwfind/complete": {
+        title: "비밀번호변경",
+        component: HeaderType1,
+        titleStore: false,
+    },
     "/member/register": {
         title: "회원가입",
         component: HeaderType2,
+        titleStore: false,
+    },
+    "/member/register/complete": {
+        title: "회원가입완료",
+        component: HeaderType1,
         titleStore: false,
     },
 };

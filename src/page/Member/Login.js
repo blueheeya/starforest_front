@@ -3,6 +3,7 @@ import Input from "../../components/Form/Input";
 import Button from "../../components/Form/Button";
 import Icon from "../../components/Icon/Icon";
 import { Link } from "react-router-dom";
+import Email from "../../components/Member/Email";
 
 function Login() {
     return (
@@ -15,15 +16,11 @@ function Login() {
                 <Icon iconName="logoDefault" />
             </div>
             <div className="memberInputWrap cntMarginBottom">
-                <Input
-                    iconName="inputIconEmail"
-                    className="userRstInput"
-                    placeholder="아이디"
-                />
+                <Email placeholder="이메일을 입력해주세요." />
                 <Input
                     iconName="inputIconPw2"
                     className="userRstInput"
-                    placeholder="비밀번호"
+                    placeholder="비밀번호를 입력해주세요."
                 />
             </div>
             <Button defaultBtn={true} className="wrapMarginBottom">

@@ -1,14 +1,31 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function Button({ defaultBtn, children, className }) {
+function Button({ defaultBtn, children, className, onClick, to }) {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        if (to) {
+            navigate(to);
+        }
+        if (onClick) {
+            onClick();
+        }
+    };
     return (
         <>
             {defaultBtn === true ? (
-                <button className={`btnDefault btnPrimary ${className}`}>
+                <button
+                    className={`btnDefault btnPrimary ${className}`}
+                    onClick={handleClick}
+                >
                     {children}
                 </button>
             ) : (
-                <button className={`btnDefault btnNormal ${className}`}>
+                <button
+                    className={`btnDefault btnNormal ${className}`}
+                    onClick={handleClick}
+                >
                     {children}
                 </button>
             )}
