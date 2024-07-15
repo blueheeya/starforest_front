@@ -71,6 +71,7 @@ import inputIconEmail from "../../assets/images/inputIconEmail.png";
 import logoDefault from "../../assets/images/logoDefault.png";
 import iconDanger from "../../assets/images/iconDanger.png";
 import iconComplete from "../../assets/images/iconComplete.png";
+import iconCloseWhite from "../../assets/images/iconCloseWhite.png";
 
 const icons = {
     iconShowers,
@@ -145,6 +146,7 @@ const icons = {
     logoDefault,
     iconDanger,
     iconComplete,
+    iconCloseWhite,
 };
 function Icon({ iconName, className, ...props }) {
     const iconSrc = icons[iconName];
