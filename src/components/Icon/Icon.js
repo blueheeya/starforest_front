@@ -1,4 +1,5 @@
 import React from "react";
+import btnUserModify from "../../assets/images/btnUserModify.png";
 import iconAddress from "../../assets/images/iconAddress.svg";
 import iconAnimal from "../../assets/images/iconAnimal.svg";
 import iconAround from "../../assets/images/iconAround.svg";
@@ -45,76 +46,109 @@ import iconTime from "../../assets/images/iconTimes.svg";
 import iconToilet from "../../assets/images/iconToilet.svg";
 import iconUp from "../../assets/images/iconUp.svg";
 import iconWifi from "../../assets/images/iconWifi.svg";
+import level1 from "../../assets/images/level1.png";
+import level2 from "../../assets/images/level2.png";
+import level3 from "../../assets/images/level3.png";
+import level4 from "../../assets/images/level4.png";
+import toggleClose from "../../assets/images/toggleClose.png";
+import toggleOpen from "../../assets/images/toggleOpen.png";
+import toggleTo from "../../assets/images/toggleTo.png";
+import btnClose from "../../assets/images/btnClose.png";
 import iconCheckActive from "../../assets/images/iconCheckActive.svg";
 import iconCheckDefault from "../../assets/images/iconCheckDefault.svg";
 import iconMinus from "../../assets/images/iconMinus.svg";
 import iconPlus from "../../assets/images/iconPlus.svg";
 import iconClose from "../../assets/images/iconClose.svg";
-import level1 from "../../assets/images/level1.png";
-import level2 from "../../assets/images/level2.png";
-import level3 from "../../assets/images/level3.png";
-import level4 from "../../assets/images/level4.png";
+import userOut from "../../assets/images/userOut.svg";
+import userEdit from "../../assets/images/userEdit.svg";
+import naverLogo from "../../assets/images/naverLogo.png";
+import kakaoLogo from "../../assets/images/kakaoLogo.png";
+import inputIconPw2 from "../../assets/images/inputIconPw2.png";
+import inputIconPwCheck from "../../assets/images/inputIconPwCheck.png";
+import inputIconNick from "../../assets/images/inputIconNick.png";
+import inputIconId from "../../assets/images/inputIconId.png";
+import inputIconEmail from "../../assets/images/inputIconEmail.png";
+import logoDefault from "../../assets/images/logoDefault.png";
+import iconDanger from "../../assets/images/iconDanger.png";
+import iconComplete from "../../assets/images/iconComplete.png";
 import iconReviewComplete from "../../assets/images/iconReviewComplete.svg";
 import iconReviewWrite from "../../assets/images/iconReviewWrite.svg";
 
 const icons = {
-  iconShowers,
-  iconTime,
-  iconAddress,
-  iconAnimal,
-  iconAround,
-  iconBadding,
-  iconBrazier,
-  iconBrend,
-  iconCampCategory,
-  iconCleans,
-  iconCustomerCall,
-  iconDate,
-  iconDown,
-  iconEdit,
-  iconElec,
-  iconFire,
-  iconFoods,
-  iconGo,
-  iconHeating,
-  iconHompage,
-  iconLog,
-  iconPhone,
-  iconPlays,
-  iconReel,
-  iconRegion,
-  iconRegist,
-  iconReservation,
-  iconSerch,
-  iconShower,
-  iconSink,
-  iconSmiles,
-  iconStrore,
-  iconSwimming,
-  iconSwimmings,
-  iconTableware,
-  iconTag,
-  iconTent,
-  iconToilet,
-  iconUp,
-  iconWifi,
-  iconBaths,
-  level1,
-  level2,
-  level3,
-  level4,
-  iconCart,
-  iconDelivery,
-  iconMyLike,
-  iconMyLog,
-  iconMyReview,
-  iconCheckActive,
-  iconCheckDefault,
-  iconMinus,
-  iconPlus,
-  iconClose,
-  iconReviewWrite,
+    iconReviewWrite,
   iconReviewComplete,
+    iconShowers,
+    iconTime,
+    iconAddress,
+    iconAnimal,
+    iconAround,
+    iconBadding,
+    iconBrazier,
+    iconBrend,
+    iconCampCategory,
+    iconCleans,
+    iconCustomerCall,
+    iconDate,
+    iconDown,
+    iconEdit,
+    iconElec,
+    iconFire,
+    iconFoods,
+    iconGo,
+    iconHeating,
+    iconHompage,
+    iconLog,
+    iconPhone,
+    iconPlays,
+    iconReel,
+    iconRegion,
+    iconRegist,
+    iconReservation,
+    iconSerch,
+    iconShower,
+    iconSink,
+    iconSmiles,
+    iconStrore,
+    iconSwimming,
+    iconSwimmings,
+    iconTableware,
+    iconTag,
+    iconTent,
+    iconToilet,
+    iconUp,
+    iconWifi,
+    iconBaths,
+    level1,
+    level2,
+    level3,
+    level4,
+    iconCart,
+    iconDelivery,
+    iconMyLike,
+    iconMyLog,
+    iconMyReview,
+    toggleTo,
+    btnUserModify,
+    toggleOpen,
+    toggleClose,
+    btnClose,
+    iconCheckActive,
+    iconCheckDefault,
+    iconMinus,
+    iconPlus,
+    iconClose,
+    userOut,
+    userEdit,
+    naverLogo,
+    kakaoLogo,
+    inputIconPw2,
+    inputIconPwCheck,
+    inputIconNick,
+    inputIconId,
+    inputIconEmail,
+    logoDefault,
+    iconDanger,
+    iconComplete,
 };
 function Icon({ iconName, className, ...props }) {
   const iconSrc = icons[iconName];

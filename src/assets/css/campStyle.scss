@@ -142,15 +142,16 @@ $radiusSmall: 5px;
     }
 }
 
-//clearReservation 수정
 .dateRangePick {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
     color: $textTitle;
-    font-size: $titleText;
+    font-size: $defaultText;
+    font-weight: bold;
     padding: 20px 32px;
+
     .clearReservation {
         display: flex;
         align-items: center;
@@ -164,10 +165,12 @@ $radiusSmall: 5px;
         font-weight: bold;
         padding-right: 5px;
     }
+
     .clearReservation:hover {
         background-color: $PrimaryColor;
     }
 }
+
 .reservationBox {
     display: flex;
     justify-content: center;
@@ -176,6 +179,7 @@ $radiusSmall: 5px;
     height: 150px;
     padding-bottom: 50px;
     background-color: #ffffff;
+
     .reservationBtn {
         display: flex;
         align-items: center;
@@ -185,17 +189,21 @@ $radiusSmall: 5px;
         background-color: $PrimaryOff;
         width: 466px;
         height: 50px;
+
         .btnFont {
             color: #ffffff;
             font-size: $btnText;
             font-weight: bold;
         }
     }
+
     .reservationBtn:hover {
         background-color: $PrimaryColor;
     }
 }
+
 //수정 완료
+
 
 .rangback {
     display: flex;
@@ -307,7 +315,7 @@ $radiusSmall: 5px;
         display: flex;
         flex-direction: column;
         gap: 30px;
-        padding: 20px 32px;
+        padding: 30px 32px;
         margin-bottom: 10px;
         background-color: #ffffff;
 
@@ -373,7 +381,7 @@ $radiusSmall: 5px;
         display: flex;
         flex-direction: column;
         gap: 30px;
-        padding: 20px 32px;
+        padding: 30px 32px;
         margin-bottom: 10px;
         background-color: #ffffff;
 
@@ -406,7 +414,7 @@ $radiusSmall: 5px;
         display: flex;
         flex-direction: column;
         gap: 30px;
-        padding: 20px 32px;
+        padding: 30px 32px;
         margin-bottom: 10px;
         background-color: #ffffff;
 
@@ -475,7 +483,7 @@ $radiusSmall: 5px;
     flex-direction: column;
     gap: 30px;
     background-color: #ffffff;
-    padding: 20px 32px 100px 32px;
+    padding: 30px 32px;
 
     .methodName {
         font-size: $titleText;
@@ -570,14 +578,7 @@ $radiusSmall: 5px;
         background: #dcdcdc url("../images/noneImage.png") no-repeat;
         background-size: cover;
         overflow: hidden;
-    }
-    .campListImg {
-        width: 100%;
-        height: 250px;
-        font-size: 0;
-        background: #dcdcdc url("../images/noneImage.png") no-repeat;
-        background-size: cover;
-        overflow: hidden;
+
         img {
             width: 100%;
             height: 100%;
@@ -630,6 +631,7 @@ $radiusSmall: 5px;
         width: 100%;
         color: $textTitle;
         font-size: $titleText;
+        font-weight: bold;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -640,9 +642,11 @@ $radiusSmall: 5px;
         font-size: $therdText;
     }
 }
+
 .campIntro {
     line-height: 1.5em;
 }
+
 .campListTag {
     width: 100%;
     display: flex;
@@ -662,96 +666,95 @@ $radiusSmall: 5px;
     }
 }
 
-.viewWrap {
+.campViewSwiper {
+    width: 100%;
+    height: 350px;
+    background: url("../images/noneImage.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .swiper-pagination-bullet {
+        width: 16px;
+        height: 16px;
+        background: url("../images/bulletWhite.png") !important;
+        opacity: 0.5;
+    }
+
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+    }
+}
+
+.campViewWrap {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
-    // padding: 20px 32px;
+    padding: 20px 32px;
     background: #ffffff;
-    .campViewSwiper {
-        width: 100%;
-        height: 350px;
-        background: url("../images/noneImage.png") no-repeat;
-        background-size: cover;
-        background-position: center;
-        .swiper {
-            width: 100%;
-            height: 100%;
-        }
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .swiper-pagination-bullet {
-            width: 16px;
-            height: 16px;
-            background: url("../images/bulletWhite.png") !important;
-            opacity: 0.5;
-        }
 
-        .swiper-pagination-bullet-active {
-            opacity: 1;
-        }
+    h4 {
+        color: $textTitle;
+        padding: 10px 0;
+        font-size: $titleText;
     }
-    .campViewWrap {
+
+
+    li {
         display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 10px;
-        padding: 20px 32px;
-        background: #ffffff;
+        align-items: center;
+        gap: 5px;
+        font-size: $defaultText;
 
-        h4 {
-            color: $textTitle;
-            padding: 10px 0;
-            font-size: $titleText;
-        }
-
-        li {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: $defaultText;
-            button {
-                color: $PrimaryColor;
-                font-weight: bold;
-            }
-        }
-
-        .facilityWrap {
-            display: flex;
-            gap: 10px;
-
-            div {
-                width: 50px;
-                text-align: center;
-                font-size: $therdText;
-            }
+        button {
+            color: $PrimaryColor;
+            font-weight: bold;
         }
     }
-    .campBinWrap {
-        gap: 10px;
-        margin-bottom: 10px;
-        padding: 20px 0px;
-        background: #ffffff;
-    }
-    .campViewTag {
-        width: 100%;
+
+    .facilityWrap {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
         gap: 10px;
+
+
+        div {
+            width: 50px;
+            text-align: center;
+            font-size: $therdText;
+        }
     }
 }
+
+.campBinWrap {
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 20px 0px;
+    background: #ffffff;
+}
+
+.campViewTag {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 /* icon */
 
-@media screen and (max-width: 1024px) {
-}
+@media screen and (max-width: 1024px) {}
 
-@media screen and (max-width: 768px) {
-}
+@media screen and (max-width: 768px) {}
 
-@media screen and (max-width: 360px) {
-}
+@media screen and (max-width: 360px) {}

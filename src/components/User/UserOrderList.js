@@ -25,7 +25,9 @@ function UserOrderList() {
             <div className="OrderListMove">
               <button className="listMoveBtn" onClick={userOderViewMove}>
                 {/* <Link to="/user/store/order/view"> */}
+
                 {/* <button className="listMoveBtn"> */}
+
                 주문 상세보기
                 <Icon iconName="iconGo" />
               </button>

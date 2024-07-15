@@ -12,17 +12,21 @@
 @import "storeStyle.scss";
 //mypage
 @import "userStyle.scss";
+//member
+@import "memberStyle.scss";
 // @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+hr {
+    border-top: solid 1px $inputColor;
+}
 img {
-  margin: 0;
-  padding: 0;
-  vertical-align: top;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
 }
 
 /* colors */
@@ -32,6 +36,7 @@ $textTitle: #2a2a2a;
 $textDefault: #535353;
 $textSecondary: #989898;
 $backColor: #f5f5f5;
+$pointColor: #f24e1e;
 /* input */
 $inputColor: #dcdcdc;
 /* text size */
@@ -113,14 +118,14 @@ section.backWrap {
 }
 
 .contentWrap {
-  position: relative;
-  width: 100%;
-  min-height: 70vh;
+    position: relative;
+    width: 100%;
 }
 
 .cntView {
-  margin-top: 64px;
-  background: $backColor;
+    margin-top: 64px;
+    min-height: 80vh;
+    background: $backColor;
 }
 
 .cntSearchView {
@@ -134,17 +139,18 @@ section.backWrap {
 
 /* header */
 .headerType {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 64px;
-  color: $PrimaryColor;
-  font-family: "EunhasuR";
-  font-size: $headerTitle;
-  background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    color: $PrimaryColor;
+    font-family: "EunhasuR";
+    font-size: $headerTitle;
+    background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: solid 1px $inputColor;
 }
 
 .headerType1 {
@@ -188,13 +194,13 @@ section.backWrap {
   .btnWrap {
     display: flex;
     align-items: center;
-    flex: none;
-    width: 36px;
-    height: 36px;
     cursor: pointer;
-    z-index: 2;
-  }
-}
+    width: 530px;
+    height: 64px;
+    padding: 0 10px;
+    z-index: 9;
+    border-bottom: solid 1px $inputColor;
+    background: #ffffff;
 
 .headerType3 {
   display: flex;
@@ -247,7 +253,33 @@ section.backWrap {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 10px;
+
+    height: auto;
+    padding: 10px 10px;
+    border-bottom: solid 1px $inputColor;
+
+    .serchWrap {
+        width: 100%;
+        display: flex;
+        .serchBox {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            .searchInput {
+                width: 100%;
+            }
+
+            button {
+                width: 40px;
+                height: 40px;
+                font-size: 0;
+                border-radius: $radiusDefault;
+                background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+                background-position: center;
+            }
+        }
 
     input {
       flex: 1;
@@ -259,14 +291,16 @@ section.backWrap {
     //     cursor: pointer;
     //     z-index: 2;
 
-    select {
-      flex: 1;
-      width: 120px;
-      height: 40px;
-      border: 1px solid $inputColor;
-      border-radius: $radiusDefault;
-      outline: none;
-      padding: 0 10px;
+
+        select {
+            flex: 1;
+            width: 120px;
+            height: 40px;
+            border: 1px solid $inputColor;
+            border-radius: $radiusDefault;
+            outline: none;
+            padding: 0 10px;
+        }
     }
   }
 }
@@ -667,20 +701,105 @@ section.backWrap {
   border: solid 1px $inputColor;
   border-radius: $radiusDefault;
 
-  input {
-    width: 100%;
-    border: none;
-  }
+
+//     height: 40px;
+//     padding: 10px 15px;
+//     border: solid 1px $inputColor;
+//     border-radius: $radiusDefault;
+//     background: #ffffff;
+
+    input {
+        width: 100%;
+        color: $textDefault;
+        font-size: $therdText;
+        border: none;
+    }
 
   input:hover {
     border: none;
   }
 
-  input:focus {
-    outline: none;
-  }
-}
 
+    input:focus {
+        outline: none;
+    }
+    ::-webkit-input-placeholder {
+        color: $textSecondary;
+    }
+}
+.userRstInput {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 40px;
+    padding: 10px 15px 10px 5px;
+    border-bottom: solid 2px $inputColor;
+    background: #ffffff;
+    opacity: 0.5;
+    transition: 0.3s;
+    input {
+        width: 100%;
+        color: $textDefault;
+        font-size: $therdText;
+        border: none;
+    }
+
+    input:hover {
+        border: none;
+        opacity: 1;
+    }
+
+    input:focus {
+        outline: none;
+        opacity: 1;
+    }
+    ::-webkit-input-placeholder {
+        color: $textSecondary;
+    }
+}
+.userRstInput:hover {
+    border-bottom: solid 2px $PrimaryColor;
+    opacity: 1;
+}
+/* checkbox */
+.checkboxWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .labelWrap {
+        display: flex;
+        align-items: center;
+        font-size: $secondText;
+        span {
+            color: $pointColor;
+        }
+    }
+}
+.inputcheck {
+    display: flex;
+    align-items: center;
+    input {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        opacity: 0;
+    }
+    input + span {
+        display: flex;
+        width: 24px;
+        height: 24px;
+        top: 0;
+        background: url("../images/checkDefault.png") no-repeat;
+    }
+    input:checked + span {
+        display: flex;
+        width: 24px;
+        height: 24px;
+        top: 0;
+        background: url("../images/checkActive.png") no-repeat;
+    }
+}
 /* icon */
 
 /****** button ******/
@@ -691,7 +810,61 @@ button {
   background: none;
   cursor: pointer;
 }
-
+.btnWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.btnDefault {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 50px;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: $radiusDefault;
+    transition: 0.3s;
+}
+.btnNormal {
+    background: $textSecondary;
+}
+.btnNormal:hover {
+    background: $textDefault;
+}
+.btnPrimary {
+    background: $PrimaryOff;
+}
+.btnPrimary:hover {
+    background: $PrimaryColor;
+}
+.btnStyleKaKao {
+    background: #fee500;
+    color: #000000;
+}
+.btnStyleKaKao:hover {
+    background: #fee500;
+    color: #000000;
+}
+.btnStyleNaver {
+    background: #03c75a;
+}
+.btnStyleNaver:hover {
+    background: #03c75a;
+}
+.btnSmallLine {
+    padding: 5px 10px;
+    color: $textSecondary;
+    border: solid 1px $inputColor;
+    border-radius: $radiusSmall;
+    transition: 0.3s;
+}
+.btnSmallLine:hover {
+    color: $PrimaryColor;
+    border: solid 1px $PrimaryColor;
+}
 /* Layout margin & padding */
 .cntMarginTop {
   margin-top: 50px;
@@ -707,6 +880,9 @@ button {
 
 .wrapMarginBottom {
   margin-bottom: 20px;
+}
+.wrapCntBottom {
+    margin-bottom: 10px !important;
 }
 
 .cntWarpPadding {
