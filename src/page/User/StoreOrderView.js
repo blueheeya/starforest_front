@@ -15,7 +15,7 @@ function StoreOrderView(useNavigate) {
   };
 
   return (
-    <>
+    <div className="OrderViewContainerBox">
       <div className="OrderViewBox">
         <div className="OrderViewInner">
           <div className="OrderViewDateWrap">
@@ -84,7 +84,7 @@ function StoreOrderView(useNavigate) {
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleReviewSubmit}
       />
-    </>
+    </div>
   );
 }
 export default StoreOrderView;

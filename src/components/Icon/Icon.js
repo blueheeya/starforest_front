@@ -72,98 +72,102 @@ import logoDefault from "../../assets/images/logoDefault.png";
 import iconDanger from "../../assets/images/iconDanger.png";
 import iconComplete from "../../assets/images/iconComplete.png";
 import iconCloseWhite from "../../assets/images/iconCloseWhite.png";
+import iconReviewComplete from "../../assets/images/iconReviewComplete.svg";
+import iconReviewWrite from "../../assets/images/iconReviewWrite.svg";
 
 const icons = {
-    iconShowers,
-    iconTime,
-    iconAddress,
-    iconAnimal,
-    iconAround,
-    iconBadding,
-    iconBrazier,
-    iconBrend,
-    iconCampCategory,
-    iconCleans,
-    iconCustomerCall,
-    iconDate,
-    iconDown,
-    iconEdit,
-    iconElec,
-    iconFire,
-    iconFoods,
-    iconGo,
-    iconHeating,
-    iconHompage,
-    iconLog,
-    iconPhone,
-    iconPlays,
-    iconReel,
-    iconRegion,
-    iconRegist,
-    iconReservation,
-    iconSerch,
-    iconShower,
-    iconSink,
-    iconSmiles,
-    iconStrore,
-    iconSwimming,
-    iconSwimmings,
-    iconTableware,
-    iconTag,
-    iconTent,
-    iconToilet,
-    iconUp,
-    iconWifi,
-    iconBaths,
-    level1,
-    level2,
-    level3,
-    level4,
-    iconCart,
-    iconDelivery,
-    iconMyLike,
-    iconMyLog,
-    iconMyReview,
-    toggleTo,
-    btnUserModify,
-    toggleOpen,
-    toggleClose,
-    btnClose,
-    iconCheckActive,
-    iconCheckDefault,
-    iconMinus,
-    iconPlus,
-    iconClose,
-    userOut,
-    userEdit,
-    naverLogo,
-    kakaoLogo,
-    inputIconPw2,
-    inputIconPwCheck,
-    inputIconNick,
-    inputIconId,
-    inputIconEmail,
-    logoDefault,
-    iconDanger,
-    iconComplete,
-    iconCloseWhite,
+  iconShowers,
+  iconTime,
+  iconAddress,
+  iconAnimal,
+  iconAround,
+  iconBadding,
+  iconBrazier,
+  iconBrend,
+  iconCampCategory,
+  iconCleans,
+  iconCustomerCall,
+  iconDate,
+  iconDown,
+  iconEdit,
+  iconElec,
+  iconFire,
+  iconFoods,
+  iconGo,
+  iconHeating,
+  iconHompage,
+  iconLog,
+  iconPhone,
+  iconPlays,
+  iconReel,
+  iconRegion,
+  iconRegist,
+  iconReservation,
+  iconSerch,
+  iconShower,
+  iconSink,
+  iconSmiles,
+  iconStrore,
+  iconSwimming,
+  iconSwimmings,
+  iconTableware,
+  iconTag,
+  iconTent,
+  iconToilet,
+  iconUp,
+  iconWifi,
+  iconBaths,
+  level1,
+  level2,
+  level3,
+  level4,
+  iconCart,
+  iconDelivery,
+  iconMyLike,
+  iconMyLog,
+  iconMyReview,
+  toggleTo,
+  btnUserModify,
+  toggleOpen,
+  toggleClose,
+  btnClose,
+  iconCheckActive,
+  iconCheckDefault,
+  iconMinus,
+  iconPlus,
+  iconClose,
+  userOut,
+  userEdit,
+  naverLogo,
+  kakaoLogo,
+  inputIconPw2,
+  inputIconPwCheck,
+  inputIconNick,
+  inputIconId,
+  inputIconEmail,
+  logoDefault,
+  iconDanger,
+  iconComplete,
+  iconCloseWhite,
+  iconReviewComplete,
+  iconReviewWrite,
 };
 function Icon({ iconName, className, ...props }) {
-    const iconSrc = icons[iconName];
-    if (!iconSrc) {
-        console.error(`Icon '${iconName}' not found.`);
-        return null;
-    }
-    return (
-        <>
-            <img
-                src={iconSrc}
-                alt={iconName}
-                {...props}
-                className={`imgIcons ${className}`}
-            />
-        </>
-    );
+  const iconSrc = icons[iconName];
+  if (!iconSrc) {
+    console.error(`Icon '${iconName}' not found.`);
+    return null;
+  }
+  return (
+    <>
+      <img
+        src={iconSrc}
+        alt={iconName}
+        {...props}
+        className={`imgIcons ${className}`}
+      />
+    </>
+  );
 }
 
 export default Icon;

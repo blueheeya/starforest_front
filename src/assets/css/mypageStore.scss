@@ -21,19 +21,31 @@ $radiusDefault: 10px;
 $radiusSmall: 5px;
 
 // mypage_userOderCard-----------------------------------
+.userOrderListWrapTop {
+  background-color: $backColor;
+}
+.userOrderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 65px;
+}
 .userOrderBox {
   margin-bottom: 10px;
   .useOrderDateWrap {
     display: flex;
     justify-content: space-between;
-    padding: 10px 32px;
+    align-items: center;
+    padding: 15px 32px;
     margin-bottom: 3px;
     background-color: #fff;
-    font-weight: bold;
+    .userOrderDate {
+      font-size: $secondText;
+    }
   }
 }
 .userOrderTitle {
-  background-color: #fff;
+  background-color: #ffffff;
   width: 530px;
   height: 164px;
   .userOrderProduct {
@@ -218,6 +230,9 @@ $radiusSmall: 5px;
   }
 }
 // mypage_orderView------------------------------------------------
+.OrderViewContainerBox {
+  margin-top: 65px;
+}
 .OrderViewBox {
   .OrderViewInner {
     .OrderViewDateWrap {
@@ -259,6 +274,7 @@ $radiusSmall: 5px;
 }
 .OrderViewState2 {
   display: flex;
+  gap: 5px;
   .orderReviewWriteBtn {
     font-size: $secondText;
     font-weight: bold;
@@ -337,16 +353,19 @@ $radiusSmall: 5px;
     }
   }
 }
-
+//usercartlist
+.storeCart {
+  margin: 65px 0;
+}
 // userReviewModal*********************************
 .userReviewModalContainer {
   position: absolute;
-  top: 50%;
+  top: 61%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 100%; /* 부모 요소가 전체 화면을 덮도록 설정 */
-  height: 100%;
+  // height: 100%;
   // align-items: flex-end;
 }
 .userReviewModalContent {
