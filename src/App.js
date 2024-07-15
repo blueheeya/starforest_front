@@ -77,6 +77,10 @@ const showFooterPath = [
     "/diary/list",
     "/diary/write",
     "/diary/view",
+    "/user/store/order/view",
+    "/user/notice",
+    "/user/qna",
+    "/user/mypage/management",
 ];
 function LayoutType() {
     function getHeaderConfig(pathname) {
