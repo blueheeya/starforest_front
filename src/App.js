@@ -1,9 +1,9 @@
 import {
-    matchPath,
-    Outlet,
-    Route,
-    Routes,
-    useLocation,
+  matchPath,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -11,9 +11,9 @@ import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
-    HeaderType2,
-    HeaderType3,
-    HeaderType4,
+  HeaderType2,
+  HeaderType3,
+  HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
@@ -52,64 +52,70 @@ import UserMypageMent from "./page/User/UserMypageMent";
 import Style from "./Style";
 import CampPayFail from "./page/Camp/CampPayFail";
 import CampPayCancel from "./page/Camp/CampPayCancel";
+import Overlay from "./components/Store/Overlay";
+import PurchaseModal from "./components/Store/PurchaseModal";
+// import StoreOrderReview from "./page/User/StoreOrderReview";
+
 import PwFindAuth from "./page/Member/PwFindAuth";
 import PwFindChange from "./page/Member/PwFindChange";
 import PwChangeComplete from "./page/Member/PwChangeComplete";
 
+
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
 const showFooterPath = [
-    "/",
-    "/store/view",
-    "/user/mypage",
-    "/camp/list",
+  "/",
+  "/store/view",
+  "/user/mypage",
+  "/camp/list",
+  "/camp/reservation",
+  "/camp/pay",
+  "/store/pay",
+  "/diary/list",
+  "/diary/write",
+  "/diary/view",
+  "/user/store/order/view",
     "/user/notice",
     "/user/qna",
     "/user/mypage/management",
-    "/camp/reservation",
-    "/camp/pay",
-    "/store/pay",
-    "/diary/list",
-    "/diary/write",
-    "/diary/view",
 ];
 function LayoutType() {
-    function getHeaderConfig(pathname) {
-        for (const [path, config] of Object.entries(headerConfig)) {
-            if (matchPath(path, pathname)) {
-                return config;
-            }
-        }
-        return (
-            headerConfig["/"] || {
-                title: "홈",
-                component: HeaderType2,
-                titleStore: false,
-            }
-        ); // 기본 설정
+  function getHeaderConfig(pathname) {
+    for (const [path, config] of Object.entries(headerConfig)) {
+      if (matchPath(path, pathname)) {
+        return config;
+      }
     }
-    const location = useLocation();
-    const {
-        title = "홈",
-        component: HeaderComponent = HeaderType2,
-        titleStore = false,
-    } = getHeaderConfig(location.pathname) ?? {};
-
-    // const {
-    //     title,
-    //     component: HeaderComponent,
-    //     titleStore,
-    // } = headerConfig[location.pathname] || {
-    //     title: "캠핑장",
-    //     component: HeaderType2,
-    //     titleStore: false,
-    // };
-    const showMenu = showMenuPath.includes(location.pathname);
-    const showFooter = showFooterPath.includes(location.pathname);
-    const isHeaderType2 = HeaderComponent === HeaderType2;
-    const isHeaderType3 = HeaderComponent === HeaderType3;
-    const isHeaderType4 = HeaderComponent === HeaderType4;
     return (
+      headerConfig["/"] || {
+        title: "홈",
+        component: HeaderType2,
+        titleStore: false,
+      }
+    ); // 기본 설정
+  }
+  const location = useLocation();
+  const {
+    title = "홈",
+    component: HeaderComponent = HeaderType2,
+    titleStore = false,
+  } = getHeaderConfig(location.pathname) ?? {};
+
+  // const {
+  //     title,
+  //     component: HeaderComponent,
+  //     titleStore,
+  // } = headerConfig[location.pathname] || {
+  //     title: "캠핑장",
+  //     component: HeaderType2,
+  //     titleStore: false,
+  // };
+  const showMenu = showMenuPath.includes(location.pathname);
+  const showFooter = showFooterPath.includes(location.pathname);
+  const isHeaderType2 = HeaderComponent === HeaderType2;
+  const isHeaderType3 = HeaderComponent === HeaderType3;
+  const isHeaderType4 = HeaderComponent === HeaderType4;
+  return (
         <BackWrap>
             <Container>
                 <HeaderComponent titleStore={titleStore}>

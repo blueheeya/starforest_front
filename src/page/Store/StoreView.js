@@ -154,178 +154,180 @@ function StoreView() {
   };
 
   return (
-    <div className="storeViewWrap">
-      <div className="viewWrapInner">
+    <>
+      <div className="storeViewWrap">
         <PurchaseModal
           isOpen={isModalOpen}
           onClose={closeModal}
           productName={productview.productName}
           price={productview.price}
         />
-      </div>
+        <div className="productImageWrap">
+          <img
+            className="viewImg"
+            src={process.env.PUBLIC_URL + `/assets/images/${productview.image}`}
+            alt={productview.productName}
+          />
 
-      <div className="productImageWrap">
-        <img
-          className="viewImg"
-          src={process.env.PUBLIC_URL + `/assets/images/${productview.image}`}
-          alt={productview.productName}
-        />
+          <div className="productNameWrap">
+            <div className="nameWrap">
+              <p className="category">{productview.Category}</p>
+              <h1 className="productName">{productview.productName}</h1>
+            </div>
 
-        <div className="productNameWrap">
-          <div className="nameWrap">
-            <p className="category">{productview.Category}</p>
-            <h1 className="productName">{productview.productName}</h1>
+            <div className="brandWrap">
+              <Icon iconName="iconBrend" />
+              <p className="brand"> {productview.brand} </p>
+              <p className="brandName">{productview.brandName}</p>
+            </div>
           </div>
-
-          <div className="brandWrap">
+        </div>
+        <div className="productPriceWrap">
+          <div className="priceWrap">
+            {productview.price.toLocaleString()}원
+          </div>
+          <div className="saleWrap">
+            <p className="sale">{productview.sale}</p>
+            <p className="saleprice">{productview.saledPrice}</p>
+          </div>
+        </div>
+        <div className="productViewEtc">
+          <div className="pointWrap">
             <Icon iconName="iconBrend" />
-            <p className="brand"> {productview.brand} </p>
-            <p className="brandName">{productview.brandName}</p>
+            <p className="point">{productview.point}</p>
+            <p className="pointDetails">{productview.pointDetails}</p>
+          </div>
+          <div className="deliveryWrap">
+            <div className="iconDeliverySet">
+              <Icon iconName="iconBrend" />
+              <p className="delivery">{productview.delivery}</p>
+            </div>
+            <p className="deliveryDetails">{productview.deliveryDetails}</p>
           </div>
         </div>
-      </div>
-      <div className="productPriceWrap">
-        <div className="priceWrap">{productview.price.toLocaleString()}원</div>
-        <div className="saleWrap">
-          <p className="sale">{productview.sale}</p>
-          <p className="saleprice">{productview.saledPrice}</p>
-        </div>
-      </div>
-      <div className="productViewEtc">
-        <div className="pointWrap">
-          <Icon iconName="iconBrend" />
-          <p className="point">{productview.point}</p>
-          <p className="pointDetails">{productview.pointDetails}</p>
-        </div>
-        <div className="deliveryWrap">
-          <div className="iconDeliverySet">
-            <Icon iconName="iconBrend" />
-            <p className="delivery">{productview.delivery}</p>
-          </div>
-          <p className="deliveryDetails">{productview.deliveryDetails}</p>
-        </div>
-      </div>
-      {/* -------------------------------------------------------------------- */}
+        {/* -------------------------------------------------------------------- */}
 
-      <div className="buyWrap">
-        <div className="btnWrap">
-          <button
-            className="buyBtn"
-            onClick={() => {
-              openModal();
-            }}
-          >
-            구매하기
-          </button>
+        <div className="buyWrap">
+          <div className="btnWrap">
+            <button
+              className="buyBtn"
+              onClick={() => {
+                openModal();
+              }}
+            >
+              구매하기
+            </button>
+          </div>
         </div>
-      </div>
-      {/* <PurchaseModal
+        {/* <PurchaseModal
         isOpen={isModalOpen}
         onClose={closeModal}
         productName={productview.productName}
         price={productview.price}
       /> */}
 
-      <div>
-        <div className="tabMenuWrap">
-          <ul className="tabList">
-            {tabBar.map((tab) => (
-              <li
-                key={tab.id}
-                className={activeTab === tab.id ? "on" : ""}
-                onClick={() => changeTab(tab.id)}
-              >
-                {tab.name}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div>
+          <div className="tabMenuWrap">
+            <ul className="tabList">
+              {tabBar.map((tab) => (
+                <li
+                  key={tab.id}
+                  className={activeTab === tab.id ? "on" : ""}
+                  onClick={() => changeTab(tab.id)}
+                >
+                  {tab.name}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="tabContent">{renderTabContent()}</div>
+          <div className="tabContent">{renderTabContent()}</div>
+        </div>
+        <div className="toggle">
+          <StoreToggle className="toggleWrap" title="교환ㆍ반품 안내">
+            <div className="togglecontentWrap">
+              <p className="togglecontent">교환ㆍ반품비</p>
+              <p className="productReference">편도 4,000원</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">색상</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="productReference">
+                *[마이 &gt 내쇼핑 &gt 주문내역]에서 신청 가능합니다.
+              </p>
+              <p className="productReference">
+                *최초 무료 배송 상품의 경우 반품 시 왕복 배송비가 부과됩니다
+              </p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">교환ㆍ반품 배송지</p>
+              <p className="productReference">
+                [08503] 서울 금천구 가산디지털2로 144 현대테라타워{" "}
+              </p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">교환ㆍ반품 신청 가능 기간</p>
+              <p className="productReference">
+                -구매자 단순 변심은 상품 수령후 7일 이내 (구매자 반품 배송비
+                부담)
+              </p>
+              <p className="productReference">
+                -표시ㆍ광고와 상이, 계약 내용과 다르게 이행된 경우 상품 수령 후{" "}
+                <br />
+                3개월 이내 혹은 표시ㆍ광고와 다른 사실을 안 날로부터 30일 이내{" "}
+                <br />
+                (판매자 반품 배송비 부담) 둘 중 하나 경과시 반품ㆍ교환 불가
+              </p>
+            </div>
+          </StoreToggle>
+        </div>
+        <div className="toggle">
+          <StoreToggle className="toggleWrap" title="상품 정보 고시">
+            <div className="togglecontentWrap">
+              <p className="togglecontent">제품 소재</p>
+              <p className="productReference">상품상세 참초</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">색상</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">치수</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">제품구성</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">제조자</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">제조국</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">세탁방법 및 취급시 주의사항</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent">품질보증기준</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+            <div className="togglecontentWrap">
+              <p className="togglecontent"> A/S 책임자와 전화번호</p>
+              <p className="productReference">상품상세 참조</p>
+            </div>
+          </StoreToggle>
+        </div>
+        <div className="storeTop">
+          <StoreTopTen />
+        </div>
       </div>
-      <div className="toggle">
-        <StoreToggle className="toggleWrap" title="교환ㆍ반품 안내">
-          <div className="togglecontentWrap">
-            <p className="togglecontent">교환ㆍ반품비</p>
-            <p className="productReference">편도 4,000원</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">색상</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="productReference">
-              *[마이 > 내쇼핑 > 주문내역]에서 신청 가능합니다.
-            </p>
-            <p className="productReference">
-              *최초 무료 배송 상품의 경우 반품 시 왕복 배송비가 부과됩니다
-            </p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">교환ㆍ반품 배송지</p>
-            <p className="productReference">
-              [08503] 서울 금천구 가산디지털2로 144 현대테라타워{" "}
-            </p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">교환ㆍ반품 신청 가능 기간</p>
-            <p className="productReference">
-              -구매자 단순 변심은 상품 수령후 7일 이내 (구매자 반품 배송비 부담)
-            </p>
-            <p className="productReference">
-              -표시ㆍ광고와 상이, 계약 내용과 다르게 이행된 경우 상품 수령 후{" "}
-              <br />
-              3개월 이내 혹은 표시ㆍ광고와 다른 사실을 안 날로부터 30일 이내{" "}
-              <br />
-              (판매자 반품 배송비 부담) 둘 중 하나 경과시 반품ㆍ교환 불가
-            </p>
-          </div>
-        </StoreToggle>
-      </div>
-      <div className="toggle">
-        <StoreToggle className="toggleWrap" title="상품 정보 고시">
-          <div className="togglecontentWrap">
-            <p className="togglecontent">제품 소재</p>
-            <p className="productReference">상품상세 참초</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">색상</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">치수</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">제품구성</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">제조자</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">제조국</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">세탁방법 및 취급시 주의사항</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent">품질보증기준</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-          <div className="togglecontentWrap">
-            <p className="togglecontent"> A/S 책임자와 전화번호</p>
-            <p className="productReference">상품상세 참조</p>
-          </div>
-        </StoreToggle>
-      </div>
-      <div className="storeTop">
-        <StoreTopTen />
-      </div>
-    </div>
+    </>
   );
 }
 
