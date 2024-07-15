@@ -1,7 +1,5 @@
 @charset "utf-8";
-
-@import "./mypageStore.scss";
-
+@import "../../assets/css/mypageStore.scss";
 /* colors */
 $PrimaryColor: #3f71d1;
 $PrimaryOff: #92b1ed;
@@ -46,18 +44,18 @@ $radiusSmall: 5px;
       object-fit: cover;
     }
   }
-}
 
-.textWrap {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 10px;
+  .textWrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
 
-  .nickname {
-    font-size: $defaultText;
-    font-weight: bold;
-    color: $textTitle;
+    .nickname {
+      font-size: $defaultText;
+      font-weight: bold;
+      color: $textTitle;
+    }
   }
 }
 
@@ -83,26 +81,25 @@ $radiusSmall: 5px;
       object-fit: cover;
     }
   }
-}
 
-.textWrap {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  gap: 10px;
+  .textWrap {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 10px;
 
-  .nickname {
-    font-size: $defaultText;
-    font-weight: bold;
-    color: $textTitle;
+    .nickname {
+      font-size: $defaultText;
+      font-weight: bold;
+      color: $textTitle;
+    }
+
+    .date {
+      font-size: $therdText;
+      color: $textSecondary;
+    }
   }
-
-  .date {
-    font-size: $therdText;
-    color: $textSecondary;
-  }
 }
-
 /*mypage Tab*/
 .myTabWrap {
   display: flex;
@@ -116,7 +113,6 @@ $radiusSmall: 5px;
     text-align: center;
     border-bottom: solid 3px $inputColor;
     transition: 0.3s;
-    cursor: pointer;
   }
   div.active {
     color: $textDefault;
@@ -149,111 +145,9 @@ $radiusSmall: 5px;
       text-align: center;
       font-size: $defaultText;
       color: $textSecondary;
-      cursor: pointer;
     }
   }
 }
-// mypage_userOderCard-----------------------------------
-.userOrderBox {
-  margin-bottom: 10px;
-  .useOrderDateWrap {
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    margin-bottom: 20px;
-    padding: 0 32px;
-    div {
-      width: 100%;
-      color: $textSecondary;
-      text-align: center;
-      border-bottom: solid 3px $inputColor;
-      transition: 0.3s;
-    }
-
-    .userOrdercontentBrand {
-      font-size: $titleText;
-      color: $textTitle;
-      font-weight: bold;
-    }
-  }
-  .userOrderStateBox {
-    border: 1px solid #31b11c;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 55px;
-    height: 24px;
-    font-size: $therdText;
-    color: #31b11c;
-  }
-}
-.userOrderinnerMainContent {
-  width: 326px;
-  height: 45px;
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-}
-.userOrderPriceWrap {
-  width: 530px;
-  height: 29px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 32px;
-  gap: 10px;
-  .userOrderNum {
-    display: flex;
-    gap: 5px;
-  }
-  .userOrderPrice {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    .userOrderpriceSpan {
-      text-decoration: line-through;
-      color: $textSecondary;
-      font-size: $defaultText;
-      font-weight: bold;
-    }
-
-    .userOrderpriceMain {
-      font-size: $defaultTitle;
-      font-weight: bold;
-    }
-  }
-}
-.userOrderTotalWrap {
-  background-color: #fff;
-  padding: 10px 32px;
-  // margin-top: 3px;
-  .userOrderTotalcontent {
-    display: flex;
-    justify-content: space-between;
-    .userOrderTotalTitle {
-      font-size: $titleText;
-      font-weight: bold;
-    }
-    .userOrderPrice {
-      font-size: $titleText;
-      font-weight: bold;
-      color: #f24e1e;
-    }
-  }
-}
-// mypage_orderlist---------------------------------------
-
-.OrderListMove {
-}
-.listMoveBtn {
-  color: $PrimaryColor;
-  font-weight: bold;
-  .iconGo {
-    color: $PrimaryColor;
-  }
-}
-
 /*membership*/
 .membershipWrap {
   padding: 20px 32px;
@@ -282,6 +176,7 @@ $radiusSmall: 5px;
         border: solid 1px #144287;
         border-radius: $radiusDefault;
         background: #144287;
+        transition: 0.3s;
       }
       div:nth-child(1) {
         height: 100px;
@@ -383,289 +278,6 @@ $radiusSmall: 5px;
       font-size: $secondText;
     }
   }
-// mypage_orderView------------------------------------------------
-.OrderViewBox {
-  .OrderViewInner {
-    .OrderViewDateWrap {
-      background-color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      padding: 10px 32px;
-      margin-bottom: 3px;
-      .OrderViewNum {
-        color: $PrimaryColor;
-      }
-    }
-  }
-}
-.OrderViewTitle {
-  background-color: #fff;
-  margin-bottom: 3px;
-}
-.OrderViewProductWrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: bold;
-  padding: 10px 32px;
-}
-.OrderViewState1 {
-  color: $textTitle;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  .orderReviewCompleteBtn {
-    font-size: $secondText;
-    font-weight: bold;
-    color: $textSecondary;
-  }
-}
-.OrderViewState2 {
-  display: flex;
-  .orderReviewWriteBtn {
-    font-size: $secondText;
-    font-weight: bold;
-    color: $textDefault;
-  }
-}
-
-.OrderViewProduct {
-  padding: 10px 0px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 32px;
-}
-.OrderViewinnerMain {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #fff;
-  .OrderViewinnerMainImg {
-    width: 65px;
-    height: 65px;
-    border-radius: $radiusSmall;
-  }
-}
-.OrderViewcontentName {
-  font-size: $therdText;
-  color: $textSecondary;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.OrderViewcontentBrand {
-  font-size: $secondText;
-  color: $textTitle;
-  font-weight: bold;
-}
-.OrderViewStateBox {
-  padding: 2px 5px;
-  font-size: $therdText;
-  border: 1px solid #31b11c;
-  border-radius: 3px;
-  color: #31b11c;
-}
-.OrderViewPriceWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 32px;
-  margin-bottom: 5px;
-  .OrderViewNum {
-    display: flex;
-  }
-  .OrderViewPrice {
-    display: flex;
-  }
-}
-.OrderViewTotalcontent {
-  display: flex;
-  padding: 10px 32px;
-}
-.OrderViewTotalWrap {
-  background-color: #fff;
-  .OrderViewTotalcontent {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .OrderViewTotalTitle {
-      font-size: $titleText;
-      font-weight: bold;
-      color: $textDefault;
-    }
-    .OrderViewPrice {
-      font-size: $titleText;
-      font-weight: bold;
-      color: #f24e1e;
-    }
-  }
-}
-
-// userReviewModal*********************************
-.userReviewModalContainer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  width: 100%; /* 부모 요소가 전체 화면을 덮도록 설정 */
-  height: 100%;
-  // align-items: flex-end;
-}
-.userReviewModalContent {
-  background: #fff;
-  position: relative;
-  padding: 20px;
-  border-radius: 20px 20px 0 0; /* 모서리 둥글게 */
-  width: 100%;
-  bottom: 0;
-  z-index: 1000;
-  max-width: 530px; /* 최대 너비 설정 */
-  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
-  .userReviewModalClose {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-  }
-}
-.userReviewModalProduct {
-  display: flex;
-  height: 65px;
-  align-items: center;
-  gap: 10px;
-  .userReviewModalProductInner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 5px;
-    justify-content: center;
-  }
-  .userReviewProductImg {
-    width: 65px;
-    height: 65px;
-    border-radius: $radiusSmall;
-  }
-}
-.userReviewModalInputWrap {
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0px;
-  gap: 10px;
-}
-.userReviewModalInput {
-  border: 1px solid $inputColor;
-  width: 100%;
-  padding: 15px 10px;
-  border-radius: 10px;
-  font-size: $secondText;
-  font-weight: bold;
-  color: $textSecondary;
-  margin-top: 10px;
-}
-.userReviewModalInfoBox {
-  height: 31px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.userOrderNickname {
-  font-size: $btnText;
-  font-weight: bold;
-}
-.userReviewBtnWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  .userReviewBtn1 {
-    width: 223px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $PrimaryOff;
-    border-radius: 10px;
-    .submitBtn1 {
-      color: #ffffff;
-      font-size: $btnText;
-      font-weight: bold;
-    }
-  }
-  .userReviewBtn2 {
-    width: 223px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid $inputColor;
-    border-radius: 10px;
-    .submitBtn2 {
-      color: $textDefault;
-      font-size: $btnText;
-      font-weight: bold;
-    }
-  }
-}
-.error {
-  color: red;
-  font-size: $therdText;
-  padding-left: 10px;
-}
-// mypage_reviewlist-------------------------------
-.userReviewListProductWrap {
-  display: flex;
-  padding: 10px 32px;
-  border: 1px solid #000;
-  gap: 10px;
-  .userReviewListProductImg {
-    width: 65px;
-    border-radius: 5px;
-  }
-  .userReviewListProductNames {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    .userReviewListProductBname {
-    }
-    .userReviewListProductPname {
-    }
-  }
-}
-.userReviewListUserInFo {
-  border: 1px solid #000;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  .userReviewListimg {
-    width: 80px;
-    height: 80px;
-  }
-}
-.userReviewItem {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 20px 32px 20px 32px;
-  background-color: #fff;
-  border: 1px solid #000;
-
-  .userReviewImg {
-    width: 80px;
-    height: 80px;
-    border-radius: 50px;
-  }
-}
-.userReviewListtextWrap {
-  border: 1px solid #000;
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
 /*customer*/
 .customerWrap {
@@ -748,40 +360,39 @@ $radiusSmall: 5px;
   }
 }
 /*customer*/
-.customerWrap {
-  .customerToggle {
-    padding-top: 10px;
-    .toggleTitle {
+.customerToggle {
+  padding-top: 10px;
+  .toggleTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 32px;
+    border-top: solid 1px $inputColor;
+    border-bottom: solid 1px $inputColor;
+    ul {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 32px;
-      border-top: solid 1px $inputColor;
-      border-bottom: solid 1px $inputColor;
-      ul {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        li:nth-child(1) {
-          color: $textTitle;
-          font-size: $secondText;
-          font-weight: bold;
-        }
-        li:nth-child(2) {
-          color: $textSecondary;
-          font-size: $therdText;
-        }
+      flex-direction: column;
+      gap: 10px;
+      li:nth-child(1) {
+        color: $textTitle;
+        font-size: $secondText;
+        font-weight: bold;
+      }
+      li:nth-child(2) {
+        color: $textSecondary;
+        font-size: $therdText;
       }
     }
-    .toggleContent {
-      padding: 20px 32px;
-      font-size: $secondText;
-      line-height: 1.825em;
-      border-bottom: solid 1px $inputColor;
-    }
   }
-  @media screen and (max-width: 1024px) {
+  .toggleContent {
+    padding: 20px 32px;
+    font-size: $secondText;
+    line-height: 1.825em;
+    border-bottom: solid 1px $inputColor;
   }
+}
+@media screen and (max-width: 1024px) {
+}
 
   @media screen and (max-width: 768px) {
   }
