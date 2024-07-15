@@ -1,9 +1,9 @@
 import {
-  matchPath,
-  Outlet,
-  Route,
-  Routes,
-  useLocation,
+    matchPath,
+    Outlet,
+    Route,
+    Routes,
+    useLocation,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -11,9 +11,9 @@ import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
-  HeaderType2,
-  HeaderType3,
-  HeaderType4,
+    HeaderType2,
+    HeaderType3,
+    HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
@@ -65,31 +65,31 @@ import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
 import ModalContext from "./components/Modal/ModalContext";
 
-
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
 const showFooterPath = [
-  "/",
-  "/store/view",
-  "/user/mypage",
-  "/camp/list",
-  "/camp/reservation",
-  "/camp/pay",
-  "/store/pay",
-  "/diary/list",
-  "/diary/write",
-  "/diary/view",
-  "/user/store/order/view",
+    "/",
+    "/store/view",
+    "/user/mypage",
+    "/camp/list",
+    "/camp/reservation",
+    "/camp/pay",
+    "/store/pay",
+    "/diary/list",
+    "/diary/write",
+    "/diary/view",
+    "/user/store/order/view",
     "/user/notice",
     "/user/qna",
     "/user/mypage/management",
 ];
 function LayoutType() {
-  function getHeaderConfig(pathname) {
-    for (const [path, config] of Object.entries(headerConfig)) {
-      if (matchPath(path, pathname)) {
-        return config;
-      }
+    function getHeaderConfig(pathname) {
+        for (const [path, config] of Object.entries(headerConfig)) {
+            if (matchPath(path, pathname)) {
+                return config;
+            }
+        }
     }
     const location = useLocation();
     const {
