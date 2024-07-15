@@ -53,7 +53,7 @@ function HeaderType2({ children, className, titleStore, ...props }) {
         </>
     );
 }
-function HeaderType3({ className }) {
+function HeaderType3({ className, modalOpen }) {
     const navigator = useNavigate();
     const onBackClick = () => {
         navigator(-1);
@@ -86,6 +86,8 @@ function HeaderType3({ className }) {
                         iconName="iconRegion"
                         className="searchInput"
                         placeholder=""
+                        isLink={true}
+                        isOnclick={() => modalOpen(2)}
                     ></Input>
                     <select>
                         <option value="">전체</option>

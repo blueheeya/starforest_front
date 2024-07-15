@@ -817,11 +817,13 @@ button {
     color: $textSecondary;
     border: solid 1px $inputColor;
     border-radius: $radiusSmall;
+    background: #ffffff;
     transition: 0.3s;
 }
 .btnSmallLine:hover {
     color: $PrimaryColor;
     border: solid 1px $PrimaryColor;
+    background: #ffffff;
 }
 /* Layout margin & padding */
 .cntMarginTop {

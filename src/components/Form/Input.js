@@ -10,14 +10,16 @@ function Input({
     onChange,
     placeholder,
     type,
-    linkTo,
+    isLink,
+    isOnclick,
 }) {
     return (
         <div className={`${className}`}>
             {iconName && (
-                <Link to={linkTo}>
-                    <Icon iconName={iconName} />
-                </Link>
+                <Icon
+                    iconName={iconName}
+                    onClick={isOnclick ? isOnclick : undefined}
+                />
             )}
             <input
                 type={type}

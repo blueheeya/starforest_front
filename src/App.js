@@ -55,8 +55,11 @@ import CampPayCancel from "./page/Camp/CampPayCancel";
 import PwFindAuth from "./page/Member/PwFindAuth";
 import PwFindChange from "./page/Member/PwFindChange";
 import PwChangeComplete from "./page/Member/PwChangeComplete";
-import Modal from "./components/Modal/Modal";
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import ModalResions from "./components/Modal/ModalResions";
+import ModalReview from "./components/Modal/ModalReview";
+import ModalStore from "./components/Modal/ModalStore";
+import ModalContext from "./components/Modal/ModalContext";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -104,10 +107,10 @@ function LayoutType() {
     const isHeaderType3 = HeaderComponent === HeaderType3;
     const isHeaderType4 = HeaderComponent === HeaderType4;
 
-    //모달
     const [modalNum, setModalNum] = useState(0);
-    const [modalView, setModalView] = useState(true);
-    const modalData = [<Modal modalOpen={modalOpen} />];
+    const [modalView, setModalView] = useState(false);
+    const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
+
     function modalOpen(idx) {
         setModalView(true);
         setModalNum(idx);
@@ -116,8 +119,9 @@ function LayoutType() {
     function modalClose() {
         setModalView(false);
     }
+
     useEffect(() => {
-        var containerWrapElement = document.querySelector(".containerWrap");
+        const containerWrapElement = document.querySelector(".containerWrap");
 
         if (modalView) {
             containerWrapElement.style.overflow = "hidden";
@@ -125,37 +129,45 @@ function LayoutType() {
             containerWrapElement.style.overflow = "auto";
         }
 
-        // 컴포넌트가 언마운트될 때 클래스를 제거합니다.
         return () => {
             containerWrapElement.style.overflow = "auto";
         };
     }, [modalView]);
     return (
-        <BackWrap>
-            <Container>
-                {modalView && (
-                    <Modal
-                        onClick={modalClose}
-                        viewlistData={modalData}
-                        modalNum={modalNum}
-                    />
-                )}
-                <HeaderComponent titleStore={titleStore}>
-                    {title}
-                </HeaderComponent>
-                <ContentWrap
-                    className={` ${
-                        isHeaderType3 || isHeaderType4 ? "cntSearchView" : ""
-                    } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
-                >
-                    <Outlet />
-                </ContentWrap>
-                {showFooter && (
-                    <Footer className={`${showMenu ? "footerBottom" : ""}`} />
-                )}
-                {showMenu && <Menu />}
-            </Container>
-        </BackWrap>
+        <ModalContext.Provider value={{ modalOpen, modalClose }}>
+            <BackWrap>
+                <Container>
+                    {modalView && modalData[modalNum] && (
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                            })}
+                        </div>
+                    )}
+                    <HeaderComponent
+                        titleStore={titleStore}
+                        modalOpen={modalOpen}
+                    >
+                        {title}
+                    </HeaderComponent>
+                    <ContentWrap
+                        className={` ${
+                            isHeaderType3 || isHeaderType4
+                                ? "cntSearchView"
+                                : ""
+                        } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+                    >
+                        <Outlet />
+                    </ContentWrap>
+                    {showFooter && (
+                        <Footer
+                            className={`${showMenu ? "footerBottom" : ""}`}
+                        />
+                    )}
+                    {showMenu && <Menu />}
+                </Container>
+            </BackWrap>
+        </ModalContext.Provider>
     );
 }
 function App() {
