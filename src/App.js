@@ -59,6 +59,11 @@ import PurchaseModal from "./components/Store/PurchaseModal";
 import PwFindAuth from "./page/Member/PwFindAuth";
 import PwFindChange from "./page/Member/PwFindChange";
 import PwChangeComplete from "./page/Member/PwChangeComplete";
+import React, { useContext, useEffect, useState } from "react";
+import ModalResions from "./components/Modal/ModalResions";
+import ModalReview from "./components/Modal/ModalReview";
+import ModalStore from "./components/Modal/ModalStore";
+import ModalContext from "./components/Modal/ModalContext";
 
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
@@ -86,54 +91,81 @@ function LayoutType() {
         return config;
       }
     }
-    return (
-      headerConfig["/"] || {
-        title: "홈",
-        component: HeaderType2,
-        titleStore: false,
-      }
-    ); // 기본 설정
-  }
-  const location = useLocation();
-  const {
-    title = "홈",
-    component: HeaderComponent = HeaderType2,
-    titleStore = false,
-  } = getHeaderConfig(location.pathname) ?? {};
+    const location = useLocation();
+    const {
+        title = "홈",
+        component: HeaderComponent = HeaderType2,
+        titleStore = false,
+    } = getHeaderConfig(location.pathname) ?? {};
 
-  // const {
-  //     title,
-  //     component: HeaderComponent,
-  //     titleStore,
-  // } = headerConfig[location.pathname] || {
-  //     title: "캠핑장",
-  //     component: HeaderType2,
-  //     titleStore: false,
-  // };
-  const showMenu = showMenuPath.includes(location.pathname);
-  const showFooter = showFooterPath.includes(location.pathname);
-  const isHeaderType2 = HeaderComponent === HeaderType2;
-  const isHeaderType3 = HeaderComponent === HeaderType3;
-  const isHeaderType4 = HeaderComponent === HeaderType4;
-  return (
-        <BackWrap>
-            <Container>
-                <HeaderComponent titleStore={titleStore}>
-                    {title}
-                </HeaderComponent>
-                <ContentWrap
-                    className={` ${
-                        isHeaderType3 || isHeaderType4 ? "cntSearchView" : ""
-                    } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
-                >
-                    <Outlet />
-                </ContentWrap>
-                {showFooter && (
-                    <Footer className={`${showMenu ? "footerBottom" : ""}`} />
-                )}
-                {showMenu && <Menu />}
-            </Container>
-        </BackWrap>
+    // 메뉴
+    const showMenu = showMenuPath.includes(location.pathname);
+    const showFooter = showFooterPath.includes(location.pathname);
+    const isHeaderType2 = HeaderComponent === HeaderType2;
+    const isHeaderType3 = HeaderComponent === HeaderType3;
+    const isHeaderType4 = HeaderComponent === HeaderType4;
+
+    const [modalNum, setModalNum] = useState(0);
+    const [modalView, setModalView] = useState(false);
+    const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
+
+    function modalOpen(idx) {
+        setModalView(true);
+        setModalNum(idx);
+    }
+
+    function modalClose() {
+        setModalView(false);
+    }
+
+    useEffect(() => {
+        const containerWrapElement = document.querySelector(".containerWrap");
+
+        if (modalView) {
+            containerWrapElement.style.overflow = "hidden";
+        } else {
+            containerWrapElement.style.overflow = "auto";
+        }
+
+        return () => {
+            containerWrapElement.style.overflow = "auto";
+        };
+    }, [modalView]);
+    return (
+        <ModalContext.Provider value={{ modalOpen, modalClose }}>
+            <BackWrap>
+                <Container>
+                    {modalView && modalData[modalNum] && (
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                            })}
+                        </div>
+                    )}
+                    <HeaderComponent
+                        titleStore={titleStore}
+                        modalOpen={modalOpen}
+                    >
+                        {title}
+                    </HeaderComponent>
+                    <ContentWrap
+                        className={` ${
+                            isHeaderType3 || isHeaderType4
+                                ? "cntSearchView"
+                                : ""
+                        } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+                    >
+                        <Outlet />
+                    </ContentWrap>
+                    {showFooter && (
+                        <Footer
+                            className={`${showMenu ? "footerBottom" : ""}`}
+                        />
+                    )}
+                    {showMenu && <Menu />}
+                </Container>
+            </BackWrap>
+        </ModalContext.Provider>
     );
 }
 function App() {
