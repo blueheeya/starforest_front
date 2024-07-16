@@ -359,8 +359,9 @@ $radiusSmall: 5px;
 }
 // userReviewModal*********************************
 .userReviewModalContainer {
+  border: 1px solid #000;
   position: absolute;
-  top: 61%;
+  top: 0px;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
