@@ -76,9 +76,6 @@ import iconCloseWhite from "../../assets/images/iconCloseWhite.png";
 import iconReviewComplete from "../../assets/images/iconReviewComplete.svg";
 import iconReviewWrite from "../../assets/images/iconReviewWrite.svg";
 
-import iconReviewComplete from "../../assets/images/iconReviewComplete.svg";
-import iconReviewWrite from "../../assets/images/iconReviewWrite.svg";
-
 const icons = {
   iconShowers,
   iconTime,
