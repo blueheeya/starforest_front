@@ -111,6 +111,7 @@ $radiusSmall: 5px;
         color: $textSecondary;
         text-align: center;
         border-bottom: solid 3px $inputColor;
+        transition: 0.3s;
     }
     div.active {
         color: $textDefault;
@@ -174,6 +175,7 @@ $radiusSmall: 5px;
                 border: solid 1px #144287;
                 border-radius: $radiusDefault;
                 background: #144287;
+                transition: 0.3s;
             }
             div:nth-child(1) {
                 height: 100px;
@@ -214,19 +216,55 @@ $radiusSmall: 5px;
 /*userMypageMent*/
 .userMypageMent {
     width: 100%;
-    height: 100%;
-    padding: 20px 32px;
-    background: #ffffff;
+    padding-top: 10px;
     .userProfile {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 50px 32px 0px 32px;
+        background: #ffffff;
+        .imgWrap {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: url("../images/avatar.png") no-repeat;
+            background-size: cover;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .btnModify {
+            padding: 5px 10px;
+            color: $textSecondary;
+            font-size: $therdText;
+            border: solid 1px $inputColor;
+            border-radius: $radiusSmall;
+            transition: 0.3s;
+        }
+        .btnModify:hover {
+            color: $textDefault;
+            border: solid 1px $textDefault;
+        }
+    }
+    .userBtnWrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 20px 32px 50px 32px;
+        background: #ffffff;
     }
 }
 .userInfoWrap {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 20px 0;
+    padding: 30px 32px;
+    background: #ffffff;
     .userInfoBox {
         display: flex;
         justify-content: space-between;
@@ -234,7 +272,83 @@ $radiusSmall: 5px;
         gap: 20px;
         span {
             width: 130px;
+            color: $textTitle;
+            font-weight: bold;
             font-size: $secondText;
+        }
+    }
+}
+/* mycampReser*/
+.myCampNoteWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: calc(100% - 64px);
+    margin: 10px auto 10px auto;
+    padding: 20px;
+    border: solid 1px $inputColor;
+    border-radius: $radiusDefault;
+    background: #ffffff;
+    h4 {
+        font-size: $secondText;
+    }
+    p {
+        color: $textSecondary;
+        font-size: $therdText;
+    }
+}
+.mycampReserWrap {
+    margin-bottom: 10px;
+    padding: 10px 32px;
+    background: #ffffff;
+    .myCampDate {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        font-size: $therdText;
+        span:nth-child(1) {
+            color: $textDefault;
+            font-weight: bold;
+        }
+        span:nth-child(2) {
+            color: $textSecondary;
+        }
+    }
+    .myCampInfo {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        .myCampImg {
+            display: flex;
+            width: 160px;
+            height: 160px;
+            font-size: 0;
+            border-radius: $radiusDefault;
+            background: url("../images/imgdefault.png") no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .myCampInfoText {
+            display: flex;
+            flex: auto;
+            flex-direction: column;
+            gap: 20px;
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                li:nth-child(1) {
+                    font-size: $therdText;
+                }
+                li:nth-child(2) {
+                    color: $textTitle;
+                    font-size: $defaultText;
+                    font-weight: bold;
+                }
+                li:nth-child(3) {
+                    font-size: $therdText;
+                }
+            }
         }
     }
 }

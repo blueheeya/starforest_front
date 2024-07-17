@@ -6,9 +6,9 @@ import "../../assets/css/storeStyle.scss";
 
 const storeCategory = [
   { name: "전체", StoreIcon: "전체", link: "/store/list" },
-  { name: "캠핑텐트", StoreIcon: "캠핑텐트", link: "/store/list" },
-  { name: "캠핑푸드", StoreIcon: "캠핑푸드", link: "/store/list" },
-  { name: "캠핑가구", StoreIcon: "캠핑가구", link: "/store/list" },
+  { name: "텐트", StoreIcon: "캠핑 텐트", link: "/store/list" },
+  { name: "푸드", StoreIcon: "캠핑 푸드", link: "/store/list" },
+  { name: "가구", StoreIcon: "캠핑 가구", link: "/store/list" },
 ];
 
 const products = [
