@@ -2,6 +2,8 @@ import React from "react";
 import diary_camp_img from "../../assets/images/diary_camp_img.svg";
 import Icon from "../../components/Icon/Icon";
 import UserTags from "../../components/Diary/UserTags";
+import CampSelectCard from "../../components/Camp/CampSelectCard";
+import UserCard from "../../components/User/UserCard";
 
 function DiaryView() {
   return (
@@ -11,15 +13,18 @@ function DiaryView() {
         backgroundColor: "#ffffff",
         margin: "0 auto",
         height: "auto",
-        padding: "32px",
-        borderTop: "1px solid #dcdcdc",
+        padding: "20px 32px 32px 32px",
       }}
     >
       <div className="diary-Wrap">
         {/* 유저 정보 */}
-        <div className="diary-mb">유저</div>
+        <div className="diary-mb" style={{ marginBottom: "10px" }}>
+          <UserCard userMyCard={false} />
+        </div>
         {/* 캠핑장 간략정보 */}
-        <div className="diary-mb">캠핑장 간략 정보</div>
+        <div className="diary-mb">
+          <CampSelectCard />
+        </div>
 
         {/* 태그 1 */}
         {/* <UserTags /> */}
@@ -81,14 +86,14 @@ function DiaryView() {
 
         {/* 캠핑 이미지  */}
         <div
-          // className="diaryView-imgWrap"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            gap: "20px",
-          }}
+          className="diaryView-imgWrap"
+          // style={{
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          //   flexDirection: "column",
+          //   gap: "20px",
+          // }}
         >
           <img src={diary_camp_img} alt="캠핑 이미지" />
           <img src={diary_camp_img} alt="" />
