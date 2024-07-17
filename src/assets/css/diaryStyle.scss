@@ -27,20 +27,20 @@ $radiusSmall: 5px;
 }
 
 .diary-bg {
-  background-color: $backColor;
-  margin: 0 auto;
-  height: auto;
-  padding: 10px 32px 5px 32px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // flex-direction: column;
+    background-color: $backColor;
+    margin: 0 auto;
+    height: auto;
+    padding: 10px 32px 5px 32px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
 }
 .diaryList-bg {
-  background-color: $backColor;
-  margin: 0 auto;
-  height: auto;
-  // padding: 32px;
+    background-color: $backColor;
+    margin: 0 auto;
+    height: auto;
+    // padding: 32px;
 }
 .diary-Wrap {
     gap: 10px;
@@ -58,7 +58,7 @@ $radiusSmall: 5px;
     border-radius: $radiusDefault;
 }
 .diaryList-btnWrap {
-  padding: 20px 32px 0 32px;
+    padding: 20px 32px 0 32px;
 }
 .editBtnWrap {
     display: flex;
@@ -91,21 +91,16 @@ $radiusSmall: 5px;
     // background-color: orange;
     // height: 400px;
     margin: 0 auto;
-    margin-bottom: 10px;
-    border: 1px solid $inputColor;
-    border-left: none;
-    border-right: none;
-    // border: 1px solid $inputColor;
-    // border-radius: $radiusDefault;
-    padding: 5px 10px;
-  }
     // padding: 32px;
     .diaryCard {
         background-color: #ffffff;
         margin: 0 auto;
         margin-bottom: 10px;
         border: 1px solid $inputColor;
-        border-radius: $radiusDefault;
+        border-left: none;
+        border-right: none;
+        // border: 1px solid $inputColor;
+        // border-radius: $radiusDefault;
         padding: 5px 10px;
     }
 }
@@ -156,80 +151,80 @@ $radiusSmall: 5px;
     background-color: #ffffff;
 }
 .uploaded-images {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 10px;
-  border: 1px solid $inputColor;
-  border-radius: $radiusDefault;
-  background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $inputColor;
+    border-radius: $radiusDefault;
+    background-color: #ffffff;
 }
 .image-item {
-  position: relative;
-  width: calc(33.33% - 7px);
-  aspect-ratio: 1 /1;
-  border-radius: $radiusDefault;
-  overflow: hidden;
+    position: relative;
+    width: calc(33.33% - 7px);
+    aspect-ratio: 1 /1;
+    border-radius: $radiusDefault;
+    overflow: hidden;
 }
 .image-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: $radiusDefault;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $radiusDefault;
 }
 .remove-image {
-  position: absolute;
-  top: 5px;
-  right: 45px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 45px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 
-  img {
-    width: 12px;
-    height: 12px;
-  }
+    img {
+        width: 12px;
+        height: 12px;
+    }
 }
 // 이미지 개수에 따른 레이아웃 조정
 .uploaded-images.images-count-1 {
-  justify-content: center;
+    justify-content: center;
 
-  .image-item {
-    width: 60%; // 첫 번째 이미지는 더 크게 표시
-  }
+    .image-item {
+        width: 60%; // 첫 번째 이미지는 더 크게 표시
+    }
 }
 
 .uploaded-images.images-count-2 {
-  justify-content: space-between;
+    justify-content: space-between;
 
-  .image-item {
-    width: calc(50% - 5px); // 2개 이미지를 균등하게 배치
-  }
+    .image-item {
+        width: calc(50% - 5px); // 2개 이미지를 균등하게 배치
+    }
 }
 
 .uploaded-images.images-count-3 {
-  justify-content: space-between;
+    justify-content: space-between;
 
-  .image-item {
-    width: calc(33.33% - 7px); // 3개 이미지를 균등하게 배치
-  }
+    .image-item {
+        width: calc(33.33% - 7px); // 3개 이미지를 균등하게 배치
+    }
 }
 
 .uploaded-images.images-count-4,
 .uploaded-images.images-count-5 {
-  .image-item {
-    width: calc(50% - 5px); // 4, 5개 이미지는 2열로 배치
-  }
+    .image-item {
+        width: calc(50% - 5px); // 4, 5개 이미지는 2열로 배치
+    }
 }
 
 .diaryWrite-noticeWrap {
@@ -251,48 +246,48 @@ $radiusSmall: 5px;
     }
 }
 .userTag {
-  gap: 5px;
-  transition: 0.2s;
-  user-select: none;
+    gap: 5px;
+    transition: 0.2s;
+    user-select: none;
 
-  // 글자 선택 불가능
-  // -webkit-user-select: none; /* Chrome, Safari, Opera */
-  // -moz-user-select: none; /* Firefox */
-  // -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    // 글자 선택 불가능
+    // -webkit-user-select: none; /* Chrome, Safari, Opera */
+    // -moz-user-select: none; /* Firefox */
+    // -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 // pointer가능
 .userTag-clickable {
-  cursor: pointer;
+    cursor: pointer;
 }
 // pointer 불가능
 .diaryList .userTag,
 .diaryView .userTag {
-  cursor: default;
+    cursor: default;
 }
 .userTag input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  // cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    // cursor: pointer;
+    height: 0;
+    width: 0;
 }
 .userTag.selected {
-  background-color: $PrimaryOff;
-  color: white;
-  // cursor: pointer;
+    background-color: $PrimaryOff;
+    color: white;
+    // cursor: pointer;
 }
 
 /****** 별숲기록 View ******/
 .diaryView-imgWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-  img {
-    border-radius: $radiusDefault;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    img {
+        border-radius: $radiusDefault;
+    }
 }
 
 /****** 스크린별 구조 ******/

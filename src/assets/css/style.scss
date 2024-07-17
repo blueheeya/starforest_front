@@ -16,6 +16,7 @@
 @import "memberStyle.scss";
 //modal
 @import "modalStyle.scss";
+@import "mypageStore.scss";
 // @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 * {
     margin: 0;
@@ -823,6 +824,18 @@ button {
 .btnSmallLine:hover {
     color: $PrimaryColor;
     border: solid 1px $PrimaryColor;
+    background: #ffffff;
+}
+.btnLine {
+    padding: 5px 10px;
+    color: $textSecondary;
+    border: solid 1px $inputColor;
+    background: #ffffff;
+    transition: 0.3s;
+}
+.btnLine:hover {
+    color: $textSecondary;
+    border: solid 1px $textSecondary;
     background: #ffffff;
 }
 /* Layout margin & padding */

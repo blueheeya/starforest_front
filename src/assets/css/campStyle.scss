@@ -213,56 +213,40 @@ $radiusSmall: 5px;
 .rangBox {
     position: relative;
     display: flex;
-    flex-direction: row;
-    padding: 20px 32px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 20px 32px;
     background-color: $backColor;
     border: 1px solid $inputColor;
     border-radius: $radiusDefault;
     gap: 10px;
-    width: 300px;
-    height: 85px;
+    width: 360px;
+    height: 90px;
 }
 
-.rangStart {
+.rangDateWrap {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 88px;
-    color: $PrimaryColor;
+    flex: 1;
+    gap: 10px;
+    color: $textDefault;
     font-size: $secondText;
-    font-weight: bold;
+    span {
+        color: $PrimaryColor;
+        font-size: $secondText;
+        font-weight: bold;
+    }
 }
 
-.rangStartDate {
+.rangDateWrap:first-child:after {
     position: absolute;
-    left: 18px;
-    bottom: 15px;
-    font-size: $secondText;
-}
-
-.rangEnd {
-    display: flex;
-    justify-content: end;
-    color: $PrimaryColor;
-    width: 88px;
-    font-size: $secondText;
-    font-weight: bold;
-}
-
-.rangEndDate {
-    position: absolute;
-    right: 18px;
-    bottom: 15px;
-    font-size: $secondText;
-}
-
-.rangStart::after {
     content: "";
-    display: inline-block;
+    display: flex;
     width: 1px;
     height: 50px;
+    left: 50%;
     background-color: $inputColor;
 }
 
@@ -349,7 +333,7 @@ $radiusSmall: 5px;
                     padding: 10px 10px;
                     width: 330px;
                     height: 100%;
-                    border: 2px solid $inputColor;
+                    border: 1px solid $inputColor;
                     border-style: solid;
                     border-radius: $radiusDefault;
                     border-color: $inputColor;

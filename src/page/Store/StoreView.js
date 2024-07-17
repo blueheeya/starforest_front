@@ -8,6 +8,7 @@ import StoreTopTen from "../../components/Store/StoreTopTen";
 import Icon from "../../components/Icon/Icon";
 import "../../assets/css/storeStyle.scss";
 import ModalContext from "../../components/Modal/ModalContext";
+import Button from "../../components/Form/Button";
 
 const productview = {
     id: 1,
@@ -60,8 +61,13 @@ function StoreView() {
     const product = productview;
 
     const { modalOpen } = useContext(ModalContext);
+
     const handleButtonClick = () => {
-        modalOpen(1); // ModalStore를 여는 예시
+        const data = {
+            productName: productview.productName,
+            price: productview.price,
+        };
+        modalOpen(1, data); // 1은 ModalStore의 인덱스
     };
     //탭메뉴
     const changeTab = (tabId) => {
@@ -210,11 +216,9 @@ function StoreView() {
             {/* -------------------------------------------------------------------- */}
 
             <div className="buyWrap">
-                <div className="btnWrap">
-                    <button className="buyBtn" onClick={handleButtonClick}>
-                        구매하기
-                    </button>
-                </div>
+                <Button defaultBtn={true} onClick={handleButtonClick}>
+                    구매하기
+                </Button>
             </div>
 
             <div>

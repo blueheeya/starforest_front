@@ -100,26 +100,42 @@ $radiusSmall: 5px;
     margin-bottom: 23px;
     // background-color: #fff;
 }
-
+.storeWrap {
+    // border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.storeCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 0 32px;
+}
 .storeList {
     display: flex;
-    //   flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: wrap;
     justify-content: space-between;
-    padding-left: 32px;
-    padding-right: 32px;
-    margin-top: 75px;
-    border-radius: 10px;
+    gap: 30px;
+    padding: 0 32px;
+    border-radius: $radiusDefault;
 
     .product-item {
-        width: 220px;
-        height: 376px;
+        width: 215px;
         align-items: center;
-        border-radius: 10px;
-        margin-bottom: 30px;
-
         .productImg {
-            border-radius: 10px;
+            margin-bottom: 10px;
+            border-radius: $radiusDefault;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
         p {
@@ -355,12 +371,12 @@ $radiusSmall: 5px;
 
 .buyWrap {
     // border: 1px solid #000;
-    background-color: #fff;
-    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+    padding: 10px 32px;
+    background-color: #fff;
 
     .btnWrap {
         // border: 1px solid #000;

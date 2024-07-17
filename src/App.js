@@ -52,9 +52,6 @@ import UserMypageMent from "./page/User/UserMypageMent";
 import Style from "./Style";
 import CampPayFail from "./page/Camp/CampPayFail";
 import CampPayCancel from "./page/Camp/CampPayCancel";
-import Overlay from "./components/Store/Overlay";
-import PurchaseModal from "./components/Store/PurchaseModal";
-// import StoreOrderReview from "./page/User/StoreOrderReview";
 
 import PwFindAuth from "./page/Member/PwFindAuth";
 import PwFindChange from "./page/Member/PwFindChange";
@@ -83,6 +80,7 @@ const showFooterPath = [
     "/user/qna",
     "/user/mypage/management",
     "/user/camp/reservation/list",
+    "/user/camp/reservation/view",
 ];
 function LayoutType() {
     function getHeaderConfig(pathname) {
@@ -109,16 +107,18 @@ function LayoutType() {
     const [modalNum, setModalNum] = useState(0);
     const [modalView, setModalView] = useState(false);
     const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
+    const [modalDetail, setModalDetail] = useState(null);
 
-    function modalOpen(idx) {
+    function modalOpen(idx, data = null) {
         setModalView(true);
         setModalNum(idx);
+        setModalDetail(data);
     }
 
     function modalClose() {
         setModalView(false);
+        setModalDetail(null);
     }
-
     useEffect(() => {
         const containerWrapElement = document.querySelector(".containerWrap");
 
@@ -133,13 +133,23 @@ function LayoutType() {
         };
     }, [modalView]);
     return (
-        <ModalContext.Provider value={{ modalOpen, modalClose }}>
+        <ModalContext.Provider
+            value={{ modalOpen, modalClose, modalDetail, setModalDetail }}
+        >
             <BackWrap>
                 <Container>
+                    {/* {modalView && modalData[modalNum] && (
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                            })}
+                        </div>
+                    )} */}
                     {modalView && modalData[modalNum] && (
                         <div>
                             {React.cloneElement(modalData[modalNum], {
                                 onClick: modalClose,
+                                data: modalDetail,
                             })}
                         </div>
                     )}
