@@ -52,6 +52,18 @@ import UserMypageMent from "./page/User/UserMypageMent";
 import Style from "./Style";
 import CampPayFail from "./page/Camp/CampPayFail";
 import CampPayCancel from "./page/Camp/CampPayCancel";
+import Overlay from "./components/Store/Overlay";
+import PurchaseModal from "./components/Store/PurchaseModal";
+// import StoreOrderReview from "./page/User/StoreOrderReview";
+
+import PwFindAuth from "./page/Member/PwFindAuth";
+import PwFindChange from "./page/Member/PwFindChange";
+import PwChangeComplete from "./page/Member/PwChangeComplete";
+import React, { useContext, useEffect, useState } from "react";
+import ModalResions from "./components/Modal/ModalResions";
+import ModalReview from "./components/Modal/ModalReview";
+import ModalStore from "./components/Modal/ModalStore";
+import ModalContext from "./components/Modal/ModalContext";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -60,14 +72,17 @@ const showFooterPath = [
     "/store/view",
     "/user/mypage",
     "/camp/list",
-    "/user/notice",
-    "/user/qna",
     "/camp/reservation",
     "/camp/pay",
     "/store/pay",
     "/diary/list",
     "/diary/write",
     "/diary/view",
+    "/user/store/order/view",
+    "/user/notice",
+    "/user/qna",
+    "/user/mypage/management",
+    "/user/camp/reservation/list",
 ];
 function LayoutType() {
     function getHeaderConfig(pathname) {
@@ -76,13 +91,6 @@ function LayoutType() {
                 return config;
             }
         }
-        return (
-            headerConfig["/"] || {
-                title: "홈",
-                component: HeaderType2,
-                titleStore: false,
-            }
-        ); // 기본 설정
     }
     const location = useLocation();
     const {
@@ -91,41 +99,74 @@ function LayoutType() {
         titleStore = false,
     } = getHeaderConfig(location.pathname) ?? {};
 
-    // const {
-    //     title,
-    //     component: HeaderComponent,
-    //     titleStore,
-    // } = headerConfig[location.pathname] || {
-    //     title: "캠핑장",
-    //     component: HeaderType2,
-    //     titleStore: false,
-    // };
+    // 메뉴
     const showMenu = showMenuPath.includes(location.pathname);
     const showFooter = showFooterPath.includes(location.pathname);
     const isHeaderType2 = HeaderComponent === HeaderType2;
     const isHeaderType3 = HeaderComponent === HeaderType3;
     const isHeaderType4 = HeaderComponent === HeaderType4;
+
+    const [modalNum, setModalNum] = useState(0);
+    const [modalView, setModalView] = useState(false);
+    const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
+
+    function modalOpen(idx) {
+        setModalView(true);
+        setModalNum(idx);
+    }
+
+    function modalClose() {
+        setModalView(false);
+    }
+
+    useEffect(() => {
+        const containerWrapElement = document.querySelector(".containerWrap");
+
+        if (modalView) {
+            containerWrapElement.style.overflow = "hidden";
+        } else {
+            containerWrapElement.style.overflow = "auto";
+        }
+
+        return () => {
+            containerWrapElement.style.overflow = "auto";
+        };
+    }, [modalView]);
     return (
-        <BackWrap>
-            <Container>
-                <HeaderComponent titleStore={titleStore}>
-                    {title}
-                </HeaderComponent>
-                <ContentWrap
-                    className={`${isHeaderType2 ? "cntView" : ""} ${
-                        isHeaderType3 ? "cntSearchView" : ""
-                    } ${isHeaderType4 ? "cntSearchView" : ""}`}
-                >
-                    <main>
+        <ModalContext.Provider value={{ modalOpen, modalClose }}>
+            <BackWrap>
+                <Container>
+                    {modalView && modalData[modalNum] && (
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                            })}
+                        </div>
+                    )}
+                    <HeaderComponent
+                        titleStore={titleStore}
+                        modalOpen={modalOpen}
+                    >
+                        {title}
+                    </HeaderComponent>
+                    <ContentWrap
+                        className={` ${
+                            isHeaderType3 || isHeaderType4
+                                ? "cntSearchView"
+                                : ""
+                        } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+                    >
                         <Outlet />
-                    </main>
-                </ContentWrap>
-                {showFooter && (
-                    <Footer className={`${showMenu ? "footerBottom" : ""}`} />
-                )}
-                {showMenu && <Menu />}
-            </Container>
-        </BackWrap>
+                    </ContentWrap>
+                    {showFooter && (
+                        <Footer
+                            className={`${showMenu ? "footerBottom" : ""}`}
+                        />
+                    )}
+                    {showMenu && <Menu />}
+                </Container>
+            </BackWrap>
+        </ModalContext.Provider>
     );
 }
 function App() {
@@ -265,6 +306,21 @@ function App() {
                         path="/member/pwfind"
                         index
                         element={<PwFind />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/auth"
+                        index
+                        element={<PwFindAuth />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/change"
+                        index
+                        element={<PwFindChange />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/complete"
+                        index
+                        element={<PwChangeComplete />}
                     ></Route>
                     <Route
                         path="/member/terms"

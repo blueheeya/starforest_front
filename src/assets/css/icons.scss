@@ -18,168 +18,181 @@ $therdText: 0.81em; //13px
 $radiusDefault: 10px;
 $radiusSmall: 5px;
 .textIconType1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  padding: 5px 5px;
-  color: #ffffff;
-  font-size: 13px;
-  border-radius: 3px;
-  background: #f24e1e;
-}
-.textIconType2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  padding: 5px 5px;
-  color: #ffffff;
-  font-size: 13px;
-  border-radius: 3px;
-  background: #5da27f;
-}
-
-/* user level*/
-.lavel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  width: 72px;
-  height: 31px;
-  color: #54bf3a;
-  font-size: $secondText;
-  border: solid 1px #54bf3a;
-  border-radius: 5px;
-}
-.lavel::before {
-  content: "";
-  display: flex;
-  width: 25px;
-  height: 25px;
-}
-.lavel01 {
-  color: #54bf3a;
-  border: solid 1px #54bf3a;
-}
-.lavel01::before {
-  background: url("../images/level1.png") no-repeat;
-  background-size: cover;
-}
-.lavel02 {
-  color: #3f71d1;
-  border: solid 1px #3f71d1;
-}
-.lavel02::before {
-  background: url("../images/level2.png") no-repeat;
-  background-size: cover;
-}
-.lavel03 {
-  color: #ff68a7;
-  border: solid 1px #ff68a7;
-}
-.lavel03::before {
-  background: url("../images/level3.png") no-repeat;
-  background-size: cover;
-}
-.lavel04 {
-  color: #f79329;
-  border: solid 1px #f79329;
-}
-.lavel04::before {
-  background: url("../images/level4.png") no-repeat;
-  background-size: cover;
-}
-
-/* diary */
-.hashTag {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  padding: 5px 10px;
-  color: $defaultText;
-  font-size: $therdText;
-  border: solid 1px #dedede;
-  border-radius: 5px;
-  background: #f5f5f5;
-}
-.userTag {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  padding: 5px 10px;
-  color: $defaultText;
-  font-size: $therdText;
-  border: solid 1px #dedede;
-  border-radius: 20px;
-  background: #ffffff;
-}
-
-// store
-.storeEtc {
-  display: flex;
-  gap: 5px;
-  .textIconType1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 55px;
-    height: 24px;
+    width: auto;
+    padding: 5px 5px;
     color: #ffffff;
     font-size: 13px;
     border-radius: 3px;
     background: #f24e1e;
-  }
-  .textIconType2 {
+}
+.textIconType2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 55px;
-    height: 24px;
+    width: auto;
+    padding: 5px 5px;
     color: #ffffff;
     font-size: 13px;
     border-radius: 3px;
     background: #5da27f;
-  }
+}
+
+/* user level*/
+.lavel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    width: 72px;
+    height: 31px;
+    color: #54bf3a;
+    font-size: $secondText;
+    border: solid 1px #54bf3a;
+    border-radius: 5px;
+}
+.lavel::before {
+    content: "";
+    display: flex;
+    width: 25px;
+    height: 25px;
+}
+.lavel01 {
+    color: #54bf3a;
+    border: solid 1px #54bf3a;
+}
+.lavel01::before {
+    background: url("../images/level1.png") no-repeat;
+    background-size: cover;
+}
+.lavel02 {
+    color: #3f71d1;
+    border: solid 1px #3f71d1;
+}
+.lavel02::before {
+    background: url("../images/level2.png") no-repeat;
+    background-size: cover;
+}
+.lavel03 {
+    color: #ff68a7;
+    border: solid 1px #ff68a7;
+}
+.lavel03::before {
+    background: url("../images/level3.png") no-repeat;
+    background-size: cover;
+}
+.lavel04 {
+    color: #f79329;
+    border: solid 1px #f79329;
+}
+.lavel04::before {
+    background: url("../images/level4.png") no-repeat;
+    background-size: cover;
+}
+
+/* diary */
+.hashTag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding: 5px 10px;
+    color: $defaultText;
+    font-size: $therdText;
+    border: solid 1px #dedede;
+    border-radius: 5px;
+    background: #f5f5f5;
+}
+.userTag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding: 5px 10px;
+    color: $defaultText;
+    font-size: $therdText;
+    border: solid 1px #dedede;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+// store
+.storeEtc {
+    display: flex;
+    gap: 5px;
+    .textIconType1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 55px;
+        height: 24px;
+        color: #ffffff;
+        font-size: 13px;
+        border-radius: 3px;
+        background: #f24e1e;
+    }
+    .textIconType2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 55px;
+        height: 24px;
+        color: #ffffff;
+        font-size: 13px;
+        border-radius: 3px;
+        background: #5da27f;
+    }
 }
 .storeWrap {
-  // border: 1px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    // border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .storeCategory {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 465px;
-  height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 465px;
+    height: 40px;
 }
 
 .storeIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 108px;
-  height: 40px;
-  color: #989898;
-  //   font-size: $secondText;
-  border: 1px solid #989898;
-  border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 108px;
+    height: 40px;
+    color: #989898;
+    //   font-size: $secondText;
+    border: 1px solid #989898;
+    border-radius: 20px;
 }
 
 .scIconWrap {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .scIconWrap.active {
-  background-color: #3f71d1;
-  border-radius: 20px;
-  .storeIcon {
-    color: #ffffff;
-  }
+    background-color: #3f71d1;
+    border-radius: 20px;
+    .storeIcon {
+        color: #ffffff;
+    }
+}
+/*user*/
+.iconUserAuth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding: 5px 5px;
+    color: #31b11c;
+    font-size: $therdText;
+    border: solid 1px #31b11c;
+    border-radius: $radiusSmall;
+    background: #ffffff;
 }

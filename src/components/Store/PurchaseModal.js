@@ -2,10 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../assets/css/storeStyle.scss";
 import Icon from "../Icon/Icon";
+import Overlay from "./Overlay";
 
 const PurchaseModal = ({ isOpen, onClose, productName, price }) => {
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isOpen) {
+      //document.querySelector(".modalContainer").style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -29,43 +42,46 @@ const PurchaseModal = ({ isOpen, onClose, productName, price }) => {
   };
 
   return (
-    // <div className={`modalOverlay ${isOpen ? "open" : ""}`}>
-    <div className="modalContent">
-      <div className="modalClose">
-        <h3>{productName}</h3>
-        <button className="closeModalBtn" onClick={closeModal}>
-          <Icon iconName="iconClose" />
-        </button>
-      </div>
-      <div className="modalNumWrap">
-        <div className="modalNumSelector">
-          <button onClick={decreaseQuantity}>
-            <Icon iconName="iconMinus" />
-          </button>
-          <span className="quantity">{quantity}</span>
-          <button onClick={increaseQuantity}>
-            <Icon iconName="iconPlus" />
-          </button>
+    <>
+      <div className="modalContainer">
+        {/* <Overlay isOpen={isOpen} onClose={closeModal} /> */}
+        <div className="modalContent">
+          <div className="modalClose">
+            <h3>{productName}</h3>
+            <button className="closeModalBtn" onClick={closeModal}>
+              <Icon iconName="iconClose" />
+            </button>
+          </div>
+          <div className="modalNumWrap">
+            <div className="modalNumSelector">
+              <button onClick={decreaseQuantity}>
+                <Icon iconName="iconMinus" />
+              </button>
+              <span className="quantity">{quantity}</span>
+              <button onClick={increaseQuantity}>
+                <Icon iconName="iconPlus" />
+              </button>
+            </div>
+          </div>
+          <div className="priceInfo">
+            <span>총 상품금액</span>
+            <span>{totalPrice.toLocaleString()}원</span>
+          </div>
+          <div className="deliveryInfo">
+            <span>배송비</span>
+            <span>무료배송</span>
+          </div>
+          <div className="buttonGroup">
+            <button className="cartBtn" onClick={handleCartClick}>
+              장바구니
+            </button>
+            <button className="purchaseBtn" onClick={handlePurchaseClick}>
+              구매하기
+            </button>
+          </div>
         </div>
       </div>
-      <div className="priceInfo">
-        <span>총 상품금액</span>
-        <span>{totalPrice.toLocaleString()}원</span>
-      </div>
-      <div className="deliveryInfo">
-        <span>배송비</span>
-        <span>무료배송</span>
-      </div>
-      <div className="buttonGroup">
-        <button className="cartBtn" onClick={handleCartClick}>
-          장바구니
-        </button>
-        <button className="purchaseBtn" onClick={handlePurchaseClick}>
-          구매하기
-        </button>
-      </div>
-    </div>
-    // </div>
+    </>
   );
 };
 

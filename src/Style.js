@@ -132,6 +132,14 @@ function Style() {
                     <Icon iconName="btnClose" />
                 </div>
             </div>
+            <div className="cntMarginTop">
+                <h3 style={{ fontFamily: "EunhasuR", marginBottom: "10px" }}>
+                    유저 인증
+                </h3>
+                <div style={{ display: "flex", gap: "10px" }}>
+                    <div className="iconUserAuth">인증완료</div>
+                </div>
+            </div>
         </div>
     );
 }

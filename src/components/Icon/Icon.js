@@ -60,49 +60,66 @@ import iconMinus from "../../assets/images/iconMinus.svg";
 import iconPlus from "../../assets/images/iconPlus.svg";
 import iconClose from "../../assets/images/iconClose.svg";
 
+import userOut from "../../assets/images/userOut.svg";
+import userEdit from "../../assets/images/userEdit.svg";
+import naverLogo from "../../assets/images/naverLogo.png";
+import kakaoLogo from "../../assets/images/kakaoLogo.png";
+import inputIconPw2 from "../../assets/images/inputIconPw2.png";
+import inputIconPwCheck from "../../assets/images/inputIconPwCheck.png";
+import inputIconNick from "../../assets/images/inputIconNick.png";
+import inputIconId from "../../assets/images/inputIconId.png";
+import inputIconEmail from "../../assets/images/inputIconEmail.png";
+import logoDefault from "../../assets/images/logoDefault.png";
+import iconDanger from "../../assets/images/iconDanger.png";
+import iconComplete from "../../assets/images/iconComplete.png";
+import iconCloseWhite from "../../assets/images/iconCloseWhite.png";
+
+import iconReviewComplete from "../../assets/images/iconReviewComplete.svg";
+import iconReviewWrite from "../../assets/images/iconReviewWrite.svg";
+
 const icons = {
-  iconShowers,
-  iconTime,
-  iconAddress,
-  iconAnimal,
-  iconAround,
-  iconBadding,
-  iconBrazier,
-  iconBrend,
-  iconCampCategory,
-  iconCleans,
-  iconCustomerCall,
-  iconDate,
-  iconDown,
-  iconEdit,
-  iconElec,
-  iconFire,
-  iconFoods,
-  iconGo,
-  iconHeating,
-  iconHompage,
-  iconLog,
-  iconPhone,
-  iconPlays,
-  iconReel,
-  iconRegion,
-  iconRegist,
-  iconReservation,
-  iconSerch,
-  iconShower,
-  iconSink,
-  iconSmiles,
-  iconStrore,
-  iconSwimming,
-  iconSwimmings,
-  iconTableware,
-  iconTag,
-  iconTent,
-  iconToilet,
-  iconUp,
-  iconWifi,
-  iconBaths,
-   level1,
+    iconShowers,
+    iconTime,
+    iconAddress,
+    iconAnimal,
+    iconAround,
+    iconBadding,
+    iconBrazier,
+    iconBrend,
+    iconCampCategory,
+    iconCleans,
+    iconCustomerCall,
+    iconDate,
+    iconDown,
+    iconEdit,
+    iconElec,
+    iconFire,
+    iconFoods,
+    iconGo,
+    iconHeating,
+    iconHompage,
+    iconLog,
+    iconPhone,
+    iconPlays,
+    iconReel,
+    iconRegion,
+    iconRegist,
+    iconReservation,
+    iconSerch,
+    iconShower,
+    iconSink,
+    iconSmiles,
+    iconStrore,
+    iconSwimming,
+    iconSwimmings,
+    iconTableware,
+    iconTag,
+    iconTent,
+    iconToilet,
+    iconUp,
+    iconWifi,
+    iconBaths,
+    level1,
     level2,
     level3,
     level4,
@@ -113,31 +130,44 @@ const icons = {
     iconMyReview,
     toggleTo,
     btnUserModify,
-  toggleOpen,
-  toggleClose,
-  btnClose,
-  iconCheckActive,
-  iconCheckDefault,
-  iconMinus,
-  iconPlus,
-  iconClose,
+    toggleOpen,
+    toggleClose,
+    btnClose,
+    iconCheckActive,
+    iconCheckDefault,
+    iconMinus,
+    iconPlus,
+    iconClose,
+    userOut,
+    userEdit,
+    naverLogo,
+    kakaoLogo,
+    inputIconPw2,
+    inputIconPwCheck,
+    inputIconNick,
+    inputIconId,
+    inputIconEmail,
+    logoDefault,
+    iconDanger,
+    iconComplete,
+    iconCloseWhite,
 };
 function Icon({ iconName, className, ...props }) {
-    const iconSrc = icons[iconName];
-    if (!iconSrc) {
-        console.error(`Icon '${iconName}' not found.`);
-        return null;
-    }
-    return (
-        <>
-            <img
-                src={iconSrc}
-                alt={iconName}
-                {...props}
-                className={`imgIcons ${className}`}
-            />
-        </>
-    );
+  const iconSrc = icons[iconName];
+  if (!iconSrc) {
+    console.error(`Icon '${iconName}' not found.`);
+    return null;
+  }
+  return (
+    <>
+      <img
+        src={iconSrc}
+        alt={iconName}
+        {...props}
+        className={`imgIcons ${className}`}
+      />
+    </>
+  );
 }
 
 export default Icon;

@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "../Icon/Icon";
+import { Link } from "react-router-dom";
 
 function Input({
     children,
@@ -8,12 +9,20 @@ function Input({
     value,
     onChange,
     placeholder,
+    type,
+    isLink,
+    isOnclick,
 }) {
     return (
         <div className={`${className}`}>
-            {iconName && <Icon iconName={iconName} />}
+            {iconName && (
+                <Icon
+                    iconName={iconName}
+                    onClick={isOnclick ? isOnclick : undefined}
+                />
+            )}
             <input
-                type="text"
+                type={type}
                 className={`serchInput`}
                 value={value}
                 onChange={onChange}
