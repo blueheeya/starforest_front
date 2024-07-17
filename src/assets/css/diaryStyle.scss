@@ -248,13 +248,13 @@ $radiusSmall: 5px;
 .userTag {
   gap: 5px;
   transition: 0.2s;
-  user-select: none;
+  user-select: none; // 글자 선택 불가능
 
   // 글자 선택 불가능
   // -webkit-user-select: none; /* Chrome, Safari, Opera */
   // -moz-user-select: none; /* Firefox */
   // -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  // user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 // pointer가능
 .userTag-clickable {
@@ -273,8 +273,9 @@ $radiusSmall: 5px;
   width: 0;
 }
 .userTag.selected {
-  background-color: $PrimaryOff;
-  color: white;
+  border-color: $PrimaryOff;
+  // background-color: $PrimaryOff;
+  color: $PrimaryOff;
   // cursor: pointer;
 }
 

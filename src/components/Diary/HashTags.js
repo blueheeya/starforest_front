@@ -1,7 +1,9 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
-function HashTags() {
-  const tags = [
+function HashTags({ selectedHashTags, onHashTagToggle }) {
+  console.log("selectedHashTags:", selectedHashTags);
+  const hashTags = [
     "오토캠핑장",
     "글램핑",
     "카라반",
@@ -23,6 +25,13 @@ function HashTags() {
     "강",
   ];
 
+  const location = useLocation();
+
+  // path 확인
+  const isDiaryListOrView =
+    location.pathname.includes("/diary/list") ||
+    location.pathname.includes("diary/view");
+
   return (
     <div
       style={{
@@ -32,10 +41,26 @@ function HashTags() {
         flexWrap: "wrap",
       }}
     >
-      {tags.map((tag, index) => (
-        <span key={index} className="hashTag">
+      {/* <span key={index} className="hashTag">
           #{tag}
-        </span>
+        </span> */}
+      {hashTags.map((HTag, index) => (
+        <label
+          key={index}
+          className={`hashTag ${
+            selectedHashTags.includes(HTag) ? "selected" : ""
+          } ${!isDiaryListOrView ? "hashTag-clickable" : ""}`}
+        >
+          <input
+            type="checkbox"
+            checked={selectedHashTags.includes(HTag.text)}
+            onChange={() => {
+              onHashTagToggle(HTag);
+            }}
+            style={{ marginRight: "5px" }}
+          />
+          #{HTag}
+        </label>
       ))}
     </div>
   );
