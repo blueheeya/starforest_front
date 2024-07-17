@@ -204,7 +204,6 @@ $radiusSmall: 5px;
 
 //수정 완료
 
-
 .rangback {
     display: flex;
     justify-content: center;
@@ -710,7 +709,6 @@ $radiusSmall: 5px;
         font-size: $titleText;
     }
 
-
     li {
         display: flex;
         align-items: center;
@@ -726,7 +724,6 @@ $radiusSmall: 5px;
     .facilityWrap {
         display: flex;
         gap: 10px;
-
 
         div {
             width: 50px;
@@ -753,8 +750,11 @@ $radiusSmall: 5px;
 
 /* icon */
 
-@media screen and (max-width: 1024px) {}
+@media screen and (max-width: 1024px) {
+}
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+}
 
-@media screen and (max-width: 360px) {}
+@media screen and (max-width: 360px) {
+}
