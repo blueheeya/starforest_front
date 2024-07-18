@@ -58,6 +58,9 @@ function HeaderType3({ className, modalOpen }) {
     const onBackClick = () => {
         navigator(-1);
     };
+    const moveMap = () => {
+        navigator("/camp/list/map");
+    };
     return (
         <>
             <div className={`headerType3 ${className}`}>
@@ -71,7 +74,7 @@ function HeaderType3({ className, modalOpen }) {
                             className="searchInput"
                             placeholder="검색어를 입력하세요."
                         />
-                        <button className="btnWrap" onClick={onBackClick}>
+                        <button className="btnWrap" onClick={moveMap}>
                             맵
                         </button>
                     </div>

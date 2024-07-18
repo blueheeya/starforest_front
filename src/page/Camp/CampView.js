@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -12,8 +12,10 @@ import CampTag from "../../components/Camp/CampTag";
 import StoreTopten from "../../components/Store/StoreTopTen";
 import Icon from "../../components/Icon/Icon";
 import Footer from "../../components/Layout/Footer";
+import Button from "../../components/Form/Button";
 function CampView() {
     //주소 복사
+    const navigator = useNavigate();
     const addressRef = useRef(null);
 
     const copyAddress = () => {
@@ -48,7 +50,9 @@ function CampView() {
         return imgObj ? imgObj.imageURL : [];
     };
     const imageUrls = getImageUrlsById(campItem.id);
-
+    const moveReservation = () => {
+        navigator("/camp/reservation");
+    };
     return (
         <>
             <div>
@@ -119,6 +123,11 @@ function CampView() {
                         />
                     </li>
                 </ul>
+                <div className="campViewWrap">
+                    <Button defaultBtn={true} onClick={moveReservation}>
+                        예약하기
+                    </Button>
+                </div>
                 <div className="campViewWrap">
                     <div>
                         <h4>캠핑장 소개</h4>

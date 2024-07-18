@@ -22,502 +22,513 @@ $radiusSmall: 5px;
 
 // mypage_userOderCard-----------------------------------
 .userOrderListWrapTop {
-  background-color: $backColor;
+    background-color: $backColor;
 }
 .userOrderInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 65px;
-}
-.userOrderBox {
-  margin-bottom: 10px;
-  .useOrderDateWrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 32px;
-    margin-bottom: 3px;
-    background-color: #fff;
-    .userOrderDate {
-      font-size: $secondText;
-    }
-  }
-}
-.userOrderTitle {
-  background-color: #ffffff;
-  width: 530px;
-  height: 164px;
-  .userOrderProduct {
-    padding: 10px 32px;
-    font-size: $secondText;
-    font-weight: bold;
-  }
-  .userOrderinnerMain {
-    padding: 10px 32px;
-  }
-}
-.userOrderinnerMain {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #fff;
-  .userOrderinnerMainImg {
-    width: 65px;
-    height: 65px;
-    border-radius: $radiusSmall;
-  }
-
-  .userOrderinnerMainContent {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-
-    .userOrdercontentName {
-      font-size: $secondText;
-      color: $textSecondary;
-      font-weight: bold;
-    }
-
-    .userOrdercontentBrand {
-      font-size: $titleText;
-      color: $textTitle;
-      font-weight: bold;
-    }
-  }
-  .userOrderStateBox {
-    border: 1px solid #31b11c;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 55px;
-    height: 24px;
-    font-size: $therdText;
-    color: #31b11c;
-  }
+    gap: 10px;
+    margin-top: 65px;
 }
-.userOrderinnerMainContent {
-  width: 326px;
-  height: 45px;
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
+.userOrderBox {
+    margin-bottom: 10px;
+    .useOrderDateWrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 32px;
+        margin-bottom: 3px;
+        background-color: #fff;
+        .userOrderDate {
+            font-size: $secondText;
+        }
+    }
 }
-.userOrderPriceWrap {
-  width: 530px;
-  height: 29px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 32px;
-  gap: 10px;
-  .userOrderNum {
-    display: flex;
-    gap: 5px;
-  }
-  .userOrderPrice {
+.userOrderTitle {
+    background-color: #ffffff;
+    width: 530px;
+    height: 164px;
+    .userOrderProduct {
+        padding: 10px 32px;
+        font-size: $secondText;
+        font-weight: bold;
+    }
+    .userOrderinnerMain {
+        padding: 10px 32px;
+    }
+}
+.userOrderinnerMain {
     display: flex;
     align-items: center;
     gap: 10px;
-    .userOrderpriceSpan {
-      text-decoration: line-through;
-      color: $textSecondary;
-      font-size: $defaultText;
-      font-weight: bold;
+    background-color: #fff;
+    .userOrderinnerMainImg {
+        width: 65px;
+        height: 65px;
+        border-radius: $radiusSmall;
     }
 
-    .userOrderpriceMain {
-      font-size: $defaultTitle;
-      font-weight: bold;
+    .userOrderinnerMainContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+
+        .userOrdercontentName {
+            font-size: $secondText;
+            color: $textSecondary;
+            font-weight: bold;
+        }
+
+        .userOrdercontentBrand {
+            font-size: $titleText;
+            color: $textTitle;
+            font-weight: bold;
+        }
     }
-  }
+    .userOrderStateBox {
+        border: 1px solid #31b11c;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 55px;
+        height: 24px;
+        font-size: $therdText;
+        color: #31b11c;
+    }
 }
-.userOrderTotalWrap {
-  background-color: #fff;
-  padding: 10px 32px;
-  // margin-top: 3px;
-  .userOrderTotalcontent {
+.userOrderinnerMainContent {
+    width: 326px;
+    height: 45px;
     display: flex;
     justify-content: space-between;
-    .userOrderTotalTitle {
-      font-size: $titleText;
-      font-weight: bold;
+    align-items: start;
+}
+.userOrderPriceWrap {
+    width: 530px;
+    height: 29px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 32px;
+    gap: 10px;
+    .userOrderNum {
+        display: flex;
+        gap: 5px;
     }
     .userOrderPrice {
-      font-size: $titleText;
-      font-weight: bold;
-      color: #f24e1e;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .userOrderpriceSpan {
+            text-decoration: line-through;
+            color: $textSecondary;
+            font-size: $defaultText;
+            font-weight: bold;
+        }
+
+        .userOrderpriceMain {
+            font-size: $defaultTitle;
+            font-weight: bold;
+        }
     }
-  }
+}
+.userOrderTotalWrap {
+    background-color: #fff;
+    padding: 10px 32px;
+    // margin-top: 3px;
+    .userOrderTotalcontent {
+        display: flex;
+        justify-content: space-between;
+        .userOrderTotalTitle {
+            font-size: $titleText;
+            font-weight: bold;
+        }
+        .userOrderPrice {
+            font-size: $titleText;
+            font-weight: bold;
+            color: #f24e1e;
+        }
+    }
 }
 // mypage_orderlist---------------------------------------
 
 .OrderListMove {
 }
 .listMoveBtn {
-  color: $PrimaryColor;
-  font-weight: bold;
-  .iconGo {
     color: $PrimaryColor;
-  }
+    font-weight: bold;
+    .iconGo {
+        color: $PrimaryColor;
+    }
 }
 
 /*membership*/
 .membershipWrap {
-  padding: 20px 32px;
-  h4 {
-    margin-bottom: 20px;
-    font-size: $titleText;
-  }
-  .memberWrap {
-    padding: 50px 45px;
-    color: #ffffff;
-    background: #0c2c5c;
-    border-radius: $radiusDefault;
-    .memberTab {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 20px;
-      height: 190px;
-      div {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        width: 100%;
-        padding: 10px 0;
-        border: solid 1px #144287;
-        border-radius: $radiusDefault;
-        background: #144287;
-      }
-      div:nth-child(1) {
-        height: 100px;
-      }
-      div:nth-child(2) {
-        height: 130px;
-      }
-      div:nth-child(3) {
-        height: 160px;
-      }
-      div:nth-child(4) {
-        height: 190px;
-      }
-      div.active {
-        color: #fcc21b;
-        border: solid 1px #fcc21b;
-      }
-    }
-    .memberInfo {
-      div {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        margin-top: 30px;
-      }
-      h4 {
+    padding: 20px 32px;
+    h4 {
+        margin-bottom: 20px;
         font-size: $titleText;
-        font-weight: normal;
-      }
-      p {
-        display: flex;
-        gap: 10px;
-        font-size: $therdText;
-      }
     }
-  }
+    .memberWrap {
+        padding: 50px 45px;
+        color: #ffffff;
+        background: #0c2c5c;
+        border-radius: $radiusDefault;
+        .memberTab {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            height: 190px;
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                padding: 10px 0;
+                border: solid 1px #144287;
+                border-radius: $radiusDefault;
+                background: #144287;
+            }
+            div:nth-child(1) {
+                height: 100px;
+            }
+            div:nth-child(2) {
+                height: 130px;
+            }
+            div:nth-child(3) {
+                height: 160px;
+            }
+            div:nth-child(4) {
+                height: 190px;
+            }
+            div.active {
+                color: #fcc21b;
+                border: solid 1px #fcc21b;
+            }
+        }
+        .memberInfo {
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 30px;
+            }
+            h4 {
+                font-size: $titleText;
+                font-weight: normal;
+            }
+            p {
+                display: flex;
+                gap: 10px;
+                font-size: $therdText;
+            }
+        }
+    }
 }
 // mypage_orderView------------------------------------------------
 .OrderViewContainerBox {
-  margin-top: 65px;
+    margin-top: 65px;
 }
 .OrderViewBox {
-  .OrderViewInner {
-    .OrderViewDateWrap {
-      background-color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      padding: 10px 32px;
-      margin-bottom: 3px;
-      .OrderViewNum {
-        color: $PrimaryColor;
-      }
+    .OrderViewInner {
+        .OrderViewDateWrap {
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            padding: 10px 32px;
+            margin-bottom: 3px;
+            .OrderViewNum {
+                color: $PrimaryColor;
+            }
+        }
     }
-  }
 }
 .OrderViewTitle {
-  background-color: #fff;
-  margin-bottom: 3px;
+    background-color: #fff;
+    margin-bottom: 3px;
 }
 .OrderViewProductWrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: bold;
-  padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 10px 32px;
 }
 .OrderViewState1 {
-  color: $textTitle;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  .orderReviewCompleteBtn {
-    font-size: $secondText;
-    font-weight: bold;
-    color: $textSecondary;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: $textTitle;
+    .orderReviewCompleteBtn {
+        font-size: $secondText;
+        font-weight: bold;
+        color: $textSecondary;
+    }
 }
 .OrderViewState2 {
-  display: flex;
-  gap: 5px;
-  .orderReviewWriteBtn {
-    font-size: $secondText;
-    font-weight: bold;
-    color: $textDefault;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    .orderReviewWriteBtn {
+        font-size: $secondText;
+        font-weight: bold;
+        color: $textDefault;
+    }
 }
 
 .OrderViewProduct {
-  padding: 10px 0px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 32px;
-}
-.OrderViewinnerMain {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #fff;
-  .OrderViewinnerMainImg {
-    width: 65px;
-    height: 65px;
-    border-radius: $radiusSmall;
-  }
-}
-.OrderViewcontentName {
-  font-size: $therdText;
-  color: $textSecondary;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.OrderViewcontentBrand {
-  font-size: $secondText;
-  color: $textTitle;
-  font-weight: bold;
-}
-.OrderViewStateBox {
-  padding: 2px 5px;
-  font-size: $therdText;
-  border: 1px solid #31b11c;
-  border-radius: 3px;
-  color: #31b11c;
-}
-.OrderViewPriceWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 32px;
-  margin-bottom: 5px;
-  .OrderViewNum {
-    display: flex;
-  }
-  .OrderViewPrice {
-    display: flex;
-  }
-}
-.OrderViewTotalcontent {
-  display: flex;
-  padding: 10px 32px;
-}
-.OrderViewTotalWrap {
-  background-color: #fff;
-  .OrderViewTotalcontent {
+    padding: 10px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .OrderViewTotalTitle {
-      font-size: $titleText;
-      font-weight: bold;
-      color: $textDefault;
+    padding: 10px 32px;
+    .oderViewImg {
+        display: flex;
+        width: 65px;
+        height: 65px;
+        border-radius: $radiusDefault;
+        background: url("../images/imgdefault.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+.OrderViewinnerMain {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+}
+.OrderViewcontentName {
+    font-size: $therdText;
+    color: $textSecondary;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.OrderViewcontentBrand {
+    font-size: $secondText;
+    color: $textTitle;
+    font-weight: bold;
+}
+.OrderViewStateBox {
+    padding: 2px 5px;
+    font-size: $therdText;
+    border: 1px solid #31b11c;
+    border-radius: 3px;
+    color: #31b11c;
+}
+.OrderViewPriceWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 32px;
+    margin-bottom: 5px;
+    .OrderViewNum {
+        display: flex;
     }
     .OrderViewPrice {
-      font-size: $titleText;
-      font-weight: bold;
-      color: #f24e1e;
+        display: flex;
     }
-  }
+}
+.OrderViewTotalcontent {
+    display: flex;
+    padding: 10px 32px;
+}
+.OrderViewTotalWrap {
+    background-color: #fff;
+    .OrderViewTotalcontent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .OrderViewTotalTitle {
+            font-size: $titleText;
+            font-weight: bold;
+            color: $textDefault;
+        }
+        .OrderViewPrice {
+            font-size: $titleText;
+            font-weight: bold;
+            color: #f24e1e;
+        }
+    }
 }
 //usercartlist
 .storeCart {
-  margin: 65px 0;
+    margin: 65px 0;
 }
 // userReviewModal*********************************
 .userReviewModalContainer {
-  border: 1px solid #000;
-  position: absolute;
-  top: 0px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  width: 100%; /* 부모 요소가 전체 화면을 덮도록 설정 */
-  // height: 100%;
-  // align-items: flex-end;
+    border: 1px solid #000;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 100%; /* 부모 요소가 전체 화면을 덮도록 설정 */
+    // height: 100%;
+    // align-items: flex-end;
 }
 .userReviewModalContent {
-  background: #fff;
-  position: relative;
-  padding: 20px;
-  border-radius: 20px 20px 0 0; /* 모서리 둥글게 */
-  width: 100%;
-  bottom: 0;
-  z-index: 1000;
-  max-width: 530px; /* 최대 너비 설정 */
-  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
-  .userReviewModalClose {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-  }
+    background: #fff;
+    position: relative;
+    padding: 20px;
+    border-radius: 20px 20px 0 0; /* 모서리 둥글게 */
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+    max-width: 530px; /* 최대 너비 설정 */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+    .userReviewModalClose {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
 }
 .userReviewModalProduct {
-  display: flex;
-  height: 65px;
-  align-items: center;
-  gap: 10px;
-  .userReviewModalProductInner {
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 5px;
-    justify-content: center;
-  }
-  .userReviewProductImg {
-    width: 65px;
     height: 65px;
-    border-radius: $radiusSmall;
-  }
+    align-items: center;
+    gap: 10px;
+    .userReviewModalProductInner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        gap: 5px;
+        justify-content: center;
+    }
+    .userReviewProductImg {
+        width: 65px;
+        height: 65px;
+        border-radius: $radiusSmall;
+    }
 }
 .userReviewModalInputWrap {
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0px;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+    gap: 10px;
 }
 .userReviewModalInput {
-  border: 1px solid $inputColor;
-  width: 100%;
-  padding: 15px 10px;
-  border-radius: 10px;
-  font-size: $secondText;
-  font-weight: bold;
-  color: $textSecondary;
-  margin-top: 10px;
+    border: 1px solid $inputColor;
+    width: 100%;
+    padding: 15px 10px;
+    border-radius: 10px;
+    font-size: $secondText;
+    font-weight: bold;
+    color: $textSecondary;
+    margin-top: 10px;
 }
 .userReviewModalInfoBox {
-  height: 31px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .userOrderNickname {
-  font-size: $btnText;
-  font-weight: bold;
+    font-size: $btnText;
+    font-weight: bold;
 }
 .userReviewBtnWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  .userReviewBtn1 {
-    width: 223px;
-    height: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background-color: $PrimaryOff;
-    border-radius: 10px;
-    .submitBtn1 {
-      color: #ffffff;
-      font-size: $btnText;
-      font-weight: bold;
+    gap: 20px;
+    .userReviewBtn1 {
+        width: 223px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $PrimaryOff;
+        border-radius: 10px;
+        .submitBtn1 {
+            color: #ffffff;
+            font-size: $btnText;
+            font-weight: bold;
+        }
     }
-  }
-  .userReviewBtn2 {
-    width: 223px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid $inputColor;
-    border-radius: 10px;
-    .submitBtn2 {
-      color: $textDefault;
-      font-size: $btnText;
-      font-weight: bold;
+    .userReviewBtn2 {
+        width: 223px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border: 1px solid $inputColor;
+        border-radius: 10px;
+        .submitBtn2 {
+            color: $textDefault;
+            font-size: $btnText;
+            font-weight: bold;
+        }
     }
-  }
 }
 .error {
-  color: red;
-  font-size: $therdText;
-  padding-left: 10px;
+    color: red;
+    font-size: $therdText;
+    padding-left: 10px;
 }
 // mypage_reviewlist-------------------------------
 .userReviewListProductWrap {
-  display: flex;
-  padding: 10px 32px;
-  border: 1px solid #000;
-  gap: 10px;
-  .userReviewListProductImg {
-    width: 65px;
-    border-radius: 5px;
-  }
-  .userReviewListProductNames {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    .userReviewListProductBname {
+    padding: 10px 32px;
+    border: 1px solid #000;
+    gap: 10px;
+    .userReviewListProductImg {
+        width: 65px;
+        border-radius: 5px;
     }
-    .userReviewListProductPname {
+    .userReviewListProductNames {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        .userReviewListProductBname {
+        }
+        .userReviewListProductPname {
+        }
     }
-  }
 }
 .userReviewListUserInFo {
-  border: 1px solid #000;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  .userReviewListimg {
-    width: 80px;
-    height: 80px;
-  }
+    border: 1px solid #000;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    .userReviewListimg {
+        width: 80px;
+        height: 80px;
+    }
 }
 .userReviewItem {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 20px 32px 20px 32px;
-  background-color: #fff;
-  border: 1px solid #000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 32px 20px 32px;
+    background-color: #fff;
+    border: 1px solid #000;
 
-  .userReviewImg {
-    width: 80px;
-    height: 80px;
-    border-radius: 50px;
-  }
+    .userReviewImg {
+        width: 80px;
+        height: 80px;
+        border-radius: 50px;
+    }
 }
 .userReviewListtextWrap {
-  border: 1px solid #000;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }

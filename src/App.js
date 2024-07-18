@@ -1,9 +1,9 @@
 import {
-  matchPath,
-  Outlet,
-  Route,
-  Routes,
-  useLocation,
+    matchPath,
+    Outlet,
+    Route,
+    Routes,
+    useLocation,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -11,9 +11,9 @@ import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
-  HeaderType2,
-  HeaderType3,
-  HeaderType4,
+    HeaderType2,
+    HeaderType3,
+    HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
@@ -52,9 +52,6 @@ import UserMypageMent from "./page/User/UserMypageMent";
 import Style from "./Style";
 import CampPayFail from "./page/Camp/CampPayFail";
 import CampPayCancel from "./page/Camp/CampPayCancel";
-import Overlay from "./components/Store/Overlay";
-import PurchaseModal from "./components/Store/PurchaseModal";
-// import StoreOrderReview from "./page/User/StoreOrderReview";
 
 import PwFindAuth from "./page/Member/PwFindAuth";
 import PwFindChange from "./page/Member/PwFindChange";
@@ -68,27 +65,33 @@ import ModalContext from "./components/Modal/ModalContext";
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
 const showFooterPath = [
-  "/",
-  "/store/view",
-  "/user/mypage",
-  "/camp/list",
-  "/camp/reservation",
-  "/camp/pay",
-  "/store/pay",
-  "/diary/list",
-  "/diary/write",
-  "/diary/view",
-  "/user/store/order/view",
-  "/user/notice",
-  "/user/qna",
-  "/user/mypage/management",
+    "/",
+    "/store/view",
+    "/user/mypage",
+    "/camp/list",
+    "/camp/reservation",
+    "/camp/pay",
+    "/store/pay",
+    "/diary/list",
+    "/diary/write",
+    "/diary/view",
+    "/user/store/order/view",
+    "/user/notice",
+    "/user/qna",
+    "/user/mypage/management",
+    "/user/camp/reservation/list",
+    "/user/camp/reservation/view",
+    "/user/store/review/list",
+    "/user/camp/like/list",
+    "/user/diary/list",
 ];
 function LayoutType() {
-  function getHeaderConfig(pathname) {
-    for (const [path, config] of Object.entries(headerConfig)) {
-      if (matchPath(path, pathname)) {
-        return config;
-      }
+    function getHeaderConfig(pathname) {
+        for (const [path, config] of Object.entries(headerConfig)) {
+            if (matchPath(path, pathname)) {
+                return config;
+            }
+        }
     }
   }
   const location = useLocation();
@@ -105,21 +108,23 @@ function LayoutType() {
   const isHeaderType3 = HeaderComponent === HeaderType3;
   const isHeaderType4 = HeaderComponent === HeaderType4;
 
-  const [modalNum, setModalNum] = useState(0);
-  const [modalView, setModalView] = useState(false);
-  const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
+    const [modalNum, setModalNum] = useState(0);
+    const [modalView, setModalView] = useState(false);
+    const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
+    const [modalDetail, setModalDetail] = useState(null);
 
-  function modalOpen(idx) {
-    setModalView(true);
-    setModalNum(idx);
-  }
+    function modalOpen(idx, data = null) {
+        setModalView(true);
+        setModalNum(idx);
+        setModalDetail(data);
+    }
 
-  function modalClose() {
-    setModalView(false);
-  }
-
-  useEffect(() => {
-    const containerWrapElement = document.querySelector(".containerWrap");
+    function modalClose() {
+        setModalView(false);
+        setModalDetail(null);
+    }
+    useEffect(() => {
+        const containerWrapElement = document.querySelector(".containerWrap");
 
     if (modalView) {
       containerWrapElement.style.overflow = "hidden";
@@ -127,39 +132,56 @@ function LayoutType() {
       containerWrapElement.style.overflow = "auto";
     }
 
-    return () => {
-      containerWrapElement.style.overflow = "auto";
-    };
-  }, [modalView]);
-  return (
-    <ModalContext.Provider value={{ modalOpen, modalClose }}>
-      <BackWrap>
-        <Container>
-          {modalView && modalData[modalNum] && (
-            <div>
-              {React.cloneElement(modalData[modalNum], {
-                onClick: modalClose,
-              })}
-            </div>
-          )}
-          <HeaderComponent titleStore={titleStore} modalOpen={modalOpen}>
-            {title}
-          </HeaderComponent>
-          <ContentWrap
-            className={` ${
-              isHeaderType3 || isHeaderType4 ? "cntSearchView" : ""
-            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
-          >
-            <Outlet />
-          </ContentWrap>
-          {showFooter && (
-            <Footer className={`${showMenu ? "footerBottom" : ""}`} />
-          )}
-          {showMenu && <Menu />}
-        </Container>
-      </BackWrap>
-    </ModalContext.Provider>
-  );
+        return () => {
+            containerWrapElement.style.overflow = "auto";
+        };
+    }, [modalView]);
+    return (
+        <ModalContext.Provider
+            value={{ modalOpen, modalClose, modalDetail, setModalDetail }}
+        >
+            <BackWrap>
+                <Container>
+                    {/* {modalView && modalData[modalNum] && (
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                            })}
+                        </div>
+                    )} */}
+                    {modalView && modalData[modalNum] && (
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                                data: modalDetail,
+                            })}
+                        </div>
+                    )}
+                    <HeaderComponent
+                        titleStore={titleStore}
+                        modalOpen={modalOpen}
+                    >
+                        {title}
+                    </HeaderComponent>
+                    <ContentWrap
+                        className={` ${
+                            isHeaderType3 || isHeaderType4
+                                ? "cntSearchView"
+                                : ""
+                        } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+                    >
+                        <Outlet />
+                    </ContentWrap>
+                    {showFooter && (
+                        <Footer
+                            className={`${showMenu ? "footerBottom" : ""}`}
+                        />
+                    )}
+                    {showMenu && <Menu />}
+                </Container>
+            </BackWrap>
+        </ModalContext.Provider>
+    );
 }
 function App() {
   return (

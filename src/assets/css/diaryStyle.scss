@@ -23,74 +23,86 @@ $radiusSmall: 5px;
 /****** diary ******/
 
 .diary-mb {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .diary-bg {
-  background-color: $backColor;
-  margin: 0 auto;
-  height: auto;
-  padding: 32px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // flex-direction: column;
+    background-color: $backColor;
+    margin: 0 auto;
+    height: auto;
+    padding: 10px 32px 5px 32px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+}
+.diaryList-bg {
+    background-color: $backColor;
+    margin: 0 auto;
+    height: auto;
+    // padding: 32px;
 }
 .diary-Wrap {
-  gap: 10px;
+    gap: 10px;
 }
 .diary-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
 }
 .img-wrap img {
-  width: 100%;
-  max-width: 466px;
-  height: auto;
-  border-radius: $radiusDefault;
+    width: 100%;
+    max-width: 466px;
+    height: auto;
+    border-radius: $radiusDefault;
+}
+.diaryList-btnWrap {
+    padding: 20px 32px 0 32px;
 }
 .editBtnWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // width: 466px;
-  // height: 50px;
-  margin: 0 auto;
-  margin-bottom: 21px;
-  cursor: pointer;
-  // padding: 32px;
-  // transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // width: 466px;
+    // height: 50px;
+    margin: 0 auto;
+    margin-bottom: 21px;
+    cursor: pointer;
+    // padding: 32px;
+    // transition: 0.3s;
 }
 .editDiary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 50px;
-  padding: 10px;
-  color: white;
-  background-color: $PrimaryOff;
-  border-radius: 10px;
-  transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    color: white;
+    background-color: $PrimaryOff;
+    border-radius: 10px;
+    transition: 0.3s;
 }
 .editDiary:hover {
-  background-color: $PrimaryColor;
+    background-color: $PrimaryColor;
 }
 .diaryAll-List {
-  // background-color: orange;
-  // height: 400px;
-  margin: 0 auto;
-  // padding: 32px;
-  .diaryCard {
-    background-color: #ffffff;
+    // background-color: orange;
+    // height: 400px;
     margin: 0 auto;
-    margin-bottom: 10px;
-    border: 1px solid $inputColor;
-    border-radius: $radiusDefault;
-    padding: 5px 10px;
-  }
+    // padding: 32px;
+    .diaryCard {
+        background-color: #ffffff;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        border: 1px solid $inputColor;
+        border-left: none;
+        border-right: none;
+        // border: 1px solid $inputColor;
+        // border-radius: $radiusDefault;
+        padding: 5px 10px;
+    }
 }
 
 // .diaryCard-userCard {
@@ -100,116 +112,184 @@ $radiusSmall: 5px;
 // 별숲기록 Write
 
 .diaryWriteWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .diaryWrite-input {
-  width: 100%;
-  height: 354px;
-  padding: 10px;
-  text-align: left;
-  border: solid 1px $inputColor;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  outline: none;
-  resize: none;
+    width: 100%;
+    height: 354px;
+    padding: 10px;
+    text-align: left;
+    border: solid 1px $inputColor;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    resize: none;
 }
 .diaryWrite-input::placeholder {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }
 .diaryWrite-imageCard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 24px;
-  width: 466px;
-  height: 354px;
-  margin-bottom: 10px;
-  border: solid 1px $inputColor;
-  border-radius: 10px;
-  background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    width: 466px;
+    height: 354px;
+    margin-bottom: 10px;
+    border: solid 1px $inputColor;
+    border-radius: 10px;
+    background-color: #ffffff;
 }
 .uploaded-images {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   flex-wrap: wrap;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 5px;
-  gap: 10px;
-  width: 100%;
-  border: 1px solid $inputColor;
-  border-radius: $radiusDefault;
-  background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $inputColor;
+    border-radius: $radiusDefault;
+    background-color: #ffffff;
 }
 .image-item {
-  position: relative;
-  aspect-ratio: 1 /1;
-  //   top: 2px;
-  border-radius: $radiusDefault;
+    position: relative;
+    width: calc(33.33% - 7px);
+    aspect-ratio: 1 /1;
+    border-radius: $radiusDefault;
+    overflow: hidden;
 }
 .image-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $radiusDefault;
 }
-.image-item:nth-child(n + 4) {
-  grid-column: auto / span 1;
-  justify-content: center;
-  align-items: center;
+.remove-image {
+    position: absolute;
+    top: 5px;
+    right: 45px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+        width: 12px;
+        height: 12px;
+    }
 }
-.uploaded-images:has(image-item:nth-child(-n + 3):last-child) {
-  justify-content: center;
-  align-items: center;
+// 이미지 개수에 따른 레이아웃 조정
+.uploaded-images.images-count-1 {
+    justify-content: center;
+
+    .image-item {
+        width: 60%; // 첫 번째 이미지는 더 크게 표시
+    }
 }
-.image-item button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  cursor: pointer;
+
+.uploaded-images.images-count-2 {
+    justify-content: space-between;
+
+    .image-item {
+        width: calc(50% - 5px); // 2개 이미지를 균등하게 배치
+    }
 }
+
+.uploaded-images.images-count-3 {
+    justify-content: space-between;
+
+    .image-item {
+        width: calc(33.33% - 7px); // 3개 이미지를 균등하게 배치
+    }
+}
+
+.uploaded-images.images-count-4,
+.uploaded-images.images-count-5 {
+    .image-item {
+        width: calc(50% - 5px); // 4, 5개 이미지는 2열로 배치
+    }
+}
+
 .diaryWrite-noticeWrap {
-  display: flex;
-  justify-content: center;
-  // align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  gap: 10px;
-  border: solid 1px $inputColor;
-  border-radius: 10px;
-  background-color: #ffffff;
-  margin-bottom: 10px;
-  .header {
-    font-size: $secondText;
-  }
-  .notice {
-    font-size: $therdText;
-  }
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    border: solid 1px $inputColor;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    .header {
+        font-size: $secondText;
+    }
+    .notice {
+        font-size: $therdText;
+    }
 }
 .userTag {
-  gap: 5px;
+    gap: 5px;
+    transition: 0.2s;
+    user-select: none;
+
+    // 글자 선택 불가능
+    // -webkit-user-select: none; /* Chrome, Safari, Opera */
+    // -moz-user-select: none; /* Firefox */
+    // -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+// pointer가능
+.userTag-clickable {
+    cursor: pointer;
+}
+// pointer 불가능
+.diaryList .userTag,
+.diaryView .userTag {
+    cursor: default;
+}
+.userTag input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    // cursor: pointer;
+    height: 0;
+    width: 0;
 }
 .userTag.selected {
-  background-color: $PrimaryOff;
-  color: white;
-  cursor: pointer;
+    background-color: $PrimaryOff;
+    color: white;
+    // cursor: pointer;
 }
+
+/****** 별숲기록 View ******/
+.diaryView-imgWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    img {
+        border-radius: $radiusDefault;
+    }
+}
+
 /****** 스크린별 구조 ******/
 @media screen and (max-width: 1024px) {
 }

@@ -5,7 +5,11 @@ import CampSelectCard from "../../components/Camp/CampSelectCard";
 function CampReservation() {
     return (
         <>
-            <CampSelectCard />
+            <CampSelectCard
+                isCampCard={true}
+                isLink={"/camp/view/1"}
+                className="wrapCntBottom"
+            />
             <Calender />
         </>
     );

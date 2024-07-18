@@ -1,5 +1,4 @@
 @charset "utf-8";
-@import "../../assets/css/mypageStore.scss";
 /* colors */
 $PrimaryColor: #3f71d1;
 $PrimaryOff: #92b1ed;
@@ -23,374 +22,425 @@ $radiusSmall: 5px;
 
 /****** user ******/
 .userCardType1 {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
-  width: 466px;
-  margin: 0 auto;
-
-  .imgWrap {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: url("../images/avatar.png") no-repeat;
-    background-size: cover;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .textWrap {
     display: flex;
-    flex-direction: column;
-    flex: 1;
+    justify-content: start;
+    align-items: center;
     gap: 10px;
+    width: 466px;
+    margin: 0 auto;
 
-    .nickname {
-      font-size: $defaultText;
-      font-weight: bold;
-      color: $textTitle;
+    .imgWrap {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: url("../images/avatar.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
-  }
+
+    .textWrap {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 10px;
+
+        .nickname {
+            font-size: $defaultText;
+            font-weight: bold;
+            color: $textTitle;
+        }
+    }
 }
 
 .userCardType2 {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
-  width: 466px;
-  margin: 0 auto;
-
-  .imgWrap {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: url("../images/avatar.png") no-repeat;
-    background-size: cover;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .textWrap {
     display: flex;
+    justify-content: start;
     align-items: center;
-    flex: 1;
     gap: 10px;
+    width: 466px;
+    margin: 0 auto;
 
-    .nickname {
-      font-size: $defaultText;
-      font-weight: bold;
-      color: $textTitle;
+    .imgWrap {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: url("../images/avatar.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
-    .date {
-      font-size: $therdText;
-      color: $textSecondary;
+    .textWrap {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        gap: 10px;
+
+        .nickname {
+            font-size: $defaultText;
+            font-weight: bold;
+            color: $textTitle;
+        }
+
+        .date {
+            font-size: $therdText;
+            color: $textSecondary;
+        }
     }
-  }
 }
 /*mypage Tab*/
 .myTabWrap {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  height: 40px;
-  margin-bottom: 20px;
-  padding: 0 32px;
-  div {
-    width: 100%;
-    color: $textSecondary;
-    text-align: center;
-    border-bottom: solid 3px $inputColor;
-    transition: 0.3s;
-  }
-  div.active {
-    color: $textDefault;
-    border-bottom: solid 3px $PrimaryColor;
-  }
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 0 32px;
+    div {
+        width: 100%;
+        color: $textSecondary;
+        text-align: center;
+        border-bottom: solid 3px $inputColor;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    div.active {
+        color: $textDefault;
+        border-bottom: solid 3px $PrimaryColor;
+        cursor: pointer;
+    }
 }
 .myPageDate {
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  padding: 0 32px;
-  a {
-    width: 100%;
-    height: auto;
-  }
-  ul {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 10px;
-    border: solid 1px $inputColor;
-    border-radius: 10px;
-    background: $backColor;
-    li {
-      gap: 10px;
-      width: 100%;
-      text-align: center;
-      font-size: $defaultText;
-      color: $textSecondary;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 0 32px;
+    a {
+        width: 100%;
+        height: auto;
     }
-  }
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 10px;
+        border: solid 1px $inputColor;
+        border-radius: 10px;
+        background: $backColor;
+        li {
+            gap: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: $defaultText;
+            color: $textSecondary;
+        }
+    }
 }
 /*membership*/
 .membershipWrap {
-  padding: 20px 32px;
-  h4 {
-    margin-bottom: 20px;
-    font-size: $titleText;
-  }
-  .memberWrap {
-    padding: 50px 45px;
-    color: #ffffff;
-    background: #0c2c5c;
-    border-radius: $radiusDefault;
-    .memberTab {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 20px;
-      height: 190px;
-      div {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        width: 100%;
-        padding: 10px 0;
-        border: solid 1px #144287;
-        border-radius: $radiusDefault;
-        background: #144287;
-        transition: 0.3s;
-      }
-      div:nth-child(1) {
-        height: 100px;
-      }
-      div:nth-child(2) {
-        height: 130px;
-      }
-      div:nth-child(3) {
-        height: 160px;
-      }
-      div:nth-child(4) {
-        height: 190px;
-      }
-      div.active {
-        color: #fcc21b;
-        border: solid 1px #fcc21b;
-      }
-    }
-    .memberInfo {
-      div {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        margin-top: 30px;
-      }
-      h4 {
+    padding: 20px 32px;
+    h4 {
+        margin-bottom: 20px;
         font-size: $titleText;
-        font-weight: normal;
-      }
-      p {
-        display: flex;
-        gap: 10px;
-        font-size: $therdText;
-      }
     }
-  }
+    .memberWrap {
+        padding: 50px 45px;
+        color: #ffffff;
+        background: #0c2c5c;
+        border-radius: $radiusDefault;
+        .memberTab {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            height: 190px;
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                padding: 10px 0;
+                border: solid 1px #144287;
+                border-radius: $radiusDefault;
+                background: #144287;
+                transition: 0.3s;
+            }
+            div:nth-child(1) {
+                height: 100px;
+            }
+            div:nth-child(2) {
+                height: 130px;
+            }
+            div:nth-child(3) {
+                height: 160px;
+            }
+            div:nth-child(4) {
+                height: 190px;
+            }
+            div.active {
+                color: #fcc21b;
+                border: solid 1px #fcc21b;
+            }
+        }
+        .memberInfo {
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 30px;
+            }
+            h4 {
+                font-size: $titleText;
+                font-weight: normal;
+            }
+            p {
+                display: flex;
+                gap: 10px;
+                font-size: $therdText;
+            }
+        }
+    }
 }
 /*userMypageMent*/
 .userMypageMent {
-  width: 100%;
-  padding-top: 10px;
-  .userProfile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 50px 32px 0px 32px;
-    background: #ffffff;
-    .imgWrap {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: url("../images/avatar.png") no-repeat;
-      background-size: cover;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    width: 100%;
+    padding-top: 10px;
+    .userProfile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 50px 32px 0px 32px;
+        background: #ffffff;
+        .imgWrap {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: url("../images/avatar.png") no-repeat;
+            background-size: cover;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .btnModify {
+            padding: 5px 10px;
+            color: $textSecondary;
+            font-size: $therdText;
+            border: solid 1px $inputColor;
+            border-radius: $radiusSmall;
+            transition: 0.3s;
+        }
+        .btnModify:hover {
+            color: $textDefault;
+            border: solid 1px $textDefault;
+        }
     }
-    .btnModify {
-      padding: 5px 10px;
-      color: $textSecondary;
-      font-size: $therdText;
-      border: solid 1px $inputColor;
-      border-radius: $radiusSmall;
-      transition: 0.3s;
+    .userBtnWrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 20px 32px 50px 32px;
+        background: #ffffff;
     }
-    .btnModify:hover {
-      color: $textDefault;
-      border: solid 1px $textDefault;
-    }
-  }
-  .userBtnWrap {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 20px 32px 50px 32px;
-    background: #ffffff;
-  }
 }
 .userInfoWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 30px 32px;
-  background: #ffffff;
-  .userInfoBox {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    span {
-      width: 130px;
-      color: $textTitle;
-      font-weight: bold;
-      font-size: $secondText;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px 32px;
+    background: #ffffff;
+    .userInfoBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        span {
+            width: 130px;
+            color: $textTitle;
+            font-weight: bold;
+            font-size: $secondText;
+        }
     }
-  }
+}
+/* mycampReser*/
+.noReservation {
+    height: 80vh;
+    padding: 10px 32px;
+    background: #ffffff;
+    p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        font-size: $titleText;
+    }
+}
+.myCampNoteWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: calc(100% - 64px);
+    margin: 10px auto 10px auto;
+    padding: 20px;
+    border: solid 1px $inputColor;
+    border-radius: $radiusDefault;
+    background: #ffffff;
+    h4 {
+        font-size: $secondText;
+    }
+    p {
+        color: $textSecondary;
+        font-size: $therdText;
+    }
+}
+.mycampReserWrap {
+    margin-bottom: 10px;
+    padding: 10px 32px 20px 32px;
+    background: #ffffff;
+    h4 {
+        font-size: $textDefault;
+    }
+    .myCampDate {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 0 10px 0;
+        font-size: $therdText;
+        span:nth-child(1) {
+            color: $textDefault;
+            font-weight: bold;
+        }
+        span:nth-child(2) {
+            color: $textSecondary;
+        }
+    }
+    .myCampInfo {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        .myCampImg {
+            display: flex;
+            width: 160px;
+            height: 160px;
+            font-size: 0;
+            border-radius: $radiusDefault;
+            background: url("../images/imgdefault.png") no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .myCampInfoText {
+            display: flex;
+            flex: auto;
+            flex-wrap: wrap;
+            align-content: space-between;
+            div {
+                width: 100%;
+            }
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                li:nth-child(1) {
+                    font-size: $therdText;
+                }
+                li:nth-child(2) {
+                    color: $textTitle;
+                    font-size: $defaultText;
+                    font-weight: bold;
+                }
+                li:nth-child(3) {
+                    font-size: $therdText;
+                }
+            }
+        }
+        .myCampDiary {
+            display: flex;
+            justify-content: end;
+            height: 40px;
+        }
+        .btnCampDiary {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            color: $textSecondary;
+            font-size: $therdText;
+            border: solid 1px $inputColor;
+            border-radius: $radiusDefault;
+        }
+        .btnCampDiaryActive {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            color: $textDefault;
+            font-size: $therdText;
+            border: solid 1px $PrimaryColor;
+            border-radius: $radiusDefault;
+        }
+    }
 }
 /*customer*/
 .customerWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0 32px;
-  h4 {
-    margin-bottom: 20px;
-    font-size: $titleText;
-  }
-  div {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-/*userMypageMent*/
-.userMypageMent {
-  width: 100%;
-  padding-top: 10px;
-  .userProfile {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
-    padding: 50px 32px 0px 32px;
-    background: #ffffff;
-    .imgWrap {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: url("../images/avatar.png") no-repeat;
-      background-size: cover;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    padding: 0 32px;
+    h4 {
+        margin-bottom: 20px;
+        font-size: $titleText;
     }
-    .btnModify {
-      padding: 5px 10px;
-      color: $textSecondary;
-      font-size: $therdText;
-      border: solid 1px $inputColor;
-      border-radius: $radiusSmall;
-      transition: 0.3s;
+    div {
+        display: flex;
+        justify-content: space-between;
     }
-    .btnModify:hover {
-      color: $textDefault;
-      border: solid 1px $textDefault;
-    }
-  }
-  .userBtnWrap {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 20px 32px 50px 32px;
-    background: #ffffff;
-  }
-}
-.userInfoWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 30px 32px;
-  background: #ffffff;
-  .userInfoBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    span {
-      width: 130px;
-      color: $textTitle;
-      font-weight: bold;
-      font-size: $secondText;
-    }
-  }
 }
 /*customer*/
 .customerToggle {
-  padding-top: 10px;
-  .toggleTitle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 32px;
-    border-top: solid 1px $inputColor;
-    border-bottom: solid 1px $inputColor;
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      li:nth-child(1) {
-        color: $textTitle;
-        font-size: $secondText;
-        font-weight: bold;
-      }
-      li:nth-child(2) {
-        color: $textSecondary;
-        font-size: $therdText;
-      }
+    padding-top: 10px;
+    .toggleTitle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 32px;
+        border-top: solid 1px $inputColor;
+        border-bottom: solid 1px $inputColor;
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            li:nth-child(1) {
+                color: $textTitle;
+                font-size: $secondText;
+                font-weight: bold;
+            }
+            li:nth-child(2) {
+                color: $textSecondary;
+                font-size: $therdText;
+            }
+        }
     }
-  }
-  .toggleContent {
-    padding: 20px 32px;
-    font-size: $secondText;
-    line-height: 1.825em;
-    border-bottom: solid 1px $inputColor;
-  }
+    .toggleContent {
+        padding: 20px 32px;
+        font-size: $secondText;
+        line-height: 1.825em;
+        border-bottom: solid 1px $inputColor;
+    }
 }
 @media screen and (max-width: 1024px) {
 }
