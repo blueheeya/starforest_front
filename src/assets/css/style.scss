@@ -94,6 +94,15 @@ section.backWrap {
         margin: 0 auto;
         padding: 0 32px 0 0;
     }
+    .backAnimation {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+    }
 }
 
 .containerWrap {
@@ -104,6 +113,7 @@ section.backWrap {
     box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    z-index: 2;
 }
 
 .containerWrap::-webkit-scrollbar {

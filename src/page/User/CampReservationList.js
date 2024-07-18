@@ -80,7 +80,7 @@ function CampReservationList() {
                         <p>&#8729; 당일 예약 취소는 불가합니다.</p>
                     </div>
                     {Reservation.map((reserItem) => (
-                        <div className="mycampReserWrap" key={reserItem.id}>
+                        <div className="myCampReserWrap" key={reserItem.id}>
                             <div className="myCampDate">
                                 <span>{reserItem.createdAt}</span>
                                 <span>
