@@ -5,7 +5,7 @@ import UserOrderList from "../../components/User/UserOrderList";
 
 function StoreOrderList() {
   return (
-    <div className="userOrderListWrapTop">
+    <div className="userOrderListWrap">
       <div className="userOrderInfo">
         <div className="userOrderListWrap">
           <UserOrderList />

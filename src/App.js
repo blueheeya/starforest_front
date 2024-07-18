@@ -93,20 +93,19 @@ function LayoutType() {
             }
         }
     }
-  }
-  const location = useLocation();
-  const {
-    title = "홈",
-    component: HeaderComponent = HeaderType2,
-    titleStore = false,
-  } = getHeaderConfig(location.pathname) ?? {};
+    const location = useLocation();
+    const {
+        title = "홈",
+        component: HeaderComponent = HeaderType2,
+        titleStore = false,
+    } = getHeaderConfig(location.pathname) ?? {};
 
-  // 메뉴
-  const showMenu = showMenuPath.includes(location.pathname);
-  const showFooter = showFooterPath.includes(location.pathname);
-  const isHeaderType2 = HeaderComponent === HeaderType2;
-  const isHeaderType3 = HeaderComponent === HeaderType3;
-  const isHeaderType4 = HeaderComponent === HeaderType4;
+    // 메뉴
+    const showMenu = showMenuPath.includes(location.pathname);
+    const showFooter = showFooterPath.includes(location.pathname);
+    const isHeaderType2 = HeaderComponent === HeaderType2;
+    const isHeaderType3 = HeaderComponent === HeaderType3;
+    const isHeaderType4 = HeaderComponent === HeaderType4;
 
     const [modalNum, setModalNum] = useState(0);
     const [modalView, setModalView] = useState(false);
@@ -126,11 +125,11 @@ function LayoutType() {
     useEffect(() => {
         const containerWrapElement = document.querySelector(".containerWrap");
 
-    if (modalView) {
-      containerWrapElement.style.overflow = "hidden";
-    } else {
-      containerWrapElement.style.overflow = "auto";
-    }
+        if (modalView) {
+            containerWrapElement.style.overflow = "hidden";
+        } else {
+            containerWrapElement.style.overflow = "auto";
+        }
 
         return () => {
             containerWrapElement.style.overflow = "auto";
@@ -184,123 +183,178 @@ function LayoutType() {
     );
 }
 function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<LayoutType />}>
-          <Route path="/" index element={<Home />}></Route>
-          {/* camping  */}
-          <Route path="/camp/list" element={<CampList />}></Route>
-          <Route path="/camp/list/map" element={<CampListMap />}></Route>
-          <Route path="/camp/view/:id" element={<CampView />}></Route>
-          <Route path="/camp/view/map" index element={<CampViewMap />}></Route>
-          <Route
-            path="/camp/reservation"
-            index
-            element={<CampReservation />}
-          ></Route>
-          <Route
-            path="/camp/pay"
-            index
-            element={<CampReservationPay />}
-          ></Route>
-          <Route
-            path="/camp/pay/complete"
-            index
-            element={<CampReservationComplete />}
-          ></Route>
-          {/* diary  */}
-          <Route path="/diary/list" index element={<DiaryList />}></Route>
-          <Route path="/diary/write" index element={<DiaryWrite />}></Route>
-          <Route path="/diary/view" index element={<DiaryView />}></Route>
-          {/* store  */}
-          <Route path="/store/list" index element={<StoreList />}></Route>
-          <Route path="/store/view" index element={<StoreView />}></Route>
-          <Route path="/store/pay" index element={<StorePay />}></Route>
-          <Route
-            path="/store/pay/complete"
-            index
-            element={<StorePayComplete />}
-          ></Route>
-          {/* user  */}
-          <Route path="/user/mypage" index element={<UserMypage />}></Route>
-          <Route
-            path="/user/mypage/management"
-            index
-            element={<UserMypageMent />}
-          ></Route>
-          <Route
-            path="/user/camp/reservation/list"
-            index
-            element={<CampReservationList />}
-          ></Route>
-          <Route
-            path="/user/camp/reservation/view"
-            index
-            element={<CampReservationView />}
-          ></Route>
-          <Route
-            path="/user/camp/like/list"
-            index
-            element={<CampLikeList />}
-          ></Route>
-          <Route
-            path="/user/diary/list"
-            index
-            element={<MyDiaryList />}
-          ></Route>
-          <Route
-            path="/user/store/order/list"
-            index
-            element={<StoreOrderList />}
-          ></Route>
-          <Route
-            path="/user/store/order/view"
-            index
-            element={<StoreOrderView />}
-          ></Route>
-          <Route
-            path="/user/store/cart/list"
-            index
-            element={<StoreCartList />}
-          ></Route>
-          <Route
-            path="/user/store/review/list"
-            index
-            element={<StoreReviewList />}
-          ></Route>
-          <Route path="/user/qna" index element={<Qna />}></Route>
-          <Route path="/user/notice" index element={<Notice />}></Route>
-          {/* member */}
-          <Route path="/member/login" index element={<Login />}></Route>
-          <Route path="/member/pwfind" index element={<PwFind />}></Route>
-          <Route
-            path="/member/pwfind/auth"
-            index
-            element={<PwFindAuth />}
-          ></Route>
-          <Route
-            path="/member/pwfind/change"
-            index
-            element={<PwFindChange />}
-          ></Route>
-          <Route
-            path="/member/pwfind/complete"
-            index
-            element={<PwChangeComplete />}
-          ></Route>
-          <Route path="/member/terms" index element={<Terms />}></Route>
-          <Route path="/member/register" index element={<Register />}></Route>
-          <Route
-            path="/member/register/complete"
-            index
-            element={<Complete />}
-          ></Route>
-          <Route path="/style" element={<Style />}></Route>
-        </Route>
-      </Routes>
-    </>
-  );
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<LayoutType />}>
+                    <Route path="/" index element={<Home />}></Route>
+                    {/* camping  */}
+                    <Route path="/camp/list" element={<CampList />}></Route>
+                    <Route
+                        path="/camp/list/map"
+                        element={<CampListMap />}
+                    ></Route>
+                    <Route path="/camp/view/:id" element={<CampView />}></Route>
+                    <Route
+                        path="/camp/view/map"
+                        index
+                        element={<CampViewMap />}
+                    ></Route>
+                    <Route
+                        path="/camp/reservation"
+                        index
+                        element={<CampReservation />}
+                    ></Route>
+                    <Route
+                        path="/camp/pay"
+                        index
+                        element={<CampReservationPay />}
+                    ></Route>
+                    <Route
+                        path="/camp/pay/complete"
+                        index
+                        element={<CampReservationComplete />}
+                    ></Route>
+                    {/* diary  */}
+                    <Route
+                        path="/diary/list"
+                        index
+                        element={<DiaryList />}
+                    ></Route>
+                    <Route
+                        path="/diary/write"
+                        index
+                        element={<DiaryWrite />}
+                    ></Route>
+                    <Route
+                        path="/diary/view"
+                        index
+                        element={<DiaryView />}
+                    ></Route>
+                    {/* store  */}
+                    <Route
+                        path="/store/list"
+                        index
+                        element={<StoreList />}
+                    ></Route>
+                    <Route
+                        path="/store/view"
+                        index
+                        element={<StoreView />}
+                    ></Route>
+                    <Route
+                        path="/store/pay"
+                        index
+                        element={<StorePay />}
+                    ></Route>
+                    <Route
+                        path="/store/pay/complete"
+                        index
+                        element={<StorePayComplete />}
+                    ></Route>
+                    {/* user  */}
+                    <Route
+                        path="/user/mypage"
+                        index
+                        element={<UserMypage />}
+                    ></Route>
+                    <Route
+                        path="/user/mypage/management"
+                        index
+                        element={<UserMypageMent />}
+                    ></Route>
+                    <Route
+                        path="/user/camp/reservation/list"
+                        index
+                        element={<CampReservationList />}
+                    ></Route>
+                    <Route
+                        path="/user/camp/reservation/view"
+                        index
+                        element={<CampReservationView />}
+                    ></Route>
+                    <Route
+                        path="/user/camp/like/list"
+                        index
+                        element={<CampLikeList />}
+                    ></Route>
+                    <Route
+                        path="/user/diary/list"
+                        index
+                        element={<MyDiaryList />}
+                    ></Route>
+                    <Route
+                        path="/user/store/order/list"
+                        index
+                        element={<StoreOrderList />}
+                    ></Route>
+                    <Route
+                        path="/user/store/order/view"
+                        index
+                        element={<StoreOrderView />}
+                    ></Route>
+                    <Route
+                        path="/user/store/cart/list"
+                        index
+                        element={<StoreCartList />}
+                    ></Route>
+                    <Route
+                        path="/user/store/review/list"
+                        index
+                        element={<StoreReviewList />}
+                    ></Route>
+                    <Route path="/user/qna" index element={<Qna />}></Route>
+                    <Route
+                        path="/user/notice"
+                        index
+                        element={<Notice />}
+                    ></Route>
+                    {/* member */}
+                    <Route
+                        path="/member/login"
+                        index
+                        element={<Login />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind"
+                        index
+                        element={<PwFind />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/auth"
+                        index
+                        element={<PwFindAuth />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/change"
+                        index
+                        element={<PwFindChange />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/complete"
+                        index
+                        element={<PwChangeComplete />}
+                    ></Route>
+                    <Route
+                        path="/member/terms"
+                        index
+                        element={<Terms />}
+                    ></Route>
+                    <Route
+                        path="/member/register"
+                        index
+                        element={<Register />}
+                    ></Route>
+                    <Route
+                        path="/member/register/complete"
+                        index
+                        element={<Complete />}
+                    ></Route>
+                    <Route path="/style" element={<Style />}></Route>
+                </Route>
+            </Routes>
+        </>
+    );
 }
 
 export default App;
