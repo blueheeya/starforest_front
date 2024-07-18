@@ -141,11 +141,6 @@ section.backWrap {
 
 /* header */
 .headerType {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 64px;
     color: $PrimaryColor;
     font-family: "EunhasuR";
     font-size: $headerTitle;
@@ -158,37 +153,11 @@ section.backWrap {
 .headerType1 {
     display: flex;
     align-items: center;
-    width: 100%;
-    height: 64px;
-    padding: 0 32px;
-
-    img {
-        width: 55px;
-        height: 44px;
-    }
 }
 
 .headerType2 {
     position: fixed;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 530px;
-    height: 64px;
-    padding: 0 10px;
-    z-index: 9;
-    border-bottom: solid 1px $inputColor;
-    background: #ffffff;
-
-    h2 {
-        flex: auto;
-        margin-left: -36px;
-        color: $PrimaryColor;
-        font-family: "EunhasuR";
-        font-size: 30px;
-        font-weight: normal;
-        text-align: center;
-    }
 
     h2.storeH2 {
         margin-left: -60px;
@@ -879,6 +848,7 @@ button {
         height: 20px;
         font-size: 0;
     }
+  }
 
     /****** button ******/
     /* icon */
@@ -899,6 +869,7 @@ button {
     .containerWrap {
         width: 100%;
     }
+  }
 
     /* header */
     /* menu */

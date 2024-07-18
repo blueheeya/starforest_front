@@ -34,7 +34,7 @@ function UserOrderList() {
           </div>
           <div className="userOrderTitle">
             <div className="userOrderProduct">
-              <span className="userOrderTitle ">[나이키] </span>
+              <span className="userOrderinnerbrand ">[나이키] </span>
               <span className="userOrderinnerEx"> 배송상품</span>
             </div>
             <div className="userOrderinnerMain">
