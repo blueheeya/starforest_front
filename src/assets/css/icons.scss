@@ -181,3 +181,15 @@ $radiusSmall: 5px;
     border-radius: $radiusSmall;
     background: #ffffff;
 }
+.campRestComplete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    width: 72px;
+    padding: 5px 10px;
+    color: #54bf3a;
+    font-size: $therdText;
+    border: solid 1px #54bf3a;
+    border-radius: 5px;
+}

@@ -81,6 +81,9 @@ const showFooterPath = [
     "/user/mypage/management",
     "/user/camp/reservation/list",
     "/user/camp/reservation/view",
+    "/user/store/review/list",
+    "/user/camp/like/list",
+    "/user/diary/list",
 ];
 function LayoutType() {
     function getHeaderConfig(pathname) {

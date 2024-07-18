@@ -1,6 +1,7 @@
 import React from "react";
 import Icon from "../../components/Icon/Icon";
 import Button from "../../components/Form/Button";
+import { Link } from "react-router-dom";
 
 const Reservation = [
     {
@@ -12,6 +13,7 @@ const Reservation = [
         endDate: "2024.06.15",
         createdAt: "2024.06.15 14:00",
         isRecordWritten: false,
+        isLink: "/user/camp/reservation/view",
     },
     {
         id: 2,
@@ -22,6 +24,7 @@ const Reservation = [
         endDate: "2024.07.20",
         createdAt: "2024.06.15 14:00",
         isRecordWritten: true,
+        isLink: "/user/camp/reservation/view",
     },
     {
         id: 3,
@@ -32,6 +35,7 @@ const Reservation = [
         endDate: "2024.07.20",
         createdAt: "2024.06.15 14:00",
         isRecordWritten: false,
+        isLink: "/user/camp/reservation/view",
     },
 ];
 
@@ -80,13 +84,20 @@ function CampReservationList() {
                             <div className="myCampDate">
                                 <span>{reserItem.createdAt}</span>
                                 <span>
-                                    예약번호 {reserItem.reservationNumber}
+                                    예약번호
+                                    <Link to={reserItem.isLink}>
+                                        {reserItem.reservationNumber}
+                                    </Link>
                                 </span>
                             </div>
                             <div className="myCampInfo">
                                 <div className="myCampImg">이미지</div>
                                 <div className="myCampInfoText">
-                                    <div>예약상황</div>
+                                    <div>
+                                        <span className="campRestComplete">
+                                            예약상황
+                                        </span>
+                                    </div>
                                     <ul>
                                         <li>오토캠핑</li>
                                         <li>캠프하다</li>
@@ -96,41 +107,27 @@ function CampReservationList() {
                                         {shouldShowButton(
                                             reserItem.startDate,
                                             reserItem.endDate
-                                        ) && (
-                                            <button
-                                                className={
-                                                    isButtonActive(
-                                                        reserItem.endDate,
-                                                        reserItem.isRecordWritten
-                                                    )
-                                                        ? "btnCampDiaryActive"
-                                                        : "btnCampDiary"
-                                                }
-                                                disabled={
-                                                    !isButtonActive(
-                                                        reserItem.endDate,
-                                                        reserItem.isRecordWritten
-                                                    )
-                                                }
-                                            >
-                                                <Icon
-                                                    iconName={
-                                                        isButtonActive(
-                                                            reserItem.endDate,
-                                                            reserItem.isRecordWritten
-                                                        )
-                                                            ? "menuLogActive"
-                                                            : "iconLogUnload"
-                                                    }
-                                                />{" "}
-                                                {isButtonActive(
-                                                    reserItem.endDate,
-                                                    reserItem.isRecordWritten
-                                                )
-                                                    ? "별숲기록 작성"
-                                                    : "별숲기록 완료"}
-                                            </button>
-                                        )}
+                                        ) &&
+                                            (isButtonActive(
+                                                reserItem.endDate,
+                                                reserItem.isRecordWritten
+                                            ) ? (
+                                                <Link
+                                                    to={`/diary/write`}
+                                                    className="btnCampDiaryActive"
+                                                >
+                                                    <Icon iconName="menuLogActive" />
+                                                    별숲기록 작성
+                                                </Link>
+                                            ) : (
+                                                <button
+                                                    className="btnCampDiary"
+                                                    disabled={true}
+                                                >
+                                                    <Icon iconName="iconLogUnload" />
+                                                    별숲기록 완료
+                                                </button>
+                                            ))}
                                     </div>
                                 </div>
                             </div>

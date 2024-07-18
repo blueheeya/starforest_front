@@ -1,7 +1,7 @@
 .datepicker {
     margin: 0, auto;
     text-align: center;
-    width: 320px;
+    width: 100%;
     padding: 8px 20px;
     border-width: 1px;
     border-top-right-radius: 4px;
@@ -17,10 +17,21 @@
     left: 56%;
     transform: translateX(-50%);
 }
-
+/* 2024 추가 */
+.react-datepicker__navigation {
+    top: 15px !important;
+}
+.react-datepicker__navigation--previous {
+    margin-left: 32px;
+}
+.react-datepicker__navigation--next {
+    margin-right: 32px;
+}
 /*--------------------------------------------  예약용 달력 -------------------------------------------*/
 
 .react-datepicker {
+    width: 100%;
+    padding: 0 32px;
     border: none !important;
 }
 
@@ -48,7 +59,7 @@
     font-size: 13px;
     color: #535353;
     font-weight: bold;
-    width: 69px;
+    width: 60px;
     height: 69px;
     text-align: center;
 }
@@ -56,8 +67,8 @@
 /* 달력 cell */
 .custom-datepicker .react-datepicker__day {
     position: relative;
-    width: 69px;
-    height: 69px;
+    width: 60px;
+    height: 60px;
     line-height: 60px;
     font-size: 13px;
     color: #535353;

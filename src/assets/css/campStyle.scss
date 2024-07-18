@@ -514,37 +514,6 @@ $radiusSmall: 5px;
 
 //캠핑장 결제 페이지
 
-// /* icon */
-
-// .campIcon {
-//   width: 30px;
-//   height: 30px;
-//   font-size: 0;
-// }
-
-// .iconAnimal {
-//   background: url("../images/iconAnimal.png") no-repeat;
-// }
-
-// .iconAround {
-//   background: url("../images/iconAround.png") no-repeat;
-// }
-
-// /****** diary ******/
-
-// /****** store ******/
-// .storeTen {
-//   .swiper {
-//     padding: 0 32px;
-//   }
-
-//   .swiper-slide {}
-
-//   .storeTenCard {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-
 .campListCard {
     display: flex;
     flex-direction: column;
@@ -732,6 +701,83 @@ $radiusSmall: 5px;
     gap: 10px;
 }
 
+/* campSeletCard */
+.campSelectCardWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    background: #ffffff;
+    .campCardInfo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .campCardImg {
+        width: 150px;
+        height: 100px;
+        border-radius: $radiusDefault;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .campCardText {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        li:nth-child(1) {
+            color: $textSecondary;
+            font-size: $therdText;
+        }
+        li:nth-child(2) {
+            color: $textTitle;
+            font-size: $secondText;
+            font-weight: bold;
+        }
+        li:nth-child(3) {
+            color: $textSecondary;
+            font-size: $secondText;
+        }
+    }
+}
+.campSelectCardWrap2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .campCardInfo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .campCardImg {
+        width: 65px;
+        height: 65px;
+        border-radius: $radiusDefault;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .campCardText {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        li:nth-child(1) {
+            color: $textSecondary;
+            font-size: $therdText;
+        }
+        li:nth-child(2) {
+            color: $textTitle;
+            font-size: $secondText;
+            font-weight: bold;
+        }
+    }
+}
 /* icon */
 
 @media screen and (max-width: 1024px) {

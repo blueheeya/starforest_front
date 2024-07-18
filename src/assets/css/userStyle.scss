@@ -112,10 +112,12 @@ $radiusSmall: 5px;
         text-align: center;
         border-bottom: solid 3px $inputColor;
         transition: 0.3s;
+        cursor: pointer;
     }
     div.active {
         color: $textDefault;
         border-bottom: solid 3px $PrimaryColor;
+        cursor: pointer;
     }
 }
 .myPageDate {
