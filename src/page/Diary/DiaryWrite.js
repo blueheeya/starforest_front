@@ -10,62 +10,12 @@ import iconClose from "../../assets/images/iconClose.svg";
 import axios from "axios";
 
 function DiaryWrite() {
-  // // 이미지 추가 const
-  // const ImageUpload = () => {
-  //   // 이미지 저장소
-  //   const [images, setImages] = useState([]);
-
-  //   // 이미지 등록
-  //   const handleImageUpload = (e) => {
-  //     const files = Array.from(e.target.files);
-  //     if (images.length + files.length > 5) {
-  //       alert("최대 5개의 이미지만 등록할 수 있습니다.");
-  //       return;
-  //     }
-
-  //     const newImages = files.map((file) => ({
-  //       file,
-  //       preview: URL.createObjectURL(file),
-  //     }));
-
-  //     setImages((prevImages) => [...prevImages, ...newImages]);
-
-  //     const removeImage = (index) => {
-  //       setImages((prevImages) => prevImages.filter((_, i) => i !== index));
-  //     };
-  //   };
-  // };
-
   const [images, setImages] = useState([]); // 이미지 상태관리
   const [selectedUserTags, setSelectedUserTags] = useState([]); // 선택된 태그 상태관리
   const [selectedHashTags, setSelectedHashTags] = useState([]); // 선택된 해시태그 상태관리)
   const [content, setContent] = useState(""); // 글 작성 내용 상태관리
   const fileInputRef = useRef(null); // file input ref
-
-  const navigate = useNavigate(); // useNavigate 훅 사용
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // formData 생성
-    const formData = new FormData();
-    formData.append("content", content);
-    // formData.append("category", selectedUserTags)
-
-    // 이미지 파일들 추가
-    // images.forEach((image, index) => {
-    //   formData.append("images", image.file);
-    // });
-
-    try {
-      const res = await axios.post("http://localhost:8084/diary", formData);
-      console.log("Diary posted successfully: ", res.data);
-      navigate("/diary/list");
-    } catch (error) {
-      console.error("Error posting diary: ", error);
-      alert("다이어리 post 실패");
-    }
-  };
+  const navigate = useNavigate(); // useNavigate
 
   // 이미지 change 확인
   const handleImageUpload = (e) => {
@@ -111,126 +61,140 @@ function DiaryWrite() {
     );
   };
 
+  const handleSubmit = async () => {
+    try {
+      // 폼데이터 생성
+      const formData = new FormData();
+
+      // 이미지 파일 추가
+      images.forEach((image, index) => {
+        formData.append("images", image.file);
+      });
+
+      // 다른 데이터들 추가
+      formData.append("content", content);
+      formData.append("userTags", JSON.stringify(selectedUserTags));
+      formData.append("hashTags", JSON.stringify(selectedHashTags));
+
+      // API
+      const res = await axios.post("/diary", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      // if문
+      if (res.status === 200) {
+        alert("성공적으로 등록되었습니다.");
+        navigate("/diary/list");
+      }
+    } catch (error) {
+      console.error("errer submit diary:", error);
+      alert("별숲 등록에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
+
   return (
     // <div className="diary-bg">
     <div>
-      <form onSubmit={handleSubmit}>
-        {/* 유저 정보 */}
-        <div
-          className="diary-mb"
-          style={{
-            backgroundColor: "#ffffff",
-            padding: "10px 20px 10px 20px",
-          }}
-        >
-          <UserCard userMyCard={false} />
+      {/* 유저 정보 */}
+      <div
+        className="diary-mb"
+        style={{
+          backgroundColor: "#ffffff",
+          padding: "10px 20px 10px 20px",
+        }}
+      >
+        <UserCard userMyCard={false} />
+      </div>
+
+      <div className="diary-bg">
+        {/* 캠핑장 간략정보 */}
+        <div className="diary-mb">
+          <CampSelectCard />
         </div>
-
-        <div className="diary-bg">
-          {/* 캠핑장 간략정보 */}
-          <div className="diary-mb">
-            <CampSelectCard />
-          </div>
-          {/* 태그 1 */}
-          <UserTags
-            selectedUserTags={selectedUserTags}
-            onUserTagToggle={handleUserTagToggle}
-            isClickable={true}
+        {/* 태그 1 */}
+        <UserTags
+          selectedUserTags={selectedUserTags}
+          onUserTagToggle={handleUserTagToggle}
+          isClickable={true}
+        />
+        {/* 태그 2 */}
+        <HashTags
+          selectedHashTags={selectedHashTags}
+          onHashTagToggle={handleHashTagToggle}
+          isClickable={true}
+        />
+        {/* input Wrap */}
+        <div className="diaryWriteWrap">
+          {/* diaryWrite-input */}
+          <textarea
+            className="diaryWrite-input"
+            placeholder="내용을 입력해주세요."
+            value={content}
+            id="content"
+            onChange={(e) => setContent(e.target.value)}
           />
-          {/* 태그 2 */}
-          <HashTags
-            selectedHashTags={selectedHashTags}
-            onHashTagToggle={handleHashTagToggle}
-            isClickable={true}
-          />
-          {/* input Wrap */}
-          <div className="diaryWriteWrap">
-            {/* diaryWrite-input */}
-            <textarea
-              className="diaryWrite-input"
-              placeholder="내용을 입력해주세요."
-              value={content}
-              id="content"
-              onChange={(e) => setContent(e.target.value)}
-            />
 
-            {/* 이미지 추가됐을시 보이는박스 */}
-            {images.length > 0 && (
-              <div className="uploaded-images diary-mb images-count-${images.length}">
-                {images.map((image, index) => (
-                  <div key={index} className="image-item">
-                    <img
-                      src={image.preview}
-                      alt={`업로드된 이미지 ${index + 1}`}
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                        objectFit: "cover",
-                      }}
-                    />
+          {/* 이미지 추가됐을시 보이는박스 */}
+          {images.length > 0 && (
+            <div className="uploaded-images diary-mb images-count-${images.length}">
+              {images.map((image, index) => (
+                <div key={index} className="image-item">
+                  <img
+                    src={image.preview}
+                    alt={`업로드된 이미지 ${index + 1}`}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                  />
 
-                    {/* 이미지 삭제 버튼 */}
-                    <button
-                      className="remove-image"
-                      onClick={() => {
-                        removeImage(index);
-                      }}
-                    >
-                      <img src={iconClose} />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-            {/* 이미지 추가 박스 */}
-            <button onClick={triggerFileInput}>
-              <div className="diaryWrite-imageCard">
-                <div>버튼을 눌러 이미지를 등록해 주세요.</div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  ref={fileInputRef}
-                  style={{ display: "none" }}
-                  onChange={handleImageUpload}
-                />
-                <img src={imgUpload} alt="이미지 추가" />
-                {/* <div>
-                {images.map((image, index) => (
-                  <div key={index}>
-                    <img
-                      src={image.preview}
-                      alt={`업로드된 이미지 ${index + 1}`}
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </div>
-                ))}
-              </div> */}
-              </div>
-            </button>
-          </div>
-          {/* 별숲기록 주의사향 */}
-          <div className="diaryWrite-noticeWrap">
-            <h3 className="header">유의사항</h3>
-            <p className="notice">
-              ㆍ 이미지는 jpg , png 형식만 가능합니다. <br />
-              ㆍ 이미지 등록은 최대 5개까지 가능합니다. <br />ㆍ 별숲 기록에
-              관련없는 내용이나 이미지 등록시 삭제될 수 있습니다.
-            </p>
-          </div>
-          {/* 등록버튼 */}
-          {/* <Link to={"/diary/list"}> */}
-          <button type="submit">
-            <EditBtn />
-            {/* 등록하기 */}
+                  {/* 이미지 삭제 버튼 */}
+                  <button
+                    className="remove-image"
+                    onClick={() => {
+                      removeImage(index);
+                    }}
+                  >
+                    <img src={iconClose} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          {/* 이미지 추가 박스 */}
+          <button onClick={triggerFileInput}>
+            <div className="diaryWrite-imageCard">
+              <div>버튼을 눌러 이미지를 등록해 주세요.</div>
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                onChange={handleImageUpload}
+              />
+              <img src={imgUpload} alt="이미지 추가" />
+            </div>
           </button>
-          {/* </Link> */}
         </div>
-      </form>
+        {/* 별숲기록 주의사향 */}
+        <div className="diaryWrite-noticeWrap">
+          <h3 className="header">유의사항</h3>
+          <p className="notice">
+            ㆍ 이미지는 jpg , png 형식만 가능합니다. <br />
+            ㆍ 이미지 등록은 최대 5개까지 가능합니다. <br />ㆍ 별숲 기록에
+            관련없는 내용이나 이미지 등록시 삭제될 수 있습니다.
+          </p>
+        </div>
+        {/* 등록버튼 */}
+        {/* <Link to={"/diary/list"}> */}
+        <EditBtn onClick={handleSubmit} />
+        {/* 등록하기 */}
+        {/* </Link> */}
+      </div>
     </div>
   );
 }
