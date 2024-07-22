@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../Form/Button";
 import Icon from "../Icon/Icon";
 
-function ModalReview({ onClick }) {
+function ModalReview({ onClick, onSubmit, data }) {
   const [review, setReview] = useState("");
   const [error, setError] = useState("");
   const handleSubmit = () => {
@@ -10,9 +10,14 @@ function ModalReview({ onClick }) {
       setError("내용을 입력해주세요!!!!!");
     } else {
       setError("");
-      onsubmit();
+      onSubmit();
     }
   };
+
+  const handleClose = () => {
+    onClick();
+  };
+
   return (
     <div className="modalWrap">
       <div className="modal">
@@ -48,7 +53,7 @@ function ModalReview({ onClick }) {
           <Button defaultBtn={true} onClick={handleSubmit}>
             등록
           </Button>
-          <Button defaultBtn={false} className="btnLine" onClick={handleSubmit}>
+          <Button defaultBtn={false} className="btnLine" onClick={handleClose}>
             취소
           </Button>
         </div>
