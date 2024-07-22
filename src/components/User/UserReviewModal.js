@@ -3,16 +3,6 @@ import "../../assets/css/storeStyle.scss";
 import Icon from "../Icon/Icon";
 import Overlay from "../Store/Overlay";
 
-// const userOrderProduct = [
-//   {
-//     id: 1,
-//     brandName: "브랜드명",
-//     productName: "상품명",
-//     level: "샛별",
-//     user: "우에엥",
-//   },
-// ];
-
 const UserReviewModal = ({ isOpen, onClose, onSubmit }) => {
   const [review, setReview] = useState("");
   const [error, setError] = useState("");

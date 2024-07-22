@@ -62,6 +62,7 @@ import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
 import ModalContext from "./components/Modal/ModalContext";
 import { ReviewProvider } from "./components/User/ReviewContext";
+import axiosInstance from "./utils/axios.js";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -111,7 +112,13 @@ function LayoutType() {
   const [modalNum, setModalNum] = useState(0);
   const [modalView, setModalView] = useState(false);
   const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
-  const [modalDetail, setModalDetail] = useState(null);
+  const [modalDetail, setModalDetail] = useState({
+    created_at: "",
+    id: "",
+    product_id: "",
+    content: "",
+    user_id: "",
+  });
 
   function modalOpen(idx, data = null) {
     setModalView(true);
@@ -124,8 +131,29 @@ function LayoutType() {
     setModalDetail(null);
   }
 
-  function modalSubmit() {
-    setModalView(false);
+  // function modalSubmit() {
+  //   setModalView(false);
+  // }
+
+  async function modalSubmit(e) {
+    e.preventDefault(); //폼제출시 재로드방지
+
+    //body객체생성-> 서버로 보낼 데이터정의
+    const body = {
+      created_at: modalDetail.created_at,
+      id: modalDetail.id,
+      product_id: modalDetail.product_id,
+      content: modalDetail.content,
+      user_id: modalDetail.user_id,
+    };
+
+    try {
+      await axiosInstance.post("/user/store/review/list", body);
+      modalOpen(false);
+    } catch (error) {
+      console.log(error);
+      modalOpen(false);
+    }
   }
 
   useEffect(() => {

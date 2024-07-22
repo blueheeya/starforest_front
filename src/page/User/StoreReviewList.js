@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../assets/css/storeStyle.scss";
 import Icon from "../../components/Icon/Icon";
 import { useReviews } from "../../components/User/ReviewContext";
+import ModalContext from "../../components/Modal/ModalContext";
 
 const initialReviews = [
   {
@@ -15,7 +16,8 @@ const initialReviews = [
 
 function StoreReviewList() {
   // const [reviews, setReviews] = useState(initialReviews);
-  const { reviews, setReviews } = useReviews();
+  const { reviews, setReviews } = useReviews([]);
+  const { modalDetail } = useContext(ModalContext);
 
   const handleDelete = (id) => {
     setReviews(reviews.filter((reviews) => reviews.id !== id));
