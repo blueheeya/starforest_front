@@ -12,11 +12,15 @@ function StoreCartList() {
   ]);
 
   const updateQuantity = (id, newQuantity) => {
-    setCartItems((items) =>
-      items.map((item) =>
+    setCartItems(
+      cartItems.map((item) =>
         item.id === id ? { ...item, quantity: newQuantity } : item
       )
     );
+  };
+
+  const deleteItem = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
   const totalPrice = cartItems.reduce(
@@ -25,10 +29,19 @@ function StoreCartList() {
   );
   const selectedCount = cartItems.filter((item) => item.selected).length;
 
+  const toggleItemSelection = (id) => {
+    setCartItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, selected: !item.selected } : item
+      )
+    );
+  };
+
   const navigate = useNavigate();
 
   const handlePurchaseClick = () => {
-    navigate("/store/pay");
+    const selectedItems = cartItems.filter((item) => item.selected);
+    navigate("/store/pay", { state: { selectedItems } });
   };
 
   return (
@@ -39,9 +52,9 @@ function StoreCartList() {
             className="cartProduct"
             key={item.id}
             item={item}
-            onUpdateQuantity={(newQuantity) =>
-              updateQuantity(item.id, newQuantity)
-            }
+            onUpdateQuantity={updateQuantity}
+            ontoggleSelection={() => toggleItemSelection(item.id)}
+            onDeleteItem={deleteItem}
           />
         ))}
       </div>
@@ -49,7 +62,7 @@ function StoreCartList() {
         <StorePayMethod />
       </div>
       <div className="storeCartBtnWrap">
-        <div className="storeCartBtn">
+        <div className="storeCartBtnBox">
           <button className="storeCartBtn" onClick={handlePurchaseClick}>
             주문하기
           </button>

@@ -30,17 +30,10 @@ function StorePayProduct() {
 
         <div className="innerCount">
           <div className="innerPlusMinus">
-            {/* <button>
-              <img src={btnMinus} alt="" />
-            </button> */}
             <button onClick={decreaseQuantity}>
-              {/* <iconMinus /> */}
               <Icon iconName="iconMinus" />
             </button>
             <div>{quantity}</div>
-            {/* <button>
-              <img src={btnPlus} alt="" />
-            </button> */}
             <button onClick={increaseQuantity}>
               <Icon iconName="iconPlus" />
             </button>

@@ -41,9 +41,19 @@ const UserReviewModal = ({ isOpen, onClose, onSubmit }) => {
       setError("내용을 입력해주세요!!!!!");
     } else {
       setError("");
-      onSubmit();
+      if (typeof onSubmit === "function") {
+        onSubmit();
+      } else {
+        console.error("onSubmit is not a function");
+      }
     }
   };
+
+  // const handleReviewSubmit = () => {
+  //   setIsClose(true);
+  //   setIsReviewSubmitted(true);
+  //   console.log("review submitted:", review);
+  // };
 
   if (!isOpen) return null;
 
