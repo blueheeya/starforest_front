@@ -2,7 +2,20 @@ import React from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 function CampTag({ tags, isListPage }) {
-    const validtags = Array.isArray(tags) ? tags : [];
+    //동일 수정
+    const parseTags = (tags) => {
+        try {
+            // '를 "로 바꾸기
+            const jsonString = tags.replace(/'/g, '"');
+            return JSON.parse(jsonString);
+        } catch (error) {
+            console.error('Error parsing tags:', error);
+            return [];
+        }
+    };
+
+    const validtags = parseTags(tags);
+    //동일 수정끝
     return (
         <>
             {isListPage ? (

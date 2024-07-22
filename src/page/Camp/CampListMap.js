@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import mapPointerOn from '../../assets/images/mapPointer.svg'
 import btnClose from "../../assets/images/btnClose.png"
+import noneImage from "../../assets/images/noneImage.png"
 
 
 const { kakao } = window;
@@ -263,7 +264,7 @@ function CampListMap() {
         wrap.appendChild(overlayImg);
 
         const image = document.createElement('img');
-        image.src = `${circleData.first_image_url}`; // 이미지 경로 설정
+        image.src = `${circleData.first_image_url ? circleData.first_image_url : noneImage}`; // 이미지 경로 설정
         image.alt = '';
         overlayImg.appendChild(image);
 
