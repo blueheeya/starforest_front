@@ -60,7 +60,7 @@ function CampListMap() {
             // 지도 중심좌표를 얻어옵니다
             var latlng = map.getCenter();
 
-            setDragMapCenter([latlng.Ma, latlng.La]); //드래그 중심좌표 저장
+            setDragMapCenter({ mapX: latlng.La, mapY: latlng.Ma }); //드래그 중심좌표 저장
 
             document.querySelector(".serchLocal").style.display = "block";
         });
@@ -193,7 +193,7 @@ function CampListMap() {
     }
     // 페이지 이동 함수
     const handleOverlayClick = (circleData) => {
-        navigate(`/detail/${circleData.name}`); // 적절한 url로 수정 필요
+        navigate(`/camp/view/${circleData.id}`);
     };
 
 
@@ -240,7 +240,7 @@ function CampListMap() {
         overContentWrap.className = 'overContentWrap';
         overlayContent.appendChild(overContentWrap);
 
-        const items = [`${circleData.is_auto ? "오픈 캠핑장" : ""}${circleData.is_carvan ? "카라반" : ""}${circleData.is_glamp ? "글램핑" : ""}`, circleData.name, circleData.add1, `${circleData.price}원 부터`];
+        const items = [`${circleData.is_auto ? "오픈 캠핑장" : ""}${circleData.is_carvan ? "카라반" : ""}${circleData.is_glamp ? "글램핑" : ""}`, circleData.name, circleData.add1, `${circleData.price.toLocaleString('ko-KR')}원 부터`];
         items.forEach(item => {
             const li = document.createElement('li');
             li.textContent = item;
