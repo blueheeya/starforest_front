@@ -163,11 +163,10 @@ function LayoutType() {
                         {title}
                     </HeaderComponent>
                     <ContentWrap
-                        className={` ${
-                            isHeaderType3 || isHeaderType4
-                                ? "cntSearchView"
-                                : ""
-                        } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+                        className={` ${isHeaderType3 || isHeaderType4
+                            ? "cntSearchView"
+                            : ""
+                            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
                     >
                         <Outlet />
                     </ContentWrap>
@@ -201,7 +200,7 @@ function App() {
                         element={<CampViewMap />}
                     ></Route>
                     <Route
-                        path="/camp/reservation"
+                        path="/camp/reservation/:id"
                         index
                         element={<CampReservation />}
                     ></Route>

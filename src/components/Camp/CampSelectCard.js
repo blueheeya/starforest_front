@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import diary_camp_img from "../../assets/images/diary_camp_img.svg";
 import Icon from "../../components/Icon/Icon";
 import { Link } from "react-router-dom";
+import noneImage from "../../assets/images/noneImage.png"
 
-function CampSelectCard({ isCampCard, isLink, className }) {
+function CampSelectCard({ isCampCard, isLink, className, campInfo }) {
+    console.log(campInfo);
     return (
         <>
             {isCampCard === true ? (
@@ -11,12 +13,16 @@ function CampSelectCard({ isCampCard, isLink, className }) {
                     <Link to={isLink}>
                         <div className="campCardInfo">
                             <div className="campCardImg">
-                                <img src={diary_camp_img} alt="캠핑장 사진" />
+                                <img src={campInfo.first_image_url ? campInfo.first_image_url : noneImage} alt="캠핑장 사진" />
                             </div>
                             <ul className="campCardText">
-                                <li>오토 캠핑</li>
-                                <li>캠핑장 이름</li>
-                                <li>주소지</li>
+                                <li>
+                                    {campInfo.is_auto ? "오토 캠핑장" : ""}
+                                    {campInfo.is_carvan ? "카라반" : ""}
+                                    {campInfo.is_glamp ? "글램핑" : ""}
+                                </li>
+                                <li>{campInfo.name}</li>
+                                <li>{campInfo.add1}</li>
                             </ul>
                         </div>
                     </Link>
@@ -26,11 +32,15 @@ function CampSelectCard({ isCampCard, isLink, className }) {
                     <div className={`campSelectCardWrap2 ${className}`}>
                         <div className="campCardInfo">
                             <div className="campCardImg">
-                                <img src={diary_camp_img} alt="캠핑장 사진" />
+                                <img src={campInfo.first_image_url ? campInfo.first_image_url : noneImage} alt="캠핑장 사진" />
                             </div>
                             <ul className="campCardText">
-                                <li>오토 캠핑</li>
-                                <li>캠핑장 이름</li>
+                                <li>
+                                    {campInfo.is_auto ? "오토 캠핑장" : ""}
+                                    {campInfo.is_carvan ? "카라반" : ""}
+                                    {campInfo.is_glamp ? "글램핑" : ""}
+                                </li>
+                                <li>{campInfo.name}</li>
                             </ul>
                         </div>
                         <div>

@@ -14,6 +14,7 @@ import Icon from "../../components/Icon/Icon";
 import Footer from "../../components/Layout/Footer";
 import Button from "../../components/Form/Button";
 import axios from "axios";
+import CampReservation from "./CampReservation";
 function CampView() {
     //주소 복사
     const navigator = useNavigate();
@@ -86,7 +87,7 @@ function CampView() {
     };
     const imageUrls = getImageUrlsById(campItem.id);
     const moveReservation = () => {
-        navigator("/camp/reservation");
+        navigator(`/camp/reservation/${id}`);
     };
     return (
         <>
