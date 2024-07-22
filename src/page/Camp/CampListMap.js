@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "../../assets/css/kakaoMap.scss"
-import mapClose from "../../assets/images/mapClose.svg"
 import gps from "../../assets/images/gps.svg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import mapPointerOn from '../../assets/images/mapPointer.svg'
-import mapPointerOff from '../../assets/images/mapPointer1.svg'
 import btnClose from "../../assets/images/btnClose.png"
 
 
@@ -22,6 +20,8 @@ function CampListMap() {
     const [circles, setCircles] = useState([]); //모임 배열
     const [markers, setMarkers] = useState([]); //마커들 표시
     const [markersInitialized, setMarkersInitialized] = useState(false);
+    const [clusterer, setClusterer] = useState(null);
+
 
     useEffect(() => {
         if (!map) {
@@ -32,24 +32,50 @@ function CampListMap() {
     }, [map]);
 
     //초기 카카오 맵 설정
-    const mapscript = () => {
+    const mapscript = async () => {
         // console.log("mapscript시작");
+        const body = { mapx: 127.4947241, mapy: 37.5978864 }
         var mapContainer = document.getElementById("map"),
             mapOption = {
-                center: new kakao.maps.LatLng(37.5978864, 127.4947241), // 지도의 중심좌표
-                level: 4, // 지도의 확대 레벨
+                center: new kakao.maps.LatLng(body.mapy, body.mapx), // 지도의 중심좌표
+                level: 10, // 지도의 확대 레벨
                 mapTypeId: kakao.maps.MapTypeId.ROADMAP, // 지도종류
             };
-
         const map = new kakao.maps.Map(mapContainer, mapOption);
+
+        try {
+            const res = await axios.post("http://localhost:8082/coordinates", body)
+            console.log(res.data);
+            setCircles(res.data)
+        } catch (error) {
+            console.log("mapscript axios 에러");
+        }
 
         // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
         var zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+        // 클러스터러 생성
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel: 7, // 클러스터 할 최소 지도 레벨
+            disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정
+        });
+
+        // 마커 클러스터러에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
+
+            // 현재 지도 레벨에서 1레벨 확대한 레벨
+            var level = map.getLevel() - 1;
+
+            // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+            map.setLevel(level, { anchor: cluster.getCenter() });
+        });
+
+        setClusterer(clusterer);
         setMap(map);
     };
-
     //드래그위치 가져오는 함수
     const getDragLocation = () => {
         // console.log("드래그 위치 시작");
@@ -60,7 +86,7 @@ function CampListMap() {
             // 지도 중심좌표를 얻어옵니다
             var latlng = map.getCenter();
 
-            setDragMapCenter({ mapX: latlng.La, mapY: latlng.Ma }); //드래그 중심좌표 저장
+            setDragMapCenter({ mapx: latlng.La, mapy: latlng.Ma }); //드래그 중심좌표 저장
 
             document.querySelector(".serchLocal").style.display = "block";
         });
@@ -82,13 +108,13 @@ function CampListMap() {
     }
 
     useEffect(() => {
-        initializeMarkers(map);
-    }, [markersInitialized, circles, map]);
+        initializeMarkers(map, clusterer);
+    }, [markersInitialized, circles, map, clusterer]);
 
     //모임 마커 추가
-    const initializeMarkers = (map) => {
+    const initializeMarkers = (map, clusterer) => {
         // console.log("초기 마커 추가");
-        // console.log(circles);
+        if (!map || !clusterer) return;
 
         clearMarkers();
         const newMarkers = [];
@@ -105,6 +131,9 @@ function CampListMap() {
                 newMarkers.push(marker);
             }
             setMarkers(newMarkers);
+            clusterer.clear(); // 기존 클러스터 초기화
+            clusterer.addMarkers(newMarkers); // 새로운 마커들 추가
+
         }
     };
 
@@ -140,8 +169,14 @@ function CampListMap() {
             position: latlng, // 마커를 표시할 위치
             image: markerImage, // 마커 이미지
         });
-        // // 커스텀 오버레이 내용을 생성합니다
-        // createOverlayContent(circleData)
+
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel: 7, // 클러스터 할 최소 지도 레벨
+            disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
+        });
+        clusterer.addMarkers(marker);
 
         // 마커를 클릭했을 때 커스텀 오버레이를 표시+ 지도가 이동
         kakao.maps.event.addListener(marker, 'click', function () {
@@ -211,7 +246,7 @@ function CampListMap() {
     // 커스텀 오버레이 내용을 생성합니다
     function createOverlayContent(circleData) {
 
-        console.log(circleData);
+        // console.log(circleData);
         const wrap = document.createElement('div');
         wrap.className = 'customOverlay';
         // 클릭 이벤트 추가
@@ -273,25 +308,7 @@ function CampListMap() {
                         <div>현위치에서 검색</div>
                     </div>
                 </button>
-                {/* 커스텀 오버레이 */}
-                {/* <div className="customOverlay">
-                    <div className="overlayImg">
-                        <img src="" alt="" />
-                    </div>
-                    <div className="overlayContent">
-                        <ul className="overContentWrap">
-                            <li>오픈 캠핑장</li>
-                            <li>충북카누캠핑장</li>
-                            <li>충북 충주시 동량면 지등로</li>
-                            <li>50,000원 부터</li>
-                        </ul>
-                        <div className="contentCloseBtn">
-                            <button>
-                                <img src={btnClose} onClick={() => { overlayClose() }} alt="" />
-                            </button>
-                        </div>
-                    </div>
-                </div> */}
+
             </div>
         </div>
     );
