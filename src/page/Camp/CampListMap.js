@@ -19,16 +19,7 @@ function CampListMap() {
     const navigate = useNavigate()
     const [map, setMap] = useState(null); //카카오 map
     const [dragMapCenter, setDragMapCenter] = useState(); //드래그시 맵 중심 좌표
-    const [circles, setCircles] = useState([
-        { name: "힐링피아 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 1111 61-75", mapX: 127.4947241, mapY: 37.5978864 },
-        { name: "1111 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 2222 61-75", mapX: 126.6806875, mapY: 37.3241008 },
-        { name: "2222 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 3333 61-75", mapX: 127.455147, mapY: 37.50762979 },
-        { name: "3333 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 4444 61-75", mapX: 127.4947099, mapY: 37.6012926 },
-        { name: "4444 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 5555 61-75", mapX: 127.5124645, mapY: 37.7467558 },
-        { name: "5555 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 6666 61-75", mapX: 126.9161565, mapY: 37.25773423 },
-        { name: "6666 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 7777 61-75", mapX: 127.1889864, mapY: 37.9617314 },
-        { name: "7777 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 8888 61-75", mapX: 127.5140734, mapY: 37.8552141 },
-    ]); //모임 배열
+    const [circles, setCircles] = useState([]); //모임 배열
     const [markers, setMarkers] = useState([]); //마커들 표시
     const [markersInitialized, setMarkersInitialized] = useState(false);
 
@@ -79,9 +70,12 @@ function CampListMap() {
     const findRange = async () => {
         console.log("현위치에서 검색 클릭");
         const body = dragMapCenter
+        console.log(body);
 
         try {
-            // const res = await axios.post("/", body)
+            const res = await axios.post("http://localhost:8082/coordinates", body)
+            console.log(res.data);
+            setCircles(res.data)
         } catch (error) {
             console.log("현위치 검색 axios 에러");
         }
@@ -217,6 +211,7 @@ function CampListMap() {
     // 커스텀 오버레이 내용을 생성합니다
     function createOverlayContent(circleData) {
 
+        console.log(circleData);
         const wrap = document.createElement('div');
         wrap.className = 'customOverlay';
         // 클릭 이벤트 추가
@@ -233,7 +228,7 @@ function CampListMap() {
         wrap.appendChild(overlayImg);
 
         const image = document.createElement('img');
-        image.src = ''; // 이미지 경로 설정
+        image.src = `${circleData.first_image_url}`; // 이미지 경로 설정
         image.alt = '';
         overlayImg.appendChild(image);
 
@@ -245,7 +240,7 @@ function CampListMap() {
         overContentWrap.className = 'overContentWrap';
         overlayContent.appendChild(overContentWrap);
 
-        const items = ['오픈 캠핑장', circleData.name, circleData.addr1, '50,000원 부터'];
+        const items = [`${circleData.is_auto ? "오픈 캠핑장" : ""}${circleData.is_carvan ? "카라반" : ""}${circleData.is_glamp ? "글램핑" : ""}`, circleData.name, circleData.add1, `${circleData.price}원 부터`];
         items.forEach(item => {
             const li = document.createElement('li');
             li.textContent = item;
