@@ -22,14 +22,14 @@ registerLocale("ko", ko);
 //예약 완료시 이메일로 예약 확인 보냄
 //예약하려는 날짜의 캠핑장 날씨 정보 제공
 
-function Calender() {
+function Calender({ campInfo }) {
     const API_KEY = "db5e9fc650822da7c6cc328c5ec59bdf";
     const lang = "kr";
-    const [weatherData, setWeatherData] = useState();
+    const [weatherData, setWeatherData] = useState(null);
     const [weathersData, setWeathersData] = useState();
     const [iconURL, setIconURL] = useState();
-    const iconSection = document.querySelector(".weatherIcon");
-    const iconsSection = document.querySelector(".weathersIcon");
+    // const iconSection = document.querySelector(".weatherIcon");
+    // const iconsSection = document.querySelector(".weathersIcon");
 
     const [dateRange, setDataRange] = useState([null, null]);
     const [startDate, endDate] = dateRange;
@@ -50,8 +50,10 @@ function Calender() {
 
     useEffect(() => {
         fetchReservations();
-        getPosition();
-    }, []);
+        if (campInfo) {
+            getPosition();
+        }
+    }, [campInfo]);
 
     //DB에서 예약 리스트 가져오기
     const fetchReservations = async () => {
@@ -100,11 +102,11 @@ function Calender() {
                 fetchReservations();
                 alert(
                     "<캠핑 예약 선택일> \n" +
-                        response.data.startDate +
-                        " ~ " +
-                        response.data.endDate +
-                        "\n" +
-                        response.data.message
+                    response.data.startDate +
+                    " ~ " +
+                    response.data.endDate +
+                    "\n" +
+                    response.data.message
                 );
             } catch (error) {
                 alert("예약 중 오류가 발생했습니다.");
@@ -121,7 +123,7 @@ function Calender() {
                     end: new Date(reservation.endDate),
                 }) ||
                 date.toDateString() ===
-                    new Date(reservation.startDate).toDateString()
+                new Date(reservation.startDate).toDateString()
         );
     };
 
@@ -149,24 +151,13 @@ function Calender() {
 
     //위치값 가져오기
     const getPosition = () => {
-        navigator.geolocation.getCurrentPosition(success, fail);
-    };
-
-    //위치값 성공
-    const success = (position) => {
-        console.log(position);
-
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
+        // console.log(campInfo);
+        const latitude = campInfo.mapy;
+        const longitude = campInfo.mapx;
         getWeather(latitude, longitude);
         get5Position(latitude, longitude);
     };
 
-    //위치값 실패
-    const fail = () => {
-        alert("좌표를 받아올 수 없음");
-    };
 
     //날씨 가져오기
     const getWeather = async (lat, lon) => {
@@ -193,22 +184,24 @@ function Calender() {
                     setIconURL(Snow);
                     break;
             }
-            // iconSection.setAttribute('src', iconURL);
+
             setWeatherData(res.data);
+            // console.log(res.data);
         } catch (error) {
             console.log(error);
         }
     };
 
+
     //5일치 날씨 가져오기
     const get5Position = async (lat, lon) => {
-        console.log(lat);
-        console.log(lon);
+        // console.log(lat);
+        // console.log(lon);
         try {
             const res = await axios.get(
                 `https://api.openweathermap.org/data/2.5/forecast?lang=${lang}&lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
             );
-            console.log(res.data);
+            // console.log(res.data);
             //
             const weatherByDate = res.data.list.reduce((acc, currentValue) => {
                 const date = format(
@@ -282,7 +275,7 @@ function Calender() {
         <div>
             <div className="reservationWeatherInfo">
                 <div className="infoContent">
-                    <div className="infoName">가산</div>
+                    <div className="infoName">{campInfo.sigungu_nm}</div>
                     <div className="weatherImg">
                         <img
                             className="weatherIcon"

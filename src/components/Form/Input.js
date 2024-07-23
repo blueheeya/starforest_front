@@ -13,6 +13,11 @@ function Input({
     isLink,
     isOnclick,
 }) {
+    //동일 수정
+    const handleChange = (e) => {
+        onChange(e.target.value)
+    }
+    //동일 수정
     return (
         <div className={`${className}`}>
             {iconName && (
@@ -25,7 +30,7 @@ function Input({
                 type={type}
                 className={`serchInput`}
                 value={value}
-                onChange={onChange}
+                onChange={handleChange}
                 placeholder={`${placeholder}`}
             ></input>
         </div>

@@ -27,7 +27,7 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "/camp/reservation": {
+    "/camp/reservation/:id": {
         title: "캠프장 예약하기",
         component: HeaderType2,
         titleStore: false,
