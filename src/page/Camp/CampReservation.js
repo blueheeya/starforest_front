@@ -3,6 +3,7 @@ import Calender from "../../components/Camp/Calendar";
 import CampSelectCard from "../../components/Camp/CampSelectCard";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Footer from "../../components/Layout/Footer";
 
 function CampReservation() {
     const { id } = useParams()
@@ -28,15 +29,17 @@ function CampReservation() {
 
     //동일 수정 완료
     return (
-        <>
+        <div className="cntView">
             <CampSelectCard
                 campInfo={campInfo}
                 isCampCard={true}
                 isLink={`/camp/view/${id}`}
                 className="wrapCntBottom"
             />
+
             <Calender campInfo={campInfo} />
-        </>
+            <Footer />
+        </div>
     );
 }
 
