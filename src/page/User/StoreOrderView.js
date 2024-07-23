@@ -1,35 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
-import UserReviewModal from "../../components/User/UserReviewModal";
+import { useNavigate } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
 import ModalContext from "../../components/Modal/ModalContext";
-import ModalReview from "../../components/Modal/ModalReview";
 function StoreOrderView() {
-    // const [quantity, setQuantity] = useState(1);
-    // const [isReviewSubmitted, setIsReviewSubmitted] = useState(false); // 리뷰 제출 상태
-    // const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열기 상태
-    // const { modalOpen } = useContext(ModalContext);
-    // const handleButtonClick = () => {
-    //     modalOpen(0); // ModalStore를 여는 예시
-    // };
-    // const handleReviewSubmit = () => {
-    //     setIsReviewSubmitted(true); // 리뷰가 제출되면 상태 변경
-    //     setIsModalOpen(false); // 모달 닫기
-    // };
     const [quantity, setQuantity] = useState(1);
-    const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
     const { modalOpen } = useContext(ModalContext);
     const navigate = useNavigate();
-
-    const handleButtonClick = () => {
-        setIsModalOpen(true);
+    const handleReviewButtonClick = () => {
+        modalOpen(0, {
+            onSubmit: handleReviewSubmit,
+        });
     };
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
     const handleReviewSubmit = (reviewContent) => {
         setIsReviewSubmitted(true);
         setIsModalOpen(false);
@@ -38,14 +23,9 @@ function StoreOrderView() {
             state: { newReview: reviewContent },
         });
     };
+
     return (
         <>
-            {isModalOpen && (
-                <ModalReview
-                    onClose={handleCloseModal}
-                    onSubmit={handleReviewSubmit}
-                />
-            )}
             <div className="OrderViewBox">
                 <div className="OrderViewInner">
                     <div className="OrderViewDateWrap">
@@ -72,7 +52,7 @@ function StoreOrderView() {
                                 <>
                                     <button
                                         className="OrderViewState2 orderReviewWriteBtn"
-                                        onClick={handleButtonClick}
+                                        onClick={handleReviewButtonClick}
                                     >
                                         <Icon iconName="iconReviewWrite" />
                                         리뷰 작성하기
