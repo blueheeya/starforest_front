@@ -311,12 +311,20 @@ $radiusSmall: 5px;
         font-size: $therdText;
     }
 }
-.mycampReserWrap {
-    margin-bottom: 10px;
-    padding: 10px 32px 20px 32px;
+.myCampCardWrap {
+    padding: 20px 32px 0px 32px;
     background: #ffffff;
     h4 {
-        font-size: $textDefault;
+        font-size: $titleText;
+    }
+}
+.myCampReserWrap {
+    margin-bottom: 10px;
+    padding: 20px 32px 20px 32px;
+    background: #ffffff;
+    h4 {
+        font-size: $titleText;
+        margin-bottom: 20px;
     }
     .myCampDate {
         display: flex;
@@ -392,6 +400,21 @@ $radiusSmall: 5px;
             font-size: $therdText;
             border: solid 1px $PrimaryColor;
             border-radius: $radiusDefault;
+        }
+    }
+    .myCampReserInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        div {
+            display: flex;
+            justify-content: space-between;
+            color: $textSecondary;
+            font-size: $defaultText;
+            span {
+                color: $textDefault;
+                font-weight: bold;
+            }
         }
     }
 }

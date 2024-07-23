@@ -24,10 +24,10 @@ const UserReviewModal = ({ isOpen, onClose, onSubmit, handleReviewSubmit }) => {
     };
   }, [isOpen]);
 
-  //   const handleSubmit = () => {
-  //     onSubmit();
-  //     onClose();
-  //   };
+    //   const handleSubmit = () => {
+    //     onSubmit();
+    //     onClose();
+    //   };
 
   const handleSubmit = () => {
     if (review.trim() === "") {
@@ -51,61 +51,76 @@ const UserReviewModal = ({ isOpen, onClose, onSubmit, handleReviewSubmit }) => {
   // };
 
   if (!isOpen) return null;
-
-  return (
-    <>
-      <div className="userReviewModalContainer">
-        <Overlay isOpen={isOpen} onClose={onClose} />
-        <div className="userReviewModalContent">
-          <div className="userReviewModalClose">
-            <button className="userReviewModalCloseBtn" onClick={onClose}>
-              <Icon iconName="iconClose" />
-            </button>
-          </div>
-          <div className="userReviewModalProduct">
-            <img
-              className="userReviewProductImg"
-              src={process.env.PUBLIC_URL + `/assets/images/imgdefault.png`}
-              alt=""
-            />
-            <div className="userReviewModalProductInner">
-              <div className="userReviewModalProductBname">브랜드명</div>
-              <div className="userReviewModalProductPname">상품명 블라블라</div>
+    return (
+        <>
+            <div className="userReviewModalContainer">
+                <Overlay isOpen={isOpen} onClose={onClose} />
+                <div className="userReviewModalContent">
+                    <div className="userReviewModalClose">
+                        <button
+                            className="userReviewModalCloseBtn"
+                            onClick={onClose}
+                        >
+                            <Icon iconName="iconClose" />
+                        </button>
+                    </div>
+                    <div className="userReviewModalProduct">
+                        <img
+                            className="userReviewProductImg"
+                            src={
+                                process.env.PUBLIC_URL +
+                                `/assets/images/imgdefault.png`
+                            }
+                            alt=""
+                        />
+                        <div className="userReviewModalProductInner">
+                            <div className="userReviewModalProductBname">
+                                브랜드명
+                            </div>
+                            <div className="userReviewModalProductPname">
+                                상품명 블라블라
+                            </div>
+                        </div>
+                    </div>
+                    <div className="userReviewModalInputWrap">
+                        <div className="userReviewModalInfoBox">
+                            <div className="lavel lavel01">샛별</div>
+                            <span className="userOrderNickname">닉네임</span>
+                        </div>
+                        <div className="userReviewModalBody">
+                            <input
+                                className="userReviewModalInput"
+                                type="text"
+                                value={review}
+                                onChange={(e) => setReview(e.target.value)}
+                                placeholder="리뷰를 입력해주세요 (0/50)"
+                                maxLength={50}
+                            />
+                            {error && <div className="error">{error}</div>}
+                        </div>
+                    </div>
+                    <div className="userReviewBtnWrap">
+                        <div className="userReviewBtn1">
+                            <button
+                                className="submitBtn1"
+                                onClick={handleSubmit}
+                            >
+                                등록
+                            </button>
+                        </div>
+                        <div className="userReviewBtn2">
+                            <button
+                                className="submitBtn2"
+                                onClick={handleSubmit}
+                            >
+                                취소
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div className="userReviewModalInputWrap">
-            <div className="userReviewModalInfoBox">
-              <div className="lavel lavel01">샛별</div>
-              <span className="userOrderNickname">닉네임</span>
-            </div>
-            <div className="userReviewModalBody">
-              <input
-                className="userReviewModalInput"
-                type="text"
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-                placeholder="리뷰를 입력해주세요 (0/50)"
-                maxLength={50}
-              />
-              {error && <div className="error">{error}</div>}
-            </div>
-          </div>
-          <div className="userReviewBtnWrap">
-            <div className="userReviewBtn1">
-              <button className="submitBtn1" onClick={handleSubmit}>
-                등록
-              </button>
-            </div>
-            <div className="userReviewBtn2">
-              <button className="submitBtn2" onClick={handleSubmit}>
-                취소
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 };
 
 export default UserReviewModal;

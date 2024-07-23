@@ -108,10 +108,15 @@ function LayoutType() {
   const isHeaderType3 = HeaderComponent === HeaderType3;
   const isHeaderType4 = HeaderComponent === HeaderType4;
 
-  const [modalNum, setModalNum] = useState(0);
-  const [modalView, setModalView] = useState(false);
-  const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
-  const [modalDetail, setModalDetail] = useState(null);
+    const [modalNum, setModalNum] = useState(0);
+    const [modalView, setModalView] = useState(false);
+    const modalData = [
+        <ModalReview key="review" />,
+        <ModalStore key="store" />,
+        <ModalResions key="resions" />,
+    ];
+    const [modalDetail, setModalDetail] = useState(null);
+
 
   function modalOpen(idx, data = null) {
     setModalView(true);
@@ -136,174 +141,235 @@ function LayoutType() {
     } else {
       containerWrapElement.style.overflow = "auto";
     }
-
-    return () => {
-      containerWrapElement.style.overflow = "auto";
-    };
-  }, [modalView]);
-  return (
-    // <ReviewProvider>
-    <ModalContext.Provider
-      value={{ modalOpen, modalClose, modalDetail, setModalDetail }}
-    >
-      <BackWrap>
-        <Container>
-          {/* {modalView && modalData[modalNum] && (
+        return () => {
+            containerWrapElement.style.overflow = "auto";
+        };
+    }, [modalView]);
+    return (
+        <ModalContext.Provider
+            value={{
+                modalOpen,
+                modalClose,
+                modalDetail,
+                setModalDetail,
+            }}
+        >
+            <BackWrap>
+                <Container>
+                    {/* {modalView && modalData[modalNum] && (
                         <div>
                             {React.cloneElement(modalData[modalNum], {
                                 onClick: modalClose,
                             })}
                         </div>
                     )} */}
-          {modalView && modalData[modalNum] && (
-            <div>
-              {React.cloneElement(modalData[modalNum], {
-                onClick: modalClose,
-                onSubmit: modalSubmit,
-                data: modalDetail, //구매하기모달 데이터값(ReviewContext)
-              })}
-            </div>
-          )}
-          <HeaderComponent titleStore={titleStore} modalOpen={modalOpen}>
-            {title}
-          </HeaderComponent>
-          <ContentWrap
-            className={` ${
-              isHeaderType3 || isHeaderType4 ? "cntSearchView" : ""
-            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
-          >
-            <Outlet />
-          </ContentWrap>
-          {showFooter && (
-            <Footer className={`${showMenu ? "footerBottom" : ""}`} />
-          )}
-          {showMenu && <Menu />}
-        </Container>
-      </BackWrap>
-    </ModalContext.Provider>
-    // </ReviewProvider>
-  );
+                    {modalView && modalData[modalNum] && (
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                                data: modalDetail,
+                                onSubmit: modalDetail?.onSubmit,
+                            })}
+                        </div>
+                    )}
+                    <HeaderComponent
+                        titleStore={titleStore}
+                        modalOpen={modalOpen}
+                    >
+                        {title}
+                    </HeaderComponent>
+                    <ContentWrap
+                        className={` ${isHeaderType3 || isHeaderType4
+                            ? "cntSearchView"
+                            : ""
+                            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+                    >
+                        <Outlet />
+                    </ContentWrap>
+                    {showFooter && (
+                        <Footer
+                            className={`${showMenu ? "footerBottom" : ""}`}
+                        />
+                    )}
+                    {showMenu && <Menu />}
+                </Container>
+            </BackWrap>
+        </ModalContext.Provider>
+    );
 }
 function App() {
-  return (
-    <>
-      {/* <ReviewProvider> */}
-      <Routes>
-        <Route path="/" element={<LayoutType />}>
-          <Route path="/" index element={<Home />}></Route>
-          {/* camping  */}
-          <Route path="/camp/list" element={<CampList />}></Route>
-          <Route path="/camp/list/map" element={<CampListMap />}></Route>
-          <Route path="/camp/view/:id" element={<CampView />}></Route>
-          <Route path="/camp/view/map" index element={<CampViewMap />}></Route>
-          <Route
-            path="/camp/reservation"
-            index
-            element={<CampReservation />}
-          ></Route>
-          <Route
-            path="/camp/pay"
-            index
-            element={<CampReservationPay />}
-          ></Route>
-          <Route
-            path="/camp/pay/complete"
-            index
-            element={<CampReservationComplete />}
-          ></Route>
-          {/* diary  */}
-          <Route path="/diary/list" index element={<DiaryList />}></Route>
-          <Route path="/diary/write" index element={<DiaryWrite />}></Route>
-          <Route path="/diary/view" index element={<DiaryView />}></Route>
-          {/* store  */}
-          <Route path="/store/list" index element={<StoreList />}></Route>
-          <Route path="/store/view" index element={<StoreView />}></Route>
-          <Route path="/store/pay" index element={<StorePay />}></Route>
-          <Route
-            path="/store/pay/complete"
-            index
-            element={<StorePayComplete />}
-          ></Route>
-          {/* user  */}
-          <Route path="/user/mypage" index element={<UserMypage />}></Route>
-          <Route
-            path="/user/mypage/management"
-            index
-            element={<UserMypageMent />}
-          ></Route>
-          <Route
-            path="/user/camp/reservation/list"
-            index
-            element={<CampReservationList />}
-          ></Route>
-          <Route
-            path="/user/camp/reservation/view"
-            index
-            element={<CampReservationView />}
-          ></Route>
-          <Route
-            path="/user/camp/like/list"
-            index
-            element={<CampLikeList />}
-          ></Route>
-          <Route
-            path="/user/diary/list"
-            index
-            element={<MyDiaryList />}
-          ></Route>
-          <Route
-            path="/user/store/order/list"
-            index
-            element={<StoreOrderList />}
-          ></Route>
-          <Route
-            path="/user/store/order/view"
-            index
-            element={<StoreOrderView />}
-          ></Route>
-          <Route
-            path="/user/store/cart/list"
-            index
-            element={<StoreCartList />}
-          ></Route>
-          <Route
-            path="/user/store/review/list"
-            index
-            element={<StoreReviewList />}
-          ></Route>
-          <Route path="/user/qna" index element={<Qna />}></Route>
-          <Route path="/user/notice" index element={<Notice />}></Route>
-          {/* member */}
-          <Route path="/member/login" index element={<Login />}></Route>
-          <Route path="/member/pwfind" index element={<PwFind />}></Route>
-          <Route
-            path="/member/pwfind/auth"
-            index
-            element={<PwFindAuth />}
-          ></Route>
-          <Route
-            path="/member/pwfind/change"
-            index
-            element={<PwFindChange />}
-          ></Route>
-          <Route
-            path="/member/pwfind/complete"
-            index
-            element={<PwChangeComplete />}
-          ></Route>
-          <Route path="/member/terms" index element={<Terms />}></Route>
-          <Route path="/member/register" index element={<Register />}></Route>
-          <Route
-            path="/member/register/complete"
-            index
-            element={<Complete />}
-          ></Route>
-          <Route path="/style" element={<Style />}></Route>
-        </Route>
-      </Routes>
-      {/* </ReviewProvider> */}
-    </>
-  );
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<LayoutType />}>
+                    <Route path="/" index element={<Home />}></Route>
+                    {/* camping  */}
+                    <Route path="/camp/list" element={<CampList />}></Route>
+                    <Route
+                        path="/camp/list/map"
+                        element={<CampListMap />}
+                    ></Route>
+                    <Route path="/camp/view/:id" element={<CampView />}></Route>
+                    <Route
+                        path="/camp/view/map"
+                        index
+                        element={<CampViewMap />}
+                    ></Route>
+                    <Route
+                        path="/camp/reservation/:id"
+                        index
+                        element={<CampReservation />}
+                    ></Route>
+                    <Route
+                        path="/camp/pay"
+                        index
+                        element={<CampReservationPay />}
+                    ></Route>
+                    <Route
+                        path="/camp/pay/complete"
+                        index
+                        element={<CampReservationComplete />}
+                    ></Route>
+                    {/* diary  */}
+                    <Route
+                        path="/diary/list"
+                        index
+                        element={<DiaryList />}
+                    ></Route>
+                    <Route
+                        path="/diary/write"
+                        index
+                        element={<DiaryWrite />}
+                    ></Route>
+                    <Route
+                        path="/diary/view"
+                        index
+                        element={<DiaryView />}
+                    ></Route>
+                    {/* store  */}
+                    <Route
+                        path="/store/list"
+                        index
+                        element={<StoreList />}
+                    ></Route>
+                    <Route
+                        path="/store/view"
+                        index
+                        element={<StoreView />}
+                    ></Route>
+                    <Route
+                        path="/store/pay"
+                        index
+                        element={<StorePay />}
+                    ></Route>
+                    <Route
+                        path="/store/pay/complete"
+                        index
+                        element={<StorePayComplete />}
+                    ></Route>
+                    {/* user  */}
+                    <Route
+                        path="/user/mypage"
+                        index
+                        element={<UserMypage />}
+                    ></Route>
+                    <Route
+                        path="/user/mypage/management"
+                        index
+                        element={<UserMypageMent />}
+                    ></Route>
+                    <Route
+                        path="/user/camp/reservation/list"
+                        index
+                        element={<CampReservationList />}
+                    ></Route>
+                    <Route
+                        path="/user/camp/reservation/view"
+                        index
+                        element={<CampReservationView />}
+                    ></Route>
+                    <Route
+                        path="/user/camp/like/list"
+                        index
+                        element={<CampLikeList />}
+                    ></Route>
+                    <Route
+                        path="/user/diary/list"
+                        index
+                        element={<MyDiaryList />}
+                    ></Route>
+                    <Route
+                        path="/user/store/order/list"
+                        index
+                        element={<StoreOrderList />}
+                    ></Route>
+                    <Route
+                        path="/user/store/order/view"
+                        index
+                        element={<StoreOrderView />}
+                    ></Route>
+                    <Route
+                        path="/user/store/cart/list"
+                        index
+                        element={<StoreCartList />}
+                    ></Route>
+                    <Route
+                        path="/user/store/review/list"
+                        index
+                        element={<StoreReviewList />}
+                    ></Route>
+                    <Route path="/user/qna" index element={<Qna />}></Route>
+                    <Route
+                        path="/user/notice"
+                        index
+                        element={<Notice />}
+                    ></Route>
+                    {/* member */}
+                    <Route
+                        path="/member/login"
+                        index
+                        element={<Login />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind"
+                        index
+                        element={<PwFind />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/auth"
+                        index
+                        element={<PwFindAuth />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/change"
+                        index
+                        element={<PwFindChange />}
+                    ></Route>
+                    <Route
+                        path="/member/pwfind/complete"
+                        index
+                        element={<PwChangeComplete />}
+                    ></Route>
+                    <Route
+                        path="/member/terms"
+                        index
+                        element={<Terms />}
+                    ></Route>
+                    <Route
+                        path="/member/register"
+                        index
+                        element={<Register />}
+                    ></Route>
+                    <Route
+                        path="/member/register/complete"
+                        index
+                        element={<Complete />}
+                    ></Route>
+                    <Route path="/style" element={<Style />}></Route>
+                </Route>
+            </Routes>
+        </>
+    );
 }
 
 export default App;
