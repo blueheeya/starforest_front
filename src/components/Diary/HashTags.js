@@ -30,7 +30,7 @@ function HashTags({ selectedHashTags, onHashTagToggle }) {
   // path 확인
   const isDiaryListOrView =
     location.pathname.includes("/diary/list") ||
-    location.pathname.includes("diary/view");
+    location.pathname.includes("/diary/view");
 
   return (
     <div

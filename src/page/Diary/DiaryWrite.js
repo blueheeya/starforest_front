@@ -15,7 +15,10 @@ function DiaryWrite() {
   const [selectedHashTags, setSelectedHashTags] = useState([]); // 선택된 해시태그 상태관리)
   const [content, setContent] = useState(""); // 글 작성 내용 상태관리
   const fileInputRef = useRef(null); // file input ref
-  const navigate = useNavigate(); // useNavigate
+  const navigate = useNavigate();
+
+  // 태그 폼데이터로 들어가기위한 설정
+  const allTags = [...selectedUserTags, ...selectedHashTags].join(",");
 
   // 이미지 change 확인
   const handleImageUpload = (e) => {
@@ -61,38 +64,16 @@ function DiaryWrite() {
     );
   };
 
-  const handleSubmit = async () => {
-    try {
-      // 폼데이터 생성
-      const formData = new FormData();
-
-      // 이미지 파일 추가
-      images.forEach((image, index) => {
-        formData.append("images", image.file);
-      });
-
-      // 다른 데이터들 추가
-      formData.append("content", content);
-      formData.append("userTags", JSON.stringify(selectedUserTags));
-      formData.append("hashTags", JSON.stringify(selectedHashTags));
-
-      // API
-      const res = await axios.post("/diary", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      // if문
-      if (res.status === 200) {
-        alert("성공적으로 등록되었습니다.");
-        navigate("/diary/list");
-      }
-    } catch (error) {
-      console.error("errer submit diary:", error);
-      alert("별숲 등록에 실패했습니다. 다시 시도해주세요.");
-    }
-  };
+  // handleSubmit
+  // const handleSubmit = async () => {
+  //   try {
+  //     const formData = FormData();
+  //     formData.append("content", content);
+  //     formData.append
+  //   } catch (error) {
+  //     console.error("error create diary", error)
+  //   }
+  // }
 
   return (
     // <div className="diary-bg">
@@ -132,7 +113,6 @@ function DiaryWrite() {
             className="diaryWrite-input"
             placeholder="내용을 입력해주세요."
             value={content}
-            id="content"
             onChange={(e) => setContent(e.target.value)}
           />
 
@@ -190,10 +170,8 @@ function DiaryWrite() {
           </p>
         </div>
         {/* 등록버튼 */}
-        {/* <Link to={"/diary/list"}> */}
-        <EditBtn onClick={handleSubmit} />
+        <EditBtn />
         {/* 등록하기 */}
-        {/* </Link> */}
       </div>
     </div>
   );
