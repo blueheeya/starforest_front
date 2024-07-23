@@ -109,7 +109,11 @@ function LayoutType() {
 
     const [modalNum, setModalNum] = useState(0);
     const [modalView, setModalView] = useState(false);
-    const modalData = [<ModalReview />, <ModalStore />, <ModalResions />];
+    const modalData = [
+        <ModalReview key="review" />,
+        <ModalStore key="store" />,
+        <ModalResions key="resions" />,
+    ];
     const [modalDetail, setModalDetail] = useState(null);
 
     function modalOpen(idx, data = null) {
@@ -137,7 +141,12 @@ function LayoutType() {
     }, [modalView]);
     return (
         <ModalContext.Provider
-            value={{ modalOpen, modalClose, modalDetail, setModalDetail }}
+            value={{
+                modalOpen,
+                modalClose,
+                modalDetail,
+                setModalDetail,
+            }}
         >
             <BackWrap>
                 <Container>
@@ -153,6 +162,7 @@ function LayoutType() {
                             {React.cloneElement(modalData[modalNum], {
                                 onClick: modalClose,
                                 data: modalDetail,
+                                onSubmit: modalDetail?.onSubmit,
                             })}
                         </div>
                     )}

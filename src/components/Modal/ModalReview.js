@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import Button from "../Form/Button";
 import Icon from "../Icon/Icon";
 
-function ModalReview({ onClick }) {
+function ModalReview({ onClick, onSubmit }) {
+    // onClick 제거, onClose와 onSubmit만 사용
     const [review, setReview] = useState("");
     const [error, setError] = useState("");
     const handleSubmit = () => {
         if (review.trim() === "") {
-            setError("내용을 입력해주세요!!!!!");
+            setError("내용을 입력해주세요!");
         } else {
             setError("");
-            onsubmit();
+            if (typeof onSubmit === "function") {
+                onSubmit(review);
+            } else {
+                console.error("onSubmit is not a function");
+            }
+            onClick();
         }
     };
     return (
@@ -58,7 +64,7 @@ function ModalReview({ onClick }) {
                     <Button
                         defaultBtn={false}
                         className="btnLine"
-                        onClick={handleSubmit}
+                        onClick={onClick}
                     >
                         취소
                     </Button>
