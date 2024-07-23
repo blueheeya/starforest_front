@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Form/Button";
 import Icon from "../Icon/Icon";
+import { useNavigate } from "react-router-dom";
 
 function ModalReview({ onClick, onSubmit }) {
     // onClick 제거, onClose와 onSubmit만 사용
@@ -74,7 +75,12 @@ function ModalReview({ onClick, onSubmit }) {
                 </button>
             </div>
         </div>
-    );
+        <button onClick={onClick} className="btnCloseType1">
+          <Icon iconName="iconCloseWhite" />
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default ModalReview;

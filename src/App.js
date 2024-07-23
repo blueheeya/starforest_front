@@ -1,9 +1,9 @@
 import {
-    matchPath,
-    Outlet,
-    Route,
-    Routes,
-    useLocation,
+  matchPath,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -11,9 +11,9 @@ import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
-    HeaderType2,
-    HeaderType3,
-    HeaderType4,
+  HeaderType2,
+  HeaderType3,
+  HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
@@ -61,51 +61,52 @@ import ModalResions from "./components/Modal/ModalResions";
 import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
 import ModalContext from "./components/Modal/ModalContext";
+import { ReviewProvider } from "./components/User/ReviewContext";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
 const showFooterPath = [
-    "/",
-    "/store/view",
-    "/user/mypage",
-    "/camp/list",
-    "/camp/reservation",
-    "/camp/pay",
-    "/store/pay",
-    "/diary/list",
-    "/diary/write",
-    "/diary/view",
-    "/user/store/order/view",
-    "/user/notice",
-    "/user/qna",
-    "/user/mypage/management",
-    "/user/camp/reservation/list",
-    "/user/camp/reservation/view",
-    "/user/store/review/list",
-    "/user/camp/like/list",
-    "/user/diary/list",
+  "/",
+  "/store/view",
+  "/user/mypage",
+  "/camp/list",
+  "/camp/reservation",
+  "/camp/pay",
+  "/store/pay",
+  "/diary/list",
+  "/diary/write",
+  "/diary/view",
+  "/user/store/order/view",
+  "/user/notice",
+  "/user/qna",
+  "/user/mypage/management",
+  "/user/camp/reservation/list",
+  "/user/camp/reservation/view",
+  "/user/store/review/list",
+  "/user/camp/like/list",
+  "/user/diary/list",
 ];
 function LayoutType() {
-    function getHeaderConfig(pathname) {
-        for (const [path, config] of Object.entries(headerConfig)) {
-            if (matchPath(path, pathname)) {
-                return config;
-            }
-        }
+  function getHeaderConfig(pathname) {
+    for (const [path, config] of Object.entries(headerConfig)) {
+      if (matchPath(path, pathname)) {
+        return config;
+      }
     }
-    const location = useLocation();
-    const {
-        title = "홈",
-        component: HeaderComponent = HeaderType2,
-        titleStore = false,
-    } = getHeaderConfig(location.pathname) ?? {};
+  }
+  const location = useLocation();
+  const {
+    title = "홈",
+    component: HeaderComponent = HeaderType2,
+    titleStore = false,
+  } = getHeaderConfig(location.pathname) ?? {};
 
-    // 메뉴
-    const showMenu = showMenuPath.includes(location.pathname);
-    const showFooter = showFooterPath.includes(location.pathname);
-    const isHeaderType2 = HeaderComponent === HeaderType2;
-    const isHeaderType3 = HeaderComponent === HeaderType3;
-    const isHeaderType4 = HeaderComponent === HeaderType4;
+  // 메뉴
+  const showMenu = showMenuPath.includes(location.pathname);
+  const showFooter = showFooterPath.includes(location.pathname);
+  const isHeaderType2 = HeaderComponent === HeaderType2;
+  const isHeaderType3 = HeaderComponent === HeaderType3;
+  const isHeaderType4 = HeaderComponent === HeaderType4;
 
     const [modalNum, setModalNum] = useState(0);
     const [modalView, setModalView] = useState(false);
@@ -116,25 +117,30 @@ function LayoutType() {
     ];
     const [modalDetail, setModalDetail] = useState(null);
 
-    function modalOpen(idx, data = null) {
-        setModalView(true);
-        setModalNum(idx);
-        setModalDetail(data);
+
+  function modalOpen(idx, data = null) {
+    setModalView(true);
+    setModalNum(idx);
+    setModalDetail(data);
+  }
+
+  function modalClose() {
+    setModalView(false);
+    setModalDetail(null);
+  }
+
+  function modalSubmit() {
+    setModalView(false);
+  }
+
+  useEffect(() => {
+    const containerWrapElement = document.querySelector(".containerWrap");
+
+    if (modalView) {
+      containerWrapElement.style.overflow = "hidden";
+    } else {
+      containerWrapElement.style.overflow = "auto";
     }
-
-    function modalClose() {
-        setModalView(false);
-        setModalDetail(null);
-    }
-    useEffect(() => {
-        const containerWrapElement = document.querySelector(".containerWrap");
-
-        if (modalView) {
-            containerWrapElement.style.overflow = "hidden";
-        } else {
-            containerWrapElement.style.overflow = "auto";
-        }
-
         return () => {
             containerWrapElement.style.overflow = "auto";
         };

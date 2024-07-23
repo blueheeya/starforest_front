@@ -245,16 +245,6 @@ function CampListMap() {
     };
 
     //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
     // 커스텀 오버레이 내용을 생성합니다
     function createOverlayContent(circleData) {
 
