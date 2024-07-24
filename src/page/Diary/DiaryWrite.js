@@ -15,10 +15,7 @@ function DiaryWrite() {
   const [selectedHashTags, setSelectedHashTags] = useState([]); // 선택된 해시태그 상태관리)
   const [content, setContent] = useState(""); // 글 작성 내용 상태관리
   const fileInputRef = useRef(null); // file input ref
-  const navigate = useNavigate();
-
-  // 태그 폼데이터로 들어가기위한 설정
-  const allTags = [...selectedUserTags, ...selectedHashTags].join(",");
+  const navigate = useNavigate(); // useNavigate
 
   // 이미지 change 확인
   const handleImageUpload = (e) => {
@@ -64,16 +61,32 @@ function DiaryWrite() {
     );
   };
 
-  // handleSubmit
-  // const handleSubmit = async () => {
-  //   try {
-  //     const formData = FormData();
-  //     formData.append("content", content);
-  //     formData.append
-  //   } catch (error) {
-  //     console.error("error create diary", error)
-  //   }
-  // }
+  // handleSubmit 생성
+  const handleSubmit = async () => {
+    try {
+      // 모든 태그를 하나의 문자열로 결합
+      const allTags = [...selectedUserTags, ...selectedHashTags].join(",");
+
+      const formData = FormData();
+      formData.append("content", content);
+      formData.append("category", allTags); // 모든 태그를 카테고리로 사용
+
+      images.forEach((image, index) => {
+        formData.append(`imageUrls`, image.file);
+      });
+
+      const res = await axios.post("http://localhost:8084/diary", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("diary created:".res.data);
+      navigate("/diary/list"); // 별숲기록 생성후 리스트 페이지로 이동
+    } catch (error) {
+      console.error("error create diary", error);
+    }
+  };
 
   return (
     // <div className="diary-bg">
@@ -170,7 +183,7 @@ function DiaryWrite() {
           </p>
         </div>
         {/* 등록버튼 */}
-        <EditBtn />
+        <EditBtn onClick={handleSubmit} />
         {/* 등록하기 */}
       </div>
     </div>
