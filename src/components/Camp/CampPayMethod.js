@@ -7,7 +7,7 @@ function CampPayMethod() {
 
     const handleKakaoPayment = async () => {
         try {
-            const res = await axios.post('http://localhost:8082/kakaoPay');
+            const res = await axios.post('http://localhost:8080/kakaoPay');
             // 카카오페이 결제 페이지로 리다이렉트
             console.log(res.data);
             console.log("결제 시도!!!!!!");

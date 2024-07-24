@@ -46,7 +46,7 @@ function CampView() {
     //동일 수정
     const campScript = async () => {
         try {
-            const res = await axios.post(`http://localhost:8082/camp/view/map/${id}`)
+            const res = await axios.post(`http://localhost:8080/camp/view/map/${id}`)
             console.log(res.data);
             setCampItem(res.data)
             parseFacilityString(res.data.posblFcltyCl)

@@ -73,7 +73,7 @@ function HeaderType3({ className, modalOpen }) {
             const body = inputData.replace(/\s+/g, ''); // 모든 공백 제거
             console.log(body);
             try {
-                const res = await axios.get(`http://localhost:8082/camp/search?query=${body}`)
+                const res = await axios.get(`http://localhost:8080/camp/search?query=${body}`)
                 console.log(res.data);
             } catch (error) {
                 console.log(error);

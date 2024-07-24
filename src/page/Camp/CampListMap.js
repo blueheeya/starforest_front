@@ -39,13 +39,13 @@ function CampListMap() {
         var mapContainer = document.getElementById("map"),
             mapOption = {
                 center: new kakao.maps.LatLng(body.mapy, body.mapx), // 지도의 중심좌표
-                level: 10, // 지도의 확대 레벨
+                level: 9, // 지도의 확대 레벨
                 mapTypeId: kakao.maps.MapTypeId.ROADMAP, // 지도종류
             };
         const map = new kakao.maps.Map(mapContainer, mapOption);
 
         try {
-            const res = await axios.post("http://localhost:8082/coordinates", body)
+            const res = await axios.post("http://localhost:8080/camp/coordinates", body)
             console.log(res.data);
             setCircles(res.data)
         } catch (error) {
@@ -100,7 +100,7 @@ function CampListMap() {
         console.log(body);
 
         try {
-            const res = await axios.post("http://localhost:8082/coordinates", body)
+            const res = await axios.post("http://localhost:8080/camp/coordinates", body)
             console.log(res.data);
             setCircles(res.data)
         } catch (error) {
