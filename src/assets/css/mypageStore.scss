@@ -488,18 +488,24 @@ $radiusSmall: 5px;
   padding-left: 10px;
 }
 // mypage_reviewlist-------------------------------
+// .userReviewListContainer {
+// }
 .userReviewListContainerTop {
   background-color: $backColor;
   width: 100%;
   height: 100vh;
   .userReviewListContainer {
+    border: 1px solid #000;
     display: flex;
     flex-direction: column;
     background-color: #fff;
     margin-top: 64px;
   }
 }
+.useReviewListContainerInner {
+}
 .userReviewListProductWrap {
+  background-color: #fff;
   display: flex;
   align-items: center;
   padding: 10px 32px 10px 32px;
@@ -508,6 +514,13 @@ $radiusSmall: 5px;
     width: 45px;
     border-radius: 5px;
   }
+}
+.useReviewListBtnWrap {
+  width: 530px;
+  display: flex;
+  justify-content: space-between;
+}
+.userReviewListCloseBtn {
 }
 .userReviewListProductNamesWrap {
   display: flex;
@@ -540,6 +553,7 @@ $radiusSmall: 5px;
   align-items: center;
   width: 368px;
   height: 31px;
+  gap: 5px;
 }
 .userReviewListUserLevel {
   display: flex;
