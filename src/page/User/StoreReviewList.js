@@ -2,21 +2,36 @@ import React, { useState, useEffect } from "react";
 import "../../assets/css/storeStyle.scss";
 import { useLocation } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
+import axiosInstance from "../../utils/axios";
 
 function StoreReviewList() {
   const location = useLocation();
   const newReview = location.state?.newReview;
 
-  const [reviews, setReviews] = useState([
-    {
-      id: 1,
-      image: "imgdefault.png",
-      level: "lavel lavel01",
-      name: "샛별",
-      user: "웅크린양과같은사나이",
-      content: "리뷰리뷰리뷰리뷰리뷰리뷰",
-    },
-  ]);
+  //   const [reviews, setReviews] = useState([
+  //     {
+  //       id: 1,
+  //       image: "imgdefault.png",
+  //       level: "lavel lavel01",
+  //       name: "샛별",
+  //       user: "웅크린양과같은사나이",
+  //       content: "리뷰리뷰리뷰리뷰리뷰리뷰",
+  //     },
+  //   ]);
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axiosInstance.get("/store/review");
+        setReviews(response.data);
+      } catch (error) {
+        console.error("Error fetching Reviews", error);
+      }
+    };
+    fetchReviews();
+  }, []);
 
   useEffect(() => {
     if (newReview) {
@@ -34,10 +49,21 @@ function StoreReviewList() {
     }
   }, [newReview]); // newReview가 변경될 때만 실행
 
-  const handleDelete = (id) => {
-    setReviews((prevReviews) => {
-      return prevReviews.filter((review) => review.id !== id);
-    });
+  //   const handleDelete = (id) => {
+  //     setReviews((prevReviews) => {
+  //       return prevReviews.filter((review) => review.id !== id);
+  //     });
+  //   };
+
+  const handleDelete = async (id) => {
+    try {
+      await axiosInstance.delete(`/store/review/${id}`);
+      setReviews((prevReviews) =>
+        prevReviews.filter((review) => review.id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting Review", error);
+    }
   };
 
   return (
