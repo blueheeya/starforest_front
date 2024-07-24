@@ -60,7 +60,7 @@ function Calender({ campInfo }) {
         try {
             console.log("fetchReservations 시작");
             const response = await axios.get(
-                "http://localhost:8082/reservations"
+                "http://localhost:8080/camp/reservations"
             );
             console.log(response.data);
             setReservationed(response.data);
@@ -91,7 +91,7 @@ function Calender({ campInfo }) {
 
             try {
                 const response = await axios.post(
-                    "http://localhost:8082/reservation",
+                    "http://localhost:8080/camp/reservation",
                     {
                         startDate: adjustedStartDate,
                         endDate: adjustedEndDate,
