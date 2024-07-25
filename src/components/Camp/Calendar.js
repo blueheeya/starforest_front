@@ -60,61 +60,82 @@ function Calender({ campInfo }) {
         try {
             console.log("fetchReservations 시작");
             const response = await axios.get(
-                "http://localhost:8080/camp/reservations"
+                `http://localhost:8080/camp/reservations/${campInfo.id}`
             );
             console.log(response.data);
-            setReservationed(response.data);
+
+            // 예약 데이터를 Date 객체로 변환
+            const formattedReservations = response.data.map(reservation => {
+                // 월 값을 1씩 빼서 Date 객체 생성
+                const startDate = new Date(
+                    reservation.startDate[0],
+                    reservation.startDate[1] - 1,
+                    reservation.startDate[2],
+                    reservation.startDate[3],
+                    reservation.startDate[4]
+                );
+                const endDate = new Date(
+                    reservation.endDate[0],
+                    reservation.endDate[1] - 1,
+                    reservation.endDate[2],
+                    reservation.endDate[3],
+                    reservation.endDate[4]
+                );
+
+                return {
+                    ...reservation,
+                    startDate,
+                    endDate,
+                };
+            });
+            console.log(formattedReservations);
+            setReservationed(formattedReservations);
         } catch (error) {
             console.log(error);
         }
     };
-
     //시작일, 마지막일 저장 <예약하기 버튼 클릭함수>
-    const handleReservation = async () => {
+    const handleReservation = async (event) => {
+        event.preventDefault(); // 페이지 새로고침 막기
         if (startDate && endDate) {
-            if (isReservationOverlap(startDate, endDate)) {
-                alert(
-                    "선택한 날짜 범위에 이미 예약된 날짜가 포함되어 있습니다."
-                );
-                return;
-            }
+            // if (isReservationOverlap(startDate, endDate)) {
+            //     alert(
+            //         "선택한 날짜 범위에 이미 예약된 날짜가 포함되어 있습니다."
+            //     );
+            //     return;
+            // }
 
-            const adjustedStartDate = new Date(
-                startDate.setHours(23, 0, 0, 0)
-            ).toISOString();
-            const adjustedEndDate = new Date(
-                endDate.setHours(23, 0, 0, 0)
-            ).toISOString();
+            const adjustedStartDate = new Date(startDate.setHours(23, 0, 0, 0)).toISOString();
+            const adjustedEndDate = new Date(endDate.setHours(23, 0, 0, 0)).toISOString();
 
             console.log("시작일 = " + adjustedStartDate);
             console.log("마지막일 = " + adjustedEndDate);
 
             try {
                 const response = await axios.post(
-                    "http://localhost:8080/camp/reservation",
+                    `http://localhost:8080/camp/reservation/${campInfo.id}`,
                     {
                         startDate: adjustedStartDate,
                         endDate: adjustedEndDate,
                     }
                 );
-                console.log(response);
-                setReservations(response.data);
-                fetchReservations();
                 alert(
-                    "<캠핑 예약 선택일> \n" +
-                    response.data.startDate +
+                    `<캠핑 예약 선택일> \n${response.data.start_date[0]}년 ${response.data.start_date[1]}월 ${response.data.start_date[2]}일` +
                     " ~ " +
-                    response.data.endDate +
+                    `${response.data.end_date[0]}년 ${response.data.end_date[1]}월 ${response.data.end_date[2]}일` +
                     "\n" +
                     response.data.message
                 );
+                console.log(response.data);
+                setReservations(response.data);
+                fetchReservations();
             } catch (error) {
                 alert("예약 중 오류가 발생했습니다.");
             }
         }
     };
 
-    //예약 불가 날짜 지정
+    // 예약 불가 날짜 지정
     const isDateDisabled = (date) => {
         return reservationed.some(
             (reservation) =>
