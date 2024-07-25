@@ -195,7 +195,7 @@ function App() {
                     ></Route>
                     <Route path="/camp/view/:id" element={<CampView />}></Route>
                     <Route
-                        path="/camp/view/map"
+                        path="/camp/view/map/:id"
                         index
                         element={<CampViewMap />}
                     ></Route>

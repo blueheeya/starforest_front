@@ -131,7 +131,7 @@ function HeaderType3({ className, modalOpen }) {
     );
 }
 function HeaderType4({ children, className, titleStore, ...props }) {
-    // const { id } = useParams();
+    const { id } = useParams();
     const navigator = useNavigate();
     const onBackClick = () => {
         navigator(-1);
@@ -147,7 +147,7 @@ function HeaderType4({ children, className, titleStore, ...props }) {
                         <img src={logoWhite} />
                     </h2>
                 </Link>
-                <Link to="/camp/view/map" className="btnMap">
+                <Link to={`/camp/view/map/${id}`} className="btnMap">
                     <img src={btnMap} />
                 </Link>
             </div>
