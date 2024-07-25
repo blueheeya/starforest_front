@@ -98,12 +98,12 @@ function Calender({ campInfo }) {
     const handleReservation = async (event) => {
         event.preventDefault(); // 페이지 새로고침 막기
         if (startDate && endDate) {
-            // if (isReservationOverlap(startDate, endDate)) {
-            //     alert(
-            //         "선택한 날짜 범위에 이미 예약된 날짜가 포함되어 있습니다."
-            //     );
-            //     return;
-            // }
+            if (isReservationOverlap(startDate, endDate)) {
+                alert(
+                    "앗...누군가 벌써 예약을 했네요!!"
+                );
+                return;
+            }
 
             const adjustedStartDate = new Date(startDate.setHours(23, 0, 0, 0)).toISOString();
             const adjustedEndDate = new Date(endDate.setHours(23, 0, 0, 0)).toISOString();
