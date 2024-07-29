@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 function Button({ defaultBtn, children, className, onClick, to }) {
     const navigate = useNavigate();
 
-    const handleClick = () => {
+    const handleClick = (e) => {
         if (to) {
             navigate(to);
         }
         if (onClick) {
-            onClick();
+            onClick(e);
         }
     };
     return (

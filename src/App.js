@@ -61,7 +61,9 @@ import ModalResions from "./components/Modal/ModalResions";
 import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
 import ModalContext from "./components/Modal/ModalContext";
+import { useSelector } from "react-redux";
 import { ReviewProvider } from "./components/User/ReviewContext";
+
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -198,6 +200,9 @@ function LayoutType() {
     );
 }
 function App() {
+    const loginState = useSelector((state) => state.loginSlice);
+    console.log(loginState)
+
     return (
         <>
             <Routes>

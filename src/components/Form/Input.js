@@ -7,15 +7,18 @@ function Input({
     className,
     iconName,
     value,
+    name,
     onChange,
     placeholder,
     type,
     isLink,
-    isOnclick,
+    isOnclick
 }) {
+    var temp = ""
     //동일 수정
     const handleChange = (e) => {
-        onChange(e.target.value)
+        temp+=e.target.value
+        onChange? onChange(e): console.log(e.target.value)
     }
     //동일 수정
     return (
@@ -31,6 +34,7 @@ function Input({
                 className={`serchInput`}
                 value={value}
                 onChange={handleChange}
+                name ={name}
                 placeholder={`${placeholder}`}
             ></input>
         </div>
