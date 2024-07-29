@@ -67,7 +67,7 @@ function DiaryWrite() {
       // 모든 태그를 하나의 문자열로 결합
       const allTags = [...selectedUserTags, ...selectedHashTags].join(",");
 
-      const formData = FormData();
+      const formData = new FormData();
       formData.append("content", content);
       formData.append("category", allTags); // 모든 태그를 카테고리로 사용
 
@@ -75,13 +75,13 @@ function DiaryWrite() {
         formData.append(`imageUrls`, image.file);
       });
 
-      const res = await axios.post("http://localhost:8084/diary", formData, {
+      const res = await axios.post("http://localhost:8080/diary", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
 
-      console.log("diary created:".res.data);
+      console.log("diary created:", res.data);
       navigate("/diary/list"); // 별숲기록 생성후 리스트 페이지로 이동
     } catch (error) {
       console.error("error create diary", error);
