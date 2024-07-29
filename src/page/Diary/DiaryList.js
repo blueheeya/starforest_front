@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import DiaryListCard from "../../components/Diary/DiaryListCard";
 import EditBtn from "../../components/Diary/EditBtn";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function DiaryList() {
   const [diaries, setDiaries] = useState([]);
