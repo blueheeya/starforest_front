@@ -248,7 +248,7 @@ section.backWrap {
 }
 
 .containerWrap::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
 }
 
 .containerWrap::-webkit-scrollbar-track {
@@ -257,7 +257,7 @@ section.backWrap {
 
 .containerWrap::-webkit-scrollbar-thumb {
     border-radius: $radiusDefault;
-    background: $PrimaryColor;
+    background: #ffffff;
 }
 
 .contentWrap {
@@ -293,7 +293,7 @@ section.backWrap {
     background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    border-bottom: solid 1px $inputColor;
+    // border-bottom: solid 1px $inputColor;
 }
 
 .headerType1 {
@@ -320,6 +320,9 @@ section.backWrap {
     z-index: 9;
     border-bottom: solid 1px $inputColor;
     background: #ffffff;
+    background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
     h2 {
         flex: auto;
@@ -355,6 +358,7 @@ section.backWrap {
     height: auto;
     padding: 10px 10px;
     border-bottom: solid 1px $inputColor;
+    background: #ffffff;
 
     .serchWrap {
         width: 100%;
@@ -368,26 +372,25 @@ section.backWrap {
             .searchInput {
                 width: 100%;
             }
-
             button {
                 width: 40px;
                 height: 40px;
                 font-size: 0;
                 border-radius: $radiusDefault;
-                background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+                background: $PrimaryColor url("../images/iconSearchW.png")
+                    no-repeat;
                 background-position: center;
             }
         }
-
-        .btnWrap {
-            display: flex;
-            align-items: center;
-            flex: none;
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            z-index: 2;
-        }
+    }
+    .btnWrap {
+        display: flex;
+        align-items: center;
+        flex: none;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        z-index: 2;
     }
 
     .serchTypeWrap {
@@ -396,6 +399,14 @@ section.backWrap {
         justify-content: space-between;
         width: 100%;
         gap: 10px;
+        button {
+            width: 40px;
+            height: 40px;
+            font-size: 0;
+            border-radius: $radiusDefault;
+            background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+            background-position: center;
+        }
 
         input {
             flex: 1;
