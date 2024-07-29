@@ -24,6 +24,7 @@ function DiaryListCard({ diary }) {
 
   const hashTags = category.filter((tag) => !userTags.includes(tag));
 
+
   return (
     <div className="diaryCard">
       {/* 유저정보 카드 */}
@@ -69,7 +70,7 @@ function DiaryListCard({ diary }) {
         </div> */}
         {/* 이미지 E */}
         {/* 캠프셀렉트카드 */}
-        <CampSelectCard reservationId={reservationId} />
+        <CampSelectCard reservationId={reservationId} isLink={"/camp/view/1"} />
       </div>
     </div>
   );

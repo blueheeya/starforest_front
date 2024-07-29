@@ -27,11 +27,12 @@ img {
     position: relative;
     width: 530px;
     height: 100vh;
-    background-color: #5085BB;
+    background-color: #5085bb;
 
     .map {
         // position: absolute;
         // bottom: 0;
+        position: relative;
         top: 64px;
         width: 530px;
         height: calc(100% - 64px);
@@ -65,7 +66,6 @@ img {
         }
     }
 
-
     .mapClose {
         position: absolute;
         top: 100px;
@@ -87,20 +87,28 @@ img {
     align-items: center;
     position: absolute;
     z-index: 9999;
-    bottom: 25px;
+    bottom: 50px;
     left: 50%;
     transform: translate(-50%);
     border-radius: 10px;
     padding: 10px;
     width: 466px;
     height: 120px;
-    border: 1px solid #000;
+    border: 1px solid $inputColor;
     background-color: #ffffff;
 
     .overlayImg {
-        border: 1px solid #000;
         width: 150px;
         height: 100px;
+        border-radius: $radiusSmall;
+        background: url("../images/imgdefault.png") no-repeat;
+        background-size: cover;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     .overlayContent {
@@ -113,16 +121,17 @@ img {
         .overContentWrap {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            gap: 5px;
             width: 100%;
-            justify-content: space-between;
 
             :nth-child(1) {
-                font-size: $secondText;
+                font-size: $therdText;
                 color: $textSecondary;
             }
 
             :nth-child(2) {
-                font-size: $titleText;
+                font-size: $defaultText;
                 color: $textTitle;
                 font-weight: bold;
             }
@@ -139,10 +148,6 @@ img {
         }
     }
 }
-
-//
-//
-//
 .wrapBox {
     position: absolute;
     z-index: 99999;
@@ -154,7 +159,7 @@ img {
     text-align: left;
     overflow: hidden;
     font-size: 12px;
-    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+    font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
     line-height: 1.5;
 }
 
@@ -194,7 +199,7 @@ img {
     color: #888;
     width: 17px;
     height: 17px;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+    background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
 }
 
 .info .close:hover {
@@ -236,16 +241,16 @@ img {
 }
 
 .info:after {
-    content: '';
+    content: "";
     position: absolute;
     margin-left: -12px;
     left: 50%;
     bottom: 0;
     width: 22px;
     height: 12px;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+    background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
 }
 
 .info .link {
-    color: #5085BB;
+    color: #5085bb;
 }

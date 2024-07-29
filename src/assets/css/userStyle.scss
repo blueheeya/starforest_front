@@ -112,10 +112,12 @@ $radiusSmall: 5px;
         text-align: center;
         border-bottom: solid 3px $inputColor;
         transition: 0.3s;
+        cursor: pointer;
     }
     div.active {
         color: $textDefault;
         border-bottom: solid 3px $PrimaryColor;
+        cursor: pointer;
     }
 }
 .myPageDate {
@@ -279,6 +281,18 @@ $radiusSmall: 5px;
     }
 }
 /* mycampReser*/
+.noReservation {
+    height: 80vh;
+    padding: 10px 32px;
+    background: #ffffff;
+    p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        font-size: $titleText;
+    }
+}
 .myCampNoteWrap {
     display: flex;
     flex-direction: column;
@@ -297,14 +311,25 @@ $radiusSmall: 5px;
         font-size: $therdText;
     }
 }
-.mycampReserWrap {
-    margin-bottom: 10px;
-    padding: 10px 32px;
+.myCampCardWrap {
+    padding: 20px 32px 0px 32px;
     background: #ffffff;
+    h4 {
+        font-size: $titleText;
+    }
+}
+.myCampReserWrap {
+    margin-bottom: 10px;
+    padding: 20px 32px 20px 32px;
+    background: #ffffff;
+    h4 {
+        font-size: $titleText;
+        margin-bottom: 20px;
+    }
     .myCampDate {
         display: flex;
         justify-content: space-between;
-        padding: 10px 0;
+        padding: 0 0 10px 0;
         font-size: $therdText;
         span:nth-child(1) {
             color: $textDefault;
@@ -331,8 +356,11 @@ $radiusSmall: 5px;
         .myCampInfoText {
             display: flex;
             flex: auto;
-            flex-direction: column;
-            gap: 20px;
+            flex-wrap: wrap;
+            align-content: space-between;
+            div {
+                width: 100%;
+            }
             ul {
                 display: flex;
                 flex-direction: column;
@@ -348,6 +376,44 @@ $radiusSmall: 5px;
                 li:nth-child(3) {
                     font-size: $therdText;
                 }
+            }
+        }
+        .myCampDiary {
+            display: flex;
+            justify-content: end;
+            height: 40px;
+        }
+        .btnCampDiary {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            color: $textSecondary;
+            font-size: $therdText;
+            border: solid 1px $inputColor;
+            border-radius: $radiusDefault;
+        }
+        .btnCampDiaryActive {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            color: $textDefault;
+            font-size: $therdText;
+            border: solid 1px $PrimaryColor;
+            border-radius: $radiusDefault;
+        }
+    }
+    .myCampReserInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        div {
+            display: flex;
+            justify-content: space-between;
+            color: $textSecondary;
+            font-size: $defaultText;
+            span {
+                color: $textDefault;
+                font-weight: bold;
             }
         }
     }

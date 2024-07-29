@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import btnBack from "../../assets/images/btnBack.png";
 import btnBackWhite from "../../assets/images/btnBackWhite.png";
@@ -7,6 +7,7 @@ import logoWhite from "../../assets/images/logoWhite.png";
 import storeHome from "../../assets/images/menuHome.png";
 import btnMap from "../../assets/images/btnMap.png";
 import Input from "../Form/Input";
+import axios from "axios";
 function HeaderType({ className }) {
     return (
         <div className={`headerType1 ${className}`}>
@@ -54,10 +55,35 @@ function HeaderType2({ children, className, titleStore, ...props }) {
     );
 }
 function HeaderType3({ className, modalOpen }) {
+    const [inputData, setInputData] = useState("");
     const navigator = useNavigate();
     const onBackClick = () => {
         navigator(-1);
     };
+    const moveMap = () => {
+        navigator("/camp/list/map");
+    };
+    //동일 수정
+    const handleInput = (e) => {
+        setInputData(e)
+    }
+
+    const serchCamp = async () => {
+        if (inputData.trim() != "") {
+            const body = inputData.replace(/\s+/g, ''); // 모든 공백 제거
+            console.log(body);
+            try {
+                const res = await axios.get(`http://localhost:8080/camp/search?query=${body}`)
+                console.log(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            console.log("실패");
+        }
+    }
+
+    //동일 완료
     return (
         <>
             <div className={`headerType3 ${className}`}>
@@ -70,8 +96,12 @@ function HeaderType3({ className, modalOpen }) {
                             iconName="iconSerch"
                             className="searchInput"
                             placeholder="검색어를 입력하세요."
+                            //동일 수정
+                            onChange={handleInput}
+                        //동일 완료
                         />
-                        <button className="btnWrap" onClick={onBackClick}>
+                        <div onClick={serchCamp} style={{ "width": 40 }}>검색</div>
+                        <button className="btnWrap" onClick={moveMap}>
                             맵
                         </button>
                     </div>

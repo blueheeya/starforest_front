@@ -16,6 +16,7 @@
 @import "memberStyle.scss";
 //modal
 @import "modalStyle.scss";
+@import "mypageStore.scss";
 // @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 * {
     margin: 0;
@@ -93,6 +94,146 @@ section.backWrap {
         margin: 0 auto;
         padding: 0 32px 0 0;
     }
+    .backAnimation {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        overflow-x: hidden;
+        background-image: linear-gradient(180deg, #c7e7ff, #e4f9ff);
+        .backSubTitle {
+            position: absolute;
+            color: #ffffff;
+            font-size: 30px;
+            top: 38%;
+            left: 25%;
+            transform: translateY(-50%);
+            text-align: center;
+            text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .backTitle {
+            position: absolute;
+            color: #ffffff;
+            top: 50%;
+            left: 26%;
+            transform: translateY(-50%);
+            font-size: 120px;
+            font-family: "EunhasuR";
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 3;
+        }
+        .backCloud1 {
+            position: absolute;
+            width: 240px;
+            height: 120px;
+            top: 40%;
+            left: 10%;
+            background: url("../images/bgCloud1.png") no-repeat;
+            background-size: cover;
+            // animation: cloud1 45s infinite linear;
+            z-index: 2;
+        }
+        .backCloud2 {
+            position: absolute;
+            width: 159px;
+            height: 83px;
+            top: 40%;
+            left: 0%;
+            background: url("../images/bgCloud2.png") no-repeat;
+            background-size: cover;
+            animation: cloud1 35s infinite linear;
+            z-index: 1;
+            // animation-delay: 3s;
+        }
+        .backCloud3 {
+            position: absolute;
+            width: 214px;
+            height: 95px;
+            top: 20%;
+            left: 30%;
+            background: url("../images/bgCloud3.png") no-repeat;
+            background-size: cover;
+            // animation: cloud2 45s infinite linear;
+            // animation-delay: 5s;
+            z-index: 1;
+        }
+        .backCloud4 {
+            position: absolute;
+            width: 143px;
+            height: 64px;
+            top: 15%;
+            left: 20%;
+            background: url("../images/bgCloud4.png") no-repeat;
+            background-size: cover;
+            animation: cloud1 50s infinite linear;
+            z-index: 1;
+        }
+        .backCloud5 {
+            position: absolute;
+            width: 269px;
+            height: 151px;
+            top: 10%;
+            left: -10%;
+            background: url("../images/bgCloud5.png") no-repeat;
+            background-size: cover;
+            animation: cloud1 60s infinite linear;
+            animation-delay: 10s;
+            opacity: 0.5;
+            z-index: 2;
+        }
+        .backCloud6 {
+            position: absolute;
+            width: 269px;
+            height: 151px;
+            top: 50%;
+            left: 80%;
+            background: url("../images/bgCloud5.png") no-repeat;
+            background-size: cover;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        .backCloud7 {
+            position: absolute;
+            width: 143px;
+            height: 64px;
+            top: 60%;
+            left: 20%;
+            background: url("../images/bgCloud4.png") no-repeat;
+            background-size: cover;
+            z-index: 1;
+        }
+        .backImgBottom1 {
+            position: absolute;
+            opacity: 1;
+            width: 100%;
+            height: 131px;
+            bottom: 0;
+            background: url("../images/backImgBottom.png") no-repeat;
+            background-position: center;
+            z-index: 2;
+        }
+        .backImgBottom2 {
+            position: absolute;
+            width: 100%;
+            height: 260px;
+            bottom: 0%;
+            background: url("../images/backImgBottom2.png") no-repeat;
+            background-position: center;
+            z-index: 1;
+        }
+    }
+}
+@keyframes cloud1 {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -15%;
+    }
 }
 
 .containerWrap {
@@ -103,6 +244,7 @@ section.backWrap {
     box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.15);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    z-index: 2;
 }
 
 .containerWrap::-webkit-scrollbar {
@@ -823,6 +965,18 @@ button {
 .btnSmallLine:hover {
     color: $PrimaryColor;
     border: solid 1px $PrimaryColor;
+    background: #ffffff;
+}
+.btnLine {
+    padding: 5px 10px;
+    color: $textSecondary;
+    border: solid 1px $inputColor;
+    background: #ffffff;
+    transition: 0.3s;
+}
+.btnLine:hover {
+    color: $textSecondary;
+    border: solid 1px $textSecondary;
     background: #ffffff;
 }
 /* Layout margin & padding */

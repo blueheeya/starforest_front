@@ -21,19 +21,31 @@ $radiusDefault: 10px;
 $radiusSmall: 5px;
 
 // mypage_userOderCard-----------------------------------
+.userOrderListWrapTop {
+  background-color: $backColor;
+}
+.userOrderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 65px;
+}
 .userOrderBox {
   margin-bottom: 10px;
   .useOrderDateWrap {
     display: flex;
     justify-content: space-between;
-    padding: 10px 32px;
+    align-items: center;
+    padding: 15px 32px;
     margin-bottom: 3px;
     background-color: #fff;
-    font-weight: bold;
+    .userOrderDate {
+      font-size: $secondText;
+    }
   }
 }
 .userOrderTitle {
-  background-color: #fff;
+  background-color: #ffffff;
   width: 530px;
   height: 164px;
   .userOrderProduct {
@@ -41,14 +53,12 @@ $radiusSmall: 5px;
     font-size: $secondText;
     font-weight: bold;
   }
-  .userOrderinnerMain {
-    padding: 10px 32px;
-  }
 }
 .userOrderinnerMain {
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 10px 32px;
   background-color: #fff;
   .userOrderinnerMainImg {
     width: 65px;
@@ -251,19 +261,18 @@ $radiusSmall: 5px;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  .orderReviewCompleteBtn {
-    font-size: $secondText;
-    font-weight: bold;
-    color: $textSecondary;
-  }
+  font-size: $secondText;
+  font-weight: bold;
+  color: $textSecondary;
 }
 .OrderViewState2 {
   display: flex;
-  .orderReviewWriteBtn {
-    font-size: $secondText;
-    font-weight: bold;
-    color: $textDefault;
-  }
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: $secondText;
+  font-weight: bold;
+  color: $textDefault;
 }
 
 .OrderViewProduct {
@@ -272,17 +281,26 @@ $radiusSmall: 5px;
   justify-content: space-between;
   align-items: center;
   padding: 10px 32px;
+  .oderViewImg {
+    display: flex;
+    width: 65px;
+    height: 65px;
+    border-radius: $radiusDefault;
+    background: url("../images/imgdefault.png") no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
 .OrderViewinnerMain {
   display: flex;
   align-items: center;
   gap: 10px;
   background-color: #fff;
-  .OrderViewinnerMainImg {
-    width: 65px;
-    height: 65px;
-    border-radius: $radiusSmall;
-  }
 }
 .OrderViewcontentName {
   font-size: $therdText;
@@ -313,6 +331,17 @@ $radiusSmall: 5px;
   }
   .OrderViewPrice {
     display: flex;
+    gap: 5px;
+    .OrderViewpriceSpan {
+      text-decoration: line-through;
+      font-size: $defaultText;
+      font-weight: bold;
+    }
+    .OrderViewpriceMain {
+      font-size: $defaultTitle;
+      color: $textTitle;
+      font-weight: bold;
+    }
   }
 }
 .OrderViewTotalcontent {
@@ -337,16 +366,25 @@ $radiusSmall: 5px;
     }
   }
 }
+//usercartlist
+.storeCart {
+  //   border: 1px solid #000;
+  margin: 65px 0;
+}
+.storeCartBtn {
+  font-size: $btnText;
+}
 
 // userReviewModal*********************************
 .userReviewModalContainer {
+  border: 1px solid #000;
   position: absolute;
-  top: 50%;
+  top: 0px;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 100%; /* 부모 요소가 전체 화면을 덮도록 설정 */
-  height: 100%;
+  // height: 100%;
   // align-items: flex-end;
 }
 .userReviewModalContent {
@@ -450,44 +488,91 @@ $radiusSmall: 5px;
   padding-left: 10px;
 }
 // mypage_reviewlist-------------------------------
-.userReviewListProductWrap {
-  display: flex;
-  padding: 10px 32px;
-  border: 1px solid #000;
-  gap: 10px;
-  .userReviewListProductImg {
-    width: 65px;
-    border-radius: 5px;
-  }
-  .userReviewListProductNames {
+// .userReviewListContainer {
+// }
+.userReviewListContainerTop {
+  background-color: $backColor;
+  width: 100%;
+  height: 100vh;
+  .userReviewListContainer {
+    border: 1px solid #000;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    .userReviewListProductBname {
-    }
-    .userReviewListProductPname {
-    }
+    background-color: #fff;
+    margin-top: 64px;
   }
 }
-.userReviewListUserInFo {
-  border: 1px solid #000;
+.useReviewListContainerInner {
+}
+.userReviewListProductWrap {
   background-color: #fff;
   display: flex;
   align-items: center;
-  .userReviewListimg {
-    width: 80px;
-    height: 80px;
+  padding: 10px 32px 10px 32px;
+  gap: 10px;
+  .userReviewListProductImg {
+    width: 45px;
+    border-radius: 5px;
   }
 }
+.useReviewListBtnWrap {
+  width: 530px;
+  display: flex;
+  justify-content: space-between;
+}
+.userReviewListCloseBtn {
+}
+.userReviewListProductNamesWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.reviewCloseBtn {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.userReviewListProductNames {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  .userReviewListProductBname {
+    font-size: $therdText;
+    color: $textSecondary;
+  }
+  .userReviewListProductPname {
+    font-size: $secondText;
+    color: $textTitle;
+    font-weight: bold;
+  }
+}
+.userReviewListInfoWrap {
+  display: flex;
+  align-items: center;
+  width: 368px;
+  height: 31px;
+  gap: 5px;
+}
+.userReviewListUserLevel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  .userReviewListUserName {
+    font-size: $btnText;
+    font-weight: bold;
+    color: $textDefault;
+  }
+}
+
 .userReviewItem {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 18px;
-  padding: 20px 32px 20px 32px;
+  padding: 10px 32px 10px 32px;
   background-color: #fff;
-  border: 1px solid #000;
 
   .userReviewImg {
     width: 80px;
@@ -496,8 +581,20 @@ $radiusSmall: 5px;
   }
 }
 .userReviewListtextWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+.reviewCloseBtnBox {
   border: 1px solid #000;
   display: flex;
-  align-items: center;
-  gap: 5px;
+}
+.userReviewListContent {
+  display: flex;
+  justify-content: start;
+  width: 368px;
+  height: 20px;
+  font-size: $therdText;
+  color: $textSecondary;
 }

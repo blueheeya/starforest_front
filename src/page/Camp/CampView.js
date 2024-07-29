@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -12,8 +12,12 @@ import CampTag from "../../components/Camp/CampTag";
 import StoreTopten from "../../components/Store/StoreTopTen";
 import Icon from "../../components/Icon/Icon";
 import Footer from "../../components/Layout/Footer";
+import Button from "../../components/Form/Button";
+import axios from "axios";
+import CampReservation from "./CampReservation";
 function CampView() {
     //주소 복사
+    const navigator = useNavigate();
     const addressRef = useRef(null);
 
     const copyAddress = () => {
@@ -31,24 +35,58 @@ function CampView() {
     };
     const { id } = useParams();
     const [campItem, setCampItem] = useState(null);
+    const [posbl, setPosbl] = useState("")
 
     useEffect(() => {
-        const campItem = CampSite.find((item) => item.id === parseInt(id));
-        setCampItem(campItem);
-    }, [id]);
+        //동일 수정
+        campScript()
+    }, []);
+    //동일 수정끝
+
+    //동일 수정
+    const parseFacilityString = (facilityString) => {
+        try {
+            // console.log(facilityString);
+            // '를 "로 바꾸기
+            const jsonString = facilityString.replace(/'/g, '"');
+            // JSON 파싱
+            const facilityArray = JSON.parse(jsonString).join(', ');
+            // 배열 요소들을 문자열로 결합
+            // console.log(facilityArray);
+            setPosbl(facilityArray)
+        } catch (error) {
+            console.error('Error parsing facility string:', error);
+            return facilityString;
+        }
+    }
+    //동일 수정끝
+
+    //동일 수정
+    const campScript = async () => {
+        try {
+            const res = await axios.post(`http://localhost:8080/camp/view/${id}`)
+            console.log(res.data);
+            setCampItem(res.data)
+            parseFacilityString(res.data.posblFcltyCl)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    //동일 수정끝
 
     if (!campItem) {
         return <div>로딩중</div>;
     }
+
     const sbrsCl = campItem.sbrsCl || [];
     const eqpmnLendCl = campItem.eqpmnLendCl || [];
-    // 이미지 URL 매칭 함수
-    const getImageUrlsById = (id) => {
-        const imgObj = CampGavisImg.find((img) => img.id === id);
-        return imgObj ? imgObj.imageURL : [];
-    };
-    const imageUrls = getImageUrlsById(campItem.id);
 
+    const imageUrls = campItem?.campImages;
+    const moveReservation = () => {
+        navigator(`/camp/reservation/${id}`);
+    };
     return (
         <>
             <div>
@@ -59,9 +97,9 @@ function CampView() {
                         slidesPerView={1}
                         pagination={true}
                     >
-                        {imageUrls.map((url, index) => (
+                        {imageUrls.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <img key={index} src={url} />
+                                <img key={index} src={item.image_url} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -70,13 +108,13 @@ function CampView() {
                     <li>
                         <ul className="campTitle">
                             <li>
-                                {campItem.isAuto === true ? (
+                                {campItem.is_auto === true ? (
                                     <span>오토캠핑장</span>
                                 ) : null}
-                                {campItem.isGlamp === true ? (
+                                {campItem.is_glamp === true ? (
                                     <span>글램핑</span>
                                 ) : null}
-                                {campItem.isCarvan === true ? (
+                                {campItem.is_carvan === true ? (
                                     <span>카라반</span>
                                 ) : null}
                             </li>
@@ -85,7 +123,7 @@ function CampView() {
                     </li>
                     <li>
                         <Icon iconName="iconAddress" />
-                        <span ref={addressRef}>{campItem.addr1}</span>
+                        <span ref={addressRef}>{campItem.add1}</span>
                         <button onClick={copyAddress}>복사하기</button>
                     </li>
                     <li>
@@ -95,7 +133,7 @@ function CampView() {
                     <li>
                         <Icon iconName="iconHompage" />
                         {campItem.homepage &&
-                        campItem.homepage.trim() !== "" ? (
+                            campItem.homepage.trim() !== "" ? (
                             <button
                                 onClick={() =>
                                     window.open(campItem.homepage, "_blank")
@@ -107,7 +145,7 @@ function CampView() {
                     </li>
                     <li>
                         <Icon iconName="iconLog" /> <strong>주변환경</strong>
-                        {campItem.lctCl}
+                        {posbl ? posbl : ""}
                     </li>
                     <li>
                         <Icon iconName="iconTag" /> 태그
@@ -119,6 +157,11 @@ function CampView() {
                         />
                     </li>
                 </ul>
+                <div className="campViewWrap">
+                    <Button defaultBtn={true} onClick={moveReservation}>
+                        예약하기
+                    </Button>
+                </div>
                 <div className="campViewWrap">
                     <div>
                         <h4>캠핑장 소개</h4>

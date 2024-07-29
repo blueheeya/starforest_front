@@ -59,7 +59,6 @@ import iconCheckDefault from "../../assets/images/iconCheckDefault.svg";
 import iconMinus from "../../assets/images/iconMinus.svg";
 import iconPlus from "../../assets/images/iconPlus.svg";
 import iconClose from "../../assets/images/iconClose.svg";
-
 import userOut from "../../assets/images/userOut.svg";
 import userEdit from "../../assets/images/userEdit.svg";
 import naverLogo from "../../assets/images/naverLogo.png";
@@ -73,6 +72,11 @@ import logoDefault from "../../assets/images/logoDefault.png";
 import iconDanger from "../../assets/images/iconDanger.png";
 import iconComplete from "../../assets/images/iconComplete.png";
 import iconCloseWhite from "../../assets/images/iconCloseWhite.png";
+import menuLog from "../../assets/images/menuLog.png";
+import menuLogActive from "../../assets/images/menuLogActive.png";
+import iconLogUnload from "../../assets/images/iconLogUnload.png";
+import iconCampSearch from "../../assets/images/iconCampSearch.svg";
+import iconReset from "../../assets/images/iconReset.png";
 
 import iconReviewComplete from "../../assets/images/iconReviewComplete.svg";
 import iconReviewWrite from "../../assets/images/iconReviewWrite.svg";
@@ -151,23 +155,30 @@ const icons = {
     iconDanger,
     iconComplete,
     iconCloseWhite,
+    menuLog,
+    menuLogActive,
+    iconLogUnload,
+    iconCampSearch,
+    iconReviewWrite,
+    iconReviewComplete,
+    iconReset,
 };
 function Icon({ iconName, className, ...props }) {
-  const iconSrc = icons[iconName];
-  if (!iconSrc) {
-    console.error(`Icon '${iconName}' not found.`);
-    return null;
-  }
-  return (
-    <>
-      <img
-        src={iconSrc}
-        alt={iconName}
-        {...props}
-        className={`imgIcons ${className}`}
-      />
-    </>
-  );
+    const iconSrc = icons[iconName];
+    if (!iconSrc) {
+        console.error(`Icon '${iconName}' not found.`);
+        return null;
+    }
+    return (
+        <>
+            <img
+                src={iconSrc}
+                alt={iconName}
+                {...props}
+                className={`imgIcons ${className}`}
+            />
+        </>
+    );
 }
 
 export default Icon;

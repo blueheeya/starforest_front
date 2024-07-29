@@ -1,75 +1,91 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "../../assets/css/kakaoMap.scss"
-import mapClose from "../../assets/images/mapClose.svg"
 import gps from "../../assets/images/gps.svg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import mapPointerOn from '../../assets/images/mapPointer.svg'
-import mapPointerOff from '../../assets/images/mapPointer1.svg'
 import btnClose from "../../assets/images/btnClose.png"
-
+import noneImage from "../../assets/images/noneImage.png"
 
 const { kakao } = window;
 
-let currentOverlay = null;//커스텀 오버레이상태
+let currentOverlay = null; //커스텀 오버레이상태
 var imageSrc = mapPointerOn;
 var imageSize = new kakao.maps.Size(40, 40);
 var imageOption = { offset: new kakao.maps.Point(20, 42) }; // 마커이미지의 옵션입니다.
 function CampListMap() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [map, setMap] = useState(null); //카카오 map
     const [dragMapCenter, setDragMapCenter] = useState(); //드래그시 맵 중심 좌표
-    const [circles, setCircles] = useState([
-        { name: "힐링피아 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 1111 61-75", mapX: 127.4947241, mapY: 37.5978864 },
-        { name: "1111 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 2222 61-75", mapX: 126.6806875, mapY: 37.3241008 },
-        { name: "2222 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 3333 61-75", mapX: 127.455147, mapY: 37.50762979 },
-        { name: "3333 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 4444 61-75", mapX: 127.4947099, mapY: 37.6012926 },
-        { name: "4444 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 5555 61-75", mapX: 127.5124645, mapY: 37.7467558 },
-        { name: "5555 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 6666 61-75", mapX: 126.9161565, mapY: 37.25773423 },
-        { name: "6666 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 7777 61-75", mapX: 127.1889864, mapY: 37.9617314 },
-        { name: "7777 카라반 글램핑 풀 캠핑장", addr1: "경기 가평군 설악면 8888 61-75", mapX: 127.5140734, mapY: 37.8552141 },
-    ]); //모임 배열
+    const [circles, setCircles] = useState([]); //모임 배열
     const [markers, setMarkers] = useState([]); //마커들 표시
     const [markersInitialized, setMarkersInitialized] = useState(false);
+    const [clusterer, setClusterer] = useState(null);
+
 
     useEffect(() => {
         if (!map) {
             mapscript();
         } else {
-            getDragLocation()
+            getDragLocation();
         }
     }, [map]);
 
     //초기 카카오 맵 설정
-    const mapscript = () => {
+    const mapscript = async () => {
         // console.log("mapscript시작");
+        const body = { mapx: 127.4947241, mapy: 37.5978864 }
         var mapContainer = document.getElementById("map"),
             mapOption = {
-                center: new kakao.maps.LatLng(37.5978864, 127.4947241), // 지도의 중심좌표
-                level: 4, // 지도의 확대 레벨
+                center: new kakao.maps.LatLng(body.mapy, body.mapx), // 지도의 중심좌표
+                level: 9, // 지도의 확대 레벨
                 mapTypeId: kakao.maps.MapTypeId.ROADMAP, // 지도종류
             };
-
         const map = new kakao.maps.Map(mapContainer, mapOption);
+
+        try {
+            const res = await axios.post("http://localhost:8080/camp/coordinates", body)
+            console.log(res.data);
+            setCircles(res.data)
+        } catch (error) {
+            console.log("mapscript axios 에러");
+        }
 
         // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
         var zoomControl = new kakao.maps.ZoomControl();
         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+        // 클러스터러 생성
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel: 7, // 클러스터 할 최소 지도 레벨
+            disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정
+        });
+
+        // 마커 클러스터러에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(clusterer, 'clusterclick', function (cluster) {
+
+            // 현재 지도 레벨에서 1레벨 확대한 레벨
+            var level = map.getLevel() - 1;
+
+            // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+            map.setLevel(level, { anchor: cluster.getCenter() });
+        });
+
+        setClusterer(clusterer);
         setMap(map);
     };
-
     //드래그위치 가져오는 함수
     const getDragLocation = () => {
         // console.log("드래그 위치 시작");
 
         //드래그 중심좌표 얻어오는 함수
         kakao.maps.event.addListener(map, "dragend", function () {
-
             // 지도 중심좌표를 얻어옵니다
             var latlng = map.getCenter();
 
-            setDragMapCenter([latlng.Ma, latlng.La]); //드래그 중심좌표 저장
+            setDragMapCenter({ mapx: latlng.La, mapy: latlng.Ma }); //드래그 중심좌표 저장
 
             document.querySelector(".serchLocal").style.display = "block";
         });
@@ -79,22 +95,25 @@ function CampListMap() {
     const findRange = async () => {
         console.log("현위치에서 검색 클릭");
         const body = dragMapCenter
+        console.log(body);
 
         try {
-            // const res = await axios.post("/", body)
+            const res = await axios.post("http://localhost:8080/camp/coordinates", body)
+            console.log(res.data);
+            setCircles(res.data)
         } catch (error) {
             console.log("현위치 검색 axios 에러");
         }
-    }
+    };
 
     useEffect(() => {
-        initializeMarkers(map);
-    }, [markersInitialized, circles, map]);
+        initializeMarkers(map, clusterer);
+    }, [markersInitialized, circles, map, clusterer]);
 
     //모임 마커 추가
-    const initializeMarkers = (map) => {
+    const initializeMarkers = (map, clusterer) => {
         // console.log("초기 마커 추가");
-        // console.log(circles);
+        if (!map || !clusterer) return;
 
         clearMarkers();
         const newMarkers = [];
@@ -107,10 +126,21 @@ function CampListMap() {
                     circles[i].mapX
                 );
                 // console.log(latlng);
-                const marker = addMarker(latlng, map, imageSrc, imageSize, imageOption, circles[i], i);
+                const marker = addMarker(
+                    latlng,
+                    map,
+                    imageSrc,
+                    imageSize,
+                    imageOption,
+                    circles[i],
+                    i
+                );
                 newMarkers.push(marker);
             }
             setMarkers(newMarkers);
+            clusterer.clear(); // 기존 클러스터 초기화
+            clusterer.addMarkers(newMarkers); // 새로운 마커들 추가
+
         }
     };
 
@@ -126,9 +156,16 @@ function CampListMap() {
         }
     };
 
-
     //마커 생성
-    const addMarker = (latlng, map, imageSrc, imageSize, imageOption, circleData, index) => {
+    const addMarker = (
+        latlng,
+        map,
+        imageSrc,
+        imageSize,
+        imageOption,
+        circleData,
+        index
+    ) => {
         if (!map) return;
 
         console.log("마커 생성(addMarker)");
@@ -146,12 +183,17 @@ function CampListMap() {
             position: latlng, // 마커를 표시할 위치
             image: markerImage, // 마커 이미지
         });
-        // // 커스텀 오버레이 내용을 생성합니다
-        // createOverlayContent(circleData)
+
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel: 7, // 클러스터 할 최소 지도 레벨
+            disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
+        });
+        clusterer.addMarkers(marker);
 
         // 마커를 클릭했을 때 커스텀 오버레이를 표시+ 지도가 이동
-        kakao.maps.event.addListener(marker, 'click', function () {
-
+        kakao.maps.event.addListener(marker, "click", function () {
             if (currentOverlay) {
                 currentOverlay.setMap(null);
             }
@@ -171,7 +213,7 @@ function CampListMap() {
             var overlay = new kakao.maps.CustomOverlay({
                 content: content,
                 clickable: true,
-                map: map,//null
+                map: map, //null
                 position: marker.getPosition(),
             });
             currentOverlay = overlay;
@@ -195,74 +237,63 @@ function CampListMap() {
 
     //지도 닫기 버튼
     const pageclose = () => {
-        navigate("/camp/list")
-    }
+        navigate("/camp/list");
+    };
     // 페이지 이동 함수
     const handleOverlayClick = (circleData) => {
-        navigate(`/detail/${circleData.name}`); // 적절한 url로 수정 필요
+        navigate(`/camp/view/${circleData.id}`);
     };
 
-
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
     //
     // 커스텀 오버레이 내용을 생성합니다
     function createOverlayContent(circleData) {
 
-        const wrap = document.createElement('div');
-        wrap.className = 'customOverlay';
+        const wrap = document.createElement("div");
+        wrap.className = "customOverlay";
         // 클릭 이벤트 추가
-        wrap.style.cursor = 'pointer';
-        wrap.addEventListener('click', (e) => {
+        wrap.style.cursor = "pointer";
+        wrap.addEventListener("click", (e) => {
             // 닫기 버튼 클릭 시 이벤트 전파 방지
-            if (!e.target.closest('.contentCloseBtn')) {
+            if (!e.target.closest(".contentCloseBtn")) {
                 handleOverlayClick(circleData);
             }
         });
 
-        const overlayImg = document.createElement('div');
-        overlayImg.className = 'overlayImg';
+        const overlayImg = document.createElement("div");
+        overlayImg.className = "overlayImg";
         wrap.appendChild(overlayImg);
 
         const image = document.createElement('img');
-        image.src = ''; // 이미지 경로 설정
+        image.src = `${circleData.first_image_url ? circleData.first_image_url : noneImage}`; // 이미지 경로 설정
         image.alt = '';
         overlayImg.appendChild(image);
 
-        const overlayContent = document.createElement('div');
-        overlayContent.className = 'overlayContent';
+        const overlayContent = document.createElement("div");
+        overlayContent.className = "overlayContent";
         wrap.appendChild(overlayContent);
 
-        const overContentWrap = document.createElement('ul');
-        overContentWrap.className = 'overContentWrap';
+        const overContentWrap = document.createElement("ul");
+        overContentWrap.className = "overContentWrap";
         overlayContent.appendChild(overContentWrap);
 
-        const items = ['오픈 캠핑장', circleData.name, circleData.addr1, '50,000원 부터'];
+        const items = [`${circleData.is_auto ? "오픈 캠핑장" : ""}${circleData.is_carvan ? "카라반" : ""}${circleData.is_glamp ? "글램핑" : ""}`, circleData.name, circleData.add1, `${circleData.price.toLocaleString('ko-KR')}원 부터`];
         items.forEach(item => {
             const li = document.createElement('li');
             li.textContent = item;
             overContentWrap.appendChild(li);
         });
 
-        const contentCloseBtn = document.createElement('div');
-        contentCloseBtn.className = 'contentCloseBtn';
+        const contentCloseBtn = document.createElement("div");
+        contentCloseBtn.className = "contentCloseBtn";
         overlayContent.appendChild(contentCloseBtn);
 
-        const button = document.createElement('button');
+        const button = document.createElement("button");
         contentCloseBtn.appendChild(button);
-        button.className = 'btnCloseb'
+        button.className = "btnCloseb";
 
-        const closeButtonImage = document.createElement('img');
+        const closeButtonImage = document.createElement("img");
         closeButtonImage.src = btnClose;
-        closeButtonImage.alt = '';
+        closeButtonImage.alt = "";
         button.appendChild(closeButtonImage);
 
         return wrap;
@@ -272,31 +303,18 @@ function CampListMap() {
         <div className="mapWrap">
             {/* <button className="mapClose" onClick={() => { pageclose() }}><img src={mapClose} alt="" /></button> */}
             <div id="map" className="map">
-                <button className="serchLocal" onClick={() => { findRange() }}>
+                <button
+                    className="serchLocal"
+                    onClick={() => {
+                        findRange();
+                    }}
+                >
                     <div className="localInner">
                         <img src={gps} alt="" />
                         <div>현위치에서 검색</div>
                     </div>
                 </button>
-                {/* 커스텀 오버레이 */}
-                {/* <div className="customOverlay">
-                    <div className="overlayImg">
-                        <img src="" alt="" />
-                    </div>
-                    <div className="overlayContent">
-                        <ul className="overContentWrap">
-                            <li>오픈 캠핑장</li>
-                            <li>충북카누캠핑장</li>
-                            <li>충북 충주시 동량면 지등로</li>
-                            <li>50,000원 부터</li>
-                        </ul>
-                        <div className="contentCloseBtn">
-                            <button>
-                                <img src={btnClose} onClick={() => { overlayClose() }} alt="" />
-                            </button>
-                        </div>
-                    </div>
-                </div> */}
+
             </div>
         </div>
     );

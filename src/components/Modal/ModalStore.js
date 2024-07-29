@@ -1,19 +1,31 @@
 import Button from "../Form/Button";
 import Icon from "../Icon/Icon";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import ModalContext from "./ModalContext";
 
-function ModalStore({ onClick, productName, price }) {
+function ModalStore({ onClick }) {
+    const { modalDetail } = useContext(ModalContext);
+    const [productName, setProductName] = useState("");
+    const [price, setPrice] = useState(0);
+
+    useEffect(() => {
+        if (modalDetail) {
+            setProductName(modalDetail.productName || "");
+            setPrice(modalDetail.price || 0);
+        }
+    }, [modalDetail]);
+
     const [quantity, setQuantity] = useState(1);
     const increaseQuantity = () => setQuantity((prev) => prev + 1);
     const decreaseQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
 
     const totalPrice = price * quantity;
+
     return (
         <div className="modalWrap">
             <div className="modal">
                 <div>
-                    <h3>{productName}</h3>
+                    <h3>{productName ? productName : "상품정보없음"}</h3>
                     <div className="modalNumWrap">
                         <div className="modalNumSelector">
                             <button onClick={decreaseQuantity}>
@@ -35,12 +47,12 @@ function ModalStore({ onClick, productName, price }) {
                     </div>
                 </div>
                 <div className="btnWrap">
-                    <Button defaultBtn={false} className="btnSmallLine">
+                    <Button defaultBtn={false} className="btnLine">
                         장바구니
                     </Button>
                     <Button defaultBtn={true}>구매하기</Button>
                 </div>
-                <button onClick={onClick} className="btnCloseType2">
+                <button onClick={onClick} className="btnCloseType1">
                     <Icon iconName="iconCloseWhite" />
                 </button>
             </div>
