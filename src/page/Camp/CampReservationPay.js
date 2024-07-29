@@ -9,7 +9,7 @@ function CampReservationPay() {
   const [campInfo, setCampInfo] = useState()
   const discount = campInfo?.price * 0.3
   const totalPrice = campInfo?.price - discount
-  const { id } = useParams()
+  const { id, reservId } = useParams()
   const reservInfo = (body) => {
     setReservationInfo(body)
   }
@@ -60,7 +60,7 @@ function CampReservationPay() {
           </div>
         </div>
 
-        <CampPayMethod reservationInfo={reservationInfo} campInfo={campInfo} totalPrice={totalPrice} />
+        <CampPayMethod reservationInfo={reservationInfo} campInfo={campInfo} totalPrice={totalPrice} reservId={reservId} />
       </div>
     </>
   );

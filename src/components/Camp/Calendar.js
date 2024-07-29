@@ -15,7 +15,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 import { format, isWithinInterval } from "date-fns";
 import Icon from "../Icon/Icon";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import CampReservationComplete from "../../page/Camp/CampReservationComplete";
 
 registerLocale("ko", ko);
 
@@ -24,6 +25,7 @@ registerLocale("ko", ko);
 //예약하려는 날짜의 캠핑장 날씨 정보 제공
 
 function Calender({ campInfo }) {
+    console.log(campInfo);
     const API_KEY = "db5e9fc650822da7c6cc328c5ec59bdf";
     const lang = "kr";
     const [weatherData, setWeatherData] = useState(null);
@@ -129,7 +131,7 @@ function Calender({ campInfo }) {
                 console.log(response.data);
                 setReservations(response.data);
                 fetchReservations();
-                navigator(`/camp/pay/${campInfo.id}`)
+                navigator(`/camp/pay/${campInfo.id}/${response.data.id}`)
             } catch (error) {
                 alert("예약 중 오류가 발생했습니다.");
             }
@@ -380,21 +382,7 @@ function Calender({ campInfo }) {
                 </div>
             </form>
 
-            {/* 사용자 예약 날짜 달력 */}
-            {/* <h1>사용자 예약 달력s</h1>
-            <div>
-                <DatePicker
-                    calendarClassName="disabled-datepicker"
-                    dateFormat="yyyy년 MM월 dd일"
-                    dateFormatCalendar="yyyy년 MM월"
-                    locale="ko"
-                    readOnly={true}
-                    disabled={true}
-                    filterDate={date => !isDateDisabled(date)}
-                    inline={true}
-                    isClearable={true}
-                />
-            </div> */}
+
         </div>
     );
 }
