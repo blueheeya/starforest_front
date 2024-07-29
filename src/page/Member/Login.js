@@ -9,7 +9,7 @@ import useCustomLogin from "../hooks/useCustomLogin";
 
 const initState = {
     email: "",
-    pw: "",
+    password: "",
 };
 
 function Login() {
@@ -19,27 +19,24 @@ function Login() {
     const { doLogin, moveToPath } = useCustomLogin();
 
     const loginState = useSelector((state) => state.loginSlice);
-    console.log("email" + loginState.email);
 
     const changeHandller = (e) => {
-       loginParam[e.target.name] = e.target.value;
-        setLoginParam({ ...loginParam });
+        setLoginParam(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
     };
 
-    const handleClickLogin = (e) => {
+
+    const handleClickLogin = async (e) => {
         e.preventDefault();
-       doLogin(loginParam).then((data) => {
-            if(!data){
-                moveToPath("/member/login");
-                window.location.reload();
-            }
-            if (data.error) {
-                alert("이메일과 패스워드 확인!!!");
+        try {
+            const data = await doLogin(loginParam);
+            if (!data || data.error) {
+                alert("이메일과 비밀번호를 확인해주세요.");
             } else {
                 moveToPath("/");
-                window.location.reload();
             }
-        });
+        } catch {
+            moveToPath("/member/login");
+        }
     };
 
     return (
@@ -57,8 +54,8 @@ function Login() {
                     iconName="inputIconPw2"
                     className="userRstInput"
                     placeholder="비밀번호를 입력해주세요."
-                    value={loginParam.pw}
-                    name="pw"
+                    value={loginParam.password}
+                    name="password"
                     onChange={changeHandller}
                 />
             </div>

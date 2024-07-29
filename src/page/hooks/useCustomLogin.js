@@ -5,14 +5,19 @@ import loginSlice, { loginPostAsync } from "../../store/slice/loginSlice";
 const useCustomLogin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const loginState = useSelector((state) => state.loginSlice);
 
-    const isLogin = loginState.email ? true : false;
+    const isLogin = !!loginState.email;
+
 
     const doLogin = async (loginParam) => {
-        const action = await dispatch(loginPostAsync(loginParam));
-        return action.payload;
+        try {
+            const action = await dispatch(loginPostAsync(loginParam));
+            return action.payload;
+        } catch (error) {
+            console.error('#dologin에러발생###############', error);
+            throw error;
+        }
     };
 
     const moveToPath = (path) => {

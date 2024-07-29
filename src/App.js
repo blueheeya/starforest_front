@@ -201,8 +201,8 @@ function LayoutType() {
 }
 function App() {
     const loginState = useSelector((state) => state.loginSlice);
+    console.log(loginState)
 
-    console.log(loginState.email? loginState.email: "###############################로그인정보가없습니다##############################")
     return (
         <>
             <Routes>
