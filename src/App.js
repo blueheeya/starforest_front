@@ -205,7 +205,7 @@ function App() {
                         element={<CampReservation />}
                     ></Route>
                     <Route
-                        path="/camp/pay"
+                        path="/camp/pay/:id"
                         index
                         element={<CampReservationPay />}
                     ></Route>

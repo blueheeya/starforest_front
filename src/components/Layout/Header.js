@@ -56,6 +56,7 @@ function HeaderType2({ children, className, titleStore, ...props }) {
 }
 function HeaderType3({ className, modalOpen }) {
     const [inputData, setInputData] = useState("");
+    const [r, setR] = useState([]);
     const navigator = useNavigate();
     const onBackClick = () => {
         navigator(-1);
@@ -75,6 +76,7 @@ function HeaderType3({ className, modalOpen }) {
             try {
                 const res = await axios.get(`http://localhost:8080/camp/search?query=${body}`)
                 console.log(res.data);
+                setR(res.data)
             } catch (error) {
                 console.log(error);
             }

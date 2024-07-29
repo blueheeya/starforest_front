@@ -15,6 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 import { format, isWithinInterval } from "date-fns";
 import Icon from "../Icon/Icon";
+import { useNavigate } from "react-router-dom";
 
 registerLocale("ko", ko);
 
@@ -28,8 +29,7 @@ function Calender({ campInfo }) {
     const [weatherData, setWeatherData] = useState(null);
     const [weathersData, setWeathersData] = useState();
     const [iconURL, setIconURL] = useState();
-    // const iconSection = document.querySelector(".weatherIcon");
-    // const iconsSection = document.querySelector(".weathersIcon");
+    const navigator = useNavigate();
 
     const [dateRange, setDataRange] = useState([null, null]);
     const [startDate, endDate] = dateRange;
@@ -129,6 +129,7 @@ function Calender({ campInfo }) {
                 console.log(response.data);
                 setReservations(response.data);
                 fetchReservations();
+                navigator(`/camp/pay/${campInfo.id}`)
             } catch (error) {
                 alert("예약 중 오류가 발생했습니다.");
             }
