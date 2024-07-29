@@ -52,10 +52,16 @@ const loginSlice = createSlice({
                 state.error = null;
             })
             .addCase(loginPostAsync.fulfilled, (state, action) => {
+                const { pass_word, ...restOfData } = action.payload; // `pass_word` 제외한 나머지 데이터 추출
                 state.isLoading = false;
                 state.email = action.payload.email;
                 state.error = null;
-                state.data= {...action.payload}
+                state.data = restOfData;
+                // state.isLoading = false;
+                // state.email = action.payload.email;
+                // state.error = null;
+                // state.data= {...action.payload}
+                //
                 const payload = action.payload;
                 if (!payload.error) {
                     setCookie("member", JSON.stringify(payload));
