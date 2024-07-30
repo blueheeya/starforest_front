@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import EditBtn from "../../components/Diary/EditBtn";
 import imgUpload from "../../assets/images/imgUpload.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,8 +16,8 @@ function DiaryWrite() {
   const [content, setContent] = useState(""); // 글 작성 내용 상태관리
   const fileInputRef = useRef(null); // file input ref
   const navigate = useNavigate(); // useNavigate
-
   // 이미지 change 확인
+
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     if (images.length + files.length > 5) {
@@ -63,23 +63,29 @@ function DiaryWrite() {
 
   // handleSubmit 생성
   const handleSubmit = async () => {
+    // 모든 태그를 하나의 문자열로 결합
+    const allTags = [...selectedUserTags, ...selectedHashTags].join(",");
+
+    const body = { content, allTags };
+    console.log(body);
+    // const formData = new FormData();
+    // formData.append("content", content);
+    // formData.append("category", allTags); // 모든 태그를 카테고리로 사용
+
+    // images.forEach((image, index) => {
+    //   formData.append(`images`, image.file);
+    // });
+
     try {
-      // 모든 태그를 하나의 문자열로 결합
-      const allTags = [...selectedUserTags, ...selectedHashTags].join(",");
-
-      const formData = new FormData();
-      formData.append("content", content);
-      formData.append("category", allTags); // 모든 태그를 카테고리로 사용
-
-      images.forEach((image, index) => {
-        formData.append(`imageUrls`, image.file);
-      });
-
-      const res = await axios.post("http://localhost:8080/diary", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(
+        "http://localhost:8080/diary/cr",
+        { body }
+        // {
+        //   headers: {
+        //     "Content-Type": "multipart/form-data",
+        //   },
+        // }
+      );
 
       console.log("diary created:", res.data);
       navigate("/diary/list"); // 별숲기록 생성후 리스트 페이지로 이동
@@ -104,9 +110,7 @@ function DiaryWrite() {
 
       <div className="diary-bg">
         {/* 캠핑장 간략정보 */}
-        <div className="diary-mb">
-          <CampSelectCard />
-        </div>
+        <div className="diary-mb">{/* <CampSelectCard /> */}</div>
         {/* 태그 1 */}
         <UserTags
           selectedUserTags={selectedUserTags}
@@ -119,6 +123,7 @@ function DiaryWrite() {
           onHashTagToggle={handleHashTagToggle}
           isClickable={true}
         />
+        {/* <input type="text" value={email} /> */}
         {/* input Wrap */}
         <div className="diaryWriteWrap">
           {/* diaryWrite-input */}
