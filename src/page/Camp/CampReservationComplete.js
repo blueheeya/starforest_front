@@ -6,19 +6,13 @@ import { useParams } from "react-router-dom";
 
 function CampReservationComplete() {
   const { reservNum, reservId, name, carNum, request, tel } = useParams()
-  console.log(reservNum);
-  console.log(reservId);
-  console.log(name);
-  console.log(carNum);
-  console.log(request);
-  console.log(tel);
   const contents = {
     title: "결제가 완료 되었습니다.",
     btn1: "캠핑장 더 알아보기",
     btn2: "예약장보 확인하기",
   };
-
   const [paymentInfo, setPaymentInfo] = useState(null);
+
   useEffect(() => {
     const fetchPaymentInfo = async () => {
       const urlParams = new URLSearchParams(window.location.search);
