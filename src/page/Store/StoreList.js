@@ -96,11 +96,11 @@ function StoreList() {
         {storeData.map((product) => {
           // 이미지 URL을 설정
           const imageUrl =
-            product.first_img_url ||
-            (product.images &&
-              product.images.length > 0 &&
-              product.images[0]) ||
-            `${process.env.PUBLIC_URL}/assets/images/default-image.jpg`;
+            // product.first_img_url ||
+            // (product.images &&
+            //   product.images.length > 0 &&
+            //   product.images[0]) ||
+            product.img_url;
 
           return (
             <Link
