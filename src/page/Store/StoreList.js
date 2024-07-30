@@ -3,18 +3,19 @@ import EventSwiper from "../../components/Store/EventSwiper";
 import StoreTopTen from "../../components/Store/StoreTopTen";
 import { Link, useParams } from "react-router-dom";
 import "../../assets/css/storeStyle.scss";
-import axiosInstance from "../../utils/axios";
+import axios from "axios";
 
 function StoreList() {
   const storeCategory = [
-    { type: "전체", StoreIcon: "전체", link: "/store/list" },
-    { type: "텐트", StoreIcon: "캠핑 텐트", link: "/store/list" },
-    { type: "푸드", StoreIcon: "캠핑 푸드", link: "/store/list" },
-    { type: "가구", StoreIcon: "캠핑 가구", link: "/store/list" },
+    { type: "3", StoreIcon: "전체", link: "/store/list" },
+    { type: "0", StoreIcon: "캠핑 텐트", link: "/store/list" },
+    { type: "1", StoreIcon: "캠핑 푸드", link: "/store/list" },
+    { type: "2", StoreIcon: "캠핑 가구", link: "/store/list" },
   ];
 
-  const { type } = useParams();
-  const [activeCategory, setActiveCategory] = useState(type || "전체");
+  // const { type } = useParams();
+  const { type: urlType } = useParams();
+  const [activeCategory, setActiveCategory] = useState(urlType || "3");
   const [storeData, setStoreData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
@@ -32,21 +33,27 @@ function StoreList() {
     loadMore = false,
     filters = {},
   }) {
+    setLoading(true);
+    const params = { skip, limit, ...filters };
+
+    // if (activeCategory !== "전체") {
+    //   params.type = activeCategory;
+    // }
+    if (params.type !== "3" && typeof params.type === "string") {
+      params.type = Number(params.type);
+    }
     try {
-      setLoading(true);
-      const params = { skip, limit, ...filters };
+      console.log(activeCategory);
+      const res = await axios.get(
+        `http://localhost:8080/store/list/${params.type}`,
+        {
+          params,
+        }
+      );
 
-      if (activeCategory !== "전체") {
-        params.type = activeCategory;
-      }
-
-      const res = await axiosInstance.get("/store/list", { params });
-
-      console.log("API Response:", res); // 응답 데이터 구조 확인
-
-      if (res.data && res.data.store) {
+      if (res.data && res.data.stores) {
         setStoreData((prevData) =>
-          loadMore ? [...prevData, ...res.data.store] : res.data.store
+          loadMore ? [...prevData, ...res.data.stores] : res.data.stores
         );
         setHasMore(res.data.hasMore);
       } else {
@@ -58,6 +65,7 @@ function StoreList() {
       setLoading(false);
     }
   }
+  console.log(storeData);
 
   useEffect(() => {
     fetchStoreInfo({ skip: 0, limit: 10, filters: { type: activeCategory } });
@@ -69,49 +77,72 @@ function StoreList() {
       <StoreTopTen className="cntMarginBottom" />
 
       <ul className="storeCategory">
-        {storeCategory.map((category) => (
+        {storeCategory.map((product) => (
           <li
-            key={category.type}
+            key={product.type}
             className={`scIconWrap ${
-              activeCategory === category.type ? "active" : ""
+              activeCategory === product.type ? "active" : ""
             }`}
-            onClick={() => handleCategoryClick(category)}
+            onClick={() => handleCategoryClick(product)}
           >
-            <Link to={category.link}>
-              <span className="storeIcon">{category.StoreIcon}</span>
-            </Link>
+            {/* <Link to={category.link}> */}
+            <span className="storeIcon">{product.StoreIcon}</span>
+            {/* </Link> */}
           </li>
         ))}
       </ul>
 
       <div className="storeList">
-        {storeData.map((product) => (
-          <Link to={`/store/view/${product.id}`} key={product.id}>
-            <div className="product-item">
-              <div className="productImg">
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/${product.image}`}
-                  alt={product.product_name}
-                />
+        {storeData.map((product) => {
+          // 이미지 URL을 설정
+          const imageUrl =
+            product.first_img_url ||
+            (product.images &&
+              product.images.length > 0 &&
+              product.images[0]) ||
+            `${process.env.PUBLIC_URL}/assets/images/default-image.jpg`;
+
+          return (
+            <Link
+              to={`/store/view/${product.productId}`}
+              key={product.productId}
+            >
+              <div className="product-item">
+                <div className="productImg">
+                  <img
+                    src={`${process.env.PUBLIC_URL}/assets/images/${product.images}`}
+                    alt={product.productName}
+                  />
+                  {/* <img
+                    src={imageUrl}
+                    alt={product.productName}
+                    onError={(e) => {
+                      e.target.onerror = null; // 무한 반복을 방지하기 위해 onError 핸들러 제거
+                      e.target.src = `${process.env.PUBLIC_URL}/assets/images/default-image.jpg`;
+                    }}
+                  /> */}
+                </div>
+                <div className="storeNameWrap">
+                  <div className="Bname">{product.brandName}</div>
+                  <div className="Pname">{product.productName}</div>
+                </div>
+                <div className="storePriceWrap">
+                  <div className="sale">{product.sale}</div>
+                  <div className="price">
+                    {product.price.toLocaleString()}원
+                  </div>
+                </div>
+                <div className="storeEtc">
+                  <span className="textIconType1">{product.starsale}</span>
+                  <span className="textIconType2">{product.delivery}</span>
+                </div>
               </div>
-              <div className="storeNameWrap">
-                <div className="Bname">{product.brand_name}</div>
-                <div className="Pname">{product.product_name}</div>
-              </div>
-              <div className="storePriceWrap">
-                <div className="sale">{product.sale}</div>
-                <div className="price">{product.price.toLocaleString()}원</div>
-              </div>
-              <div className="storeEtc">
-                <span className="textIconType1">{product.starsale}</span>
-                <span className="textIconType2">{product.delivery}</span>
-              </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
-      {loading && <p>Loading...</p>}
-      {!hasMore && <p>No more products</p>}
+      {/* {loading && <p>Loading...</p>}
+      {!hasMore && <p>No more products</p>} */}
     </>
   );
 }

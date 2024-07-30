@@ -12,6 +12,7 @@ import Button from "../../components/Form/Button";
 import axiosInstance from "../../utils/axios";
 import PurchaseModal from "../../components/Store/PurchaseModal";
 import ReviewList from "../../components/Store/ReviewList";
+import axios from "axios";
 
 const productview = {
   id: 1,
@@ -58,10 +59,11 @@ const reviewsArr = [
 ];
 
 function StoreView(props) {
-  const { id } = useParams(); //URL파라미터에서 상품ID를 찾아서 가져옴
-  const [product, setProduct] = useState(null);
+  const { productId } = useParams(); //URL파라미터에서 상품ID를 찾아서 가져옴
+  const [product, setProduct] = useState({});
   const [detailView, setDetailView] = useState(null);
-  const [reviewList, setReviewList] = useState(reviewsArr);
+  // const [reviewList, setReviewList] = useState(reviewsArr);
+  const [reviewList, setReviewList] = useState([]);
   // const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -72,30 +74,42 @@ function StoreView(props) {
   // const product = productview;
   const { modalOpen } = useContext(ModalContext);
 
-  const storeCategory = [
-    { no: 0, name: "텐트" },
-    { no: 1, name: "푸드" },
-    { no: 0, name: "DIY" },
-  ];
+  // const storeCategory = [
+  //   { no: 0, name: "텐트" },
+  //   { no: 1, name: "푸드" },
+  //   { no: 0, name: "DIY" },
+  // ];
+  const getProductType = (type) => {
+    switch (type) {
+      case 0:
+        return "텐트";
+      case 1:
+        return "음식";
+      case 2:
+        return "DIY";
+      default:
+        return "알 수 없음";
+    }
+  };
 
   const handleButtonClick = async () => {
     if (product) {
       try {
         const quantityData = {
-          product_id: product.id,
+          product_id: product.productId,
           quantity: 1,
           price: product.price,
         };
-        // 장바구니에 상품 추가 API 엔드포인트
-        const response = await axiosInstance.post(
-          "/store/cart/list",
+        // 장바구니에 상품 추가
+        const response = await axios.post(
+          "http://localhost:8080/store/cart/list",
           quantityData
         );
 
-        console.log("Item added to cart", response.data);
+        console.log("Item added to cart", response.data.stores);
         // 장바구니에 추가 성공 후, 모달 표시
         setModalData({
-          product_name: product.product_name,
+          product_name: product.productName,
           price: product.price,
         });
         setShowModal(true);
@@ -108,11 +122,15 @@ function StoreView(props) {
 
   //axios________________________________________________________________________________
   //처음 렌더링되거나 id값이 변경될때 실행
+  //상품세부정보가져오기
   useEffect(() => {
     const fetchStoreDetail = async () => {
       try {
-        const res = await axiosInstance.get(`/store/view/${id}`);
-        setProduct(res.data.product);
+        const res = await axios.get(
+          `http://localhost:8080/store/view/${productId}`
+        );
+        console.log(res.data);
+        setProduct(res.data);
         setDetailView(res.data.detailView);
         setReviewList(res.data.reviews);
       } catch (error) {
@@ -121,12 +139,12 @@ function StoreView(props) {
       }
     };
     fetchStoreDetail();
-  }, [id]);
+  }, [productId]);
 
   //리뷰삭제
   const deleteReview = async (reviewId) => {
     try {
-      await axiosInstance.delete(`/reviews/delete/${reviewId}`);
+      await axios.delete(`http://localhost:8080/reviews/delete/${reviewId}`);
       setReviewList((prevReviewList) =>
         prevReviewList.filter((review) => review.id !== reviewId)
       );
@@ -174,11 +192,7 @@ function StoreView(props) {
             >
               <img
                 className="detailImg"
-                src={
-                  process.env.PUBLIC_URL +
-                  `/assets/images/${detailView.detailImg}`
-                }
-                // src={`${process.env.REACT_APP_IMAGE_URL}/${detailView.detailImg}`}
+                src={`${process.env.REACT_APP_IMAGE_URL}/${detailView.detailImg}`}
                 alt="상품 상세 이미지"
                 style={{ width: "100%", height: "auto" }}
               />
@@ -234,20 +248,20 @@ function StoreView(props) {
       <div className="productImageWrap">
         <img
           className="viewImg"
-          src={process.env.PUBLIC_URL + `/assets/images/${productview.image}`}
-          alt={productview.product_name}
+          src={`${process.env.REACT_APP_IMAGE_URL}/${product.images}`}
+          alt={product.product_name}
         />
 
         <div className="productNameWrap">
           <div className="nameWrap">
             <p className="category">{productview.Category}</p>
-            <h1 className="productName">{productview.product_name}</h1>
+            <h1 className="productName">{productview.productName}</h1>
           </div>
 
           <div className="brandWrap">
             <Icon iconName="iconBrend" />
             <p className="brand"> {productview.brand} </p>
-            <p className="brandName">{productview.brand_name}</p>
+            <p className="brandName">{productview.brandName}</p>
           </div>
         </div>
       </div>
@@ -282,7 +296,7 @@ function StoreView(props) {
       <PurchaseModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        product_name={modalData.product_name}
+        product_name={modalData.productName}
         price={modalData.price}
       />
       <div>

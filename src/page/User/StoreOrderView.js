@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
 import ModalContext from "../../components/Modal/ModalContext";
-import axiosInstance from "../../utils/axios";
+import axios from "axios";
 function StoreOrderView() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
@@ -23,7 +23,9 @@ function StoreOrderView() {
     //상품데이터요청
     const fetchProductData = async () => {
       try {
-        const res = await axiosInstance.get(`user/store/order/view/${id}`);
+        const res = await axios.get(
+          `http://localhost:8080/user/store/order/view/${id}`
+        );
         setProduct(res.data.product);
       } catch (error) {
         console.error("Error fetching product", error);

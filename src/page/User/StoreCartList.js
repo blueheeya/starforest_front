@@ -5,7 +5,8 @@ import StoreCart from "../../components/Store/StoreCart";
 import StorePayMethod from "../../components/Store/StorePayMethod";
 import StoreTopTen from "../../components/Store/StoreTopTen";
 import { Navigate, useNavigate } from "react-router-dom";
-import axiosInstance from "../../utils/axios";
+
+import axios from "axios";
 function StoreCartList() {
   const [cartItems, setCartItems] = useState([
     { id: 1, name: "상품1", total_price: 10000, quantity: 1, selected: false },
@@ -16,7 +17,7 @@ function StoreCartList() {
     //장바구니데이터서버에서 가져오기
     const fetchCartItems = async () => {
       try {
-        const res = await axiosInstance.get("/store/cart/list");
+        const res = await axios.get("http://localhost:8080/store/cart/list");
         setCartItems(res.data);
       } catch (error) {
         console.error("Error fatching CartList", error);
@@ -29,7 +30,7 @@ function StoreCartList() {
   const updateQuantity = async (id, newQuantity) => {
     try {
       //수량을 변경할 장바구니 항목의 ID
-      await axiosInstance.patch(`/store/cart/list/${id}`, {
+      await axios.patch(`http://localhost:8080/store/cart/list/${id}`, {
         quantity: newQuantity,
       }); //수량업데이트
       //장바구니항목배열을순회 / 항목의 id가 업데이트항목의 id와 일치하면 항목의 수량을 newQuantity로 변경
