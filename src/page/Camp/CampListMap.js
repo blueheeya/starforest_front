@@ -45,7 +45,7 @@ function CampListMap() {
         const map = new kakao.maps.Map(mapContainer, mapOption);
 
         try {
-            const res = await axios.post("http://localhost:8080/camp/coordinates", body)
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}camp/coordinates`, body)
             console.log(res.data);
             setCircles(res.data)
         } catch (error) {

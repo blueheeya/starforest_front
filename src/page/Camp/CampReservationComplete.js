@@ -18,7 +18,7 @@ function CampReservationComplete() {
       const urlParams = new URLSearchParams(window.location.search);
       const pgToken = urlParams.get('pg_token');
       try {
-        const response = await axios.get(`http://localhost:8080/camp/kakaoPaySuccess/${pgToken}/${reservNum}/${reservId}/${name}/${carNum}/${request}/${tel}`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}camp/kakaoPaySuccess/${pgToken}/${reservNum}/${reservId}/${name}/${carNum}/${request}/${tel}`);
         setPaymentInfo(response.data);
         console.log(response.data);
       } catch (error) {
