@@ -10,6 +10,8 @@ function CampReservationComplete() {
     title: "결제가 완료 되었습니다.",
     btn1: "캠핑장 더 알아보기",
     btn2: "예약장보 확인하기",
+    url1: "/camp/list",
+    url2: "/user/camp/reservation/list"
   };
   const [paymentInfo, setPaymentInfo] = useState(null);
 
