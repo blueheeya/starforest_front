@@ -1,17 +1,44 @@
-import React from "react";
+import React, {useState} from "react";
 import Input from "../../components/Form/Input";
 import Button from "../../components/Form/Button";
 import Icon from "../../components/Icon/Icon";
+import {useSelector} from "react-redux";
+import useCustomLogin from "../hooks/useCustomLogin";
 
 function UserMypageMent() {
+    const loginState = useSelector((state) => state.loginSlice);
+    const [tempUser, setTempUser] = useState({
+
+    })
+    const getUserType =(type)=>{
+        switch (type) {
+            case 1:
+              return(  <div className="userInfoBox">
+                    <span>본인인증</span>
+                    <div className="iconUserAuth">미인증</div>
+                {/*    아... 인증하기 이동으로 하고싶긴한데.. 일단 보류 0729//boscochoi*/}
+                </div>)
+            default:
+            return(
+                <div className="userInfoBox">
+                    <span>본인인증</span>
+                    <div className="iconUserAuth">인증완료</div>
+                </div>);
+        }
+    }
+
+    const handleModify = (e)=>{
+        e.preventDefault();
+    }
+
     return (
         <div className="userMypageMent">
             <div className="userProfile">
                 <div className="imgWrap">
-                    <img
+                <img
                         src={
-                            process.env.PUBLIC_URL +
-                            "/assets/images/profileImg.png"
+                            loginState?loginState.profile_url:process.env.PUBLIC_URL +
+                                "/assets/images/profileImg.png"
                         }
                         alt="프로필이미지"
                     />
@@ -20,7 +47,7 @@ function UserMypageMent() {
             </div>
             <div className="userBtnWrap wrapCntBottom">
                 <Button defaultBtn={true}>
-                    <Icon iconName="userEdit" />
+                <Icon iconName="userEdit" />
                     수정하기
                 </Button>
                 <Button defaultBtn={false}>
@@ -34,21 +61,18 @@ function UserMypageMent() {
                     <Input
                         className="searchInput"
                         placeholder=""
-                        value="dong1@naver.com"
+                        value={loginState?loginState.email:"유저정보가 없습니다."}
                     />
                 </div>
-                <div className="userInfoBox">
-                    <span>휴대폰번호</span>
-                    <Input
-                        className="searchInput"
-                        placeholder=""
-                        value="010-1234-5678"
-                    />
-                </div>
-                <div className="userInfoBox">
-                    <span>본인인증</span>
-                    <div className="iconUserAuth">인증완료</div>
-                </div>
+                {/*<div className="userInfoBox">*/}
+                {/*    <span>휴대폰번호</span>*/}
+                {/*    <Input*/}
+                {/*        className="searchInput"*/}
+                {/*        placeholder=""*/}
+                {/*        value="010-1234-5678"*/}
+                {/*    />*/}
+                {/*</div>*/}
+                {loginState?getUserType(loginState.login_type):0}
             </div>
             <div className="userInfoWrap">
                 <div className="userInfoBox">
@@ -70,14 +94,14 @@ function UserMypageMent() {
                     <Input
                         className="searchInput"
                         placeholder=""
-                        value=" 웅크린양의사나이 "
+                        value={loginState? loginState.nick_name: "유저 정보가 없습니다."}
                     />
                 </div>
                 <div className="userInfoBox">
                     <span>한줄소개</span>
                     <Input
                         className="searchInput"
-                        placeholder="한줄 소개를 입력해주세요."
+                        placeholder={loginState? loginState.introduce: "유저 정보가 없습니다."}
                     />
                 </div>
             </div>
