@@ -83,6 +83,7 @@ function CampPayInput({ reservInfo }) {
               {...register("request")}
             />
           </div>
+
           <div className="inputBox">
             <div className="boxName">차량번호</div>
             <input
@@ -96,7 +97,7 @@ function CampPayInput({ reservInfo }) {
         </div>
       </div>
       <div className="reservInfoWrap">
-        <button className="reservInfoSave" type="submit">예약 정보 저장하기</button>
+        <button className="reservInfoBtn" type="submit">예약 정보 저장하기</button>
       </div>
     </form>
   );

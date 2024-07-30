@@ -40,7 +40,7 @@ function CampViewMap() {
         const map = new kakao.maps.Map(mapContainer, mapOption);
 
         try {
-            const res = await axios.get(`http://localhost:8080/camp/view/map/${id}`)
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}camp/view/map/${id}`)
             console.log(res.data);
             setCampItem(res.data)
         } catch (error) {

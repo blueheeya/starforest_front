@@ -42,6 +42,28 @@ $radiusSmall: 5px;
     }
 }
 
+.reservInfoWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+
+    .reservInfoBtn {
+        width: 350px;
+        height: 50px;
+        border-radius: $radiusDefault;
+        background-color: $PrimaryOff;
+        font-size: $btnText;
+        color: white;
+        font-weight: bold;
+    }
+
+    :hover {
+        background-color: $PrimaryColor;
+    }
+}
+
 //camp reservation
 .campReservation {
     .campInfo {
