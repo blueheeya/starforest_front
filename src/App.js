@@ -216,7 +216,7 @@ function App() {
                     ></Route>
                     <Route path="/camp/view/:id" element={<CampView />}></Route>
                     <Route
-                        path="/camp/view/map"
+                        path="/camp/view/map/:id"
                         index
                         element={<CampViewMap />}
                     ></Route>
@@ -226,12 +226,12 @@ function App() {
                         element={<CampReservation />}
                     ></Route>
                     <Route
-                        path="/camp/pay"
+                        path="/camp/pay/:id/:reservId"
                         index
                         element={<CampReservationPay />}
                     ></Route>
                     <Route
-                        path="/camp/pay/complete"
+                        path="/camp/pay/complete/:reservNum/:reservId/:name/:carNum/:request/:tel"
                         index
                         element={<CampReservationComplete />}
                     ></Route>

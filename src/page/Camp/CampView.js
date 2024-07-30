@@ -15,6 +15,8 @@ import Footer from "../../components/Layout/Footer";
 import Button from "../../components/Form/Button";
 import axios from "axios";
 import CampReservation from "./CampReservation";
+import LoadingFlower from "../../assets/gif/1477.gif"
+
 function CampView() {
     //주소 복사
     const navigator = useNavigate();
@@ -77,7 +79,9 @@ function CampView() {
     //동일 수정끝
 
     if (!campItem) {
-        return <div>로딩중</div>;
+        return <>
+            <div>로딩중</div>
+        </>;
     }
 
     const sbrsCl = campItem.sbrsCl || [];
