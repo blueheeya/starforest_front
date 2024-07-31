@@ -138,8 +138,8 @@ function DiaryWrite() {
             onChange={(e) => setContent(e.target.value)}
           />
 
-          {/* 이미지 추가됐을시 보이는박스 */}
-          {images.length > 0 && (
+          {/* 복사본 */}
+          {/* {images.length > 0 && (
             <div className="uploaded-images diary-mb images-count-${images.length}">
               {images.map((image, index) => (
                 <div key={index} className="image-item">
@@ -153,7 +153,7 @@ function DiaryWrite() {
                     }}
                   />
 
-                  {/* 이미지 삭제 버튼 */}
+                  이미지 삭제 버튼
                   <button
                     className="remove-image"
                     onClick={() => {
@@ -165,9 +165,56 @@ function DiaryWrite() {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
+
           {/* 이미지 추가 박스 */}
-          <button onClick={triggerFileInput}>
+          <div className="diaryWrite-imageCard">
+            {/* 이미지 추가됐을시 보이는박스 */}
+            {images.length > 0 && (
+              <div className="uploaded-images diary-mb images-count-${images.length}">
+                {images.map((image, index) => (
+                  <div key={index} className="image-item">
+                    <img
+                      src={image.preview}
+                      alt={`업로드된 이미지 ${index + 1}`}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "cover",
+                      }}
+                    />
+
+                    {/* 이미지 삭제 버튼 */}
+                    <button
+                      className="remove-image"
+                      onClick={() => {
+                        removeImage(index);
+                      }}
+                    >
+                      <img src={iconClose} alt="삭제" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* 이미지 추가 */}
+            <div>버튼을 눌러 이미지를 등록해 주세요.</div>
+            <input
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              multiple
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={handleImageUpload}
+            />
+            <button onClick={triggerFileInput}>
+              <img src={imgUpload} alt="이미지 추가" />
+            </button>
+          </div>
+
+          {/* 복사본 */}
+          {/* <button onClick={triggerFileInput}>
             <div className="diaryWrite-imageCard">
               <div>버튼을 눌러 이미지를 등록해 주세요.</div>
               <input
@@ -180,7 +227,7 @@ function DiaryWrite() {
               />
               <img src={imgUpload} alt="이미지 추가" />
             </div>
-          </button>
+          </button> */}
         </div>
         {/* 별숲기록 주의사향 */}
         <div className="diaryWrite-noticeWrap">
