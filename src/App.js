@@ -224,14 +224,6 @@ function App() {
     if (isLoading) {
         return <Loding />;
     }
-
-    //
-    // const timer = (time) =>{
-    //     if(isLoading)setIsLoading(false);
-    //     setTimeout(()=>{
-    //         loginState.email?navigate("/"):navigate("/member/login");
-    //     },time)
-    // }
     return (
 
         <>
