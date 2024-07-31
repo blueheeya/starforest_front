@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../../assets/css/storeStyle.scss";
 import { useLocation } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
-import axiosInstance from "../../utils/axios";
+// import axiosInstance from "../../utils/axios";
+import axios from "axios";
 
 function StoreReviewList() {
   const location = useLocation();
@@ -24,7 +25,7 @@ function StoreReviewList() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axiosInstance.get("/store/review");
+        const response = await axios.get("http://localhost:8080/store/review");
         setReviews(response.data);
       } catch (error) {
         console.error("Error fetching Reviews", error);
@@ -57,7 +58,7 @@ function StoreReviewList() {
 
   const handleDelete = async (id) => {
     try {
-      await axiosInstance.delete(`/store/review/${id}`);
+      await axios.delete(`http://localhost:8080/store/review/${id}`);
       setReviews((prevReviews) =>
         prevReviews.filter((review) => review.id !== id)
       );

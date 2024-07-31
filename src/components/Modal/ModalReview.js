@@ -3,7 +3,8 @@ import Button from "../Form/Button";
 import Icon from "../Icon/Icon";
 import axios from "../../utils/axios";
 
-function ModalReview({ onClick, onSubmit }) {
+const host = `${process.env.REACT_APP_SERVER_URL}`;
+function ModalReview({ onClick, onSubmit, product_id, user_id }) {
   // onClick 제거, onClose와 onSubmit만 사용
   const [review, setReview] = useState("");
   const [error, setError] = useState("");
@@ -21,6 +22,12 @@ function ModalReview({ onClick, onSubmit }) {
   //   }
   // };
 
+  //유니크한ID생성부분
+  const generateUniQueId = () => {
+    //Math.random(): 0,1사이의 무작위 실수생성 / toString(36):생성된실수를36진수문자열로 변환
+    return "_" + Math.random().toString(36).substr(2, 9);
+  };
+
   const handleSubmit = async () => {
     if (review.trim() === "") {
       setError("내용을 입력해주세요!");
@@ -30,10 +37,15 @@ function ModalReview({ onClick, onSubmit }) {
     setError("");
 
     try {
-      console.log("Review axios태웁니다~~~~~~~~~~~~");
-      const res = await axios.post("/store/review", {
+      const reviewData = {
+        created_at: new Date().toISOString(), //생성시간을ISO형식의문자열로
+        id: generateUniQueId(), //리뷰ID생성
+        product_id: product_id, //product_id를 props로 받아옴
         content: review,
-      });
+        user_id: user_id, //user_id도 props로 받아옴
+      };
+      console.log("Review axios태웁니다~~~~~~~~~~~~");
+      const res = await axios.post(`${host}store/review`, reviewData);
       console.log(res.data);
       if (typeof onSubmit === "function") {
         onSubmit(review);
