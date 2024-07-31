@@ -15,6 +15,8 @@ import Footer from "../../components/Layout/Footer";
 import Button from "../../components/Form/Button";
 import axios from "axios";
 import CampReservation from "./CampReservation";
+import LoadingFlower from "../../assets/gif/1477.gif"
+
 function CampView() {
     //주소 복사
     const navigator = useNavigate();
@@ -35,42 +37,25 @@ function CampView() {
     };
     const { id } = useParams();
     const [campItem, setCampItem] = useState(null);
-    const [posbl, setPosbl] = useState("")
+    const [posbl, setPosbl] = useState("");
+    const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
         //동일 수정
-        campScript()
+        campScript();
     }, []);
     //동일 수정끝
 
     //동일 수정
-    const campScript = async () => {
-        try {
-            const res = await axios.post(`http://localhost:8082/camp/view/map/${id}`)
-            console.log(res.data);
-            setCampItem(res.data)
-            parseFacilityString(res.data.posblFcltyCl)
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-
-    //동일 수정끝
-
-    if (!campItem) {
-        return <div>로딩중</div>;
-    }
-
-    //동일 수정
     const parseFacilityString = (facilityString) => {
         try {
+            // console.log(facilityString);
             // '를 "로 바꾸기
             const jsonString = facilityString.replace(/'/g, '"');
             // JSON 파싱
             const facilityArray = JSON.parse(jsonString).join(', ');
             // 배열 요소들을 문자열로 결합
-            console.log(facilityArray);
+            // console.log(facilityArray);
             setPosbl(facilityArray)
         } catch (error) {
             console.error('Error parsing facility string:', error);
@@ -78,16 +63,62 @@ function CampView() {
         }
     }
     //동일 수정끝
+
+    //동일 수정
+    const campScript = async () => {
+        try {
+            const res = await axios.post(`http://localhost:8080/camp/view/${id}`)
+            console.log(res.data);
+            setCampItem(res.data);
+            parseFacilityString(res.data.posblFcltyCl);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    //동일 수정끝
+
+    if (!campItem) {
+        return <>
+            <div>로딩중</div>
+        </>;
+    }
+
     const sbrsCl = campItem.sbrsCl || [];
     const eqpmnLendCl = campItem.eqpmnLendCl || [];
-    // 이미지 URL 매칭 함수
-    const getImageUrlsById = (id) => {
-        const imgObj = CampGavisImg.find((img) => img.id === id);
-        return imgObj ? imgObj.imageURL : [];
-    };
-    const imageUrls = getImageUrlsById(campItem.id);
+
+    const imageUrls = campItem?.campImages;
     const moveReservation = () => {
         navigator(`/camp/reservation/${id}`);
+    };
+    //정희 추가
+    // 좋아요 상태 확인
+    const checkLikeStatus = async () => {
+        console.log("checkLikeStatus");
+        try {
+            const response = await axios.get(
+                `http://localhost:8080/camps/check/${id}`
+            );
+            setIsLiked(response.data.isLiked);
+        } catch (error) {
+            console.error("좋아요 상태 확인 실패:", error);
+        }
+    };
+    // 좋아요 토글 함수
+    const toggleLike = async () => {
+        try {
+            const response = await axios.post(
+                `http://localhost:8080/camps/toggle/${id}`
+            );
+            setIsLiked(response.data.isLiked);
+            alert(
+                response.data.isLiked
+                    ? "좋아요 목록에 추가되었습니다!"
+                    : "좋아요가 취소되었습니다."
+            );
+        } catch (error) {
+            console.error("좋아요 토글 실패:", error);
+        }
     };
     return (
         <>
@@ -99,12 +130,24 @@ function CampView() {
                         slidesPerView={1}
                         pagination={true}
                     >
-                        {imageUrls.map((url, index) => (
+                        {imageUrls.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <img key={index} src={url} />
+                                <img key={index} src={item.image_url} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    <div
+                        className="campLike"
+                        onClick={toggleLike}
+                        style={{
+                            opacity: isLiked ? 1 : 0.5,
+                            cursor: "pointer",
+                        }}
+                    >
+                        <Icon
+                            iconName={isLiked ? "heartActive" : "heartActive"}
+                        />
+                    </div>
                 </div>
                 <ul className="campViewWrap">
                     <li>
@@ -135,7 +178,7 @@ function CampView() {
                     <li>
                         <Icon iconName="iconHompage" />
                         {campItem.homepage &&
-                            campItem.homepage.trim() !== "" ? (
+                        campItem.homepage.trim() !== "" ? (
                             <button
                                 onClick={() =>
                                     window.open(campItem.homepage, "_blank")

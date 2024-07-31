@@ -2,9 +2,9 @@ import React from "react";
 import Icon from "../Icon/Icon";
 import { useLocation } from "react-router-dom";
 
-function UserTags({ selectedUserTags, onTagToggle }) {
-  console.log("selectedUserTags:", selectedUserTags);
-  const tags = [
+function UserTags({ selectedUserTags, onUserTagToggle }) {
+  // console.log("선택된 유저태그:", selectedUserTags);
+  const userTags = [
     { icon: "iconTime", text: "매너타임" },
     { icon: "iconSmiles", text: "친절함" },
     { icon: "iconCleans", text: "청결함" },
@@ -29,21 +29,21 @@ function UserTags({ selectedUserTags, onTagToggle }) {
         marginBottom: "10px",
       }}
     >
-      {tags.map((tag, index) => (
+      {userTags.map((UTag, index) => (
         <label
           key={index}
           className={`userTag ${
-            selectedUserTags.includes(tag.text) ? "selected" : ""
+            selectedUserTags.includes(UTag.text) ? "selected" : ""
           } ${!isDiaryListOrView ? "userTag-clickable" : ""}`}
         >
           <input
             type="checkbox"
-            checked={selectedUserTags.includes(tag.text)}
-            onChange={() => onTagToggle(tag.text)}
+            checked={selectedUserTags.includes(UTag.text)}
+            onChange={() => onUserTagToggle(UTag.text)}
             style={{ marginRight: "5px" }}
           />
-          <Icon iconName={tag.icon} />
-          {tag.text}
+          <Icon iconName={UTag.icon} />
+          {UTag.text}
         </label>
       ))}
     </div>

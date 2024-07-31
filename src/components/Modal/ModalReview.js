@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Form/Button";
 import Icon from "../Icon/Icon";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 function ModalReview({ onClick, onSubmit, product_id, user_id }) {
   // onClick 제거, onClose와 onSubmit만 사용

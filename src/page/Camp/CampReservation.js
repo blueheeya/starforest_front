@@ -16,7 +16,7 @@ function CampReservation() {
 
     const reservationScript = async () => {
         try {
-            const res = await axios.get(`http://localhost:8082/camp/reservation/${id}`)
+            const res = await axios.get(`http://localhost:8080/camp/reservation/${id}`)
             setCampInfo(res.data)
         } catch (error) {
             console.log(error);

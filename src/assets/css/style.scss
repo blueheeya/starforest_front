@@ -102,6 +102,137 @@ section.backWrap {
         width: 100%;
         height: 100%;
         background-size: contain;
+        overflow-x: hidden;
+        background-image: linear-gradient(180deg, #c7e7ff, #e4f9ff);
+        .backSubTitle {
+            position: absolute;
+            color: #ffffff;
+            font-size: 30px;
+            top: 38%;
+            left: 25%;
+            transform: translateY(-50%);
+            text-align: center;
+            text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .backTitle {
+            position: absolute;
+            color: #ffffff;
+            top: 50%;
+            left: 26%;
+            transform: translateY(-50%);
+            font-size: 120px;
+            font-family: "EunhasuR";
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 3;
+        }
+        .backCloud1 {
+            position: absolute;
+            width: 240px;
+            height: 120px;
+            top: 40%;
+            left: 10%;
+            background: url("../images/bgCloud1.png") no-repeat;
+            background-size: cover;
+            // animation: cloud1 45s infinite linear;
+            z-index: 2;
+        }
+        .backCloud2 {
+            position: absolute;
+            width: 159px;
+            height: 83px;
+            top: 40%;
+            left: 0%;
+            background: url("../images/bgCloud2.png") no-repeat;
+            background-size: cover;
+            animation: cloud1 35s infinite linear;
+            z-index: 1;
+            // animation-delay: 3s;
+        }
+        .backCloud3 {
+            position: absolute;
+            width: 214px;
+            height: 95px;
+            top: 20%;
+            left: 30%;
+            background: url("../images/bgCloud3.png") no-repeat;
+            background-size: cover;
+            // animation: cloud2 45s infinite linear;
+            // animation-delay: 5s;
+            z-index: 1;
+        }
+        .backCloud4 {
+            position: absolute;
+            width: 143px;
+            height: 64px;
+            top: 15%;
+            left: 20%;
+            background: url("../images/bgCloud4.png") no-repeat;
+            background-size: cover;
+            animation: cloud1 50s infinite linear;
+            z-index: 1;
+        }
+        .backCloud5 {
+            position: absolute;
+            width: 269px;
+            height: 151px;
+            top: 10%;
+            left: -10%;
+            background: url("../images/bgCloud5.png") no-repeat;
+            background-size: cover;
+            animation: cloud1 60s infinite linear;
+            animation-delay: 10s;
+            opacity: 0.5;
+            z-index: 2;
+        }
+        .backCloud6 {
+            position: absolute;
+            width: 269px;
+            height: 151px;
+            top: 50%;
+            left: 80%;
+            background: url("../images/bgCloud5.png") no-repeat;
+            background-size: cover;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        .backCloud7 {
+            position: absolute;
+            width: 143px;
+            height: 64px;
+            top: 60%;
+            left: 20%;
+            background: url("../images/bgCloud4.png") no-repeat;
+            background-size: cover;
+            z-index: 1;
+        }
+        .backImgBottom1 {
+            position: absolute;
+            opacity: 1;
+            width: 100%;
+            height: 131px;
+            bottom: 0;
+            background: url("../images/backImgBottom.png") no-repeat;
+            background-position: center;
+            z-index: 2;
+        }
+        .backImgBottom2 {
+            position: absolute;
+            width: 100%;
+            height: 260px;
+            bottom: 0%;
+            background: url("../images/backImgBottom2.png") no-repeat;
+            background-position: center;
+            z-index: 1;
+        }
+    }
+}
+@keyframes cloud1 {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -15%;
     }
 }
 
@@ -117,7 +248,7 @@ section.backWrap {
 }
 
 .containerWrap::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
 }
 
 .containerWrap::-webkit-scrollbar-track {
@@ -126,7 +257,7 @@ section.backWrap {
 
 .containerWrap::-webkit-scrollbar-thumb {
     border-radius: $radiusDefault;
-    background: $PrimaryColor;
+    background: #ffffff;
 }
 
 .contentWrap {
@@ -156,13 +287,14 @@ section.backWrap {
     align-items: center;
     width: 100%;
     height: 64px;
+    background: #ffffff;
+    // border-bottom: solid 1px $inputColor;
     color: $PrimaryColor;
     font-family: "EunhasuR";
     font-size: $headerTitle;
     background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    border-bottom: solid 1px $inputColor;
 }
 
 .headerType1 {
@@ -171,7 +303,7 @@ section.backWrap {
     width: 100%;
     height: 64px;
     padding: 0 32px;
-
+    background: #ffffff;
     img {
         width: 55px;
         height: 44px;
@@ -198,6 +330,9 @@ section.backWrap {
         font-size: 30px;
         font-weight: normal;
         text-align: center;
+        background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     h2.storeH2 {
@@ -224,6 +359,7 @@ section.backWrap {
     height: auto;
     padding: 10px 10px;
     border-bottom: solid 1px $inputColor;
+    background: #ffffff;
 
     .serchWrap {
         width: 100%;
@@ -237,26 +373,25 @@ section.backWrap {
             .searchInput {
                 width: 100%;
             }
-
             button {
                 width: 40px;
                 height: 40px;
                 font-size: 0;
                 border-radius: $radiusDefault;
-                background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+                background: $PrimaryColor url("../images/iconSearchW.png")
+                    no-repeat;
                 background-position: center;
             }
         }
-
-        .btnWrap {
-            display: flex;
-            align-items: center;
-            flex: none;
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            z-index: 2;
-        }
+    }
+    .btnWrap {
+        display: flex;
+        align-items: center;
+        flex: none;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        z-index: 2;
     }
 
     .serchTypeWrap {
@@ -265,6 +400,14 @@ section.backWrap {
         justify-content: space-between;
         width: 100%;
         gap: 10px;
+        button {
+            width: 40px;
+            height: 40px;
+            font-size: 0;
+            border-radius: $radiusDefault;
+            background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+            background-position: center;
+        }
 
         input {
             flex: 1;
