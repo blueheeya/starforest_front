@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 function HashTags({ selectedHashTags, onHashTagToggle }) {
-  console.log("선택된 해시태그:", selectedHashTags);
+  // console.log("선택된 해시태그:", selectedHashTags);
   const hashTags = [
     "오토캠핑장",
     "글램핑",
