@@ -177,9 +177,8 @@ function LayoutType() {
           </HeaderComponent>
           <ContentWrap
             modalOpen={modalOpen}
-            className={` ${
-              isHeaderTypeNone || isHeaderType4 ? "cntSearchView" : ""
-            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+            className={` ${isHeaderTypeNone || isHeaderType4 ? "cntSearchView" : ""
+              } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
           >
             <Outlet />
           </ContentWrap>
@@ -236,7 +235,7 @@ function App() {
             index
             element={<StoreView />}
           ></Route>
-          <Route path="/store/pay" index element={<StorePay />}></Route>
+          <Route path="/store/pay/:productId" index element={<StorePay />}></Route>
           <Route
             path="/store/pay/complete"
             index

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Tabs from "../../components/Store/Tabs";
 import StoreToggle from "../../components/Store/StoreToggle";
@@ -94,35 +94,39 @@ function StoreView(props) {
         return "알 수 없음";
     }
   };
-  //axios________________________________________________________________________________
-  const handleButtonClick = async () => {
-    if (product) {
-      try {
-        const cartItem = {
-          product_id: product.productId,
-          quantity: 1,
-          price: product.price,
-        };
-
-        // 장바구니에 상품 추가
-        const response = await axios.post(
-          `${host}store/cart/add`,
-          // quantityData
-          cartItem
-        );
-        console.log("Item added to cart", response.data);
-        // 장바구니에 추가 성공 후, 모달 표시
-        setModalData({
-          product_name: product.productName,
-          price: product.price,
-        });
-        setShowModal(true);
-      } catch (error) {
-        console.error("Error adding item to cart", error);
-        setError("장바구니에 상품을 추가하는 데 실패했습니다");
-      }
-    }
+  const navigate = useNavigate();
+  const usePurchaseMove = () => {
+    navigate(`/store/pay/${productId}`);
   };
+  //axios________________________________________________________________________________
+  // const handleButtonClick = async () => {
+  //   if (product) {
+  //     try {
+  //       const cartItem = {
+  //         product_id: product.productId,
+  //         quantity: 1,
+  //         price: product.price,
+  //       };
+
+  //       // 장바구니에 상품 추가
+  //       const response = await axios.post(
+  //         `${host}store/cart/add`,
+  //         // quantityData
+  //         cartItem
+  //       );
+  //       console.log("Item added to cart", response.data);
+  //       // 장바구니에 추가 성공 후, 모달 표시
+  //       setModalData({
+  //         product_name: product.productName,
+  //         price: product.price,
+  //       });
+  //       setShowModal(true);
+  //     } catch (error) {
+  //       console.error("Error adding item to cart", error);
+  //       setError("장바구니에 상품을 추가하는 데 실패했습니다");
+  //     }
+  //   }
+  // };
   const fetchStoreDetail = async () => {
     try {
       const res = await axios.get(`${host}store/view/${productId}`);
@@ -194,7 +198,7 @@ function StoreView(props) {
     detailImg: "default-image.jpg",
   });
 
-  const emptyProductHandler = () => {};
+  const emptyProductHandler = () => { };
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -328,16 +332,16 @@ function StoreView(props) {
       {/* -------------------------------------------------------------------- */}
 
       <div className="buyWrap">
-        <Button defaultBtn={true} onClick={handleButtonClick}>
+        <Button defaultBtn={true} onClick={usePurchaseMove}>
           구매하기
         </Button>
       </div>
-      <PurchaseModal
+      {/* <PurchaseModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         product_name={modalData.productName}
         price={modalData.price}
-      />
+      /> */}
       <div>
         <div className="tabMenuWrap">
           <ul className="tabList">

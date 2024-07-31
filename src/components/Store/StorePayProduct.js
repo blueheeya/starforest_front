@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import Icon from "../Icon/Icon";
 
-function StorePayProduct() {
-  const [quantity, setQuantity] = useState(0);
+function StorePayProduct({ productInfo }) {
+  console.log(productInfo);
+  const [quantity, setQuantity] = useState(1);
+
+
+
+  const disprice = (Math.floor(productInfo?.price * 0.007) * 100) * quantity //할인 되었던 가격
+  //진짜 상품 가격
+  const realPrice = productInfo?.price + disprice
+  console.log(realPrice * 0.7);
+  const orPrice = (productInfo?.price + disprice) * quantity
+
 
   //마이너스, 최소수량
   const decreaseQuantity = () => {
@@ -21,10 +31,10 @@ function StorePayProduct() {
           <span className="innerEx">배송상품</span>
         </div>
         <div className="innerMain">
-          <img className="innerMainImg" src="../../" alt="" />
+          <img className="innerMainImg" src={productInfo?.imgUrls} alt="" />
           <div className="innerMainContent">
-            <div className="contentName">나이키</div>
-            <div className="contentBrand">블루샤크</div>
+            <div className="contentName">{productInfo?.brand_name}</div>
+            <div className="contentBrand">{productInfo?.product_name}</div>
           </div>
         </div>
 
@@ -46,8 +56,8 @@ function StorePayProduct() {
             </button>
           </div>
           <div className="innerPrice">
-            <div className="priceSpan">30,000원</div>
-            <div className="priceMain">10,000원</div>
+            <div className="priceSpan">{orPrice.toLocaleString()}원</div>
+            <div className="priceMain">{disprice.toLocaleString()}원</div>
           </div>
         </div>
       </div>
