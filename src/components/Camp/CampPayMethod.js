@@ -3,11 +3,15 @@ import Naver from "../../assets/images/naverLogo.png"
 import kakao from "../../assets/images/kakaoLogo.png"
 import axios from 'axios';
 
-function CampPayMethod() {
-
+function CampPayMethod({ reservationInfo, campInfo, totalPrice }) {
+    // console.log(campInfo);
+    // console.log(reservationInfo);   //예약자 정보
+    const body = { ...campInfo, ...reservationInfo, totalPrice }
+    console.log(body);
     const handleKakaoPayment = async () => {
         try {
-            const res = await axios.post('http://localhost:8080/kakaoPay');
+            //예약자 정보랑 상품이름 필요
+            const res = await axios.post('http://localhost:8080/camp/kakaoPay', body);
             // 카카오페이 결제 페이지로 리다이렉트
             console.log(res.data);
             console.log("결제 시도!!!!!!");
