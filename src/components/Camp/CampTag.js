@@ -9,12 +9,13 @@ function CampTag({ tags, isListPage }) {
             const jsonString = tags.replace(/'/g, '"');
             return JSON.parse(jsonString);
         } catch (error) {
-            console.error('Error parsing tags:', error);
+            console.error("Error parsing tags:", error);
             return [];
         }
     };
 
     const validtags = parseTags(tags);
+    // console.log(validtags);
     //동일 수정끝
     return (
         <>

@@ -663,6 +663,7 @@ $radiusSmall: 5px;
 }
 
 .campViewSwiper {
+    position: relative;
     width: 100%;
     height: 350px;
     background: url("../images/noneImage.png") no-repeat;
@@ -691,7 +692,12 @@ $radiusSmall: 5px;
         opacity: 1;
     }
 }
-
+.campLike {
+    position: absolute;
+    z-index: 2;
+    right: 10px;
+    bottom: 10px;
+}
 .campViewWrap {
     display: flex;
     flex-direction: column;

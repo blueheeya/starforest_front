@@ -80,6 +80,7 @@ import iconReset from "../../assets/images/iconReset.png";
 
 import iconReviewComplete from "../../assets/images/iconReviewComplete.svg";
 import iconReviewWrite from "../../assets/images/iconReviewWrite.svg";
+import heartActive from "../../assets/images/heartActive.png";
 
 const icons = {
     iconShowers,
@@ -162,6 +163,7 @@ const icons = {
     iconReviewWrite,
     iconReviewComplete,
     iconReset,
+    heartActive,
 };
 function Icon({ iconName, className, ...props }) {
     const iconSrc = icons[iconName];

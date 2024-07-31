@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
 import EventSwiper from "../../components/Store/EventSwiper";
 import UserCard from "../../components/User/UserCard";
+import {useSelector} from "react-redux";
 
 function UserMypage() {
+    const loginState = useSelector((state) => state.loginSlice);
     const [tabButton, setTabButton] = useState("tab1");
     const handleTabChange = (tab) => {
         setTabButton(tab);
@@ -17,7 +19,7 @@ function UserMypage() {
         <>
             <UserCard
                 className="cntMarginTop cntMarginBottom"
-                userMyCard={true}
+                userMyCard={loginState?true:false}
             />
             <div className="myTabWrap">
                 <div

@@ -37,11 +37,12 @@ function CampView() {
     };
     const { id } = useParams();
     const [campItem, setCampItem] = useState(null);
-    const [posbl, setPosbl] = useState("")
+    const [posbl, setPosbl] = useState("");
+    const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
         //동일 수정
-        campScript()
+        campScript();
     }, []);
     //동일 수정끝
 
@@ -68,13 +69,12 @@ function CampView() {
         try {
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}camp/view/${id}`)
             console.log(res.data);
-            setCampItem(res.data)
-            parseFacilityString(res.data.posblFcltyCl)
+            setCampItem(res.data);
+            parseFacilityString(res.data.posblFcltyCl);
         } catch (error) {
             console.log(error);
         }
-    }
-
+    };
 
     //동일 수정끝
 
@@ -90,6 +90,35 @@ function CampView() {
     const imageUrls = campItem?.campImages;
     const moveReservation = () => {
         navigator(`/camp/reservation/${id}`);
+    };
+    //정희 추가
+    // 좋아요 상태 확인
+    const checkLikeStatus = async () => {
+        console.log("checkLikeStatus");
+        try {
+            const response = await axios.get(
+                `http://localhost:8080/camps/check/${id}`
+            );
+            setIsLiked(response.data.isLiked);
+        } catch (error) {
+            console.error("좋아요 상태 확인 실패:", error);
+        }
+    };
+    // 좋아요 토글 함수
+    const toggleLike = async () => {
+        try {
+            const response = await axios.post(
+                `http://localhost:8080/camps/toggle/${id}`
+            );
+            setIsLiked(response.data.isLiked);
+            alert(
+                response.data.isLiked
+                    ? "좋아요 목록에 추가되었습니다!"
+                    : "좋아요가 취소되었습니다."
+            );
+        } catch (error) {
+            console.error("좋아요 토글 실패:", error);
+        }
     };
     return (
         <>
@@ -107,6 +136,18 @@ function CampView() {
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    <div
+                        className="campLike"
+                        onClick={toggleLike}
+                        style={{
+                            opacity: isLiked ? 1 : 0.5,
+                            cursor: "pointer",
+                        }}
+                    >
+                        <Icon
+                            iconName={isLiked ? "heartActive" : "heartActive"}
+                        />
+                    </div>
                 </div>
                 <ul className="campViewWrap">
                     <li>
@@ -137,7 +178,7 @@ function CampView() {
                     <li>
                         <Icon iconName="iconHompage" />
                         {campItem.homepage &&
-                            campItem.homepage.trim() !== "" ? (
+                        campItem.homepage.trim() !== "" ? (
                             <button
                                 onClick={() =>
                                     window.open(campItem.homepage, "_blank")
