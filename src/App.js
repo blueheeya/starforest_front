@@ -202,32 +202,32 @@ function LayoutType() {
     );
 }
 function App() {
-    const loginState = useSelector((state) => state.loginSlice);
-    console.log(loginState);
-    const [isLoading, setIsLoading] = useState(true);
-    const navigate = useNavigate();
+    // const loginState = useSelector((state) => state.loginSlice);
+    // console.log(loginState);
+    // const [isLogin, setIsLogin] = useState(true);
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-            // loginState의 구조에 따라 이 부분을 수정해야 할 수 있습니다.
-            if (loginState.isLoggedIn) {
-                console.log("User is logged in, redirecting to home");
-                navigate("/");
-            } else {
-                console.log("User is not logged in, redirecting to login page");
-                navigate("/member/login");
-            }
-        }, 5000); // 5초 후에 실행
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setIsLogin(false);
+    //         // loginState의 구조에 따라 이 부분을 수정해야 할 수 있습니다.
+    //         if (loginState.isLoggedIn) {
+    //             console.log("User is logged in, redirecting to home");
+    //             navigate("/");
+    //         } else {
+    //             console.log("User is not logged in, redirecting to login page");
+    //             navigate("/member/login");
+    //         }
+    //     }, 5000); // 5초 후에 실행
 
-        return () => clearTimeout(timer);
-    }, []);
+    //     return () => clearTimeout(timer);
+    // }, []);
 
-    console.log("Current login state:", loginState);
+    // console.log("Current login state:", loginState);
 
-    if (isLoading) {
-        return <Loding />;
-    }
+    // if (isLogin) {
+    //     return <Loding />;
+    // }
 
     return (
         <>
