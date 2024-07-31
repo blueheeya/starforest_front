@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import EditBtn from "../../components/Diary/EditBtn";
 import imgUpload from "../../assets/images/imgUpload.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HashTags from "../../components/Diary/HashTags";
 import UserTags from "../../components/Diary/UserTags";
 import CampSelectCard from "../../components/Camp/CampSelectCard";
@@ -14,10 +14,11 @@ function DiaryWrite() {
   const [selectedUserTags, setSelectedUserTags] = useState([]); // 선택된 태그 상태관리
   const [selectedHashTags, setSelectedHashTags] = useState([]); // 선택된 해시태그 상태관리)
   const [content, setContent] = useState(""); // 글 작성 내용 상태관리
-  const fileInputRef = useRef(null); // file input ref
-  const navigate = useNavigate(); // useNavigate
 
-  // 이미지 change 확인
+  const fileInputRef = useRef(null); // 파일 입력 요소에 대한 참조
+  const navigate = useNavigate(); // useNavigate 훅
+
+  // 이미지 업로드 처리 함수
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     if (images.length + files.length > 5) {
@@ -38,7 +39,7 @@ function DiaryWrite() {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
-  // 찐 이미지 등록
+  // 파일 입력 트리거 함수
   const triggerFileInput = () => {
     fileInputRef.current.click();
   };
@@ -61,25 +62,35 @@ function DiaryWrite() {
     );
   };
 
-  // handleSubmit 생성
+  // 폼 제출 처리 함수 (FormData 사용)
   const handleSubmit = async () => {
+    const formData = new FormData(); // 폼데이터 객체 생성
+
+    formData.append("content", content); // 글 내용 추가
+
+    // 모든 태그를 하나의 문자열로 결합하여 추가
+    const allTags = [...selectedUserTags, ...selectedHashTags].join(",");
+    formData.append("allTags", allTags);
+
+    // 이미지 파일 추가
+    images.forEach((image, index) => {
+      formData.append(`images`, image.file);
+    });
+
+    // const body = { content, allTags };
+    // console.log(body);
+
     try {
-      // 모든 태그를 하나의 문자열로 결합
-      const allTags = [...selectedUserTags, ...selectedHashTags].join(",");
-
-      const formData = new FormData();
-      formData.append("content", content);
-      formData.append("category", allTags); // 모든 태그를 카테고리로 사용
-
-      images.forEach((image, index) => {
-        formData.append(`imageUrls`, image.file);
-      });
-
-      const res = await axios.post("http://localhost:8080/diary", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      // axios를 사용해서 formData 전송
+      const res = await axios.post(
+        "http://localhost:8080/diary/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       console.log("diary created:", res.data);
       navigate("/diary/list"); // 별숲기록 생성후 리스트 페이지로 이동
@@ -104,9 +115,7 @@ function DiaryWrite() {
 
       <div className="diary-bg">
         {/* 캠핑장 간략정보 */}
-        <div className="diary-mb">
-          <CampSelectCard />
-        </div>
+        <div className="diary-mb">{/* <CampSelectCard /> */}</div>
         {/* 태그 1 */}
         <UserTags
           selectedUserTags={selectedUserTags}
@@ -129,8 +138,8 @@ function DiaryWrite() {
             onChange={(e) => setContent(e.target.value)}
           />
 
-          {/* 이미지 추가됐을시 보이는박스 */}
-          {images.length > 0 && (
+          {/* 복사본 */}
+          {/* {images.length > 0 && (
             <div className="uploaded-images diary-mb images-count-${images.length}">
               {images.map((image, index) => (
                 <div key={index} className="image-item">
@@ -144,26 +153,73 @@ function DiaryWrite() {
                     }}
                   />
 
-                  {/* 이미지 삭제 버튼 */}
+                  이미지 삭제 버튼
                   <button
                     className="remove-image"
                     onClick={() => {
                       removeImage(index);
                     }}
                   >
-                    <img src={iconClose} />
+                    <img src={iconClose} alt="삭제" />
                   </button>
                 </div>
               ))}
             </div>
-          )}
+          )} */}
+
           {/* 이미지 추가 박스 */}
-          <button onClick={triggerFileInput}>
+          <div className="diaryWrite-imageCard">
+            {/* 이미지 추가됐을시 보이는박스 */}
+            {images.length > 0 && (
+              <div className="uploaded-images diary-mb images-count-${images.length}">
+                {images.map((image, index) => (
+                  <div key={index} className="image-item">
+                    <img
+                      src={image.preview}
+                      alt={`업로드된 이미지 ${index + 1}`}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "cover",
+                      }}
+                    />
+
+                    {/* 이미지 삭제 버튼 */}
+                    <button
+                      className="remove-image"
+                      onClick={() => {
+                        removeImage(index);
+                      }}
+                    >
+                      <img src={iconClose} alt="삭제" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* 이미지 추가 */}
+            <div>버튼을 눌러 이미지를 등록해 주세요.</div>
+            <input
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              multiple
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={handleImageUpload}
+            />
+            <button onClick={triggerFileInput}>
+              <img src={imgUpload} alt="이미지 추가" />
+            </button>
+          </div>
+
+          {/* 복사본 */}
+          {/* <button onClick={triggerFileInput}>
             <div className="diaryWrite-imageCard">
               <div>버튼을 눌러 이미지를 등록해 주세요.</div>
               <input
                 type="file"
-                accept="image/*"
+                accept=".jpg, .jpeg, .png"
                 multiple
                 ref={fileInputRef}
                 style={{ display: "none" }}
@@ -171,7 +227,7 @@ function DiaryWrite() {
               />
               <img src={imgUpload} alt="이미지 추가" />
             </div>
-          </button>
+          </button> */}
         </div>
         {/* 별숲기록 주의사향 */}
         <div className="diaryWrite-noticeWrap">

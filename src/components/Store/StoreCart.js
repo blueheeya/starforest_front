@@ -33,7 +33,9 @@ function StorePayProduct() {
               <span className="innerEx">배송상품</span>
             </div>
             <div className="deleteCartBtn">
-              <button onClick={() => deleteCartItems(cartItems.id)}>X</button>
+              <button onClick={() => deleteCartItems(cartItems.id)}>
+                <Icon iconName="iconClose" />
+              </button>
             </div>
           </div>
 

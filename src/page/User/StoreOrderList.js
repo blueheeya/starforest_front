@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserOrderCard from "../../components/User/UserOrderList";
 import Icon from "../../components/Icon/Icon";
 import UserOrderList from "../../components/User/UserOrderList";
+import axiosInstance from "../../utils/axios";
+import axios from "axios";
 
 function StoreOrderList() {
+  useEffect(() => {
+    getAllOrderList();
+  }, []);
+
+  const getAllOrderList = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:8080/user/store/order/list"
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="userOrderListWrap">
       <div className="userOrderInfo">
-        <div className="userOrderListWrap">
-          <UserOrderList />
-        </div>
         <div className="userOrderListWrap">
           <UserOrderList />
         </div>

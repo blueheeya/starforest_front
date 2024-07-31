@@ -1,9 +1,10 @@
 import {
-  matchPath,
-  Outlet,
-  Route,
-  Routes,
-  useLocation,
+    matchPath,
+    Outlet,
+    Route,
+    Routes,
+    useLocation,
+    useNavigate,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -11,9 +12,9 @@ import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
-  HeaderType2,
-  HeaderType3,
-  HeaderType4,
+    HeaderType2,
+    HeaderTypeNone,
+    HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
@@ -63,52 +64,52 @@ import ModalStore from "./components/Modal/ModalStore";
 import ModalContext from "./components/Modal/ModalContext";
 import { useSelector } from "react-redux";
 import { ReviewProvider } from "./components/User/ReviewContext";
-
+import Loding from "./page/Loding";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
 const showFooterPath = [
-  "/",
-  "/store/view",
-  "/user/mypage",
-  "/camp/list",
-  "/camp/reservation",
-  "/camp/pay",
-  "/store/pay",
-  "/diary/list",
-  "/diary/write",
-  "/diary/view",
-  "/user/store/order/view",
-  "/user/notice",
-  "/user/qna",
-  "/user/mypage/management",
-  "/user/camp/reservation/list",
-  "/user/camp/reservation/view",
-  "/user/store/review/list",
-  "/user/camp/like/list",
-  "/user/diary/list",
+    "/",
+    "/store/view",
+    "/user/mypage",
+    "/camp/list",
+    "/camp/reservation",
+    "/camp/pay",
+    "/store/pay",
+    "/diary/list",
+    "/diary/write",
+    "/diary/view",
+    "/user/store/order/view",
+    "/user/notice",
+    "/user/qna",
+    "/user/mypage/management",
+    "/user/camp/reservation/list",
+    "/user/camp/reservation/view",
+    "/user/store/review/list",
+    "/user/camp/like/list",
+    "/user/diary/list",
 ];
 function LayoutType() {
-  function getHeaderConfig(pathname) {
-    for (const [path, config] of Object.entries(headerConfig)) {
-      if (matchPath(path, pathname)) {
-        return config;
-      }
+    function getHeaderConfig(pathname) {
+        for (const [path, config] of Object.entries(headerConfig)) {
+            if (matchPath(path, pathname)) {
+                return config;
+            }
+        }
     }
-  }
-  const location = useLocation();
-  const {
-    title = "홈",
-    component: HeaderComponent = HeaderType2,
-    titleStore = false,
-  } = getHeaderConfig(location.pathname) ?? {};
+    const location = useLocation();
+    const {
+        title = "홈",
+        component: HeaderComponent = HeaderType2,
+        titleStore = false,
+    } = getHeaderConfig(location.pathname) ?? {};
 
-  // 메뉴
-  const showMenu = showMenuPath.includes(location.pathname);
-  const showFooter = showFooterPath.includes(location.pathname);
-  const isHeaderType2 = HeaderComponent === HeaderType2;
-  const isHeaderType3 = HeaderComponent === HeaderType3;
-  const isHeaderType4 = HeaderComponent === HeaderType4;
+    // 메뉴
+    const showMenu = showMenuPath.includes(location.pathname);
+    const showFooter = showFooterPath.includes(location.pathname);
+    const isHeaderType2 = HeaderComponent === HeaderType2;
+    const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
+    const isHeaderType4 = HeaderComponent === HeaderType4;
 
     const [modalNum, setModalNum] = useState(0);
     const [modalView, setModalView] = useState(false);
@@ -119,30 +120,29 @@ function LayoutType() {
     ];
     const [modalDetail, setModalDetail] = useState(null);
 
-
-  function modalOpen(idx, data = null) {
-    setModalView(true);
-    setModalNum(idx);
-    setModalDetail(data);
-  }
-
-  function modalClose() {
-    setModalView(false);
-    setModalDetail(null);
-  }
-
-  function modalSubmit() {
-    setModalView(false);
-  }
-
-  useEffect(() => {
-    const containerWrapElement = document.querySelector(".containerWrap");
-
-    if (modalView) {
-      containerWrapElement.style.overflow = "hidden";
-    } else {
-      containerWrapElement.style.overflow = "auto";
+    function modalOpen(idx, data = null) {
+        setModalView(true);
+        setModalNum(idx);
+        setModalDetail(data);
     }
+
+    function modalClose() {
+        setModalView(false);
+        setModalDetail(null);
+    }
+
+    function modalSubmit() {
+        setModalView(false);
+    }
+
+    useEffect(() => {
+        const containerWrapElement = document.querySelector(".containerWrap");
+
+        if (modalView) {
+            containerWrapElement.style.overflow = "hidden";
+        } else {
+            containerWrapElement.style.overflow = "auto";
+        }
         return () => {
             containerWrapElement.style.overflow = "auto";
         };
@@ -181,10 +181,12 @@ function LayoutType() {
                         {title}
                     </HeaderComponent>
                     <ContentWrap
-                        className={` ${isHeaderType3 || isHeaderType4
-                            ? "cntSearchView"
-                            : ""
-                            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+                        modalOpen={modalOpen}
+                        className={` ${
+                            isHeaderTypeNone || isHeaderType4
+                                ? "cntSearchView"
+                                : ""
+                        } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
                     >
                         <Outlet />
                     </ContentWrap>
@@ -200,8 +202,32 @@ function LayoutType() {
     );
 }
 function App() {
-    const loginState = useSelector((state) => state.loginSlice);
-    console.log(loginState)
+    // const loginState = useSelector((state) => state.loginSlice);
+    // console.log(loginState);
+    // const [isLogin, setIsLogin] = useState(true);
+    // const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setIsLogin(false);
+    //         // loginState의 구조에 따라 이 부분을 수정해야 할 수 있습니다.
+    //         if (loginState.isLoggedIn) {
+    //             console.log("User is logged in, redirecting to home");
+    //             navigate("/");
+    //         } else {
+    //             console.log("User is not logged in, redirecting to login page");
+    //             navigate("/member/login");
+    //         }
+    //     }, 5000); // 5초 후에 실행
+
+    //     return () => clearTimeout(timer);
+    // }, []);
+
+    // console.log("Current login state:", loginState);
+
+    // if (isLogin) {
+    //     return <Loding />;
+    // }
 
     return (
         <>
@@ -216,7 +242,7 @@ function App() {
                     ></Route>
                     <Route path="/camp/view/:id" element={<CampView />}></Route>
                     <Route
-                        path="/camp/view/map"
+                        path="/camp/view/map/:id"
                         index
                         element={<CampViewMap />}
                     ></Route>
@@ -226,12 +252,12 @@ function App() {
                         element={<CampReservation />}
                     ></Route>
                     <Route
-                        path="/camp/pay"
+                        path="/camp/pay/:id/:reservId"
                         index
                         element={<CampReservationPay />}
                     ></Route>
                     <Route
-                        path="/camp/pay/complete"
+                        path="/camp/pay/complete/:reservNum/:reservId/:name/:carNum/:request/:tel"
                         index
                         element={<CampReservationComplete />}
                     ></Route>

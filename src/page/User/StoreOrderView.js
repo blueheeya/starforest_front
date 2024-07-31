@@ -1,12 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
 import ModalContext from "../../components/Modal/ModalContext";
+import axios from "axios";
 function StoreOrderView() {
+    const { id } = useParams();
     const [quantity, setQuantity] = useState(1);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
+    const [product, setProduct] = useState(null); //상품 상태
+    const [user, setUser] = useState(null); //유저 상태
     const { modalOpen } = useContext(ModalContext);
     const navigate = useNavigate();
     const handleReviewButtonClick = () => {
@@ -15,10 +19,31 @@ function StoreOrderView() {
         });
     };
 
+    useEffect(() => {
+        //상품데이터요청
+        const fetchProductData = async () => {
+            try {
+                const res = await axios.get(
+                    `http://localhost:8080/user/store/order/view/${id}`
+                );
+                setProduct(res.data.product);
+            } catch (error) {
+                console.error("Error fetching product", error);
+            }
+        };
+    }, []);
+
     const handleReviewSubmit = (reviewContent) => {
         setIsReviewSubmitted(true);
         setIsModalOpen(false);
-        // 여기서 리뷰 내용을 서버에 저장하거나 다른 처리를 할 수 있습니다.
+        try {
+            //리뷰제출
+            const reviewData = {
+                content: reviewContent,
+            };
+        } catch (error) {
+            console.error("Error fetching review", error);
+        }
         navigate("/user/store/review/list", {
             state: { newReview: reviewContent },
         });

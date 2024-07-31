@@ -3,7 +3,7 @@ import Icon from "../Icon/Icon";
 import { useLocation } from "react-router-dom";
 
 function UserTags({ selectedUserTags, onUserTagToggle }) {
-  console.log("선택된 유저태그:", selectedUserTags);
+  // console.log("선택된 유저태그:", selectedUserTags);
   const userTags = [
     { icon: "iconTime", text: "매너타임" },
     { icon: "iconSmiles", text: "친절함" },
