@@ -13,7 +13,7 @@ function UserOrderList() {
 
   const navigate = useNavigate();
   const userOderViewMove = () => {
-    navigate("/user/store/order/view");
+    navigate(`/user/store/order/view/${cartItems[0].id}`);
   };
 
   return (

@@ -110,6 +110,7 @@ function LayoutType() {
     const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
     const isHeaderType4 = HeaderComponent === HeaderType4;
 
+
     const [modalNum, setModalNum] = useState(0);
     const [modalView, setModalView] = useState(false);
     const modalData = [
