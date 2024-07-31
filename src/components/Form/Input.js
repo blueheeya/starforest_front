@@ -17,8 +17,8 @@ function Input({
     var temp = ""
     //동일 수정
     const handleChange = (e) => {
-        temp+=e.target.value
-        onChange? onChange(e): console.log(e.target.value)
+        temp += e.target.value
+        onChange(temp)
     }
     //동일 수정
     return (
@@ -34,7 +34,7 @@ function Input({
                 className={`serchInput`}
                 value={value}
                 onChange={handleChange}
-                name ={name}
+                name={name}
                 placeholder={`${placeholder}`}
             ></input>
         </div>
