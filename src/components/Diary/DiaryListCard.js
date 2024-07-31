@@ -1,88 +1,79 @@
 import React from "react";
 import CampSelectCard from "../Camp/CampSelectCard";
 import Icon from "../Icon/Icon";
-import diary_camp_img from "../../assets/images/diary_camp_img.svg";
 import UserCard from "../User/UserCard";
+import HashTags from "./HashTags";
+import UserTags from "./UserTags";
 
-function DiaryListCard() {
-    return (
-        <div className="diaryCard">
-            {/* 유저정보 카드 */}
-            <div style={{ padding: "32px" }}>
-                <div className="diary-mb">
-                    <UserCard userMyCard={false} />
-                </div>
+function DiaryListCard({ diary }) {
+  const { content, category, image_url, userEmail, reservationId } = diary;
 
-                {/* 태그 1 S*/}
+  // userTag 와 hashTags 분리
+  const userTags = category.filter((tag) =>
+    [
+      "매너타임",
+      "친절함",
+      "청결함",
+      "수영장",
+      "놀이시설",
+      "개별 화장실",
+      "개별 샤워실",
+      "매점 운영",
+    ].includes(tag)
+  );
 
-                <div
-                    style={{
-                        display: "flex",
-                        gap: "10px",
-                        marginBottom: "10px",
-                        flexWrap: "wrap",
-                    }}
-                >
-                    <span className="userTag">
-                        <Icon iconName="iconShowers" />
-                        매너타임
-                    </span>
-                    <span className="userTag">
-                        <Icon iconName="iconShowers" />
-                        친절함
-                    </span>
-                    <span className="userTag">
-                        <Icon iconName="iconShowers" />
-                        청결함
-                    </span>
-                    <span className="userTag">
-                        <Icon iconName="iconShowers" />
-                        수영장
-                    </span>
-                </div>
-                {/* <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-          <span className="userTag">
-            <Icon iconName="iconShowers" />
-            오토캠핑장
-          </span>
-          <span className="userTag">
-            <Icon iconName="iconShowers" />
-            오토캠핑장
-          </span>
-        </div> */}
-                {/* 태그 1 E */}
-                {/* content S */}
-                <div className="diary-mb">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
-                    debitis aliquam beatae officiis quo sequi accusamus rem
-                    laboriosam iste cupiditate.
-                </div>
-                {/* content E */}
-                {/* 태그 2 S */}
-                <div
-                    style={{
-                        display: "flex",
-                        gap: "10px",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <span className="hashTag">#오토캠핑장</span>
-                    <span className="hashTag">#오토캠핑장</span>
-                </div>
-                {/* 태그 2 E */}
-                {/* 이미지 S */}
-                <div className="diary-mb img-wrap">
-                    <img
-                        src={diary_camp_img}
-                        style={{ objectFit: "cover", width: "100%" }}
-                    />
-                </div>
-                {/* 이미지 E */}
-                {/* 캠프셀렉트카드 */}
-                <CampSelectCard isLink={"/camp/view/1"} />
-            </div>
+  const hashTags = category.filter((tag) => !userTags.includes(tag));
+
+
+  return (
+    <div className="diaryCard">
+      {/* 유저정보 카드 */}
+      <div style={{ padding: "32px" }}>
+        <div className="diary-mb">
+          <UserCard userMyCard={false} />
         </div>
-    );
+
+        {/* 태그 1 S*/}
+        <UserTags
+          selectedUserTags={userTags}
+          onUserTagToggle={() => {}} // 읽기 전용
+        />
+
+        {/* 태그 1 E */}
+        {/* content S */}
+        <div className="diary-mb">{content}</div>
+        {/* content E */}
+        {/* 태그 2 S */}
+        <HashTags
+          selectedHashTags={hashTags}
+          onHashTagToggle={() => {}} // 읽기 전용
+        />
+
+        {/* 태그 2 E */}
+
+        {/* 이미지 S */}
+        {image_url && image_url.length > 0 && (
+          <div className="diary-mb img-wrap">
+            <img
+              src={image_url[0]}
+              alt="Diary image"
+              style={{ objectFit: "cover", width: "100%" }}
+            />
+          </div>
+        )}
+
+        {/* <div className="diary-mb img-wrap">
+          <img
+            src={diary_camp_img}
+            style={{ objectFit: "cover", width: "100%" }}
+          />
+        </div> */}
+        {/* 이미지 E */}
+        {/* 캠프셀렉트카드 */}
+        <CampSelectCard reservationId={reservationId} isLink={"/camp/view/1"} />
+      </div>
+    </div>
+  );
 }
 
 export default DiaryListCard;

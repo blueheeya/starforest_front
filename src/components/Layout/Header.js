@@ -56,6 +56,7 @@ function HeaderType2({ children, className, titleStore, ...props }) {
 }
 function HeaderType3({ className, modalOpen }) {
     const [inputData, setInputData] = useState("");
+    const [r, setR] = useState([]);
     const navigator = useNavigate();
     const onBackClick = () => {
         navigator(-1);
@@ -77,6 +78,7 @@ function HeaderType3({ className, modalOpen }) {
                     `http://localhost:8080/camp/search?query=${body}`
                 );
                 console.log(res.data);
+                setR(res.data)
             } catch (error) {
                 console.log(error);
             }
@@ -135,7 +137,7 @@ function HeaderType3({ className, modalOpen }) {
     );
 }
 function HeaderType4({ children, className, titleStore, ...props }) {
-    // const { id } = useParams();
+    const { id } = useParams();
     const navigator = useNavigate();
     const onBackClick = () => {
         navigator(-1);
@@ -151,7 +153,7 @@ function HeaderType4({ children, className, titleStore, ...props }) {
                         <img src={logoWhite} />
                     </h2>
                 </Link>
-                <Link to="/camp/view/map" className="btnMap">
+                <Link to={`/camp/view/map/${id}`} className="btnMap">
                     <img src={btnMap} />
                 </Link>
             </div>

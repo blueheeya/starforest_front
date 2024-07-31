@@ -15,6 +15,8 @@ import Footer from "../../components/Layout/Footer";
 import Button from "../../components/Form/Button";
 import axios from "axios";
 import CampReservation from "./CampReservation";
+import LoadingFlower from "../../assets/gif/1477.gif"
+
 function CampView() {
     //주소 복사
     const navigator = useNavigate();
@@ -45,11 +47,27 @@ function CampView() {
     //동일 수정끝
 
     //동일 수정
+    const parseFacilityString = (facilityString) => {
+        try {
+            // console.log(facilityString);
+            // '를 "로 바꾸기
+            const jsonString = facilityString.replace(/'/g, '"');
+            // JSON 파싱
+            const facilityArray = JSON.parse(jsonString).join(', ');
+            // 배열 요소들을 문자열로 결합
+            // console.log(facilityArray);
+            setPosbl(facilityArray)
+        } catch (error) {
+            console.error('Error parsing facility string:', error);
+            return facilityString;
+        }
+    }
+    //동일 수정끝
+
+    //동일 수정
     const campScript = async () => {
         try {
-            const res = await axios.post(
-                `http://localhost:8080/camp/view/map/${id}`
-            );
+            const res = await axios.post(`http://localhost:8080/camp/view/${id}`)
             console.log(res.data);
             setCampItem(res.data);
             parseFacilityString(res.data.posblFcltyCl);
@@ -61,34 +79,15 @@ function CampView() {
     //동일 수정끝
 
     if (!campItem) {
-        return <div>로딩중</div>;
+        return <>
+            <div>로딩중</div>
+        </>;
     }
 
-    //동일 수정
-    const parseFacilityString = (facilityString) => {
-        try {
-            // '를 "로 바꾸기
-            const jsonString = facilityString.replace(/'/g, '"');
-            // JSON 파싱
-            const facilityArray = JSON.parse(jsonString).join(", ");
-            // 배열 요소들을 문자열로 결합
-            console.log(facilityArray);
-            setPosbl(facilityArray);
-            checkLikeStatus();
-        } catch (error) {
-            console.error("Error parsing facility string:", error);
-            return facilityString;
-        }
-    };
-    //동일 수정끝
     const sbrsCl = campItem.sbrsCl || [];
     const eqpmnLendCl = campItem.eqpmnLendCl || [];
-    // 이미지 URL 매칭 함수
-    const getImageUrlsById = (id) => {
-        const imgObj = CampGavisImg.find((img) => img.id === id);
-        return imgObj ? imgObj.imageURL : [];
-    };
-    const imageUrls = getImageUrlsById(campItem.id);
+
+    const imageUrls = campItem?.campImages;
     const moveReservation = () => {
         navigator(`/camp/reservation/${id}`);
     };
@@ -131,9 +130,9 @@ function CampView() {
                         slidesPerView={1}
                         pagination={true}
                     >
-                        {imageUrls.map((url, index) => (
+                        {imageUrls.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <img key={index} src={url} />
+                                <img key={index} src={item.image_url} />
                             </SwiperSlide>
                         ))}
                     </Swiper>

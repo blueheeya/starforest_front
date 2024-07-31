@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Input from "../../components/Form/Input";
 import Icon from "../Icon/Icon";
+import {useSelector} from "react-redux";
+import {useLocation, useNavigate} from "react-router-dom";
 
-function Email({ placeholder, userAuth }) {
-    const [email, setEmail] = useState("");
+function Email({ placeholder, userAuth, changeHand, email }) {
     const [isValid, setIsValid] = useState(false);
     const [message, setMessage] = useState("");
     // const userAuth = useState(false);
@@ -11,9 +12,9 @@ function Email({ placeholder, userAuth }) {
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         return regex.test(email);
     };
-
+    const shouldValidate = !useLocation().pathname.startsWith("/member/login");
     useEffect(() => {
-        if (email) {
+        if (email && shouldValidate) {
             if (validateEmail(email)) {
                 setIsValid(true);
                 setMessage(() => {
@@ -40,9 +41,7 @@ function Email({ placeholder, userAuth }) {
         }
     }, [email]);
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
+
     return (
         <>
             <div className="memberInputWrap">
@@ -51,8 +50,9 @@ function Email({ placeholder, userAuth }) {
                     className="userRstInput"
                     placeholder={placeholder}
                     type="email"
-                    value={email}
-                    onChange={handleEmailChange}
+                    name ="email"
+                    params={email}  동규수정0725
+                    onChange={changeHand}
                     userAuth={userAuth}
                 />
                 {userAuth === true ? (
