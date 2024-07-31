@@ -15,7 +15,7 @@ import Footer from "../../components/Layout/Footer";
 import Button from "../../components/Form/Button";
 import axios from "axios";
 import CampReservation from "./CampReservation";
-import LoadingFlower from "../../assets/gif/1477.gif"
+import LoadingFlower from "../../assets/gif/1477.gif";
 
 function CampView() {
     //주소 복사
@@ -53,21 +53,23 @@ function CampView() {
             // '를 "로 바꾸기
             const jsonString = facilityString.replace(/'/g, '"');
             // JSON 파싱
-            const facilityArray = JSON.parse(jsonString).join(', ');
+            const facilityArray = JSON.parse(jsonString).join(", ");
             // 배열 요소들을 문자열로 결합
             // console.log(facilityArray);
-            setPosbl(facilityArray)
+            setPosbl(facilityArray);
         } catch (error) {
-            console.error('Error parsing facility string:', error);
+            console.error("Error parsing facility string:", error);
             return facilityString;
         }
-    }
+    };
     //동일 수정끝
 
     //동일 수정
     const campScript = async () => {
         try {
-            const res = await axios.post(`http://localhost:8080/camp/view/${id}`)
+            const res = await axios.post(
+                `http://localhost:8080/camp/view/${id}`
+            );
             console.log(res.data);
             setCampItem(res.data);
             parseFacilityString(res.data.posblFcltyCl);
@@ -79,9 +81,11 @@ function CampView() {
     //동일 수정끝
 
     if (!campItem) {
-        return <>
-            <div>로딩중</div>
-        </>;
+        return (
+            <>
+                <div>로딩중</div>
+            </>
+        );
     }
 
     const sbrsCl = campItem.sbrsCl || [];

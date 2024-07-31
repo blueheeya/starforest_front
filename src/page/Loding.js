@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
 
 function Loding() {
-  return (
-    <div>Loding</div>
-  )
+    return (
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+            }}
+        >
+            <h1>Loading...</h1>
+        </div>
+    );
 }
 
-export default Loding
+export default Loding;

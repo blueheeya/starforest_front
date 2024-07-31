@@ -4,6 +4,7 @@ import {
     Route,
     Routes,
     useLocation,
+    useNavigate,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -63,7 +64,7 @@ import ModalStore from "./components/Modal/ModalStore";
 import ModalContext from "./components/Modal/ModalContext";
 import { useSelector } from "react-redux";
 import { ReviewProvider } from "./components/User/ReviewContext";
-
+import Loding from "./page/Loding";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -109,7 +110,6 @@ function LayoutType() {
     const isHeaderType2 = HeaderComponent === HeaderType2;
     const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
     const isHeaderType4 = HeaderComponent === HeaderType4;
-
 
     const [modalNum, setModalNum] = useState(0);
     const [modalView, setModalView] = useState(false);
@@ -203,7 +203,31 @@ function LayoutType() {
 }
 function App() {
     const loginState = useSelector((state) => state.loginSlice);
-    console.log(loginState)
+    console.log(loginState);
+    const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+            // loginState의 구조에 따라 이 부분을 수정해야 할 수 있습니다.
+            if (loginState.isLoggedIn) {
+                console.log("User is logged in, redirecting to home");
+                navigate("/");
+            } else {
+                console.log("User is not logged in, redirecting to login page");
+                navigate("/member/login");
+            }
+        }, 5000); // 5초 후에 실행
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    console.log("Current login state:", loginState);
+
+    if (isLoading) {
+        return <Loding />;
+    }
 
     return (
         <>
