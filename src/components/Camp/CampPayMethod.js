@@ -13,7 +13,7 @@ function CampPayMethod({ reservationInfo, campInfo, totalPrice, reservId }) {
     const handleKakaoPayment = async () => {
         try {
             //예약자 정보랑 상품이름 필요
-            const res = await axios.post(`http://localhost:8080/camp/kakaoPay/${reservId}`, body);
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}camp/kakaoPay/${reservId}`, body);
             // 카카오페이 결제 페이지로 리다이렉트
             console.log(res.data);
             console.log("결제 시도!!!!!!");

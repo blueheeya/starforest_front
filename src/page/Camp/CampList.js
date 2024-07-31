@@ -34,9 +34,8 @@ function CampList({ modalOpen, className }) {
         if (loading || !hasMore) return;
         setLoading(true);
         try {
-            let url = `http://localhost:8080/camp/list?page=${page}&size=${
-                page === 0 ? 20 : 5
-            }`;
+            let url = `http://localhost:8080/camp/list?page=${page}&size=${page === 0 ? 20 : 5
+                }`;
             // if (inputData) {
             //     url += `&query=${inputData}`;
             // }
@@ -137,7 +136,7 @@ function CampList({ modalOpen, className }) {
                             placeholder="검색어를 입력하세요."
                             //동일 수정
                             onChange={handleInput}
-                            //동일 완료
+                        //동일 완료
                         />
                         <button onClick={serchCamp} style={{ width: 40 }}>
                             검색
