@@ -3,6 +3,7 @@ import Button from "../Form/Button";
 import Icon from "../Icon/Icon";
 import axios from "../../utils/axios";
 
+const host = `${process.env.REACT_APP_SERVER_URL}`;
 function ModalReview({ onClick, onSubmit, product_id, user_id }) {
   // onClick 제거, onClose와 onSubmit만 사용
   const [review, setReview] = useState("");
@@ -44,10 +45,7 @@ function ModalReview({ onClick, onSubmit, product_id, user_id }) {
         user_id: user_id, //user_id도 props로 받아옴
       };
       console.log("Review axios태웁니다~~~~~~~~~~~~");
-      const res = await axios.post(
-        "http://localhost:8080/store/review",
-        reviewData
-      );
+      const res = await axios.post(`${host}store/review`, reviewData);
       console.log(res.data);
       if (typeof onSubmit === "function") {
         onSubmit(review);

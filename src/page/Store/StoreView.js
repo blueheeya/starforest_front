@@ -13,7 +13,14 @@ import axiosInstance from "../../utils/axios";
 import PurchaseModal from "../../components/Store/PurchaseModal";
 import ReviewList from "../../components/Store/ReviewList";
 import axios from "axios";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { A11y, Pagination } from "swiper/modules";
 
+const host = `${process.env.REACT_APP_SERVER_URL}`;
 const productview = {
   id: 1,
   brand: "브랜드",
@@ -61,16 +68,17 @@ const reviewsArr = [
 function StoreView(props) {
   const { productId } = useParams(); //URL파라미터에서 상품ID를 찾아서 가져옴
   const [product, setProduct] = useState({});
-  const [detailView, setDetailView] = useState(null);
-  // const [reviewList, setReviewList] = useState(reviewsArr);
+  const [detailView, setDetailView] = useState();
   const [reviewList, setReviewList] = useState([]);
-  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState(tabBar[0].id);
   const [showFullImage, setShowFulllImage] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({ product_name: "", price: 0 });
+  const [detailImage, setDetailImage] = useState("default-image.jpg");
+  // const [reviewList, setReviewList] = useState(reviewsArr);
+  const [loading, setLoading] = useState(true);
 
   const { modalOpen } = useContext(ModalContext);
 
@@ -98,7 +106,7 @@ function StoreView(props) {
 
         // 장바구니에 상품 추가
         const response = await axios.post(
-          "http://localhost:8080/store/cart/add",
+          `${host}store/cart/add`,
           // quantityData
           cartItem
         );
@@ -115,24 +123,24 @@ function StoreView(props) {
       }
     }
   };
-
+  const fetchStoreDetail = async () => {
+    try {
+      const res = await axios.get(`${host}store/view/${productId}`);
+      console.log(res.data);
+      setProduct(res.data);
+      setDetailView(res.data.imageList);
+      const image = res.data.imageList[0];
+      if (image) {
+        setDetailImage(image);
+      }
+    } catch (error) {
+      console.error("Error fetching store detail", error);
+      setError("상품 정보를 불러오는데 실패했습니다.");
+    }
+  };
   //처음 렌더링되거나 id값이 변경될때 실행
   //상품세부정보가져오기
   useEffect(() => {
-    const fetchStoreDetail = async () => {
-      try {
-        const res = await axios.get(
-          `http://localhost:8080/store/view/${productId}`
-        );
-        console.log(res.data);
-        setProduct(res.data);
-        // setDetailView(res.data.detailView);
-        // setReviewList(res.data.reviews);
-      } catch (error) {
-        console.error("Error fetching store detail", error);
-        setError("상품 정보를 불러오는데 실패했습니다.");
-      }
-    };
     fetchStoreDetail();
   }, [productId]);
   //리뷰가져오기
@@ -140,7 +148,7 @@ function StoreView(props) {
   //   const fetchReviews = async () => {
   //     try {
   //       const res = await axios.get(
-  //         `http://localhost:8080/reviews/${productId}`
+  //          `${host}reviews/${productId}`
   //       );
   //       console.log(res.data);
   //       setReviewList(res.data);
@@ -155,7 +163,7 @@ function StoreView(props) {
   //리뷰삭제
   const deleteReview = async (reviewId) => {
     try {
-      await axios.delete(`http://localhost:8080/reviews/delete/${reviewId}`);
+      await axios.delete(`${host}reviews/delete/${reviewId}`);
       setReviewList((prevReviewList) =>
         prevReviewList.filter((review) => review.id !== reviewId)
       );
@@ -186,6 +194,8 @@ function StoreView(props) {
     detailImg: "default-image.jpg",
   });
 
+  const emptyProductHandler = () => {};
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "details":
@@ -203,7 +213,7 @@ function StoreView(props) {
             >
               <img
                 className="detailImg"
-                src={`${process.env.REACT_APP_IMAGE_URL}/${detailView.detailImg}`}
+                src={product.imageList[0]}
                 alt="상품 상세 이미지"
                 style={{ width: "100%", height: "auto" }}
               />
@@ -254,15 +264,24 @@ function StoreView(props) {
 
   return (
     <div className="storeViewWrap">
-      {/* {product && (
-          <> */}
       <div className="productImageWrap">
-        <img
-          className="viewImg"
-          src={`${process.env.REACT_APP_IMAGE_URL}/${product.images}`}
-          alt={product.product_name}
-        />
-
+        {product.imageList && product.imageList.length > 1 && (
+          <div className="campViewSwiper">
+            {console.log(product.imageList)}
+            <Swiper
+              modules={[Pagination, A11y]}
+              spaceBetween={0}
+              slidesPerView={1}
+              pagination={true}
+            >
+              {product.imageList.slice(1).map((item, index) => (
+                <SwiperSlide key={index}>
+                  <img src={item} alt={`상품 상세 이미지 ${index + 1}`} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
         <div className="productNameWrap">
           <div className="nameWrap">
             {/* <p className="category">{productview.Category}</p> */}
@@ -279,10 +298,17 @@ function StoreView(props) {
         </div>
       </div>
       <div className="productPriceWrap">
-        <div className="priceWrap">{productview.price.toLocaleString()}원</div>
+        <div className="priceWrap">
+          {product.price
+            ? (Math.floor(product.price / 0.7 / 1000) * 1000).toLocaleString()
+            : 0}
+          원
+        </div>
         <div className="saleWrap">
           <p className="sale">{productview.sales_volume}</p>
-          <p className="saleprice">{productview.saledPrice}</p>
+          <p className="saleprice">
+            {product.price ? product.price.toLocaleString() : 0}원
+          </p>
         </div>
       </div>
       <div className="productViewEtc">

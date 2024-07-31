@@ -4,6 +4,9 @@ import "../../assets/css/storeStyle.scss";
 import Icon from "../Icon/Icon";
 import Overlay from "./Overlay";
 import axiosInstance from "../../utils/axios";
+import axios from "axios";
+
+const host = `${process.env.REACT_APP_SERVER_URL}`;
 
 const PurchaseModal = ({ isOpen, onClose, productName, price, productId }) => {
   const [quantity, setQuantity] = useState(1);
@@ -36,10 +39,7 @@ const PurchaseModal = ({ isOpen, onClose, productName, price, productId }) => {
         quantity: quantity, // 설정한 수량
       };
       // 서버로 수량 전송
-      const response = await axiosInstance.post(
-        "/store/view", //????????????????????????????????????
-        quantityData
-      );
+      const response = await axios.post(`${host}store/view`, quantityData);
       console.log("Quantity updated", response.data);
     } catch (error) {
       console.error("Error updating quantity", error);
