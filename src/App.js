@@ -68,6 +68,7 @@ import Loding from "./page/Loding";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
+
 const showFooterPath = [
     "/",
     "/store/view",
@@ -202,34 +203,37 @@ function LayoutType() {
     );
 }
 function App() {
-    const loginState = useSelector((state) => state.loginSlice);
-    console.log(loginState);
-    const [isLoading, setIsLoading] = useState(true);
+    const loginState = useSelector(state => state.loginSlice);
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-            // loginState의 구조에 따라 이 부분을 수정해야 할 수 있습니다.
-            if (loginState.isLoggedIn) {
-                console.log("User is logged in, redirecting to home");
-                navigate("/");
-            } else {
-                console.log("User is not logged in, redirecting to login page");
-                navigate("/member/login");
-            }
-        }, 5000); // 5초 후에 실행
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    console.log("Current login state:", loginState);
+        // 로그인 상태가 변할 때만 실행되도록 의존성 배열에 loginState.email 추가
+        if (loginState.email) {
+            setIsLoading(false);  // 로그인이 확인되면 로딩 해제
+        } else {
+            setTimeout(() => {  // 일정 시간 후 로그인 페이지로 이동
+                if (!loginState.email) {
+                    navigate('/member/login');
+                }
+                setIsLoading(false);  // 타임아웃 후에도 로딩 상태 해제
+            }, 2000);
+        }
+    }, [loginState.email, navigate]);
 
     if (isLoading) {
         return <Loding />;
     }
 
+    //
+    // const timer = (time) =>{
+    //     if(isLoading)setIsLoading(false);
+    //     setTimeout(()=>{
+    //         loginState.email?navigate("/"):navigate("/member/login");
+    //     },time)
+    // }
     return (
+
         <>
             <Routes>
                 <Route path="/" element={<LayoutType />}>
