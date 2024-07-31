@@ -40,7 +40,7 @@ function CampViewMap() {
         const map = new kakao.maps.Map(mapContainer, mapOption);
 
         try {
-            const res = await axios.get(`http://localhost:8080/camp/view/map/${id}`)
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}camp/view/map/${id}`)
             console.log(res.data);
             setCampItem(res.data)
         } catch (error) {
@@ -64,6 +64,15 @@ function CampViewMap() {
         if (!map) return;
 
         if (campItem) {
+
+            var mapContainer = document.getElementById("map"),
+                mapOption = {
+                    center: new kakao.maps.LatLng(campItem.mapy, campItem.mapx), // 지도의 중심좌표
+                    level: 9, // 지도의 확대 레벨
+                    mapTypeId: kakao.maps.MapTypeId.ROADMAP, // 지도종류
+                };
+            const map = new kakao.maps.Map(mapContainer, mapOption);
+
             let latlng = new kakao.maps.LatLng(
                 campItem.mapy,
                 campItem.mapx
