@@ -65,12 +65,13 @@ function StoreList() {
       setLoading(false);
     }
   }
-  console.log(storeData);
 
   useEffect(() => {
     fetchStoreInfo({ skip: 0, limit: 10, filters: { type: activeCategory } });
   }, [activeCategory]);
 
+  // console.log(storeData[0].first_img_url);
+  // console.log(storeData[0].first_img_url);
   return (
     <>
       <EventSwiper className="cntMarginBottom" />
@@ -95,23 +96,18 @@ function StoreList() {
       <div className="storeList">
         {storeData.map((product) => {
           // 이미지 URL을 설정
-          const imageUrl =
-            // product.first_img_url ||
-            // (product.images &&
-            //   product.images.length > 0 &&
-            //   product.images[0]) ||
-            product.img_url;
+          const imageUrl = product?.first_img_url;
 
           return (
             <Link
-              to={`/store/view/${product.productId}`}
-              key={product.productId}
+              to={`/store/view/${product?.productId}`}
+              key={product?.productId}
             >
               <div className="product-item">
                 <div className="productImg">
                   <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/${product.images}`}
-                    alt={product.productName}
+                    src={product?.first_img_url}
+                    alt={product?.productName}
                   />
                   {/* <img
                     src={imageUrl}
@@ -123,18 +119,18 @@ function StoreList() {
                   /> */}
                 </div>
                 <div className="storeNameWrap">
-                  <div className="Bname">{product.brandName}</div>
-                  <div className="Pname">{product.productName}</div>
+                  <div className="Bname">{product?.brandName}</div>
+                  <div className="Pname">{product?.productName}</div>
                 </div>
                 <div className="storePriceWrap">
-                  <div className="sale">{product.sale}</div>
+                  <div className="sale">{product?.sale}</div>
                   <div className="price">
-                    {product.price.toLocaleString()}원
+                    {product?.price.toLocaleString()}원
                   </div>
                 </div>
                 <div className="storeEtc">
-                  <span className="textIconType1">{product.starsale}</span>
-                  <span className="textIconType2">{product.delivery}</span>
+                  <span className="textIconType1">특가세일</span>
+                  <span className="textIconType2">무료배송</span>
                 </div>
               </div>
             </Link>

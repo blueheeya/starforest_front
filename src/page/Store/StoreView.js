@@ -71,14 +71,9 @@ function StoreView(props) {
   const [showFullImage, setShowFulllImage] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({ product_name: "", price: 0 });
-  // const product = productview;
+
   const { modalOpen } = useContext(ModalContext);
 
-  // const storeCategory = [
-  //   { no: 0, name: "텐트" },
-  //   { no: 1, name: "푸드" },
-  //   { no: 0, name: "DIY" },
-  // ];
   const getProductType = (type) => {
     switch (type) {
       case 0:
@@ -91,22 +86,23 @@ function StoreView(props) {
         return "알 수 없음";
     }
   };
-
+  //axios________________________________________________________________________________
   const handleButtonClick = async () => {
     if (product) {
       try {
-        const quantityData = {
+        const cartItem = {
           product_id: product.productId,
           quantity: 1,
           price: product.price,
         };
+
         // 장바구니에 상품 추가
         const response = await axios.post(
-          "http://localhost:8080/store/cart/list",
-          quantityData
+          "http://localhost:8080/store/cart/add",
+          // quantityData
+          cartItem
         );
-
-        console.log("Item added to cart", response.data.stores);
+        console.log("Item added to cart", response.data);
         // 장바구니에 추가 성공 후, 모달 표시
         setModalData({
           product_name: product.productName,
@@ -120,7 +116,6 @@ function StoreView(props) {
     }
   };
 
-  //axios________________________________________________________________________________
   //처음 렌더링되거나 id값이 변경될때 실행
   //상품세부정보가져오기
   useEffect(() => {
@@ -131,8 +126,8 @@ function StoreView(props) {
         );
         console.log(res.data);
         setProduct(res.data);
-        setDetailView(res.data.detailView);
-        setReviewList(res.data.reviews);
+        // setDetailView(res.data.detailView);
+        // setReviewList(res.data.reviews);
       } catch (error) {
         console.error("Error fetching store detail", error);
         setError("상품 정보를 불러오는데 실패했습니다.");
@@ -140,6 +135,22 @@ function StoreView(props) {
     };
     fetchStoreDetail();
   }, [productId]);
+  //리뷰가져오기
+  // useEffect(() => {
+  //   const fetchReviews = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         `http://localhost:8080/reviews/${productId}`
+  //       );
+  //       console.log(res.data);
+  //       setReviewList(res.data);
+  //     } catch (error) {
+  //       console.error("Error fetching reviews", error);
+  //       setError("리뷰를 불러오는데 실패했습니다.");
+  //     }
+  //   };
+  //   fetchReviews();
+  // }, [productId]);
 
   //리뷰삭제
   const deleteReview = async (reviewId) => {
@@ -254,8 +265,10 @@ function StoreView(props) {
 
         <div className="productNameWrap">
           <div className="nameWrap">
-            <p className="category">{productview.Category}</p>
-            <h1 className="productName">{productview.productName}</h1>
+            {/* <p className="category">{productview.Category}</p> */}
+            <p className="category">{getProductType(product.type)}</p>
+            {/* <h1 className="productName">{productview.productName}</h1> */}
+            <h1 className="productName">{product.productName}</h1>
           </div>
 
           <div className="brandWrap">
