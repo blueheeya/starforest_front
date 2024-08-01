@@ -4,6 +4,7 @@ import {
     Route,
     Routes,
     useLocation,
+    useNavigate,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -63,7 +64,7 @@ import ModalStore from "./components/Modal/ModalStore";
 import ModalContext from "./components/Modal/ModalContext";
 import { useSelector } from "react-redux";
 import { ReviewProvider } from "./components/User/ReviewContext";
-
+import Loding from "./page/Loding";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -109,7 +110,6 @@ function LayoutType() {
     const isHeaderType2 = HeaderComponent === HeaderType2;
     const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
     const isHeaderType4 = HeaderComponent === HeaderType4;
-
 
     const [modalNum, setModalNum] = useState(0);
     const [modalView, setModalView] = useState(false);
@@ -203,8 +203,27 @@ function LayoutType() {
 }
 function App() {
     const loginState = useSelector((state) => state.loginSlice);
-    console.log(loginState)
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        // 로그인 상태가 변할 때만 실행되도록 의존성 배열에 loginState.email 추가
+        if (loginState.email) {
+            setIsLoading(false); // 로그인이 확인되면 로딩 해제
+        } else {
+            setTimeout(() => {
+                // 일정 시간 후 로그인 페이지로 이동
+                if (!loginState.email) {
+                    navigate("/member/login");
+                }
+                setIsLoading(false); // 타임아웃 후에도 로딩 상태 해제
+            }, 4000);
+        }
+    }, [loginState.email, navigate]);
+
+    if (isLoading) {
+        return <Loding />;
+    }
     return (
         <>
             <Routes>
