@@ -4,51 +4,57 @@ import { useNavigate, useParams } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
 import ModalContext from "../../components/Modal/ModalContext";
 import axios from "axios";
-function StoreOrderView() {
-    const { id } = useParams();
-    const [quantity, setQuantity] = useState(1);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
-    const [product, setProduct] = useState(null); //상품 상태
-    const [user, setUser] = useState(null); //유저 상태
-    const { modalOpen } = useContext(ModalContext);
-    const navigate = useNavigate();
-    const handleReviewButtonClick = () => {
-        modalOpen(0, {
-            onSubmit: handleReviewSubmit,
-        });
-    };
 
-    useEffect(() => {
-        //상품데이터요청
-        const fetchProductData = async () => {
-            try {
-                const res = await axios.get(
-                    `http://localhost:8080/user/store/order/view/${id}`
-                );
-                setProduct(res.data.product);
-            } catch (error) {
-                console.error("Error fetching product", error);
-            }
+const host = `${process.env.REACT_APP_SERVER_URL}`;
+function StoreOrderView(modal) {
+  const { id } = useParams();
+  const [quantity, setQuantity] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
+  const [product, setProduct] = useState(null); //상품 상태
+  const [user, setUser] = useState(null); //유저 상태
+  const { modalOpen } = useContext(ModalContext);
+  const navigate = useNavigate();
+  const handleReviewButtonClick = () => {
+    modalOpen(0, {
+      onSubmit: handleReviewSubmit,
+    });
+  };
+
+  useEffect(() => {
+    //상품데이터요청
+    const fetchProductData = async () => {
+      try {
+        const res = await axios.get(`${host}store/order/view/${id}`);
+
+        const data = {
+          product_id: product.id,
+          user_id: user.id,
         };
+        // modal(data);
+        setProduct(res.data.product);
+      } catch (error) {
+        console.error("Error fetching product", error);
+      }
+    };
     }, []);
 
-    const handleReviewSubmit = (reviewContent) => {
-        setIsReviewSubmitted(true);
-        setIsModalOpen(false);
-        try {
-            //리뷰제출
-            const reviewData = {
-                content: reviewContent,
-            };
-        } catch (error) {
-            console.error("Error fetching review", error);
-        }
-        navigate("/user/store/review/list", {
-            state: { newReview: reviewContent },
-        });
-    };
-
+  const handleReviewSubmit = (reviewContent) => {
+    setIsReviewSubmitted(true);
+    setIsModalOpen(false);
+    try {
+      //리뷰제출
+      const reviewData = {
+        content: product.content,
+      };
+    } catch (error) {
+      console.error("Error fetching review", error);
+    }
+    navigate("/user/store/review/list", {
+      state: { newReview: reviewContent },
+    });
+  };
+  
     return (
         <>
             <div className="OrderViewBox">

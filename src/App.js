@@ -12,9 +12,9 @@ import Container from "./components/Layout/Container";
 import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
-    HeaderType2,
-    HeaderTypeNone,
-    HeaderType4,
+  HeaderType2,
+  HeaderTypeNone,
+  HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
 import Menu from "./components/Layout/Menu";
@@ -69,137 +69,131 @@ import Loding from "./page/Loding";
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
 const showFooterPath = [
-    "/",
-    "/store/view",
-    "/user/mypage",
-    "/camp/list",
-    "/camp/reservation",
-    "/camp/pay",
-    "/store/pay",
-    "/diary/list",
-    "/diary/write",
-    "/diary/view",
-    "/user/store/order/view",
-    "/user/notice",
-    "/user/qna",
-    "/user/mypage/management",
-    "/user/camp/reservation/list",
-    "/user/camp/reservation/view",
-    "/user/store/review/list",
-    "/user/camp/like/list",
-    "/user/diary/list",
+  "/",
+  "/store/view",
+  "/user/mypage",
+  "/camp/list",
+  "/camp/reservation",
+  "/camp/pay",
+  "/store/pay",
+  "/diary/list",
+  "/diary/write",
+  "/diary/view",
+  "/user/store/order/view",
+  "/user/notice",
+  "/user/qna",
+  "/user/mypage/management",
+  "/user/camp/reservation/list",
+  "/user/camp/reservation/view",
+  "/user/store/review/list",
+  "/user/camp/like/list",
+  "/user/diary/list",
 ];
 function LayoutType() {
-    function getHeaderConfig(pathname) {
-        for (const [path, config] of Object.entries(headerConfig)) {
-            if (matchPath(path, pathname)) {
-                return config;
-            }
-        }
+  function getHeaderConfig(pathname) {
+    for (const [path, config] of Object.entries(headerConfig)) {
+      if (matchPath(path, pathname)) {
+        return config;
+      }
     }
-    const location = useLocation();
-    const {
-        title = "홈",
-        component: HeaderComponent = HeaderType2,
-        titleStore = false,
-    } = getHeaderConfig(location.pathname) ?? {};
+  }
+  const location = useLocation();
+  const {
+    title = "홈",
+    component: HeaderComponent = HeaderType2,
+    titleStore = false,
+  } = getHeaderConfig(location.pathname) ?? {};
 
-    // 메뉴
-    const showMenu = showMenuPath.includes(location.pathname);
-    const showFooter = showFooterPath.includes(location.pathname);
-    const isHeaderType2 = HeaderComponent === HeaderType2;
-    const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
-    const isHeaderType4 = HeaderComponent === HeaderType4;
+  // 메뉴
+  const showMenu = showMenuPath.includes(location.pathname);
+  const showFooter = showFooterPath.includes(location.pathname);
+  const isHeaderType2 = HeaderComponent === HeaderType2;
+  const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
+  const isHeaderType4 = HeaderComponent === HeaderType4;
 
-    const [modalNum, setModalNum] = useState(0);
-    const [modalView, setModalView] = useState(false);
-    const modalData = [
-        <ModalReview key="review" />,
-        <ModalStore key="store" />,
-        <ModalResions key="resions" />,
-    ];
+  const [modalNum, setModalNum] = useState(0);
+  const [modalView, setModalView] = useState(false);
+  const modalData = [
+    <ModalReview key="review" />,
+    <ModalStore key="store" />,
+    <ModalResions key="resions" />,
+  ];
+  const [modalDetail, setModalDetail] = useState(null);
     const [modalDetail, setModalDetail] = useState(null);
 
-    function modalOpen(idx, data = null) {
-        setModalView(true);
-        setModalNum(idx);
-        setModalDetail(data);
+  function modalOpen(idx, data = null) {
+    setModalView(true);
+    setModalNum(idx);
+    setModalDetail(data);
+  }
+
+  function modalClose() {
+    setModalView(false);
+    setModalDetail(null);
+  }
+
+  function modalSubmit() {
+    setModalView(false);
+  }
+
+  useEffect(() => {
+    const containerWrapElement = document.querySelector(".containerWrap");
+
+    if (modalView) {
+      containerWrapElement.style.overflow = "hidden";
+    } else {
+      containerWrapElement.style.overflow = "auto";
     }
-
-    function modalClose() {
-        setModalView(false);
-        setModalDetail(null);
-    }
-
-    function modalSubmit() {
-        setModalView(false);
-    }
-
-    useEffect(() => {
-        const containerWrapElement = document.querySelector(".containerWrap");
-
-        if (modalView) {
-            containerWrapElement.style.overflow = "hidden";
-        } else {
-            containerWrapElement.style.overflow = "auto";
-        }
-        return () => {
-            containerWrapElement.style.overflow = "auto";
-        };
-    }, [modalView]);
-    return (
-        <ModalContext.Provider
-            value={{
-                modalOpen,
-                modalClose,
-                modalDetail,
-                setModalDetail,
-            }}
-        >
-            <BackWrap>
-                <Container>
-                    {/* {modalView && modalData[modalNum] && (
+    return () => {
+      containerWrapElement.style.overflow = "auto";
+    };
+  }, [modalView]);
+  return (
+    <ModalContext.Provider
+      value={{
+        modalOpen,
+        modalClose,
+        modalDetail,
+        setModalDetail,
+      }}
+    >
+      <BackWrap>
+        <Container>
+          {/* {modalView && modalData[modalNum] && (
                         <div>
                             {React.cloneElement(modalData[modalNum], {
                                 onClick: modalClose,
                             })}
                         </div>
                     )} */}
-                    {modalView && modalData[modalNum] && (
-                        <div>
-                            {React.cloneElement(modalData[modalNum], {
-                                onClick: modalClose,
-                                data: modalDetail,
-                                onSubmit: modalDetail?.onSubmit,
-                            })}
-                        </div>
-                    )}
-                    <HeaderComponent
-                        titleStore={titleStore}
-                        modalOpen={modalOpen}
-                    >
-                        {title}
-                    </HeaderComponent>
-                    <ContentWrap
-                        modalOpen={modalOpen}
-                        className={` ${
-                            isHeaderTypeNone || isHeaderType4
-                                ? "cntSearchView"
-                                : ""
-                        } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
-                    >
-                        <Outlet />
-                    </ContentWrap>
-                    {showFooter && (
-                        <Footer
-                            className={`${showMenu ? "footerBottom" : ""}`}
-                        />
-                    )}
-                    {showMenu && <Menu />}
-                </Container>
-            </BackWrap>
-        </ModalContext.Provider>
-    );
+          {modalView && modalData[modalNum] && (
+            <div>
+              {React.cloneElement(modalData[modalNum], {
+                onClick: modalClose,
+                data: modalDetail,
+                onSubmit: modalDetail?.onSubmit,
+              })}
+            </div>
+          )}
+          <HeaderComponent titleStore={titleStore} modalOpen={modalOpen}>
+            {title}
+          </HeaderComponent>
+          <ContentWrap
+            modalOpen={modalOpen}
+            className={` ${
+              isHeaderTypeNone || isHeaderType4 ? "cntSearchView" : ""
+            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+          >
+            <Outlet />
+          </ContentWrap>
+          {showFooter && (
+            <Footer className={`${showMenu ? "footerBottom" : ""}`} />
+          )}
+          {showMenu && <Menu />}
+        </Container>
+      </BackWrap>
+    </ModalContext.Provider>
+  );
 }
 function App() {
     const loginState = useSelector((state) => state.loginSlice);

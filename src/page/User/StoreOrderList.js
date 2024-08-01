@@ -4,6 +4,7 @@ import Icon from "../../components/Icon/Icon";
 import UserOrderList from "../../components/User/UserOrderList";
 import axiosInstance from "../../utils/axios";
 import axios from "axios";
+const host = `${process.env.REACT_APP_SERVER_URL}`;
 
 function StoreOrderList() {
   useEffect(() => {
@@ -12,9 +13,7 @@ function StoreOrderList() {
 
   const getAllOrderList = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:8080/user/store/order/list"
-      );
+      const res = await axios.get(`${host}user/store/order/list`);
       console.log(res.data);
     } catch (error) {
       console.error(error);
