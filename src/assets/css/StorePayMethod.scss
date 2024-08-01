@@ -19,6 +19,27 @@ $btnText: 16px;
 $radiusDefault: 10px;
 $radiusSmall: 5px;
 
+.storeUserInfoWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+
+    .storeUserBtn {
+        width: 350px;
+        height: 50px;
+        border-radius: $radiusDefault;
+        background-color: $PrimaryOff;
+        font-size: $btnText;
+        font-weight: bold;
+        color: white;
+    }
+
+    :hover {
+        background-color: $PrimaryColor;
+    }
+}
+
 .storePayMethod {
     padding: 20px 32px;
     background-color: #ffffff;
@@ -56,9 +77,13 @@ $radiusSmall: 5px;
                 .priceDetail,
                 .dFree,
                 .levelPrive {
-                    color: #f24e1e;
+                    color: $textDefault;
                     font-size: $titleText;
                     font-weight: bold;
+                }
+
+                .levelPrive {
+                    text-decoration: line-through;
                 }
             }
         }
