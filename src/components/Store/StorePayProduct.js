@@ -7,11 +7,8 @@ function StorePayProduct({ productInfo }) {
 
 
 
-  const disprice = (Math.floor(productInfo?.price * 0.007) * 100) * quantity //할인 되었던 가격
-  //진짜 상품 가격
-  const realPrice = productInfo?.price + disprice
-  console.log(realPrice * 0.7);
-  const orPrice = (productInfo?.price + disprice) * quantity
+  const payPrice = productInfo?.price * quantity
+  const orignPrice = (Math.floor(productInfo?.price / 0.7 / 1000) * 1000) * quantity
 
 
   //마이너스, 최소수량
@@ -56,8 +53,8 @@ function StorePayProduct({ productInfo }) {
             </button>
           </div>
           <div className="innerPrice">
-            <div className="priceSpan">{orPrice.toLocaleString()}원</div>
-            <div className="priceMain">{disprice.toLocaleString()}원</div>
+            <div className="priceSpan">{orignPrice.toLocaleString()}원</div>
+            <div className="priceMain">{payPrice.toLocaleString()}원</div>
           </div>
         </div>
       </div>
