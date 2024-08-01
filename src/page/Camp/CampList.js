@@ -1,13 +1,20 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+    useCallback,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import CampListCard from "../../components/Camp/CampListCard";
-import { useNavigate } from "react-router-dom";
-import Input from "../../components/Form/Input";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import SearchInput from "../../components/Form/SearchInput";
 import axios from "axios";
 import btnBack from "../../assets/images/btnBack.png";
 import { debounce } from "lodash";
+import ModalContext from "../../components/Modal/ModalContext";
+import PageLoading from "../../components/Layout/PageLoading";
 
-function CampList({ modalOpen, className }) {
+function CampList({ className }) {
     const [filteredCamps, setFilteredCamps] = useState([]);
     const [camps, setCamps] = useState([]);
     const [page, setPage] = useState(0);
@@ -17,6 +24,7 @@ function CampList({ modalOpen, className }) {
     const [selectedOption, setSelectedOption] = useState("");
     const observer = useRef();
     const navigator = useNavigate();
+    const { modalOpen } = useContext(ModalContext);
 
     const lastCampElementRef = (node) => {
         if (loading) return;
@@ -46,15 +54,20 @@ function CampList({ modalOpen, className }) {
             }
             const response = await axios.get(url);
             const newCamps = response.data;
-            if (newCamps.length === 0) {
-                setHasMore(false);
-            } else {
-                setCamps((prevCamps) => [...prevCamps, ...newCamps]);
-            }
+            setTimeout(() => {
+                if (newCamps.length === 0) {
+                    setHasMore(false);
+                } else {
+                    setCamps((prevCamps) => [...prevCamps, ...newCamps]);
+                }
+                setLoading(false); // 로딩 종료
+            }, 2000); // 2초 후에 실행
         } catch (error) {
             console.error("Error fetching camp data:", error);
         } finally {
-            setLoading(false);
+            setTimeout(() => {
+                setLoading(false); // 에러 발생 시에도 2초 후 로딩 종료
+            }, 2000);
         }
     };
 
@@ -182,7 +195,7 @@ function CampList({ modalOpen, className }) {
                             <CampListCard camp={camp} />
                         </div>
                     ))}
-                    {loading && <p>Loading...</p>}
+                    {loading && <PageLoading />}
                     {!hasMore && <p>No more camps to load</p>}
                 </div>
             </div>

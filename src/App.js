@@ -5,6 +5,7 @@ import {
     Routes,
     useLocation,
     useNavigate,
+    useOutletContext,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -67,7 +68,6 @@ import { ReviewProvider } from "./components/User/ReviewContext";
 import Loding from "./page/Loding";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
-
 const showFooterPath = [
     "/",
     "/store/view",
@@ -188,7 +188,7 @@ function LayoutType() {
                                 : ""
                         } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
                     >
-                        <Outlet />
+                        <Outlet context={{ modalOpen }} />
                     </ContentWrap>
                     {showFooter && (
                         <Footer

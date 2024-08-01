@@ -26,7 +26,7 @@ function Input({
             {iconName && (
                 <Icon
                     iconName={iconName}
-                    onClick={isOnclick ? isOnclick : undefined}
+                    onClick={isOnclick ? isOnclick : null}
                 />
             )}
             <input

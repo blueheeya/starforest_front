@@ -1,62 +1,105 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../../components/Icon/Icon";
 import Button from "../../components/Form/Button";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import PageLoading from "../../components/Layout/PageLoading";
+import { useSelector } from "react-redux";
 
 const Reservation = [
     {
         id: 1,
-        reservationNumber: 123123123,
-        campsiteId: "campsiteId",
-        userId: "userId",
-        startDate: "2024.06.15",
-        endDate: "2024.06.15",
-        createdAt: "2024.06.15 14:00",
+        reservation_number: 123123123,
+        campsite_id: "campsite_id",
+        user_email: "user_email",
+        start_date: "2024.06.15",
+        end_date: "2024.06.15",
+        created_at: "2024.06.15 14:00",
         isRecordWritten: false,
         isLink: "/user/camp/reservation/view",
     },
     {
         id: 2,
-        reservationNumber: 123123123,
-        campsiteId: "campsiteId",
-        userId: "userId",
-        startDate: "2024.06.15",
-        endDate: "2024.07.20",
-        createdAt: "2024.06.15 14:00",
+        reservation_number: 123123123,
+        campsite_id: "campsite_id",
+        user_email: "user_email",
+        start_date: "2024.06.15",
+        end_date: "2024.07.20",
+        created_at: "2024.06.15 14:00",
         isRecordWritten: true,
         isLink: "/user/camp/reservation/view",
     },
     {
         id: 3,
-        reservationNumber: 123123123,
-        campsiteId: "campsiteId",
-        userId: "userId",
-        startDate: "2024.06.15",
-        endDate: "2024.07.20",
-        createdAt: "2024.06.15 14:00",
+        reservation_number: 123123123,
+        campsite_id: "campsite_id",
+        user_email: "user_email",
+        start_date: "2024.06.15",
+        end_date: "2024.08.20",
+        created_at: "2024.06.15 14:00",
         isRecordWritten: false,
         isLink: "/user/camp/reservation/view",
     },
 ];
 
 function CampReservationList() {
+    const email = useSelector((state) => {
+        return state.loginSlice.email;
+    });
+    console.log(email);
+    const [CampReservation, setCampsReservation] = useState([]);
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+    const myReservation = async (req, res) => {
+        if (loading || !hasMore) return;
+        setLoading(true);
+        try {
+            let url = `http://localhost:8080/user/camp/list?page=${page}&size=${
+                page === 0 ? 20 : 5
+            }&email=${email}`;
+            const response = await axios.get(url);
+            const newCamps = response.data;
+            console.log(newCamps);
+            setTimeout(() => {
+                if (newCamps.length === 0) {
+                    setHasMore(false);
+                } else {
+                    setCampsReservation((prevCamps) => [
+                        ...prevCamps,
+                        ...newCamps,
+                    ]);
+                }
+                setLoading(false); // 로딩 종료
+            }, 2000); // 2초 후에 실행
+        } catch (error) {
+            console.error("Error fetching camp data:", error);
+        } finally {
+            setTimeout(() => {
+                setLoading(false); // 에러 발생 시에도 2초 후 로딩 종료
+            }, 2000);
+        }
+    };
+    useEffect(() => {
+        myReservation();
+    }, [page]);
     // 현재 날짜를 가져오는 함수
     const getCurrentDate = () => {
         return new Date().toISOString().split("T")[0];
     };
 
     // 버튼 표시 여부를 결정하는 함수
-    const shouldShowButton = (startDate, endDate) => {
+    const shouldShowButton = (start_date, end_date) => {
         const currentDate = new Date(getCurrentDate());
-        const reservationStart = new Date(startDate);
-        const reservationEnd = new Date(endDate);
+        const reservationStart = new Date(start_date);
+        const reservationEnd = new Date(end_date);
         return currentDate >= reservationStart && currentDate <= reservationEnd;
     };
 
     // 버튼 활성화 여부를 결정하는 함수
-    const isButtonActive = (endDate, isRecordWritten) => {
+    const isButtonActive = (end_date, isRecordWritten) => {
         const currentDate = new Date(getCurrentDate());
-        return new Date(endDate) >= currentDate && !isRecordWritten;
+        return new Date(end_date) >= currentDate && !isRecordWritten;
     };
     return (
         <>
@@ -79,14 +122,16 @@ function CampReservationList() {
                         <p>&#8729; 예약번호 유출에 주의해 주세요.</p>
                         <p>&#8729; 당일 예약 취소는 불가합니다.</p>
                     </div>
-                    {Reservation.map((reserItem) => (
+                    {CampReservation.map((reserItem) => (
                         <div className="myCampReserWrap" key={reserItem.id}>
                             <div className="myCampDate">
-                                <span>{reserItem.createdAt}</span>
+                                <span>{reserItem.created_at}</span>
                                 <span>
                                     예약번호
-                                    <Link to={reserItem.isLink}>
-                                        {reserItem.reservationNumber}
+                                    <Link
+                                        to={`/user/camp/reservation/view/${reserItem.id}`}
+                                    >
+                                        {reserItem.reservation_number}
                                     </Link>
                                 </span>
                             </div>
@@ -101,15 +146,15 @@ function CampReservationList() {
                                     <ul>
                                         <li>오토캠핑</li>
                                         <li>캠프하다</li>
-                                        <li>{`${reserItem.startDate} ~ ${reserItem.endDate}`}</li>
+                                        <li>{`${reserItem.start_date} ~ ${reserItem.end_date}`}</li>
                                     </ul>
                                     <div className="myCampDiary">
                                         {shouldShowButton(
-                                            reserItem.startDate,
-                                            reserItem.endDate
+                                            reserItem.start_date,
+                                            reserItem.end_date
                                         ) &&
                                             (isButtonActive(
-                                                reserItem.endDate,
+                                                reserItem.end_date,
                                                 reserItem.isRecordWritten
                                             ) ? (
                                                 <Link
@@ -133,6 +178,8 @@ function CampReservationList() {
                             </div>
                         </div>
                     ))}
+                    {loading && <PageLoading />}
+                    {!hasMore && <p>No more camps to load</p>}
                 </div>
             )}
         </>
