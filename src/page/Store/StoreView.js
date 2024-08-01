@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Tabs from "../../components/Store/Tabs";
 import StoreToggle from "../../components/Store/StoreToggle";
@@ -9,7 +10,6 @@ import Icon from "../../components/Icon/Icon";
 import "../../assets/css/storeStyle.scss";
 import ModalContext from "../../components/Modal/ModalContext";
 import Button from "../../components/Form/Button";
-import axiosInstance from "../../utils/axios";
 import PurchaseModal from "../../components/Store/PurchaseModal";
 import ReviewList from "../../components/Store/ReviewList";
 import axios from "axios";
@@ -19,6 +19,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Pagination } from "swiper/modules";
+import ModalStore from "../../components/Modal/ModalStore";
 
 const host = `${process.env.REACT_APP_SERVER_URL}`;
 const productview = {
@@ -66,21 +67,25 @@ const reviewsArr = [
 ];
 
 function StoreView(props) {
+  const loginState = useSelector((state) => state.loginSlice);
+
   const { productId } = useParams(); //URL파라미터에서 상품ID를 찾아서 가져옴
   const [product, setProduct] = useState({});
   const [detailView, setDetailView] = useState();
   const [reviewList, setReviewList] = useState([]);
   const [error, setError] = useState(null);
-  const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState(tabBar[0].id);
   const [showFullImage, setShowFulllImage] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState({ product_name: "", price: 0 });
+  // const [showModal, setShowModal] = useState(false);
+  // const [modalData, setModalData] = useState({ product_name: "", price: 0 });
   const [detailImage, setDetailImage] = useState("default-image.jpg");
-  // const [reviewList, setReviewList] = useState(reviewsArr);
   const [loading, setLoading] = useState(true);
 
-  const { modalOpen } = useContext(ModalContext);
+  // const { modalOpen } = useContext(ModalContext);
+  const navigate = useNavigate();
+  const usePurchaseMove = () => {
+    navigate("store/pay");
+  };
 
   const getProductType = (type) => {
     switch (type) {
@@ -105,8 +110,11 @@ function StoreView(props) {
   //       const cartItem = {
   //         product_id: product.productId,
   //         quantity: 1,
-  //         price: product.price,
+  //         user_email: loginState.email,
+  //         result: false,
   //       };
+  //       console.log("최보람은 바보다.");
+  //       console.log(cartItem);
 
   //       // 장바구니에 상품 추가
   //       const response = await axios.post(
@@ -127,6 +135,7 @@ function StoreView(props) {
   //     }
   //   }
   // };
+
   const fetchStoreDetail = async () => {
     try {
       const res = await axios.get(`${host}store/view/${productId}`);
@@ -148,21 +157,19 @@ function StoreView(props) {
     fetchStoreDetail();
   }, [productId]);
   //리뷰가져오기
-  // useEffect(() => {
-  //   const fetchReviews = async () => {
-  //     try {
-  //       const res = await axios.get(
-  //          `${host}reviews/${productId}`
-  //       );
-  //       console.log(res.data);
-  //       setReviewList(res.data);
-  //     } catch (error) {
-  //       console.error("Error fetching reviews", error);
-  //       setError("리뷰를 불러오는데 실패했습니다.");
-  //     }
-  //   };
-  //   fetchReviews();
-  // }, [productId]);
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await axios.get(`${host}review/${productId}`);
+        console.log(res.data);
+        setReviewList(res.data);
+      } catch (error) {
+        console.error("Error fetching reviews", error);
+        setError("리뷰를 불러오는데 실패했습니다.");
+      }
+    };
+    fetchReviews();
+  }, [productId]);
 
   //리뷰삭제
   const deleteReview = async (reviewId) => {
@@ -197,8 +204,6 @@ function StoreView(props) {
   const [defaultView, setDefaultView] = useState({
     detailImg: "default-image.jpg",
   });
-
-  const emptyProductHandler = () => { };
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -297,7 +302,7 @@ function StoreView(props) {
           <div className="brandWrap">
             <Icon iconName="iconBrend" />
             <p className="brand"> {productview.brand} </p>
-            <p className="brandName">{productview.brandName}</p>
+            <p className="brandName">{product.brandName}</p>
           </div>
         </div>
       </div>
@@ -336,12 +341,6 @@ function StoreView(props) {
           구매하기
         </Button>
       </div>
-      {/* <PurchaseModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        product_name={modalData.productName}
-        price={modalData.price}
-      /> */}
       <div>
         <div className="tabMenuWrap">
           <ul className="tabList">

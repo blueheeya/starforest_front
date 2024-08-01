@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import CampListCard from "../../components/Camp/CampListCard";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Form/Input";
+import SearchInput from "../../components/Form/SearchInput";
 import axios from "axios";
 import btnBack from "../../assets/images/btnBack.png";
 import { debounce } from "lodash";
@@ -130,7 +131,7 @@ function CampList({ modalOpen, className }) {
                         <img src={btnBack} />
                     </button>
                     <div className="serchBox">
-                        <Input
+                        <SearchInput
                             iconName="iconSerch"
                             className="searchInput"
                             placeholder="검색어를 입력하세요."

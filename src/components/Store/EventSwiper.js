@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pagination, A11y } from "swiper/modules";
+import { Autoplay, Pagination, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -42,10 +42,14 @@ function EventSwiper({ className }) {
     return (
         <div className={`swiperEvent ${className}`}>
             <Swiper
-                modules={[Pagination, A11y]}
+                modules={[Autoplay, Pagination, A11y]}
                 spaceBetween={0}
                 slidesPerView={1}
                 pagination={true}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
             >
                 {SwiperEvent.map((eventItem, index) => {
                     return (

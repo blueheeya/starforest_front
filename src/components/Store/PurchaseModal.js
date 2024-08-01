@@ -14,7 +14,7 @@ const PurchaseModal = ({ isOpen, onClose, productName, price, productId }) => {
 
   useEffect(() => {
     if (isOpen) {
-      //document.querySelector(".modalContainer").style.overflow = "hidden";
+      document.querySelector(".modalContainer").style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }

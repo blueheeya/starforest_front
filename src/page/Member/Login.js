@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../../components/Form/Input";
 import Button from "../../components/Form/Button";
 import Icon from "../../components/Icon/Icon";
 import { Link } from "react-router-dom";
 import Email from "../../components/Member/Email";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import useCustomLogin from "../hooks/useCustomLogin";
+import logoDefault from "../../assets/images/logoDefault.png";
 
 const initState = {
     email: "",
@@ -13,7 +14,6 @@ const initState = {
 };
 
 function Login() {
-
     const [loginParam, setLoginParam] = useState({ ...initState });
 
     const { doLogin, moveToPath } = useCustomLogin();
@@ -21,9 +21,11 @@ function Login() {
     const loginState = useSelector((state) => state.loginSlice);
 
     const changeHandller = (e) => {
-        setLoginParam(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
+        setLoginParam((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
     };
-
 
     const handleClickLogin = async (e) => {
         e.preventDefault();
@@ -46,10 +48,14 @@ function Login() {
                     별이 빛나는 밤, <br />
                     너와 나의 감성 캠핑
                 </h2>
-                <Icon iconName="logoDefault" />
+                <img src={logoDefault} alt="별숲" />
             </div>
             <div className="memberInputWrap cntMarginBottom">
-                <Email placeholder="이메일을 입력해주세요."  changeHand={changeHandller} email={loginParam.email}/>
+                <Email
+                    placeholder="이메일을 입력해주세요."
+                    changeHand={changeHandller}
+                    email={loginParam.email}
+                />
                 <Input
                     iconName="inputIconPw2"
                     className="userRstInput"
@@ -59,7 +65,11 @@ function Login() {
                     onChange={changeHandller}
                 />
             </div>
-            <Button defaultBtn={true} className="wrapMarginBottom" onClick={handleClickLogin}>
+            <Button
+                defaultBtn={true}
+                className="wrapMarginBottom"
+                onClick={handleClickLogin}
+            >
                 로그인
             </Button>
             <div className="btnWrap">
@@ -87,4 +97,3 @@ function Login() {
 }
 
 export default Login;
-
