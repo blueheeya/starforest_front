@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import CampListCard from "../../components/Camp/CampListCard";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Form/Input";
+import SearchInput from "../../components/Form/SearchInput";
 import axios from "axios";
 import btnBack from "../../assets/images/btnBack.png";
 import { debounce } from "lodash";
@@ -34,8 +35,9 @@ function CampList({ modalOpen, className }) {
         if (loading || !hasMore) return;
         setLoading(true);
         try {
-            let url = `http://localhost:8080/camp/list?page=${page}&size=${page === 0 ? 20 : 5
-                }`;
+            let url = `http://localhost:8080/camp/list?page=${page}&size=${
+                page === 0 ? 20 : 5
+            }`;
             // if (inputData) {
             //     url += `&query=${inputData}`;
             // }
@@ -130,13 +132,13 @@ function CampList({ modalOpen, className }) {
                         <img src={btnBack} />
                     </button>
                     <div className="serchBox">
-                        <Input
+                        <SearchInput
                             iconName="iconSerch"
                             className="searchInput"
                             placeholder="검색어를 입력하세요."
                             //동일 수정
                             onChange={handleInput}
-                        //동일 완료
+                            //동일 완료
                         />
                         <button onClick={serchCamp} style={{ width: 40 }}>
                             검색
