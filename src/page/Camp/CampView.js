@@ -80,16 +80,16 @@ function CampView() {
     //동일 수정끝
 
   //동일 수정
-  const campScript = async () => {
-    try {
-      const res = await axios.post(`http://localhost:8080/camp/view/${id}`);
-      console.log(res.data);
-      setCampItem(res.data);
-      parseFacilityString(res.data.posblFcltyCl);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const campScript = async () => {
+  //   try {
+  //     const res = await axios.post(`http://localhost:8080/camp/view/${id}`);
+  //     console.log(res.data);
+  //     setCampItem(res.data);
+  //     parseFacilityString(res.data.posblFcltyCl);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   //동일 수정끝
 
