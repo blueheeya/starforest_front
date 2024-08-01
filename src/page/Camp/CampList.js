@@ -149,13 +149,13 @@ function CampList({ modalOpen, className }) {
                     <button className="btnWrap" onClick={moveMap}>
                         맵
                     </button>
-                    <Input
+                    <SearchInput
                         iconName="iconRegion"
                         className="searchInput"
                         placeholder=""
                         isLink={true}
                         isOnclick={() => modalOpen(2)}
-                    ></Input>
+                    ></SearchInput>
                     <select
                         style={{ width: "250px" }}
                         onChange={handleOptionChange}
@@ -169,9 +169,6 @@ function CampList({ modalOpen, className }) {
                 </div>
             </div>
             <div>
-                <div className="campViewWrap">
-                    전체 :{filteredCamps.length}개
-                </div>
                 <div>
                     {filteredCamps.map((camp, index) => (
                         <div
