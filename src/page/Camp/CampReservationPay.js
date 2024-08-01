@@ -19,7 +19,7 @@ function CampReservationPay() {
 
   const getReservation = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/camp/reservation/infos/${id}`)
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}camp/reservation/infos/${id}`)
       setCampInfo(res.data)
       console.log(res.data);
     } catch (error) {

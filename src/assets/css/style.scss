@@ -1,6 +1,7 @@
 @charset "utf-8";
 @import "../fonts/font.css";
 @import "icons.scss";
+@import "loading.scss";
 @import "./datepicker.css";
 //main page
 @import "mainStyle.scss";
@@ -1014,7 +1015,23 @@ button {
 .cntWarpPadding {
     padding: 0 32px;
 }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
 @media screen and (max-width: 1024px) {
     /****** layout ******/
     /* container */

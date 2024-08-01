@@ -40,29 +40,29 @@ function CampView() {
   const [posbl, setPosbl] = useState("");
   const [isLiked, setIsLiked] = useState(false);
 
-  useEffect(() => {
-    //동일 수정
-    campScript();
-  }, []);
-  //동일 수정끝
+    useEffect(() => {
+        //동일 수정
+        campScript();
+    }, []);
+    //동일 수정끝
 
-  //동일 수정
-  const parseFacilityString = (facilityString) => {
-    try {
-      // console.log(facilityString);
-      // '를 "로 바꾸기
-      const jsonString = facilityString.replace(/'/g, '"');
-      // JSON 파싱
-      const facilityArray = JSON.parse(jsonString).join(", ");
-      // 배열 요소들을 문자열로 결합
-      // console.log(facilityArray);
-      setPosbl(facilityArray);
-    } catch (error) {
-      console.error("Error parsing facility string:", error);
-      return facilityString;
-    }
-  };
-  //동일 수정끝
+    //동일 수정
+    const parseFacilityString = (facilityString) => {
+        try {
+            // console.log(facilityString);
+            // '를 "로 바꾸기
+            const jsonString = facilityString.replace(/'/g, '"');
+            // JSON 파싱
+            const facilityArray = JSON.parse(jsonString).join(", ");
+            // 배열 요소들을 문자열로 결합
+            // console.log(facilityArray);
+            setPosbl(facilityArray);
+        } catch (error) {
+            console.error("Error parsing facility string:", error);
+            return facilityString;
+        }
+    };
+    //동일 수정끝
 
   //동일 수정
   const campScript = async () => {

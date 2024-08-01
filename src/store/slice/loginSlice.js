@@ -4,24 +4,24 @@ import { getCookie, removeCookie, setCookie } from "../../utils/cookieUtil";
 
 const initState = {
     email: null,
-    isLoading: false,
-    error:null,
-    data:{}
+    isLoading: true,
+    error: null,
+    data: {},
 };
 
 const loadMemberCookie = () => {
-  const memberInfo = getCookie("member");
-  return memberInfo;
+    const memberInfo = getCookie("member");
+    return memberInfo;
 };
 
 export const loginPostAsync = createAsyncThunk(
-    'loginPostAsync',
+    "loginPostAsync",
     async (loginParam, { rejectWithValue }) => {
         try {
             const res = await loginPost(loginParam);
-            console.log(res)
-            console.log("여기는 slice")
-            return res
+            console.log(res);
+            console.log("여기는 slice");
+            return res;
         } catch (error) {
             return rejectWithValue(error.response.data);
         }
@@ -29,22 +29,22 @@ export const loginPostAsync = createAsyncThunk(
 );
 
 const loginSlice = createSlice({
-    name: 'loginSlice',
+    name: "loginSlice",
     initialState: loadMemberCookie() || initState,
 
     reducers: {
         login: (state, action) => {
-          console.log("login...");
-          console.log(action.payload);
-          return { email: action.payload.email };
+            console.log("login...");
+            console.log(action.payload);
+            return { email: action.payload.email };
         },
         logout: () => {
-          console.log("logout...");
+            console.log("logout...");
 
-          removeCookie("member");
-          return { ...initState };
+            removeCookie("member");
+            return { ...initState };
         },
-      },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loginPostAsync.pending, (state) => {
@@ -69,9 +69,9 @@ const loginSlice = createSlice({
             })
             .addCase(loginPostAsync.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload || '로그인 실패';
+                state.error = action.payload || "로그인 실패";
             });
-    }
+    },
 });
 
 export default loginSlice.reducer;
