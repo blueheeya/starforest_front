@@ -17,8 +17,10 @@ function Input({
     var temp = ""
     //동일 수정
     const handleChange = (e) => {
-        temp += e.target.value
-        onChange(temp)
+        // temp += e.target.value
+        // onChange(temp)
+        temp+=e.target.value
+        onChange? onChange(e): console.log(e.target.value)
     }
     //동일 수정
     return (
