@@ -4,7 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
 import ModalContext from "../../components/Modal/ModalContext";
 import axios from "axios";
-function StoreOrderView() {
+
+const host = `${process.env.REACT_APP_SERVER_URL}`;
+function StoreOrderView(modal) {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,9 +25,13 @@ function StoreOrderView() {
     //상품데이터요청
     const fetchProductData = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8080/user/store/order/view/${id}`
-        );
+        const res = await axios.get(`${host}store/order/view/${id}`);
+
+        const data = {
+          product_id: product.id,
+          user_id: user.id,
+        };
+        // modal(data);
         setProduct(res.data.product);
       } catch (error) {
         console.error("Error fetching product", error);
@@ -39,7 +45,7 @@ function StoreOrderView() {
     try {
       //리뷰제출
       const reviewData = {
-        content: reviewContent,
+        content: product.content,
       };
     } catch (error) {
       console.error("Error fetching review", error);

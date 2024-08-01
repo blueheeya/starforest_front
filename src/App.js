@@ -231,11 +231,7 @@ function App() {
           <Route path="/diary/view" index element={<DiaryView />}></Route>
           {/* store  */}
           <Route path="/store/list" index element={<StoreList />}></Route>
-          <Route
-            path="/store/view/:productId"
-            index
-            element={<StoreView />}
-          ></Route>
+          <Route path="/store/view" index element={<StoreView />}></Route>
           <Route path="/store/pay" index element={<StorePay />}></Route>
           <Route
             path="/store/pay/complete"
