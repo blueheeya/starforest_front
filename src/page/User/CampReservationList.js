@@ -43,6 +43,7 @@ const Reservation = [
 ];
 
 function CampReservationList() {
+    const host = `${process.env.REACT_APP_SERVER_URL}user/camp/list`;
     const email = useSelector((state) => {
         return state.loginSlice.email;
     });
@@ -55,7 +56,7 @@ function CampReservationList() {
         if (loading || !hasMore) return;
         setLoading(true);
         try {
-            let url = `http://localhost:8080/user/camp/list?page=${page}&size=${
+            let url = `${host}?page=${page}&size=${
                 page === 0 ? 20 : 5
             }&email=${email}`;
             const response = await axios.get(url);
