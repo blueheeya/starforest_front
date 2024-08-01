@@ -237,7 +237,7 @@ function App() {
           ></Route>
           <Route path="/store/pay/:productId" index element={<StorePay />}></Route>
           <Route
-            path="/store/pay/complete"
+            path="/store/pay/complete/:productId/:orderId/:totalPrice/:tel/:name/:add/:addDetail"
             index
             element={<StorePayComplete />}
           ></Route>
