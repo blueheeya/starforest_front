@@ -84,7 +84,7 @@ function StoreView(props) {
   // const { modalOpen } = useContext(ModalContext);
   const navigate = useNavigate();
   const usePurchaseMove = () => {
-    navigate("store/pay");
+    navigate("/store/pay");
   };
 
   const getProductType = (type) => {
@@ -99,10 +99,7 @@ function StoreView(props) {
         return "알 수 없음";
     }
   };
-  const navigate = useNavigate();
-  const usePurchaseMove = () => {
-    navigate(`/store/pay/${productId}`);
-  };
+
   //axios________________________________________________________________________________
   // const handleButtonClick = async () => {
   //   if (product) {
