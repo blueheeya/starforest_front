@@ -13,7 +13,7 @@ import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
   HeaderType2,
-  HeaderType3,
+  HeaderTypeNone,
   HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
@@ -61,8 +61,11 @@ import React, { useContext, useEffect, useState } from "react";
 import ModalResions from "./components/Modal/ModalResions";
 import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
-// import ModalContext from "./components/Modal/ModalContext";
 import { ModalContext } from "./components/Modal/ModalContext";
+import { useSelector } from "react-redux";
+import { ReviewProvider } from "./components/User/ReviewContext";
+import Loding from "./page/Loding";
+import StoreReviewWrite from "./page/User/StoreReviewWrite";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -106,7 +109,7 @@ function LayoutType() {
   const showMenu = showMenuPath.includes(location.pathname);
   const showFooter = showFooterPath.includes(location.pathname);
   const isHeaderType2 = HeaderComponent === HeaderType2;
-  const isHeaderType3 = HeaderComponent === HeaderType3;
+  const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
   const isHeaderType4 = HeaderComponent === HeaderType4;
 
   const [modalNum, setModalNum] = useState(0);
@@ -128,6 +131,11 @@ function LayoutType() {
     setModalView(false);
     setModalDetail(null);
   }
+
+  function modalSubmit() {
+    setModalView(false);
+  }
+
   useEffect(() => {
     const containerWrapElement = document.querySelector(".containerWrap");
 
@@ -136,7 +144,6 @@ function LayoutType() {
     } else {
       containerWrapElement.style.overflow = "auto";
     }
-
     return () => {
       containerWrapElement.style.overflow = "auto";
     };
@@ -153,12 +160,12 @@ function LayoutType() {
       <BackWrap>
         <Container>
           {/* {modalView && modalData[modalNum] && (
-                      <div>
-                          {React.cloneElement(modalData[modalNum], {
-                              onClick: modalClose,
-                          })}
-                      </div>
-                  )} */}
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                            })}
+                        </div>
+                    )} */}
           {modalView && modalData[modalNum] && (
             <div>
               {React.cloneElement(modalData[modalNum], {
@@ -173,8 +180,9 @@ function LayoutType() {
           </HeaderComponent>
           <ContentWrap
             modalOpen={modalOpen}
-            className={` ${isHeaderTypeNone || isHeaderType4 ? "cntSearchView" : ""
-              } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+            className={` ${
+              isHeaderTypeNone || isHeaderType4 ? "cntSearchView" : ""
+            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
           >
             <Outlet />
           </ContentWrap>
@@ -250,7 +258,11 @@ function App() {
             index
             element={<StoreView />}
           ></Route>
-          <Route path="/store/pay/:productId" index element={<StorePay />}></Route>
+          <Route
+            path="/store/pay/:productId"
+            index
+            element={<StorePay />}
+          ></Route>
           <Route
             path="/store/pay/complete/:productId/:orderId/:totalPrice/:tel/:name/:add/:addDetail"
             index
@@ -289,9 +301,9 @@ function App() {
             element={<StoreOrderList />}
           ></Route>
           <Route
-            path="/user/store/order/view/:id"
+            path="/user/store/order/view/:productId"
             index
-            element={<StoreOrderView />}
+            element={<StoreReviewWrite />}
           ></Route>
           <Route
             path="/user/store/cart/list"
