@@ -84,7 +84,7 @@ function StoreView(props) {
   // const { modalOpen } = useContext(ModalContext);
   const navigate = useNavigate();
   const usePurchaseMove = () => {
-    navigate("/store/pay");
+    navigate(`/store/pay/${productId}`);
   };
 
   const getProductType = (type) => {
@@ -99,6 +99,7 @@ function StoreView(props) {
         return "알 수 없음";
     }
   };
+
   //axios________________________________________________________________________________
   // const handleButtonClick = async () => {
   //   if (product) {
@@ -337,7 +338,6 @@ function StoreView(props) {
           구매하기
         </Button>
       </div>
-
       <div>
         <div className="tabMenuWrap">
           <ul className="tabList">

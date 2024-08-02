@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -171,9 +172,9 @@ function LayoutType() {
             {title}
           </HeaderComponent>
           <ContentWrap
-            className={` ${
-              isHeaderType3 || isHeaderType4 ? "cntSearchView" : ""
-            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+            modalOpen={modalOpen}
+            className={` ${isHeaderTypeNone || isHeaderType4 ? "cntSearchView" : ""
+              } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
           >
             <Outlet />
           </ContentWrap>
@@ -187,6 +188,28 @@ function LayoutType() {
   );
 }
 function App() {
+  const loginState = useSelector((state) => state.loginSlice);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // 로그인 상태가 변할 때만 실행되도록 의존성 배열에 loginState.email 추가
+    if (loginState.email) {
+      setIsLoading(false); // 로그인이 확인되면 로딩 해제
+    } else {
+      setTimeout(() => {
+        // 일정 시간 후 로그인 페이지로 이동
+        if (!loginState.email) {
+          navigate("/member/login");
+        }
+        setIsLoading(false); // 타임아웃 후에도 로딩 상태 해제
+      }, 4000);
+    }
+  }, [loginState.email, navigate]);
+
+  if (isLoading) {
+    return <Loding />;
+  }
   return (
     <>
       <Routes>
@@ -196,19 +219,23 @@ function App() {
           <Route path="/camp/list" element={<CampList />}></Route>
           <Route path="/camp/list/map" element={<CampListMap />}></Route>
           <Route path="/camp/view/:id" element={<CampView />}></Route>
-          <Route path="/camp/view/map" index element={<CampViewMap />}></Route>
+          <Route
+            path="/camp/view/map/:id"
+            index
+            element={<CampViewMap />}
+          ></Route>
           <Route
             path="/camp/reservation/:id"
             index
             element={<CampReservation />}
           ></Route>
           <Route
-            path="/camp/pay"
+            path="/camp/pay/:id/:reservId"
             index
             element={<CampReservationPay />}
           ></Route>
           <Route
-            path="/camp/pay/complete"
+            path="/camp/pay/complete/:reservNum/:reservId/:name/:carNum/:request/:tel"
             index
             element={<CampReservationComplete />}
           ></Route>
@@ -223,9 +250,9 @@ function App() {
             index
             element={<StoreView />}
           ></Route>
-          <Route path="/store/pay" index element={<StorePay />}></Route>
+          <Route path="/store/pay/:productId" index element={<StorePay />}></Route>
           <Route
-            path="/store/pay/complete"
+            path="/store/pay/complete/:productId/:orderId/:totalPrice/:tel/:name/:add/:addDetail"
             index
             element={<StorePayComplete />}
           ></Route>
