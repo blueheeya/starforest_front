@@ -310,7 +310,7 @@ function App() {
                         element={<CampReservationList />}
                     ></Route>
                     <Route
-                        path="/user/camp/reservation/view"
+                        path="/user/camp/reservation/view/:reservationid"
                         index
                         element={<CampReservationView />}
                     ></Route>

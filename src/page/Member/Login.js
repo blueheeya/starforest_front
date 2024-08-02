@@ -61,6 +61,7 @@ function Login() {
                     className="userRstInput"
                     placeholder="비밀번호를 입력해주세요."
                     value={loginParam.password}
+                    type="password"
                     name="password"
                     onChange={changeHandller}
                 />

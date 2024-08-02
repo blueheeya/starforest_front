@@ -8,6 +8,9 @@ import NickName from "../../components/Member/NickName";
 import UserName from "../../components/Member/UserName";
 
 function Register() {
+    const [resgistInfo, setResgistInfo] = useState({
+        
+    })
     return (
         <div className="memberContainer cntMarginTop cntMarginBottom">
             <div
