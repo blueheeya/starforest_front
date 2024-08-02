@@ -1,10 +1,9 @@
 import {
-    matchPath,
-    Outlet,
-    Route,
-    Routes,
-    useLocation,
-    useNavigate,
+  matchPath,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
 } from "react-router-dom";
 import "./assets/css/style.scss";
 import { BackWrap } from "./components/Layout/BackWrap";
@@ -13,7 +12,7 @@ import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
   HeaderType2,
-  HeaderTypeNone,
+  HeaderType3,
   HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
@@ -61,10 +60,8 @@ import React, { useContext, useEffect, useState } from "react";
 import ModalResions from "./components/Modal/ModalResions";
 import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
-import ModalContext from "./components/Modal/ModalContext";
-import { useSelector } from "react-redux";
-import { ReviewProvider } from "./components/User/ReviewContext";
-import Loding from "./page/Loding";
+// import ModalContext from "./components/Modal/ModalContext";
+import { ModalContext } from "./components/Modal/ModalContext";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -108,7 +105,7 @@ function LayoutType() {
   const showMenu = showMenuPath.includes(location.pathname);
   const showFooter = showFooterPath.includes(location.pathname);
   const isHeaderType2 = HeaderComponent === HeaderType2;
-  const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
+  const isHeaderType3 = HeaderComponent === HeaderType3;
   const isHeaderType4 = HeaderComponent === HeaderType4;
 
   const [modalNum, setModalNum] = useState(0);
@@ -119,7 +116,6 @@ function LayoutType() {
     <ModalResions key="resions" />,
   ];
   const [modalDetail, setModalDetail] = useState(null);
-    const [modalDetail, setModalDetail] = useState(null);
 
   function modalOpen(idx, data = null) {
     setModalView(true);
@@ -131,11 +127,6 @@ function LayoutType() {
     setModalView(false);
     setModalDetail(null);
   }
-
-  function modalSubmit() {
-    setModalView(false);
-  }
-
   useEffect(() => {
     const containerWrapElement = document.querySelector(".containerWrap");
 
@@ -144,6 +135,7 @@ function LayoutType() {
     } else {
       containerWrapElement.style.overflow = "auto";
     }
+
     return () => {
       containerWrapElement.style.overflow = "auto";
     };
@@ -160,12 +152,12 @@ function LayoutType() {
       <BackWrap>
         <Container>
           {/* {modalView && modalData[modalNum] && (
-                        <div>
-                            {React.cloneElement(modalData[modalNum], {
-                                onClick: modalClose,
-                            })}
-                        </div>
-                    )} */}
+                      <div>
+                          {React.cloneElement(modalData[modalNum], {
+                              onClick: modalClose,
+                          })}
+                      </div>
+                  )} */}
           {modalView && modalData[modalNum] && (
             <div>
               {React.cloneElement(modalData[modalNum], {
@@ -179,9 +171,8 @@ function LayoutType() {
             {title}
           </HeaderComponent>
           <ContentWrap
-            modalOpen={modalOpen}
             className={` ${
-              isHeaderTypeNone || isHeaderType4 ? "cntSearchView" : ""
+              isHeaderType3 || isHeaderType4 ? "cntSearchView" : ""
             } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
           >
             <Outlet />
@@ -196,200 +187,127 @@ function LayoutType() {
   );
 }
 function App() {
-    const loginState = useSelector((state) => state.loginSlice);
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        // 로그인 상태가 변할 때만 실행되도록 의존성 배열에 loginState.email 추가
-        if (loginState.email) {
-            setIsLoading(false); // 로그인이 확인되면 로딩 해제
-        } else {
-            setTimeout(() => {
-                // 일정 시간 후 로그인 페이지로 이동
-                if (!loginState.email) {
-                    navigate("/member/login");
-                }
-                setIsLoading(false); // 타임아웃 후에도 로딩 상태 해제
-            }, 4000);
-        }
-    }, [loginState.email, navigate]);
-
-    if (isLoading) {
-        return <Loding />;
-    }
-    return (
-        <>
-            <Routes>
-                <Route path="/" element={<LayoutType />}>
-                    <Route path="/" index element={<Home />}></Route>
-                    {/* camping  */}
-                    <Route path="/camp/list" element={<CampList />}></Route>
-                    <Route
-                        path="/camp/list/map"
-                        element={<CampListMap />}
-                    ></Route>
-                    <Route path="/camp/view/:id" element={<CampView />}></Route>
-                    <Route
-                        path="/camp/view/map/:id"
-                        index
-                        element={<CampViewMap />}
-                    ></Route>
-                    <Route
-                        path="/camp/reservation/:id"
-                        index
-                        element={<CampReservation />}
-                    ></Route>
-                    <Route
-                        path="/camp/pay/:id/:reservId"
-                        index
-                        element={<CampReservationPay />}
-                    ></Route>
-                    <Route
-                        path="/camp/pay/complete/:reservNum/:reservId/:name/:carNum/:request/:tel"
-                        index
-                        element={<CampReservationComplete />}
-                    ></Route>
-                    {/* diary  */}
-                    <Route
-                        path="/diary/list"
-                        index
-                        element={<DiaryList />}
-                    ></Route>
-                    <Route
-                        path="/diary/write"
-                        index
-                        element={<DiaryWrite />}
-                    ></Route>
-                    <Route
-                        path="/diary/view"
-                        index
-                        element={<DiaryView />}
-                    ></Route>
-                    {/* store  */}
-                    <Route
-                        path="/store/list"
-                        index
-                        element={<StoreList />}
-                    ></Route>
-                    <Route
-                        path="/store/view"
-                        index
-                        element={<StoreView />}
-                    ></Route>
-                    <Route
-                        path="/store/pay"
-                        index
-                        element={<StorePay />}
-                    ></Route>
-                    <Route
-                        path="/store/pay/complete"
-                        index
-                        element={<StorePayComplete />}
-                    ></Route>
-                    {/* user  */}
-                    <Route
-                        path="/user/mypage"
-                        index
-                        element={<UserMypage />}
-                    ></Route>
-                    <Route
-                        path="/user/mypage/management"
-                        index
-                        element={<UserMypageMent />}
-                    ></Route>
-                    <Route
-                        path="/user/camp/reservation/list"
-                        index
-                        element={<CampReservationList />}
-                    ></Route>
-                    <Route
-                        path="/user/camp/reservation/view"
-                        index
-                        element={<CampReservationView />}
-                    ></Route>
-                    <Route
-                        path="/user/camp/like/list"
-                        index
-                        element={<CampLikeList />}
-                    ></Route>
-                    <Route
-                        path="/user/diary/list"
-                        index
-                        element={<MyDiaryList />}
-                    ></Route>
-                    <Route
-                        path="/user/store/order/list"
-                        index
-                        element={<StoreOrderList />}
-                    ></Route>
-                    <Route
-                        path="/user/store/order/view"
-                        index
-                        element={<StoreOrderView />}
-                    ></Route>
-                    <Route
-                        path="/user/store/cart/list"
-                        index
-                        element={<StoreCartList />}
-                    ></Route>
-                    <Route
-                        path="/user/store/review/list"
-                        index
-                        element={<StoreReviewList />}
-                    ></Route>
-                    <Route path="/user/qna" index element={<Qna />}></Route>
-                    <Route
-                        path="/user/notice"
-                        index
-                        element={<Notice />}
-                    ></Route>
-                    {/* member */}
-                    <Route
-                        path="/member/login"
-                        index
-                        element={<Login />}
-                    ></Route>
-                    <Route
-                        path="/member/pwfind"
-                        index
-                        element={<PwFind />}
-                    ></Route>
-                    <Route
-                        path="/member/pwfind/auth"
-                        index
-                        element={<PwFindAuth />}
-                    ></Route>
-                    <Route
-                        path="/member/pwfind/change"
-                        index
-                        element={<PwFindChange />}
-                    ></Route>
-                    <Route
-                        path="/member/pwfind/complete"
-                        index
-                        element={<PwChangeComplete />}
-                    ></Route>
-                    <Route
-                        path="/member/terms"
-                        index
-                        element={<Terms />}
-                    ></Route>
-                    <Route
-                        path="/member/register"
-                        index
-                        element={<Register />}
-                    ></Route>
-                    <Route
-                        path="/member/register/complete"
-                        index
-                        element={<Complete />}
-                    ></Route>
-                    <Route path="/style" element={<Style />}></Route>
-                </Route>
-            </Routes>
-        </>
-    );
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<LayoutType />}>
+          <Route path="/" index element={<Home />}></Route>
+          {/* camping  */}
+          <Route path="/camp/list" element={<CampList />}></Route>
+          <Route path="/camp/list/map" element={<CampListMap />}></Route>
+          <Route path="/camp/view/:id" element={<CampView />}></Route>
+          <Route path="/camp/view/map" index element={<CampViewMap />}></Route>
+          <Route
+            path="/camp/reservation/:id"
+            index
+            element={<CampReservation />}
+          ></Route>
+          <Route
+            path="/camp/pay"
+            index
+            element={<CampReservationPay />}
+          ></Route>
+          <Route
+            path="/camp/pay/complete"
+            index
+            element={<CampReservationComplete />}
+          ></Route>
+          {/* diary  */}
+          <Route path="/diary/list" index element={<DiaryList />}></Route>
+          <Route path="/diary/write" index element={<DiaryWrite />}></Route>
+          <Route path="/diary/view" index element={<DiaryView />}></Route>
+          {/* store  */}
+          <Route path="/store/list" index element={<StoreList />}></Route>
+          <Route
+            path="/store/view/:productId"
+            index
+            element={<StoreView />}
+          ></Route>
+          <Route path="/store/pay" index element={<StorePay />}></Route>
+          <Route
+            path="/store/pay/complete"
+            index
+            element={<StorePayComplete />}
+          ></Route>
+          {/* user  */}
+          <Route path="/user/mypage" index element={<UserMypage />}></Route>
+          <Route
+            path="/user/mypage/management"
+            index
+            element={<UserMypageMent />}
+          ></Route>
+          <Route
+            path="/user/camp/reservation/list"
+            index
+            element={<CampReservationList />}
+          ></Route>
+          <Route
+            path="/user/camp/reservation/view"
+            index
+            element={<CampReservationView />}
+          ></Route>
+          <Route
+            path="/user/camp/like/list"
+            index
+            element={<CampLikeList />}
+          ></Route>
+          <Route
+            path="/user/diary/list"
+            index
+            element={<MyDiaryList />}
+          ></Route>
+          <Route
+            path="/user/store/order/list"
+            index
+            element={<StoreOrderList />}
+          ></Route>
+          <Route
+            path="/user/store/order/view/:id"
+            index
+            element={<StoreOrderView />}
+          ></Route>
+          <Route
+            path="/user/store/cart/list"
+            index
+            element={<StoreCartList />}
+          ></Route>
+          <Route
+            path="/user/store/review/list"
+            index
+            element={<StoreReviewList />}
+          ></Route>
+          <Route path="/user/qna" index element={<Qna />}></Route>
+          <Route path="/user/notice" index element={<Notice />}></Route>
+          {/* member */}
+          <Route path="/member/login" index element={<Login />}></Route>
+          <Route path="/member/pwfind" index element={<PwFind />}></Route>
+          <Route
+            path="/member/pwfind/auth"
+            index
+            element={<PwFindAuth />}
+          ></Route>
+          <Route
+            path="/member/pwfind/change"
+            index
+            element={<PwFindChange />}
+          ></Route>
+          <Route
+            path="/member/pwfind/complete"
+            index
+            element={<PwChangeComplete />}
+          ></Route>
+          <Route path="/member/terms" index element={<Terms />}></Route>
+          <Route path="/member/register" index element={<Register />}></Route>
+          <Route
+            path="/member/register/complete"
+            index
+            element={<Complete />}
+          ></Route>
+          <Route path="/style" element={<Style />}></Route>
+        </Route>
+      </Routes>
+    </>
+  );
 }
 
 export default App;
