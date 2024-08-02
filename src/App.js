@@ -13,7 +13,7 @@ import ContentWrap from "./components/Layout/ContentWrap";
 import Footer from "./components/Layout/Footer";
 import {
   HeaderType2,
-  HeaderTypeNone,
+  HeaderType3,
   HeaderType4,
 } from "./components/Layout/Header";
 import headerConfig from "./components/Layout/HeaderConfig";
@@ -61,10 +61,8 @@ import React, { useContext, useEffect, useState } from "react";
 import ModalResions from "./components/Modal/ModalResions";
 import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
-import ModalContext from "./components/Modal/ModalContext";
-import { useSelector } from "react-redux";
-import { ReviewProvider } from "./components/User/ReviewContext";
-import Loding from "./page/Loding";
+// import ModalContext from "./components/Modal/ModalContext";
+import { ModalContext } from "./components/Modal/ModalContext";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -108,7 +106,7 @@ function LayoutType() {
   const showMenu = showMenuPath.includes(location.pathname);
   const showFooter = showFooterPath.includes(location.pathname);
   const isHeaderType2 = HeaderComponent === HeaderType2;
-  const isHeaderTypeNone = HeaderComponent === HeaderTypeNone;
+  const isHeaderType3 = HeaderComponent === HeaderType3;
   const isHeaderType4 = HeaderComponent === HeaderType4;
 
   const [modalNum, setModalNum] = useState(0);
@@ -130,11 +128,6 @@ function LayoutType() {
     setModalView(false);
     setModalDetail(null);
   }
-
-  function modalSubmit() {
-    setModalView(false);
-  }
-
   useEffect(() => {
     const containerWrapElement = document.querySelector(".containerWrap");
 
@@ -143,6 +136,7 @@ function LayoutType() {
     } else {
       containerWrapElement.style.overflow = "auto";
     }
+
     return () => {
       containerWrapElement.style.overflow = "auto";
     };
@@ -159,12 +153,12 @@ function LayoutType() {
       <BackWrap>
         <Container>
           {/* {modalView && modalData[modalNum] && (
-                        <div>
-                            {React.cloneElement(modalData[modalNum], {
-                                onClick: modalClose,
-                            })}
-                        </div>
-                    )} */}
+                      <div>
+                          {React.cloneElement(modalData[modalNum], {
+                              onClick: modalClose,
+                          })}
+                      </div>
+                  )} */}
           {modalView && modalData[modalNum] && (
             <div>
               {React.cloneElement(modalData[modalNum], {
@@ -295,7 +289,7 @@ function App() {
             element={<StoreOrderList />}
           ></Route>
           <Route
-            path="/user/store/order/view"
+            path="/user/store/order/view/:id"
             index
             element={<StoreOrderView />}
           ></Route>

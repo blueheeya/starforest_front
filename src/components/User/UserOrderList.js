@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../Icon/Icon";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 // import { Link } from "react-router-dom";
+
+const host = `${process.env.REACT_APP_SERVER_URL}`;
 
 function UserOrderList({ orderList }) {
   const [cartItems, setCartItems] = useState([
@@ -10,10 +13,24 @@ function UserOrderList({ orderList }) {
   ]);
 
   const [quantity, setQuantity] = useState(1);
-
+  const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
-  const userOderViewMove = () => {
-    navigate(`/user/store/order/view`);
+
+  useEffect(() => {
+    const fetchOrderList = async () => {
+      try {
+        const res = await axios.get(`${host}user/store/order/list`);
+        setOrders(res.data);
+      } catch (error) {
+        console.error("Error fetching order list", error);
+      }
+    };
+
+    fetchOrderList();
+  }, []);
+
+  const userOderViewMove = (orderId) => {
+    navigate(`/user/store/order/view/${orderId}`);
   };
   const filteredOrderList = Array.isArray(orderList) ? orderList.filter(item => item.product !== null) : [];
   console.log(filteredOrderList);
@@ -56,6 +73,7 @@ function UserOrderList({ orderList }) {
                     <div className="userOrderpriceMain">{item?.price?.toLocaleString()}원</div>
                   </div>
                 </div>
+                <div className="userOrderStateBox">주문완료</div>
               </div>
             </div>
             <div className="userOrderTotalWrap">
