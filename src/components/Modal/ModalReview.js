@@ -40,9 +40,9 @@ function ModalReview({ onClick, onSubmit, modalDTO }) {
       const reviewData = {
         created_at: new Date().toISOString(), //생성시간을ISO형식의문자열로
         id: generateUniQueId(), //리뷰ID생성
-        productid: product_id, //product_id를 props로 받아옴
-        content: review,
-        userid: user_id, //user_id도 props로 받아옴
+        // productid: product_id, //product_id를 props로 받아옴
+        // content: review,
+        // userid: user_id, //user_id도 props로 받아옴
       };
       console.log("Review axios태웁니다~~~~~~~~~~~~");
       console.log(reviewData);

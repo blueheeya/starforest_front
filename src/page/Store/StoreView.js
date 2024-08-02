@@ -84,7 +84,7 @@ function StoreView(props) {
   // const { modalOpen } = useContext(ModalContext);
   const navigate = useNavigate();
   const usePurchaseMove = () => {
-    navigate("/store/pay");
+    navigate(`/store/pay/${productId}`);
   };
 
   const getProductType = (type) => {
