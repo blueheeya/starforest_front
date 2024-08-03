@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Input from "../Form/Input";
 import Icon from "../Icon/Icon";
+import axios from "axios";
 
-function NickName({ value }) {
+const host = `${process.env.REACT_APP_SERVER_URL}api/member/checknick`;
+
+function NickName({ value,changeHand }) {
     const [nickname, setNickname] = useState("");
     const [isValid, setIsValid] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
@@ -44,6 +47,54 @@ function NickName({ value }) {
         }
     };
 
+    const handleClick = async (e)=>{
+        e.preventDefault();
+        if(!isValid){
+            alert("닉네임 양식이 올바르지 않습니다.")
+            return false;
+        }
+        else{
+            const body = {
+                nick_name:nickname,
+                result:false
+            };
+
+            try {
+                const response = await axios.post(host, body);
+                console.log("#########")
+                console.log(response)
+                if(response.data){
+                    alert("이미 사용중인 닉네임입니다.")
+                    setIsValid(false)
+                    setMessage("이미 사용중인 닉네임입니다.")
+                    const failChange = {
+                        target:{
+                            name: "nick_name",
+                            value: false
+                        }
+                    }
+                    changeHand(failChange)
+                }
+                else{
+                    alert("사용가능한 닉네임입니다..")
+                    setIsValid(true)
+                    setShowMessage(false)
+                    const doChange = {
+                        target:{
+                            name: "nick_name",
+                            value: nickname
+                        }
+                    }
+                    changeHand(doChange);
+                }
+            }
+            catch (error){
+                console.error('########nickCheckError', error);
+                throw error;
+            }
+        }
+    }
+
     return (
         <>
             <div className="memberInputWrap">
@@ -57,7 +108,7 @@ function NickName({ value }) {
                     maxLength={maxLength}
                 />
                 <div className="timeWrap">
-                    <button className="btnSmallLine">중복체크</button>
+                    <button className="btnSmallLine" onClick={handleClick}>중복체크</button>
                 </div>
             </div>
             {showMessage && (

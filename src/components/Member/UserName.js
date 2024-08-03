@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Input from "../Form/Input";
 import Icon from "../Icon/Icon";
 
-function UserName() {
-    const [username, setUsername] = useState("");
+function UserName({changeHand}) {
+    const [name, setName] = useState("");
     const [isValid, setIsValid] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [message, setMessage] = useState("");
@@ -34,14 +34,22 @@ function UserName() {
     };
 
     useEffect(() => {
-        validateusername(username);
-    }, [username]);
+        validateusername(name);
+    }, [name]);
 
     const handleChange = (e) => {
         const newValue = e.target.value;
         if (newValue.length <= maxLength) {
-            setUsername(newValue);
+            setName(newValue);
+            const doChange = {
+                target: {
+                    name: "name",
+                    value: newValue
+                }
+            }
+            changeHand(doChange);
         }
+
     };
 
     return (
@@ -52,7 +60,7 @@ function UserName() {
                     className="userRstInput"
                     placeholder="이름"
                     type="text"
-                    value={username}
+                    value={name}
                     onChange={handleChange}
                     maxLength={maxLength}
                 />

@@ -73,16 +73,16 @@ function Login() {
             >
                 로그인
             </Button>
-            <div className="btnWrap">
-                <button className="btnDefault btnStyleKaKao">
-                    <Icon iconName="kakaoLogo" />
-                    카카오 로그인
-                </button>
-                <button className="btnDefault btnStyleNaver">
-                    <Icon iconName="naverLogo" />
-                    네이버 로그인
-                </button>
-            </div>
+            {/*<div className="btnWrap">*/}
+            {/*    <button className="btnDefault btnStyleKaKao">*/}
+            {/*        <Icon iconName="kakaoLogo" />*/}
+            {/*        카카오 로그인*/}
+            {/*    </button>*/}
+            {/*    <button className="btnDefault btnStyleNaver">*/}
+            {/*        <Icon iconName="naverLogo" />*/}
+            {/*        네이버 로그인*/}
+            {/*    </button>*/}
+            {/*</div>*/}
             <div className="memberLink">
                 <p>
                     <span>별숲 회원이 아니신가요?</span>

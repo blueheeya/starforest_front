@@ -7,6 +7,7 @@ import mapPointerOn from '../../assets/images/mapPointer.svg'
 import btnClose from "../../assets/images/btnClose.png"
 import noneImage from "../../assets/images/noneImage.png"
 
+const host = `${process.env.REACT_APP_SERVER_URL}`;
 const { kakao } = window;
 
 let currentOverlay = null;//커스텀 오버레이상태
@@ -40,7 +41,7 @@ function CampViewMap() {
         const map = new kakao.maps.Map(mapContainer, mapOption);
 
         try {
-            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}camp/view/map/${id}`)
+            const res = await axios.get(`${host}camp/view/map/${id}`)
             console.log(res.data);
             setCampItem(res.data)
         } catch (error) {

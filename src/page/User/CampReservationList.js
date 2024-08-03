@@ -18,28 +18,6 @@ const Reservation = [
         isRecordWritten: false,
         isLink: "/user/camp/reservation/view",
     },
-    {
-        id: 2,
-        reservation_number: 123123123,
-        campsite_id: "campsite_id",
-        user_email: "user_email",
-        start_date: "2024.06.15",
-        end_date: "2024.07.20",
-        created_at: "2024.06.15 14:00",
-        isRecordWritten: true,
-        isLink: "/user/camp/reservation/view",
-    },
-    {
-        id: 3,
-        reservation_number: 123123123,
-        campsite_id: "campsite_id",
-        user_email: "user_email",
-        start_date: "2024.06.15",
-        end_date: "2024.08.20",
-        created_at: "2024.06.15 14:00",
-        isRecordWritten: false,
-        isLink: "/user/camp/reservation/view",
-    },
 ];
 
 function CampReservationList() {
@@ -47,7 +25,6 @@ function CampReservationList() {
     const email = useSelector((state) => {
         return state.loginSlice.email;
     });
-    console.log(email);
     const [CampReservation, setCampsReservation] = useState([]);
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(false);

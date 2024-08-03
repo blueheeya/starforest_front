@@ -17,6 +17,8 @@ import axios from "axios";
 import CampReservation from "./CampReservation";
 import LoadingFlower from "../../assets/gif/1477.gif";
 
+const host = `${process.env.REACT_APP_SERVER_URL}`;
+
 function CampView() {
   //주소 복사
   const navigator = useNavigate();
@@ -68,7 +70,7 @@ function CampView() {
     //동일 수정
     const campScript = async () => {
         try {
-            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}camp/view/${id}`)
+            const res = await axios.post(`${host}camp/view/${id}`)
             console.log(res.data);
             setCampItem(res.data);
             parseFacilityString(res.data.posblFcltyCl);
@@ -82,7 +84,7 @@ function CampView() {
   //동일 수정
   // const campScript = async () => {
   //   try {
-  //     const res = await axios.post(`http://localhost:8080/camp/view/${id}`);
+  //     const res = await axios.post(`hostcamp/view/${id}`);
   //     console.log(res.data);
   //     setCampItem(res.data);
   //     parseFacilityString(res.data.posblFcltyCl);
@@ -114,7 +116,7 @@ function CampView() {
     console.log("checkLikeStatus");
     try {
       const response = await axios.get(
-        `http://localhost:8080/camps/check/${id}`
+        `${host}camps/check/${id}`
       );
       setIsLiked(response.data.isLiked);
     } catch (error) {
@@ -125,7 +127,7 @@ function CampView() {
   const toggleLike = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:8080/camps/toggle/${id}`
+        `${host}camps/toggle/${id}`
       );
       setIsLiked(response.data.isLiked);
       alert(
