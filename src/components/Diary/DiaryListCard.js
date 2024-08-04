@@ -22,7 +22,7 @@ function DiaryListCard({ diary }) {
   }
 
   const { id, content, allTags, image_url, userEmail, reservationId } = diary;
-  console.log("Image URL:", image_url);
+  // console.log("Image URL:", image_url);
 
   const userTags = allTags
     .split(",")
