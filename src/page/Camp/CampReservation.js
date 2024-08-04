@@ -16,7 +16,7 @@ function CampReservation() {
 
     const reservationScript = async () => {
         try {
-            const res = await axios.get(`http://localhost:8080/camp/reservation/${id}`)
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}camp/reservation/${id}`)
             setCampInfo(res.data)
         } catch (error) {
             console.log(error);
@@ -26,6 +26,8 @@ function CampReservation() {
     if (campInfo === null) {
         return <div>Loading...</div>; // 로딩 중 상태를 표시
     }
+
+
 
     //동일 수정 완료
     return (

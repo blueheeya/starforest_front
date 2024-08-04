@@ -73,7 +73,7 @@ function CampReservationList() {
                     </Button>
                 </div>
             ) : (
-                <div style={{ display: "inline-block" }}>
+                <div style={{ display: "inline-block", width: "100%" }}>
                     <div className="myCampNoteWrap">
                         <h4>유의사항</h4>
                         <p>&#8729; 예약번호 유출에 주의해 주세요.</p>

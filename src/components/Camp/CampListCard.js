@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "swiper/css";
 import Icon from "../Icon/Icon";
-import CampSite from "./CampGavisDate";
 import CampTag from "./CampTag";
-function CampListCard({ className, campItem }) {
+function CampListCard({ className, camp }) {
+    // console.log(camp);
     return (
         <>
-            {CampSite.map((campItem, index) => {
+            {/* {CampSite.map((campItem, index) => {
                 return (
                     <>
                         <div
@@ -16,7 +16,7 @@ function CampListCard({ className, campItem }) {
                         >
                             <Link to={`/camp/view/${campItem.id}`}>
                                 <div className="campListImg">
-                                    <img src={`${campItem.firstImageUrl}`} />
+                                    <img src={`${campItem.first_image_url}`} />
                                 </div>
                                 <div className="campListWrap">
                                     <ul className="campTitle">
@@ -51,7 +51,40 @@ function CampListCard({ className, campItem }) {
                         </div>
                     </>
                 );
-            })}
+            })} */}
+            <div className={`campListCard ${className}`}>
+                <Link to={`/camp/view/${camp.id}`}>
+                    <div className="campListImg">
+                        <img src={`${camp.first_image_url}`} />
+                    </div>
+                    <div className="campListWrap">
+                        <ul className="campTitle">
+                            <li>
+                                {camp.is_auto === true ? (
+                                    <span>오토캠핑장</span>
+                                ) : null}
+                                {camp.is_glamp === true ? (
+                                    <span>글램핑</span>
+                                ) : null}
+                                {camp.is_carvan === true ? (
+                                    <span>카라반</span>
+                                ) : null}
+                            </li>
+                            <li>
+                                <Icon iconName="iconCampCategory" />
+                                {camp.name}
+                            </li>
+                            <li>{camp.add1}</li>
+                        </ul>
+                        <div className="campPrice">
+                            <span>{camp.price}</span>원부터
+                        </div>
+                    </div>
+                </Link>
+                <div style={{ padding: "0 16px" }}>
+                    <CampTag isListPage={true} tags={camp.thema_envrn_cl} />
+                </div>
+            </div>
         </>
     );
 }

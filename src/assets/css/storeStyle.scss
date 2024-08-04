@@ -41,20 +41,27 @@ $radiusSmall: 5px;
     gap: 10px;
     width: 100%;
     height: 100%;
-
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: $radiusDefault;
+    .storeThumb {
+      display: flex;
+      width: 130px;
+      height: 130px;
+      border-radius: $defaultText;
+      overflow: hidden;
+      background: url("../images/imgdefault.png") no-repeat;
+      background-size: cover;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
-
     .storeTenContent {
       display: flex;
       flex-direction: column;
       gap: 10px;
-
       h4 {
         display: -webkit-box;
+        height: 40px;
         font-size: $defaultText;
         font-weight: normal;
         overflow: hidden;
@@ -194,6 +201,7 @@ $radiusSmall: 5px;
   }
 }
 .modalContent {
+  border: 1px solid #000;
   background: #fff;
   padding: 20px;
   border-radius: 20px 20px 0 0; /* 모서리 둥글게 */
@@ -772,7 +780,7 @@ $radiusSmall: 5px;
 
         input {
           padding: 0 10px;
-          border: 2px solid $inputColor;
+          border: 1px solid $inputColor;
           border-radius: $radiusDefault;
           width: 350px;
           height: 100%;

@@ -1,6 +1,7 @@
 @charset "utf-8";
 @import "../fonts/font.css";
 @import "icons.scss";
+@import "loading.scss";
 @import "./datepicker.css";
 //main page
 @import "mainStyle.scss";
@@ -248,7 +249,7 @@ section.backWrap {
 }
 
 .containerWrap::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
 }
 
 .containerWrap::-webkit-scrollbar-track {
@@ -257,7 +258,7 @@ section.backWrap {
 
 .containerWrap::-webkit-scrollbar-thumb {
     border-radius: $radiusDefault;
-    background: $PrimaryColor;
+    background: #ffffff;
 }
 
 .contentWrap {
@@ -287,13 +288,14 @@ section.backWrap {
     align-items: center;
     width: 100%;
     height: 64px;
+    background: #ffffff;
+    // border-bottom: solid 1px $inputColor;
     color: $PrimaryColor;
     font-family: "EunhasuR";
     font-size: $headerTitle;
     background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    border-bottom: solid 1px $inputColor;
 }
 
 .headerType1 {
@@ -302,7 +304,7 @@ section.backWrap {
     width: 100%;
     height: 64px;
     padding: 0 32px;
-
+    background: #ffffff;
     img {
         width: 55px;
         height: 44px;
@@ -329,6 +331,9 @@ section.backWrap {
         font-size: 30px;
         font-weight: normal;
         text-align: center;
+        background: -webkit-linear-gradient(#0b1f3e, $PrimaryColor);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     h2.storeH2 {
@@ -355,6 +360,7 @@ section.backWrap {
     height: auto;
     padding: 10px 10px;
     border-bottom: solid 1px $inputColor;
+    background: #ffffff;
 
     .serchWrap {
         width: 100%;
@@ -368,26 +374,25 @@ section.backWrap {
             .searchInput {
                 width: 100%;
             }
-
             button {
                 width: 40px;
                 height: 40px;
                 font-size: 0;
                 border-radius: $radiusDefault;
-                background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+                background: $PrimaryColor url("../images/iconSearchW.png")
+                    no-repeat;
                 background-position: center;
             }
         }
-
-        .btnWrap {
-            display: flex;
-            align-items: center;
-            flex: none;
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            z-index: 2;
-        }
+    }
+    .btnWrap {
+        display: flex;
+        align-items: center;
+        flex: none;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        z-index: 2;
     }
 
     .serchTypeWrap {
@@ -396,6 +401,14 @@ section.backWrap {
         justify-content: space-between;
         width: 100%;
         gap: 10px;
+        button {
+            width: 40px;
+            height: 40px;
+            font-size: 0;
+            border-radius: $radiusDefault;
+            background: $PrimaryColor url("../images/btnMap.png") no-repeat;
+            background-position: center;
+        }
 
         input {
             flex: 1;
@@ -1002,7 +1015,23 @@ button {
 .cntWarpPadding {
     padding: 0 32px;
 }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
 @media screen and (max-width: 1024px) {
     /****** layout ******/
     /* container */

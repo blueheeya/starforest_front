@@ -17,6 +17,7 @@ import { format, isWithinInterval } from "date-fns";
 import Icon from "../Icon/Icon";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import CampReservationComplete from "../../page/Camp/CampReservationComplete";
+import { useSelector } from "react-redux";
 
 registerLocale("ko", ko);
 
@@ -25,6 +26,10 @@ registerLocale("ko", ko);
 //예약하려는 날짜의 캠핑장 날씨 정보 제공
 
 function Calender({ campInfo }) {
+    const state = useSelector((state) => {
+        return state.loginSlice.email
+    })
+    console.log(state);
     console.log(campInfo);
     const API_KEY = "db5e9fc650822da7c6cc328c5ec59bdf";
     const lang = "kr";
@@ -62,7 +67,7 @@ function Calender({ campInfo }) {
         try {
             console.log("fetchReservations 시작");
             const response = await axios.get(
-                `http://localhost:8080/camp/reservations/${campInfo.id}`
+                `${process.env.REACT_APP_SERVER_URL}camp/reservations/${campInfo.id}`
             );
             console.log(response.data);
 
@@ -115,7 +120,7 @@ function Calender({ campInfo }) {
 
             try {
                 const response = await axios.post(
-                    `http://localhost:8080/camp/reservation/${campInfo.id}`,
+                    `${process.env.REACT_APP_SERVER_URL}camp/reservation/${campInfo.id}/${state}`,
                     {
                         startDate: adjustedStartDate,
                         endDate: adjustedEndDate,

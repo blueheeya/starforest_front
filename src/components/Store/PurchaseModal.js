@@ -3,14 +3,18 @@ import { useNavigate } from "react-router-dom";
 import "../../assets/css/storeStyle.scss";
 import Icon from "../Icon/Icon";
 import Overlay from "./Overlay";
+import axiosInstance from "../../utils/axios";
+import axios from "axios";
 
-const PurchaseModal = ({ isOpen, onClose, productName, price }) => {
+const host = `${process.env.REACT_APP_SERVER_URL}`;
+
+const PurchaseModal = ({ isOpen, onClose, productName, price, productId }) => {
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isOpen) {
-      //document.querySelector(".modalContainer").style.overflow = "hidden";
+      document.querySelector(".modalContainer").style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
@@ -27,14 +31,31 @@ const PurchaseModal = ({ isOpen, onClose, productName, price }) => {
 
   const totalPrice = price * quantity;
 
-  const handleCartClick = () => {
-    onClose(); //모달닫고 링크로이동
-    navigate("/user/store/cart/list");
+  // 수량을 서버로 전송하는 함수
+  const sendQuantityToServer = async () => {
+    try {
+      const quantityData = {
+        product_id: productId, // 실제 상품 ID
+        quantity: quantity, // 설정한 수량
+      };
+      // 서버로 수량 전송
+      const response = await axios.post(`${host}store/view`, quantityData);
+      console.log("Quantity updated", response.data);
+    } catch (error) {
+      console.error("Error updating quantity", error);
+    }
   };
-
-  const handlePurchaseClick = () => {
-    onClose();
-    navigate("/store/pay");
+  // 장바구니에 추가하기
+  const handleCartClick = async () => {
+    await sendQuantityToServer(); // 수량을 서버로 전송
+    onClose(); // 모달 닫기
+    navigate("/user/store/cart/list"); // 장바구니 페이지로 이동
+  };
+  // 구매하기
+  const handlePurchaseClick = async () => {
+    await sendQuantityToServer(); // 수량을 서버로 전송
+    onClose(); // 모달 닫기
+    navigate("/store/pay"); // 구매 페이지로 이동
   };
 
   const closeModal = () => {
