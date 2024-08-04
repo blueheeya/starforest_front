@@ -10,7 +10,6 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import SearchInput from "../../components/Form/SearchInput";
 import axios from "axios";
 import btnBack from "../../assets/images/btnBack.png";
-import { debounce } from "lodash";
 import ModalContext from "../../components/Modal/ModalContext";
 import PageLoading from "../../components/Layout/PageLoading";
 

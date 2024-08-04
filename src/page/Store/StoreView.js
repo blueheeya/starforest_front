@@ -1,16 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import Tabs from "../../components/Store/Tabs";
 import StoreToggle from "../../components/Store/StoreToggle";
 import EventSwiper from "../../components/Store/EventSwiper";
 import StoreTopTen from "../../components/Store/StoreTopTen";
 import Icon from "../../components/Icon/Icon";
 import "../../assets/css/storeStyle.scss";
-import ModalContext from "../../components/Modal/ModalContext";
 import Button from "../../components/Form/Button";
-import PurchaseModal from "../../components/Store/PurchaseModal";
 import ReviewList from "../../components/Store/ReviewList";
 import axios from "axios";
 import "swiper/css";
@@ -19,7 +15,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Pagination } from "swiper/modules";
-import ModalStore from "../../components/Modal/ModalStore";
 
 const host = `${process.env.REACT_APP_SERVER_URL}`;
 const productview = {
@@ -76,12 +71,9 @@ function StoreView(props) {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(tabBar[0].id);
   const [showFullImage, setShowFulllImage] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
-  // const [modalData, setModalData] = useState({ product_name: "", price: 0 });
   const [detailImage, setDetailImage] = useState("default-image.jpg");
   const [loading, setLoading] = useState(true);
 
-  // const { modalOpen } = useContext(ModalContext);
   const navigate = useNavigate();
   const usePurchaseMove = () => {
     navigate(`/store/pay/${productId}`);
@@ -99,39 +91,6 @@ function StoreView(props) {
         return "알 수 없음";
     }
   };
-
-  //axios________________________________________________________________________________
-  // const handleButtonClick = async () => {
-  //   if (product) {
-  //     try {
-  //       const cartItem = {
-  //         product_id: product.productId,
-  //         quantity: 1,
-  //         user_email: loginState.email,
-  //         result: false,
-  //       };
-  //       console.log("최보람은 바보다.");
-  //       console.log(cartItem);
-
-  //       // 장바구니에 상품 추가
-  //       const response = await axios.post(
-  //         `${host}store/cart/add`,
-  //         // quantityData
-  //         cartItem
-  //       );
-  //       console.log("Item added to cart", response.data);
-  //       // 장바구니에 추가 성공 후, 모달 표시
-  //       setModalData({
-  //         product_name: product.productName,
-  //         price: product.price,
-  //       });
-  //       setShowModal(true);
-  //     } catch (error) {
-  //       console.error("Error adding item to cart", error);
-  //       setError("장바구니에 상품을 추가하는 데 실패했습니다");
-  //     }
-  //   }
-  // };
 
   const fetchStoreDetail = async () => {
     try {
