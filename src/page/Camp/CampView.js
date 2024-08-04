@@ -17,71 +17,102 @@ import axios from "axios";
 import CampReservation from "./CampReservation";
 import LoadingFlower from "../../assets/gif/1477.gif";
 
+const host = `${process.env.REACT_APP_SERVER_URL}`;
+
 function CampView() {
   //주소 복사
   const navigator = useNavigate();
   const addressRef = useRef(null);
+    const copyAddress = () => {
+        if (addressRef.current) {
+            const text = addressRef.current.innerText;
+            if (navigator.clipboard && window.isSecureContext) {
+                // 보안 컨텍스트에서 Clipboard API 사용
+                navigator.clipboard
+                    .writeText(text)
+                    .then(() => {
+                        alert("주소가 복사되었습니다!");
+                    })
+                    .catch((err) => {
+                        console.error("주소 복사 실패:", err);
+                        fallbackCopyTextToClipboard(text);
+                    });
+            } else {
+                // 폴백: 구식 방법 사용
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+    };
+    const fallbackCopyTextToClipboard = (text) => {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand("copy");
+            alert("주소가 복사되었습니다!");
+        } catch (err) {
+            console.error("Fallback: Oops, unable to copy", err);
+        }
+        document.body.removeChild(textArea);
+    };
+    const { id } = useParams();
+    const [campItem, setCampItem] = useState(null);
+    const [posbl, setPosbl] = useState("");
+    const [isLiked, setIsLiked] = useState(false);
 
-  const copyAddress = () => {
-    if (addressRef.current) {
-      const text = addressRef.current.innerText;
-      navigator.clipboard
-        .writeText(text)
-        .then(() => {
-          alert("주소가 복사되었습니다!");
-        })
-        .catch((err) => {
-          console.error("주소 복사 실패:", err);
-        });
-    }
-  };
-  const { id } = useParams();
-  const [campItem, setCampItem] = useState(null);
-  const [posbl, setPosbl] = useState("");
-  const [isLiked, setIsLiked] = useState(false);
+    useEffect(() => {
+        //동일 수정
+        campScript();
+    }, []);
+    //동일 수정끝
 
-  useEffect(() => {
     //동일 수정
-    campScript();
-  }, []);
-  //동일 수정끝
-
-  //동일 수정
-  const parseFacilityString = (facilityString) => {
-    try {
-      // console.log(facilityString);
-      // '를 "로 바꾸기
-      const jsonString = facilityString.replace(/'/g, '"');
-      // JSON 파싱
-      const facilityArray = JSON.parse(jsonString).join(", ");
-      // 배열 요소들을 문자열로 결합
-      // console.log(facilityArray);
-      setPosbl(facilityArray);
-    } catch (error) {
-      console.error("Error parsing facility string:", error);
-      return facilityString;
-    }
+    const parseFacilityString = (facilityString) => {
+        try {
+            // console.log(facilityString);
+            // '를 "로 바꾸기
+            const jsonString = facilityString.replace(/'/g, '"');
+            // JSON 파싱
+            const facilityArray = JSON.parse(jsonString).join(", ");
+            // 배열 요소들을 문자열로 결합
+            // console.log(facilityArray);
+            setPosbl(facilityArray);
+        } catch (error) {
+            console.error("Error parsing facility string:", error);
+            return facilityString;
+        }
 
   }
   //동일 수정끝
 
+    //동일 수정
+    const campScript = async () => {
+        try {
+            const res = await axios.post(`${host}camp/view/${id}`)
+            console.log(res.data);
+            setCampItem(res.data);
+            parseFacilityString(res.data.posblFcltyCl);
+        } catch (error) {
+            console.log(error);
+        }
+
+    };
+    //동일 수정끝
+
   //동일 수정
 
-  const campScript = async () => {
-    try {
-      const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}camp/view/${id}`)
-      console.log(res.data);
-      setCampItem(res.data);
-      parseFacilityString(res.data.posblFcltyCl);
-    } catch (error) {
-      console.log(error);
-    }
-
-  };
-  //동일 수정끝
-
-  //동일 수정
-
+  // const campScript = async () => {
+  //   try {
+  //     const res = await axios.post(`hostcamp/view/${id}`);
+  //     console.log(res.data);
+  //     setCampItem(res.data);
+  //     parseFacilityString(res.data.posblFcltyCl);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   //동일 수정끝
 
@@ -106,7 +137,7 @@ function CampView() {
     console.log("checkLikeStatus");
     try {
       const response = await axios.get(
-        `http://localhost:8080/camps/check/${id}`
+        `${host}camps/check/${id}`
       );
       setIsLiked(response.data.isLiked);
     } catch (error) {
@@ -117,7 +148,7 @@ function CampView() {
   const toggleLike = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:8080/camps/toggle/${id}`
+        `${host}camps/toggle/${id}`
       );
       setIsLiked(response.data.isLiked);
       alert(

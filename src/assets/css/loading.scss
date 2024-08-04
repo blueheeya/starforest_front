@@ -1,5 +1,15 @@
 @charset "utf-8";
-
+.loadingGif {
+    width: 100%;
+    height: 100vh;
+    top: 50%;
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
 .loadingWrap {
     width: 100%;
     height: 100vh;

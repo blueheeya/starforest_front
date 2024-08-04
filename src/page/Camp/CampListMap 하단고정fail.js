@@ -3,11 +3,11 @@ import "../../assets/css/kakaoMap.scss"
 import mapClose from "../../assets/images/mapClose.svg"
 import gps from "../../assets/images/gps.svg"
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import mapPointerOn from '../../assets/images/mapPointer.svg'
 import mapPointerOff from '../../assets/images/mapPointer1.svg'
 import btnClose from "../../assets/images/btnClose.png"
-
+import axios from "axios";
+const host = `${process.env.REACT_APP_SERVER_URL}`;
 
 const { kakao } = window;
 
