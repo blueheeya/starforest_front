@@ -25,15 +25,36 @@ function CampView() {
     const copyAddress = () => {
         if (addressRef.current) {
             const text = addressRef.current.innerText;
-            navigator.clipboard
-                .writeText(text)
-                .then(() => {
-                    alert("주소가 복사되었습니다!");
-                })
-                .catch((err) => {
-                    console.error("주소 복사 실패:", err);
-                });
+            if (navigator.clipboard && window.isSecureContext) {
+                // 보안 컨텍스트에서 Clipboard API 사용
+                navigator.clipboard
+                    .writeText(text)
+                    .then(() => {
+                        alert("주소가 복사되었습니다!");
+                    })
+                    .catch((err) => {
+                        console.error("주소 복사 실패:", err);
+                        fallbackCopyTextToClipboard(text);
+                    });
+            } else {
+                // 폴백: 구식 방법 사용
+                fallbackCopyTextToClipboard(text);
+            }
         }
+    };
+    const fallbackCopyTextToClipboard = (text) => {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand("copy");
+            alert("주소가 복사되었습니다!");
+        } catch (err) {
+            console.error("Fallback: Oops, unable to copy", err);
+        }
+        document.body.removeChild(textArea);
     };
     const { id } = useParams();
     const [campItem, setCampItem] = useState(null);
