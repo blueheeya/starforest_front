@@ -5,6 +5,8 @@ import Icon from "../../components/Icon/Icon";
 // import axiosInstance from "../../utils/axios";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import userEx01 from "../../assets/images/userEx01.jpg";
+import userEx02 from "../../assets/images/userEx02.png";
 
 function StoreReviewList() {
   const location = useLocation();
@@ -16,6 +18,35 @@ function StoreReviewList() {
   });
   console.log(email);
 
+  //가짜데이터----------------------------------------------------------------------------------
+  const mockReviews = [
+    {
+      id: 1,
+      img: "userEx01",
+      level: "lavel lavel01",
+      name: "샛별",
+      user: "단비는순두부죠아해",
+      content: "캠핑가서 먹었는데 너무너무 맛있어서 다음에 또 구매하려구요",
+    },
+    {
+      id: 2,
+      img: "userEx02",
+      level: "lavel lavel03",
+      name: "뭇별",
+      user: "나신짱구",
+      content: "칼칼하고 맛나고 좋았어요~",
+    },
+  ];
+
+  const [exReview, setExReview] = useState(mockReviews);
+
+  // 리뷰 삭제 함수
+  const handleDelete = (id) => {
+    setExReview((prevMockReviews) =>
+      prevMockReviews.filter((review) => review.id !== idToDelete)
+    );
+  };
+  //----------------------------------------------------------------------------------------------------
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -30,12 +61,6 @@ function StoreReviewList() {
     };
     fetchReviews();
   }, []);
-
-  const handleDelete = (idToDelete) => {
-    setReviews((prevReviews) => {
-      prevReviews.filter((review) => review.id !== idToDelete);
-    });
-  };
 
   // const handleDelete = async (id) => {
   //   try {
@@ -86,7 +111,7 @@ function StoreReviewList() {
             </div>
           ))
         ) : (
-          <p>리뷰가 없습니다.</p>
+          <p>등록된 리뷰가 없습니다.</p>
         )}
       </div>
     </>
