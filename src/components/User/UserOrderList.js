@@ -16,23 +16,12 @@ function UserOrderList({ orderList }) {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchOrderList = async () => {
-      try {
-        const res = await axios.get(`${host}user/store/order/list`);
-        setOrders(res.data);
-      } catch (error) {
-        console.error("Error fetching order list", error);
-      }
-    };
-
-    fetchOrderList();
-  }, []);
-
-  const userOderViewMove = (orderId) => {
-    navigate(`/user/store/order/view/${orderId}`);
+  const userOderViewMove = (productId) => {
+    navigate(`/user/store/order/review/${productId}`);
   };
-  const filteredOrderList = Array.isArray(orderList) ? orderList.filter(item => item.product !== null) : [];
+  const filteredOrderList = Array.isArray(orderList)
+    ? orderList.filter((item) => item.product !== null)
+    : [];
   console.log(filteredOrderList);
   return (
     <>
@@ -41,10 +30,18 @@ function UserOrderList({ orderList }) {
           <div key={idx} className="userOrderBox">
             <div className="userOrderInner">
               <div className="useOrderDateWrap">
-                <div className="userOrderDate">{item?.created_at[0]}.{item?.created_at[1]}.{item?.created_at[2]}</div>
+                <div className="userOrderDate">
+                  {item?.created_at[0]}.{item?.created_at[1]}.
+                  {item?.created_at[2]}
+                </div>
                 <div className="OrderListMove">
-                  <button className="listMoveBtn" onClick={userOderViewMove}>
-                    주문 상세보기
+                  <button
+                    className="listMoveBtn"
+                    onClick={() => {
+                      userOderViewMove(item?.productId);
+                    }}
+                  >
+                    리뷰 작성하기
                     <Icon iconName="iconGo" />
                   </button>
                 </div>
@@ -55,35 +52,44 @@ function UserOrderList({ orderList }) {
                   <span className="userOrderinnerEx"> 배송상품</span>
                 </div>
                 <div className="userOrderinnerMain">
-                  <img className="userOrderinnerMainImg" src={item?.imageUrl} alt="" />
+                  <img
+                    className="userOrderinnerMainImg"
+                    src={item?.imageUrl}
+                    alt=""
+                  />
                   <div className="userOrderinnerMainContent">
-                    <div className="userOrdercontentName">{item?.brandName}</div>
-                    <div className="userOrdercontentBrand">{item?.productName}</div>
+                    <div className="userOrdercontentName">
+                      {item?.brandName}
+                    </div>
+                    <div className="userOrdercontentBrand">
+                      {item?.productName}
+                    </div>
                   </div>
                   <div className="userOrderStateBox">주문완료</div>
                 </div>
                 <div className="userOrderPriceWrap">
                   <div className="userOrderNum">
                     <div>총수량 :</div>
-                    <div>
-                      {Math.floor(item?.totalPrice / item.price)}
-                    </div>
+                    <div>{Math.floor(item?.totalPrice / item.price)}</div>
                   </div>
                   <div className="userOrderPrice">
-                    <div className="userOrderpriceMain">{item?.price?.toLocaleString()}원</div>
+                    <div className="userOrderpriceMain">
+                      {item?.price?.toLocaleString()}원
+                    </div>
                   </div>
                 </div>
-                <div className="userOrderStateBox">주문완료</div>
               </div>
             </div>
             <div className="userOrderTotalWrap">
               <div className="userOrderTotalcontent">
                 <div className="userOrderTotalTitle">총 주문 금액</div>
-                <div className="userOrderPrice">{item?.totalPrice?.toLocaleString()}원</div>
+                <div className="userOrderPrice">
+                  {item?.totalPrice?.toLocaleString()}원
+                </div>
               </div>
             </div>
           </div>
-        )
+        );
       })}
     </>
   );

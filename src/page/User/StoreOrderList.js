@@ -7,12 +7,11 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 const host = `${process.env.REACT_APP_SERVER_URL}`;
 
-
 function StoreOrderList() {
-  const [orderList, setOrderList] = useState()
+  const [orderList, setOrderList] = useState();
   const email = useSelector((state) => {
-    return state.loginSlice.email
-  })
+    return state.loginSlice.email;
+  });
 
   useEffect(() => {
     getAllOrderList();
@@ -21,7 +20,7 @@ function StoreOrderList() {
   const getAllOrderList = async () => {
     try {
       const res = await axios.get(`${host}user/store/order/list/${email}`);
-      setOrderList(res.data)
+      setOrderList(res.data);
     } catch (error) {
       console.error(error);
     }

@@ -9,27 +9,42 @@ function StorePayComplete() {
     title: "결제가 완료 되었습니다.",
     btn1: "쇼핑 계속하기",
     btn2: "주문내역 확인하기",
+    url1: "/store/list",
+    url2: "/user/store/order/list",
   };
   const email = useSelector((state) => {
-    return state.loginSlice.email
-  })
-  const { productId, orderId, totalPrice, tel, name, add, addDetail } = useParams()
-  const body = { productId, orderId, totalPrice, tel, name, add, addDetail, email }
+    return state.loginSlice.email;
+  });
+  const { productId, orderId, totalPrice, tel, name, add, addDetail } =
+    useParams();
+  const body = {
+    productId,
+    orderId,
+    totalPrice,
+    tel,
+    name,
+    add,
+    addDetail,
+    email,
+  };
   console.log(body);
   useEffect(() => {
-    saveOrderTable()
-  }, [])
+    saveOrderTable();
+  }, []);
 
   const saveOrderTable = async () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const pgToken = urlParams.get('pg_token');
+    const pgToken = urlParams.get("pg_token");
     try {
-      const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}store/kakaoPaySuccess/${pgToken}`, body)
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}store/kakaoPaySuccess/${pgToken}`,
+        body
+      );
       console.log(res.data);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <>
