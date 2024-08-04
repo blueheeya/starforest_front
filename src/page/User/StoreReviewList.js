@@ -31,38 +31,22 @@ function StoreReviewList() {
     fetchReviews();
   }, []);
 
-  // useEffect(() => {
-  //   if (newReview) {
-  //     setReviews((prevReviews) => [
-  //       ...prevReviews,
-  //       {
-  //         id: prevReviews.length + 1, // 고유 ID 생성
-  //         image: "imgdefault.png",
-  //         level: "lavel lavel01",
-  //         name: "샛별",
-  //         user: "새로운 사용자",
-  //         content: newReview,
-  //       },
-  //     ]);
-  //   }
-  // }, [newReview]); // newReview가 변경될 때만 실행
-
-  //   const handleDelete = (id) => {
-  //     setReviews((prevReviews) => {
-  //       return prevReviews.filter((review) => review.id !== id);
-  //     });
-  //   };
-
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`${host}store/review/${id}`);
-      setReviews((prevReviews) =>
-        prevReviews.filter((review) => review.id !== id)
-      );
-    } catch (error) {
-      console.error("Error deleting Review", error);
-    }
+  const handleDelete = (idToDelete) => {
+    setReviews((prevReviews) => {
+      prevReviews.filter((review) => review.id !== idToDelete);
+    });
   };
+
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await axios.delete(`${host}store/review/${id}`);
+  //     setReviews((prevReviews) =>
+  //       prevReviews.filter((review) => review.id !== id)
+  //     );
+  //   } catch (error) {
+  //     console.error("Error deleting Review", error);
+  //   }
+  // };
 
   return (
     <>
