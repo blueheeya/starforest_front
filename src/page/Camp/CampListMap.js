@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../../assets/css/kakaoMap.scss"
 import gps from "../../assets/images/gps.svg"
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import mapPointerOn from '../../assets/images/mapPointer.svg'
 import btnClose from "../../assets/images/btnClose.png"
 import noneImage from "../../assets/images/noneImage.png"
-
+import axios from "axios";
+const host = `${process.env.REACT_APP_SERVER_URL}`;
 const { kakao } = window;
 
 let currentOverlay = null; //커스텀 오버레이상태
@@ -44,7 +44,7 @@ function CampListMap() {
         const map = new kakao.maps.Map(mapContainer, mapOption);
 
         try {
-            const res = await axios.post("http://localhost:8080/camp/coordinates", body)
+            const res = await axios.post(`${host}camp/coordinates`, body)
             console.log(res.data);
             setCircles(res.data)
         } catch (error) {
@@ -98,7 +98,7 @@ function CampListMap() {
         console.log(body);
 
         try {
-            const res = await axios.post("http://localhost:8080/camp/coordinates", body)
+            const res = await axios.post(`${host}camp/coordinates`, body)
             console.log(res.data);
             setCircles(res.data)
         } catch (error) {

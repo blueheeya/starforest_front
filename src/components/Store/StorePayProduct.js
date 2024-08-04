@@ -1,30 +1,41 @@
 import React, { useState } from "react";
 import Icon from "../Icon/Icon";
 
-function StorePayProduct() {
-  const [quantity, setQuantity] = useState(0);
+function StorePayProduct({ productInfo, handlequantity }) {
+  console.log(productInfo);
+  const [quantity, setQuantity] = useState(1);
+  handlequantity(quantity)
+
+
+  const payPrice = productInfo?.price * quantity
+  const orignPrice = (Math.floor(productInfo?.price / 0.7 / 1000) * 1000) * quantity
+
+
 
   //마이너스, 최소수량
   const decreaseQuantity = () => {
     setQuantity((prevQuantity) => Math.max(1, quantity - 1));
+    handlequantity(Math.max(1, quantity - 1))
   };
 
   //플러스
   const increaseQuantity = () => {
     setQuantity((prevQuantity) => quantity + 1);
+    handlequantity(quantity + 1)
+
   };
   return (
     <div className="storePayBox">
       <div className="storePayInner">
         <div className="innerTitleEx">
-          <span className="innerTitle">나이키</span>
+          <span className="innerTitle">{productInfo?.brand_name}</span>
           <span className="innerEx">배송상품</span>
         </div>
         <div className="innerMain">
-          <img className="innerMainImg" src="../../" alt="" />
+          <img className="innerMainImg" src={productInfo?.imgUrls} alt="" />
           <div className="innerMainContent">
-            <div className="contentName">나이키</div>
-            <div className="contentBrand">블루샤크</div>
+            <div className="contentName">{productInfo?.brand_name}</div>
+            <div className="contentBrand">{productInfo?.product_name}</div>
           </div>
         </div>
 
@@ -46,8 +57,8 @@ function StorePayProduct() {
             </button>
           </div>
           <div className="innerPrice">
-            <div className="priceSpan">30,000원</div>
-            <div className="priceMain">10,000원</div>
+            <div className="priceSpan">{orignPrice.toLocaleString()}원</div>
+            <div className="priceMain">{payPrice.toLocaleString()}원</div>
           </div>
         </div>
       </div>

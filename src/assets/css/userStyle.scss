@@ -342,22 +342,30 @@ $radiusSmall: 5px;
     .myCampInfo {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 10px;
         .myCampImg {
             display: flex;
             width: 160px;
-            height: 160px;
+            height: 140px;
             font-size: 0;
             border-radius: $radiusDefault;
             background: url("../images/imgdefault.png") no-repeat;
             background-position: center;
             background-size: cover;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
         .myCampInfoText {
             display: flex;
             flex: auto;
             flex-wrap: wrap;
             align-content: space-between;
+            padding-top: 20px;
             div {
                 width: 100%;
             }
@@ -365,6 +373,7 @@ $radiusSmall: 5px;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
+                padding-top: 20px;
                 li:nth-child(1) {
                     font-size: $therdText;
                 }

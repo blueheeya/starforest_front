@@ -29,18 +29,23 @@ function UserTags({ selectedUserTags, onUserTagToggle }) {
         marginBottom: "10px",
       }}
     >
-      {userTags.map((UTag, index) => (
+      {/* 변경: DiaryList 또는 DiaryView에서는 선택된 태그만 표시 */}
+      {(isDiaryListOrView
+        ? userTags.filter((tag) => selectedUserTags.includes(tag.text))
+        : userTags
+      ).map((UTag, index) => (
         <label
           key={index}
           className={`userTag ${
             selectedUserTags.includes(UTag.text) ? "selected" : ""
-          } ${!isDiaryListOrView ? "userTag-clickable" : ""}`}
+          } ${!isDiaryListOrView ? "userTag-clickable" : ""}`} // 변경: 클릭 가능 여부 클래스 추가
         >
           <input
             type="checkbox"
             checked={selectedUserTags.includes(UTag.text)}
             onChange={() => onUserTagToggle(UTag.text)}
             style={{ marginRight: "5px" }}
+            disabled={isDiaryListOrView} // 변경: DiaryList 또는 DiaryView에서는 비활성화
           />
           <Icon iconName={UTag.icon} />
           {UTag.text}

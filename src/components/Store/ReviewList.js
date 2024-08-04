@@ -1,27 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
+import imgdefault from "../../assets/images/imgdefault.png";
 
 function ReviewList({ reviews, onDelete }) {
   return (
     <div className="reviewContent">
-      {reviews.map((review) => (
-        <div key={review.id} className="reviewItem">
+      {reviews.map((review, idx) => (
+        <div key={idx} className="reviewItem">
           <img
             className="reviewuserImg"
-            src={`${process.env.REACT_APP_IMAGE_URL}/${review.img}`}
-            alt={`${review.user}의 프로필`}
+            src={review?.profileUrl ? review.profileUrl : imgdefault}
           />
           <div className="reviewWrap">
             <div className="reviewInfo">
               <div className="reviewUser">
-                <p className={review.level}>{review.name}</p>
-                <p className="reviewUser">{review.user}</p>
+                <p className>{review?.userNickName}</p>
               </div>
-              <p className="reviewText">{review.content}</p>
+              <p className="reviewText">{review?.content}</p>
             </div>
             <button
               className="deleteReviewBtn"
-              onClick={() => onDelete(review.id)}
+              onClick={() => onDelete(review?.id)}
             >
               X
             </button>

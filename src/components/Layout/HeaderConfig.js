@@ -53,7 +53,7 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "/diary/view": {
+    "/diary/view/:id": {
         title: "별숲 기록",
         component: HeaderType2,
         titleStore: false,
@@ -93,7 +93,7 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "/user/camp/reservation/view": {
+    "/user/camp/reservation/view/:reservationid": {
         title: "예약 내역",
         component: HeaderType2,
         titleStore: false,

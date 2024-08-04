@@ -1,0 +1,194 @@
+@charset "utf-8";
+.loadingGif {
+    width: 100%;
+    height: 100vh;
+    top: 50%;
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+.loadingWrap {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden !important;
+    background: linear-gradient(0deg, #1971f4 0%, #0b1f3e 100%);
+    .star {
+        position: absolute;
+        // background-color: white;
+        background: url("../images/loadingStar1.png") center center no-repeat;
+        background-size: cover;
+        // border-radius: 50%;
+        animation: twinkle 2s infinite ease-in-out;
+    }
+    .title {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        z-index: 10;
+        transform: translate(-50%, -50%);
+        .titleText {
+            color: #ffffff;
+            font-size: 1.5em !important; //24px
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+        }
+    }
+    .object {
+        position: absolute;
+        width: 484px;
+        height: 272px;
+        bottom: 12%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: url("../images/loadingObj.png");
+        z-index: 5;
+    }
+    .wrap {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+    }
+    .backCloud1 {
+        position: absolute;
+        width: 240px;
+        height: 120px;
+        top: 40%;
+        left: 10%;
+        background: url("../images/bgCloud1.png") no-repeat;
+        background-size: cover;
+        z-index: 6;
+    }
+    .backCloud2 {
+        position: absolute;
+        width: 159px;
+        height: 83px;
+        top: 40%;
+        left: 18%;
+        background: url("../images/bgCloud2.png") no-repeat;
+        background-size: cover;
+        z-index: 5;
+    }
+    .backCloud3 {
+        position: absolute;
+        width: 214px;
+        height: 95px;
+        top: 20%;
+        left: 30%;
+        background: url("../images/bgCloud3.png") no-repeat;
+        background-size: cover;
+        z-index: 5;
+    }
+    .backCloud4 {
+        position: absolute;
+        width: 143px;
+        height: 64px;
+        top: 15%;
+        left: 20%;
+        background: url("../images/bgCloud4.png") no-repeat;
+        background-size: cover;
+        z-index: 5;
+    }
+    .backCloud5 {
+        position: absolute;
+        width: 269px;
+        height: 151px;
+        top: 10%;
+        left: -10%;
+        background: url("../images/bgCloud5.png") no-repeat;
+        background-size: cover;
+        opacity: 0.5;
+        z-index: 6;
+    }
+    .backCloud6 {
+        position: absolute;
+        width: 269px;
+        height: 151px;
+        top: 50%;
+        left: 80%;
+        background: url("../images/bgCloud5.png") no-repeat;
+        background-size: cover;
+        opacity: 0.7;
+        z-index: 5;
+    }
+
+    .back1 {
+        width: 100%;
+        height: 216px;
+        background: url("../images/loadingBack1.png") center bottom no-repeat;
+        background-size: cover;
+        position: absolute;
+        bottom: 0%;
+        z-index: 4;
+    }
+    .back2 {
+        position: absolute;
+        width: 100%;
+        height: 435px;
+        background: url("../images/loadingBack2.png") center bottom no-repeat;
+        background-size: cover;
+        bottom: 0%;
+        z-index: 3;
+    }
+    .back3 {
+        position: absolute;
+        width: 100%;
+        height: 390px;
+        background: url("../images/loadingBack3.png") center bottom no-repeat;
+        background-size: cover;
+        bottom: 0%;
+        z-index: 2;
+    }
+    .back4 {
+        position: absolute;
+        width: 100%;
+        height: 379px;
+        background: url("../images/loadingBack4.png") center bottom no-repeat;
+        background-size: cover;
+        bottom: 0%;
+        z-index: 1;
+    }
+}
+@keyframes cloud2 {
+    from {
+        left: 50%;
+    }
+    to {
+        left: -15%;
+    }
+}
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+@media screen and (max-width: 768px) {
+    .title {
+    }
+    .backCloud1,
+    .backCloud2,
+    .backCloud3,
+    .backCloud4,
+    .backCloud5,
+    .backCloud6 {
+        scale: 0.6;
+    }
+    .backCloud1,
+    .backCloud2 {
+        left: 0% !important;
+        z-index: 2 !important;
+    }
+    .object {
+        scale: 0.7;
+        left: 30% !important;
+    }
+}

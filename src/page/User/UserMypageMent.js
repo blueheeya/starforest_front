@@ -5,6 +5,7 @@ import Icon from "../../components/Icon/Icon";
 import {useSelector} from "react-redux";
 import useCustomLogin from "../hooks/useCustomLogin";
 
+
 function UserMypageMent() {
     const loginState = useSelector((state) => state.loginSlice);
     const [tempUser, setTempUser] = useState({
@@ -43,7 +44,7 @@ function UserMypageMent() {
                         alt="프로필이미지"
                     />
                 </div>
-                <button className="btnModify">프로필 사진 편집</button>
+                <button className="btnModify" >프로필 사진 편집</button>
             </div>
             <div className="userBtnWrap wrapCntBottom">
                 <Button defaultBtn={true}>

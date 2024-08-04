@@ -4,12 +4,16 @@ import PayComplete from "../../components/Camp/PayComplete";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+const host = `${process.env.REACT_APP_SERVER_URL}`;
+
 function CampReservationComplete() {
   const { reservNum, reservId, name, carNum, request, tel } = useParams()
   const contents = {
     title: "결제가 완료 되었습니다.",
     btn1: "캠핑장 더 알아보기",
-    btn2: "예약장보 확인하기",
+    btn2: "예약정보 확인하기",
+    url1: "/camp/list",
+    url2: "/user/camp/reservation/list"
   };
   const [paymentInfo, setPaymentInfo] = useState(null);
 
@@ -18,7 +22,7 @@ function CampReservationComplete() {
       const urlParams = new URLSearchParams(window.location.search);
       const pgToken = urlParams.get('pg_token');
       try {
-        const response = await axios.get(`http://localhost:8080/camp/kakaoPaySuccess/${pgToken}/${reservNum}/${reservId}/${name}/${carNum}/${request}/${tel}`);
+        const response = await axios.get(`${host}camp/kakaoPaySuccess/${pgToken}/${reservNum}/${reservId}/${name}/${carNum}/${request}/${tel}`);
         setPaymentInfo(response.data);
         console.log(response.data);
       } catch (error) {

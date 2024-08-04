@@ -26,32 +26,44 @@ function DiaryList() {
     [loading, hasMore]
   );
 
-  useEffect(() => {
-    fetchDiaries();
-  }, []);
-
   const fetchDiaries = async () => {
     if (loading || !hasMore) return;
     setLoading(true);
     try {
-      const response = await axios.get(`/diary/list`, {
+      const response = await axios.get(`http://localhost:8080/diary/list`, {
         params: {
           lastId: lastId,
           size: 10,
         },
       });
+      console.log("API response: ", response.data);
+
       const newDiaries = response.data.diaries;
-      setDiaries((prevDiaries) => [...prevDiaries, ...newDiaries]);
+      console.log("new diaries:", newDiaries);
+
+      // setDiaries((prevDiaries) => [...prevDiaries, ...newDiaries]);
+      setDiaries((prevDiaries) => {
+        const updatedDiaries = [...prevDiaries, ...newDiaries];
+        console.log("updated diaries:", updatedDiaries);
+        return updatedDiaries;
+      });
+
       setHasMore(response.data.hasMore);
       if (newDiaries.length > 0) {
         setLastId(newDiaries[newDiaries.length - 1].id);
       }
     } catch (error) {
       console.error("error fetching diaries:", error);
+      setHasMore(false);
+      alert("데이터를 불러오는데 실패했습니다. 다시 시도해 주세요.");
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDiaries();
+  }, []);
 
   return (
     <div className="diaryList-bg">
@@ -63,17 +75,23 @@ function DiaryList() {
         </div>
         {/* 별숲 기록 전체 리스트 */}
         <div className="diaryAll-List">
-          {diaries.map((diary, index) => (
-            <div
-              key={diary.id}
-              ref={index === diaries.length - 1 ? lastDiaryElementRef : null}
-            >
-              <DiaryListCard diary={diary} />
-            </div>
-          ))}
+          {diaries.length === 0 && !loading ? (
+            <p>데이터가 없습니다</p>
+          ) : (
+            diaries.map((diary, index) => (
+              <div
+                key={diary.id}
+                ref={index === diaries.length - 1 ? lastDiaryElementRef : null}
+              >
+                {/* <p>다이어리 ID : {diary.id}</p>
+                <p>내용: {diary.content}</p> */}
+                <DiaryListCard diary={diary} />
+              </div>
+            ))
+          )}
         </div>
         {loading && <p>Loading...</p>}
-        {!hasMore && <p>모든 다이어리를 불러왔습니다.</p>}
+        {/* {!hasMore && <p>모든 다이어리를 불러왔습니다.</p>} */}
       </div>
     </div>
   );
