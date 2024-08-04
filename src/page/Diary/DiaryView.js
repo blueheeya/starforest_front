@@ -119,18 +119,11 @@ function DiaryView() {
 
         {/* 캠핑 이미지  */}
         {diary.image_url && diary.image_url.length > 0 && (
-          <div
-            className="diaryView-imgWrap"
-            // style={{
-            //   display: "flex",
-            //   justifyContent: "center",
-            //   alignItems: "center",
-            //   flexDirection: "column",
-            //   gap: "20px",
-            // }}
-          >
+          <div className="diaryView-imgWrap">
             {diary.image_url.map((url, index) => (
-              <img key={index} src={url} alt={`diary image ${index + 1}`} />
+              <div key={index} className="diary-image-container">
+                <img src={url} alt={`diary image ${index + 1}`} />
+              </div>
             ))}
           </div>
         )}
