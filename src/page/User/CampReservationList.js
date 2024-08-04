@@ -6,47 +6,13 @@ import axios from "axios";
 import PageLoading from "../../components/Layout/PageLoading";
 import { useSelector } from "react-redux";
 
-const Reservation = [
-    {
-        id: 1,
-        reservation_number: 123123123,
-        campsite_id: "campsite_id",
-        user_email: "user_email",
-        start_date: "2024.06.15",
-        end_date: "2024.06.15",
-        created_at: "2024.06.15 14:00",
-        isRecordWritten: false,
-        isLink: "/user/camp/reservation/view",
-    },
-    {
-        id: 2,
-        reservation_number: 123123123,
-        campsite_id: "campsite_id",
-        user_email: "user_email",
-        start_date: "2024.06.15",
-        end_date: "2024.07.20",
-        created_at: "2024.06.15 14:00",
-        isRecordWritten: true,
-        isLink: "/user/camp/reservation/view",
-    },
-    {
-        id: 3,
-        reservation_number: 123123123,
-        campsite_id: "campsite_id",
-        user_email: "user_email",
-        start_date: "2024.06.15",
-        end_date: "2024.08.20",
-        created_at: "2024.06.15 14:00",
-        isRecordWritten: false,
-        isLink: "/user/camp/reservation/view",
-    },
-];
+const Reservation = [{}];
 
 function CampReservationList() {
+    const host = `${process.env.REACT_APP_SERVER_URL}user/camp/list`;
     const email = useSelector((state) => {
         return state.loginSlice.email;
     });
-    console.log(email);
     const [CampReservation, setCampsReservation] = useState([]);
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -55,7 +21,7 @@ function CampReservationList() {
         if (loading || !hasMore) return;
         setLoading(true);
         try {
-            let url = `http://localhost:8080/user/camp/list?page=${page}&size=${
+            let url = `${host}?page=${page}&size=${
                 page === 0 ? 20 : 5
             }&email=${email}`;
             const response = await axios.get(url);
@@ -125,7 +91,7 @@ function CampReservationList() {
                     {CampReservation.map((reserItem) => (
                         <div className="myCampReserWrap" key={reserItem.id}>
                             <div className="myCampDate">
-                                <span>{reserItem.created_at}</span>
+                                <span>{reserItem.create_at}</span>
                                 <span>
                                     예약번호
                                     <Link
@@ -136,7 +102,11 @@ function CampReservationList() {
                                 </span>
                             </div>
                             <div className="myCampInfo">
-                                <div className="myCampImg">이미지</div>
+                                <div className="myCampImg">
+                                    <img
+                                        src={`${reserItem.camp.first_image_url}`}
+                                    />
+                                </div>
                                 <div className="myCampInfoText">
                                     <div>
                                         <span className="campRestComplete">
@@ -145,7 +115,7 @@ function CampReservationList() {
                                     </div>
                                     <ul>
                                         <li>오토캠핑</li>
-                                        <li>캠프하다</li>
+                                        <li>{reserItem.camp.name}</li>
                                         <li>{`${reserItem.start_date} ~ ${reserItem.end_date}`}</li>
                                     </ul>
                                     <div className="myCampDiary">
@@ -179,7 +149,7 @@ function CampReservationList() {
                         </div>
                     ))}
                     {loading && <PageLoading />}
-                    {!hasMore && <p>No more camps to load</p>}
+                    {!hasMore && <p>더 이상 예약 내역이 없습니다.</p>}
                 </div>
             )}
         </>

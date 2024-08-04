@@ -14,6 +14,8 @@ import { debounce } from "lodash";
 import ModalContext from "../../components/Modal/ModalContext";
 import PageLoading from "../../components/Layout/PageLoading";
 
+const host = `${process.env.REACT_APP_SERVER_URL}`;
+
 function CampList({ className }) {
     const [filteredCamps, setFilteredCamps] = useState([]);
     const [camps, setCamps] = useState([]);
@@ -43,9 +45,8 @@ function CampList({ className }) {
         if (loading || !hasMore) return;
         setLoading(true);
         try {
-            let url = `http://localhost:8080/camp/list?page=${page}&size=${
-                page === 0 ? 20 : 5
-            }`;
+            let url = `${host}camp/list?page=${page}&size=${page === 0 ? 20 : 5
+                }`;
             // if (inputData) {
             //     url += `&query=${inputData}`;
             // }
@@ -151,7 +152,7 @@ function CampList({ className }) {
                             placeholder="검색어를 입력하세요."
                             //동일 수정
                             onChange={handleInput}
-                            //동일 완료
+                        //동일 완료
                         />
                         <button onClick={serchCamp} style={{ width: 40 }}>
                             검색

@@ -73,9 +73,11 @@ function DiaryWrite() {
     formData.append("allTags", allTags);
 
     // 이미지 파일 추가
-    images.forEach((image, index) => {
-      formData.append(`images`, image.file);
-    });
+    if (images.length > 0) {
+      images.forEach((image, index) => {
+        formData.append(`images`, image.file);
+      });
+    }
 
     // const body = { content, allTags };
     // console.log(body);
@@ -96,6 +98,7 @@ function DiaryWrite() {
       navigate("/diary/list"); // 별숲기록 생성후 리스트 페이지로 이동
     } catch (error) {
       console.error("error create diary", error);
+      alert("별숲기록 생성 중 오류가 발생했습니다.");
     }
   };
 

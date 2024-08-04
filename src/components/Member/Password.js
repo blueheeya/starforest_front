@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Icon from "../../components/Icon/Icon";
 import Input from "../../components/Form/Input";
 
-function Password() {
+function Password({changeHand}) {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isValid, setIsValid] = useState(false);
@@ -45,6 +45,14 @@ function Password() {
 
         if (confirmPassword) {
             if (password === confirmPassword) {
+                const doChange = {
+                    target:{
+                        name: "pass_word",
+                        value: password
+                    }
+                }
+                changeHand(doChange);
+
                 setConfirmMessage(() => (
                     <>
                         <Icon iconName="iconComplete" />
