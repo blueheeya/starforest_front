@@ -342,6 +342,7 @@ $radiusSmall: 5px;
     .myCampInfo {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 10px;
         .myCampImg {
             display: flex;
@@ -364,6 +365,7 @@ $radiusSmall: 5px;
             flex: auto;
             flex-wrap: wrap;
             align-content: space-between;
+            padding-top: 20px;
             div {
                 width: 100%;
             }
@@ -371,6 +373,7 @@ $radiusSmall: 5px;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
+                padding-top: 20px;
                 li:nth-child(1) {
                     font-size: $therdText;
                 }

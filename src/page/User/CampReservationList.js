@@ -67,6 +67,20 @@ function CampReservationList() {
         const currentDate = new Date(getCurrentDate());
         return new Date(end_date) >= currentDate && !isRecordWritten;
     };
+
+    // 연도, 월, 일 부분 추출
+    // const year = reserItem.create_at.slice(0, 4); // 첫 4자리: 연도
+    // const monthDay = reserItem.create_at.slice(4, 7); // 다음 3자리: 월과 일
+
+    // // 월과 일 부분을 분리
+    // const month = reserItem.create_at.slice(4, 7).slice(0, 1); // 첫 번째 자리: 월
+    // const day = reserItem.create_at.slice(4, 7).slice(1); // 나머지 두 자리: 일
+
+    // // 최종 날짜 포맷
+    // const formattedDate = `${reserItem.create_at.slice(0, 4)}년 ${parseInt(
+    //     reserItem.create_at.slice(4, 7).slice(0, 1)
+    // )}월 ${parseInt(reserItem.create_at.slice(4, 7).slice(1))}일`;
+
     return (
         <>
             {Reservation.length === 0 ? (
@@ -88,10 +102,11 @@ function CampReservationList() {
                         <p>&#8729; 예약번호 유출에 주의해 주세요.</p>
                         <p>&#8729; 당일 예약 취소는 불가합니다.</p>
                     </div>
-                    {CampReservation.map((reserItem) => (
+                    {CampReservation?.map((reserItem) => (
                         <div className="myCampReserWrap" key={reserItem.id}>
                             <div className="myCampDate">
-                                <span>{reserItem.create_at}</span>
+                                {/* <span>{reserItem.create_at}</span> */}
+                                <span></span>
                                 <span>
                                     예약번호
                                     <Link
@@ -116,7 +131,7 @@ function CampReservationList() {
                                     <ul>
                                         <li>오토캠핑</li>
                                         <li>{reserItem.camp.name}</li>
-                                        <li>{`${reserItem.start_date} ~ ${reserItem.end_date}`}</li>
+                                        {/* <li>{`${reserItem.start_date} ~ ${reserItem.end_date}`}</li> */}
                                     </ul>
                                     <div className="myCampDiary">
                                         {shouldShowButton(
@@ -149,7 +164,22 @@ function CampReservationList() {
                         </div>
                     ))}
                     {loading && <PageLoading />}
-                    {!hasMore && <p>더 이상 예약 내역이 없습니다.</p>}
+                    {!hasMore && (
+                        <div
+                            className="noReservation"
+                            style={{ background: "#f5f5f5" }}
+                        >
+                            <p>
+                                예약된 내역이 없습니다.
+                                <br />
+                                캠핑장을 찾아볼까요?
+                            </p>
+                            <Button defaultBtn={true} to={"/camp/list"}>
+                                <Icon iconName="iconCampSearch" />
+                                캠핑장 찾아보기
+                            </Button>
+                        </div>
+                    )}
                 </div>
             )}
         </>
