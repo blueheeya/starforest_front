@@ -4,6 +4,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PageLoading from "../../components/Layout/PageLoading";
+import Footer from "../../components/Layout/Footer";
 
 function CampReservationView() {
     const host = `${process.env.REACT_APP_SERVER_URL}user/camp/view`;
@@ -95,12 +96,16 @@ function CampReservationView() {
                 style={{
                     paddingTop: "64px",
                     height: "100%",
+                    background: "#f5f5f5",
                 }}
             >
-                <div className="myCampReserWrap" style={{}}>
+                <div className="myCampReserWrap">
                     <h4>캠핑장 예약 정보</h4>
-                    <div className={`campSelectCardWrap`}>
-                        <Link to={"/"}>
+                    <div
+                        className={`campSelectCardWrap`}
+                        style={{ padding: 0 }}
+                    >
+                        <Link to={`/camp/view/${campPropsData.id}`}>
                             <div className="campCardInfo">
                                 <div className="campCardImg">
                                     <img
@@ -136,39 +141,85 @@ function CampReservationView() {
                     <h4>예약자 정보</h4>
                     <div className="myCampReserInfo">
                         <div>
-                            <span>이름</span> {state.nick_name || "정보 없음"}
+                            <span>이름</span> 김서하
                         </div>
                         <div>
-                            <span>연락처</span>{" "}
-                            {reservData.phone || "정보 없음"}
+                            <span>연락처</span> 010-2234-9678
                         </div>
                         <div>
-                            <span>요구사항</span>{" "}
-                            {reservData.requirements || "정보 없음"}
+                            <span>요구사항</span> 고기 구워 먹을 수 있게 그릴
+                            예약합니다.
                         </div>
                         <div>
-                            <span>차량번호</span>{" "}
-                            {reservData.carNumber || "정보 없음"}
+                            <span>차량번호</span> 1467
                         </div>
                     </div>
                 </div>
                 <div className="myCampReserWrap">
                     <h4>할인 적용</h4>
-                    <div>
-                        {reservData && reservData.discount
-                            ? reservData.discount
-                            : "할인 정보 없음"}
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            fontSize: "0.94em",
+                        }}
+                    >
+                        <span>샛별등급</span>
+                        <span style={{ fontSize: "1.25em", color: "#f24e1e" }}>
+                            30%
+                        </span>
                     </div>
                 </div>
                 <div className="myCampReserWrap">
                     <h4>결제 금액</h4>
-                    <div>
+                    {/* <div>
                         {reservData && reservData.totalAmount
                             ? `${reservData.totalAmount}원`
                             : "결제 정보 없음"}
+                    </div> */}
+                    <div className="myCampReserInfo">
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                fontSize: "0.94em",
+                            }}
+                        >
+                            <span>숙박 예약요금</span>
+                            <span style={{ fontSize: "1.25em" }}>
+                                170,000원
+                            </span>
+                        </div>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                fontSize: "0.94em",
+                            }}
+                        >
+                            <span>할인 금액</span>
+                            <span style={{ fontSize: "1.25em" }}>
+                                -51,000원
+                            </span>
+                        </div>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                fontSize: "1.25em",
+                            }}
+                        >
+                            <span>총 결제 금액</span>
+                            <span
+                                style={{ fontSize: "1.25em", color: "#f24e1e" }}
+                            >
+                                119,000원
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

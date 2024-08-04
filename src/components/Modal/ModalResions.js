@@ -308,7 +308,9 @@ function ModalResions({ onClick }) {
                             </>
                         )}
                     </div>
-                    <Button defaultBtn={true}>확인</Button>
+                    <Button defaultBtn={true} onClick={onClick}>
+                        확인
+                    </Button>
                 </div>
                 <button onClick={onClick} className="btnCloseType1">
                     <Icon iconName="iconCloseWhite" />
