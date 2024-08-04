@@ -93,7 +93,7 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "/user/camp/reservation/view": {
+    "/user/camp/reservation/view/:reservationid": {
         title: "예약 내역",
         component: HeaderType2,
         titleStore: false,
