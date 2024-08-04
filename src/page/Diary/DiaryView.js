@@ -100,13 +100,13 @@ function DiaryView() {
 
         {/* 태그 1 */}
         {userTags.length > 0 && (
-          <div className="diary-mb">
+          <div className="diary-mb20">
             <UserTags selectedUserTags={userTags} onUserTagToggle={() => {}} />
           </div>
         )}
 
         {/* 컨텐츠 내용 */}
-        {diary.content && <div className="diary-mb">{diary.content}</div>}
+        {diary.content && <div className="diary-mb20">{diary.content}</div>}
 
         {/* 태그 2 S */}
         {hashTags.length > 0 && (
