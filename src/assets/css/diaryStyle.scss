@@ -302,12 +302,26 @@ $radiusSmall: 5px;
 /****** 별숲기록 View ******/
 .diaryView-imgWrap {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   gap: 20px;
-  img {
+  width: 100%;
+
+  .diary-image-container {
+    width: 100%;
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
     border-radius: $radiusDefault;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: $radiusDefault;
+    }
   }
 }
 

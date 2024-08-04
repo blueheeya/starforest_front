@@ -62,7 +62,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ModalResions from "./components/Modal/ModalResions";
 import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
-import { ModalContext } from "./components/Modal/ModalContext";
+import ModalContext from "./components/Modal/ModalContext";
 import { useSelector } from "react-redux";
 import { ReviewProvider } from "./components/User/ReviewContext";
 import Loding from "./page/Loding";
@@ -166,34 +166,41 @@ function LayoutType() {
                             })}
                         </div>
                     )} */}
-          {modalView && modalData[modalNum] && (
-            <div>
-              {React.cloneElement(modalData[modalNum], {
-                onClick: modalClose,
-                data: modalDetail,
-                onSubmit: modalDetail?.onSubmit,
-              })}
-            </div>
-          )}
-          <HeaderComponent titleStore={titleStore} modalOpen={modalOpen}>
-            {title}
-          </HeaderComponent>
-          <ContentWrap
-            modalOpen={modalOpen}
-            className={` ${
-              isHeaderTypeNone || isHeaderType4 ? "cntSearchView" : ""
-            } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
-          >
-            <Outlet />
-          </ContentWrap>
-          {showFooter && (
-            <Footer className={`${showMenu ? "footerBottom" : ""}`} />
-          )}
-          {showMenu && <Menu />}
-        </Container>
-      </BackWrap>
-    </ModalContext.Provider>
-  );
+                    {modalView && modalData[modalNum] && (
+                        <div>
+                            {React.cloneElement(modalData[modalNum], {
+                                onClick: modalClose,
+                                data: modalDetail,
+                                onSubmit: modalDetail?.onSubmit,
+                            })}
+                        </div>
+                    )}
+                    <HeaderComponent
+                        titleStore={titleStore}
+                        modalOpen={modalOpen}
+                    >
+                        {title}
+                    </HeaderComponent>
+                    <ContentWrap
+                        modalOpen={modalOpen}
+                        className={` ${
+                            isHeaderTypeNone || isHeaderType4
+                                ? "cntSearchView"
+                                : ""
+                        } ${isHeaderType2 && showFooter ? "cntView" : ""}`}
+                    >
+                        <Outlet />
+                    </ContentWrap>
+                    {showFooter && (
+                        <Footer
+                            className={`${showMenu ? "footerBottom" : ""}`}
+                        />
+                    )}
+                    {showMenu && <Menu />}
+                </Container>
+            </BackWrap>
+        </ModalContext.Provider>
+    );
 }
 function App() {
     const loginState = useSelector((state) => state.loginSlice);
@@ -257,7 +264,7 @@ function App() {
           {/* diary  */}
           <Route path="/diary/list" index element={<DiaryList />}></Route>
           <Route path="/diary/write" index element={<DiaryWrite />}></Route>
-          <Route path="/diary/view" index element={<DiaryView />}></Route>
+            <Route path="/diary/view/:id" index element={<DiaryView />}></Route>
           {/* store  */}
           <Route path="/store/list" index element={<StoreList />}></Route>
           <Route

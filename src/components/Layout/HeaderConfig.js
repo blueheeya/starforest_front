@@ -53,7 +53,7 @@ const headerConfig = {
         component: HeaderType2,
         titleStore: false,
     },
-    "/diary/view": {
+    "/diary/view/:id": {
         title: "별숲 기록",
         component: HeaderType2,
         titleStore: false,
