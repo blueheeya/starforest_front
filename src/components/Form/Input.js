@@ -12,7 +12,7 @@ function Input({
     placeholder,
     type,
     isLink,
-    isOnclick,
+    isOnclick
 }) {
     var temp = "";
     //동일 수정
@@ -23,7 +23,7 @@ function Input({
     //동일 수정
 
     const handleChange = (e) => {
-
+        console.log(e.target.value)
         temp += e.target.value;
         onChange ? onChange(e) : console.log(e.target.value);
     };

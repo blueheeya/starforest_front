@@ -24,7 +24,10 @@ const initState={
 
 function Register() {
     const [registInfo, setRegistInfo] = useState({...initState});
-
+    const [isChecked, setIsChecked] = useState({
+        "email": false,
+        "nick_name": false
+    });
     const {moveToPath} = useCustomLogin();
 
     useEffect(() => {
@@ -83,7 +86,7 @@ function Register() {
                 <Icon iconName="logoDefault" />
             </div>
             <div className="memberInputWrap cntMarginBottom">
-                <Email placeholder="이메일을 입력해주세요." userAuth={true} changeHand={changeHandler} email={registInfo.email} />
+                <Email placeholder="이메일을 입력해주세요." checkHandler={setIsChecked} changeHand={changeHandler} email={registInfo.email} userAuth={true}/>
                 <UserName changeHand={changeHandler}/>
                 <NickName changeHand ={changeHandler}/>
                 <Password changeHand ={changeHandler}/>
@@ -92,7 +95,6 @@ function Register() {
                 defaultBtn={true}
                 className="wrapMarginBottom"
                 onClick={handleClickRegist}
-                // to={"/member/register/complete"}
             >
                 회원가입
             </Button>

@@ -55,6 +55,7 @@ function Login() {
                     placeholder="이메일을 입력해주세요."
                     changeHand={changeHandller}
                     email={loginParam.email}
+                    userAuth={false}
                 />
                 <Input
                     iconName="inputIconPw2"
@@ -87,10 +88,6 @@ function Login() {
                 <p>
                     <span>별숲 회원이 아니신가요?</span>
                     <Link to={"/member/terms"}>회원가입하기</Link>
-                </p>
-                <p>
-                    <span>비밀번호를 잊어버리셨나요?</span>
-                    <Link to={"/member/pwfind"}>비밀번호찾기</Link>
                 </p>
             </div>
         </div>

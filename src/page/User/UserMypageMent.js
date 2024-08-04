@@ -44,7 +44,7 @@ function UserMypageMent() {
                         alt="프로필이미지"
                     />
                 </div>
-                <button className="btnModify">프로필 사진 편집</button>
+                <button className="btnModify" >프로필 사진 편집</button>
             </div>
             <div className="userBtnWrap wrapCntBottom">
                 <Button defaultBtn={true}>
