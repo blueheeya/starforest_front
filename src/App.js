@@ -84,7 +84,7 @@ const showFooterPath = [
     "/user/qna",
     "/user/mypage/management",
     "/user/camp/reservation/list",
-    "/user/camp/reservation/view",
+    "/user/camp/reservation/view/:reservationid",
     "/user/store/review/list",
     "/user/camp/like/list",
     "/user/diary/list",
@@ -208,19 +208,17 @@ function App() {
     const locationPath = useLocation();
 
     useEffect(() => {
-
         // 로그인 상태가 변할 때만 실행되도록 의존성 배열에 loginState.email 추가
         if (loginState.email) {
             setIsLoading(false); // 로그인이 확인되면 로딩 해제
         } else {
-            if(locationPath.pathname.startsWith("/member")){
-                console.log("멤버는제외")
+            if (locationPath.pathname.startsWith("/member")) {
+                console.log("멤버는제외");
                 setIsLoading(false);
-            }
-            else{
+            } else {
                 setTimeout(() => {
                     // 일정 시간 후 로그인 페이지로 이동
-                    console.log("여기서강제로이동")
+                    console.log("여기서강제로이동");
                     if (!loginState.email) {
                         navigate("/member/login");
                     }

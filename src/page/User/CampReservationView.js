@@ -2,101 +2,171 @@ import CampSelectCard from "../../components/Camp/CampSelectCard";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Icon from "../../components/Icon/Icon";
-import Button from "../../components/Form/Button";
 import axios from "axios";
 import PageLoading from "../../components/Layout/PageLoading";
 
 function CampReservationView() {
     const host = `${process.env.REACT_APP_SERVER_URL}user/camp/view`;
-    const email = useSelector((state) => {
-        return state.loginSlice.email;
-    });
+    const email = useSelector((state) => state.loginSlice.email);
     const { reservationid } = useParams();
-    const [page, setPage] = useState(0);
-    const [campData, setCampData] = useState({})
-    const [campPropsData, setCampPropsData] =useState({})
-    const [reservData, setReservData]=useState({})
+    const state = useSelector((state) => state.loginSlice);
+    console.log(state);
+    const [campData, setCampData] = useState(null);
+    const [campPropsData, setCampPropsData] = useState(null);
+    const [reservData, setReservData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const myReservation = async () => {
-        try {
-            const url = `${host}?reservationid=${reservationid}&email=${email}`;
-            const response = await axios.get(url);
-            const newCamps = response.data;
-            console.log(newCamps);
-            setCampData([]); // 기존 데이터 초기화
-            if (newCamps.length === 0) {
-                
-            } else {
-                setCampPropsData(newCamps.camp)
-                setReservData(newCamps.reservation)
-                setCampData(newCamps[0]);
-                console.log("1")
-                console.log(campData)
-                console.log(reservData)
-                console.log(campPropsData)
-            }
-        } catch (error) {
-            console.error("Error fetching camp data:", error);
-        }
-    };
+    // 문자열을 배열로 변환
+    const startDateParts = reservData?.start_date;
+    const endDateParts = reservData?.end_date;
+
+    const Syear = startDateParts ? startDateParts[0] : "";
+    const Eyear = endDateParts ? endDateParts[0] : "";
+    const Smonth = startDateParts ? startDateParts[1] : "";
+    const Emonth = endDateParts ? endDateParts[1] : "";
+    const Sday = startDateParts ? startDateParts[2] : "";
+    const Eday = endDateParts ? endDateParts[2] : "";
+
+    const SdataFomat = `${Syear}년 ${Smonth}월 ${Sday}일`;
+    const EdataFomat = `${Eyear}년 ${Emonth}월 ${Eday}일`;
+    console.log(SdataFomat);
+    console.log(EdataFomat);
 
     useEffect(() => {
-        myReservation();
-    }, [page]);
+        const fetchData = async () => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const url = `${host}?reservationid=${reservationid}&email=${email}`;
+                console.log("Fetching data from:", url);
+                const response = await axios.get(url);
+                const newCamps = response.data;
+                console.log("API Response:", newCamps);
 
-    if (campData.length === 0) {
+                if (newCamps && newCamps.camp && newCamps.reservation) {
+                    setCampPropsData(newCamps.camp);
+                    setReservData(newCamps.reservation);
+                    setCampData(newCamps);
+                } else {
+                    throw new Error(
+                        "Invalid data structure received from server"
+                    );
+                }
+            } catch (error) {
+                console.error("Error fetching camp data:", error);
+                setError(error.message || "An unknown error occurred");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        if (reservationid && email) {
+            fetchData();
+        }
+    }, [reservationid, email, host]);
+
+    if (isLoading) {
         return <PageLoading />;
     }
 
-    const printDate=(date)=>{
-        let year =0, month =0, day =0;
-        console.log("ASDasdasdasdasd")
-        console.log(date)
-        // if(date.length>0){
-        //     year= ((date[0])-2000);
-        //     month= date[1];
-        //     day= date[2]
-        // }
-        return `${year}.${month}.${day}`;
+    if (error) {
+        return <div>Error: {error}</div>;
     }
-
+    if (!campData) {
+        return (
+            <div
+                className="myCampReserWrap"
+                style={{
+                    paddingTop: "64px",
+                    height: "100vh",
+                }}
+            >
+                <div className="myCampCardWrap">
+                    <h4>예약 정보를 불러오는데 실패했습니다.</h4>
+                </div>
+            </div>
+        );
+    }
+    console.log("Rendering with data:", { campPropsData, reservData });
     return (
         <>
-            <div style={{ paddingTop: "10px" }}>
-                <div className="myCampCardWrap">
-                    <h4>예약 캠핑장 정보</h4>
+            <div
+                style={{
+                    paddingTop: "64px",
+                    height: "100%",
+                }}
+            >
+                <div className="myCampReserWrap" style={{}}>
+                    <h4>캠핑장 예약 정보</h4>
+                    <div className={`campSelectCardWrap`}>
+                        <Link to={"/"}>
+                            <div className="campCardInfo">
+                                <div className="campCardImg">
+                                    <img
+                                        src={campPropsData.first_image_url}
+                                        alt="캠핑장 사진"
+                                    />
+                                </div>
+                                <ul className="campCardText">
+                                    <li>
+                                        {campPropsData.is_auto
+                                            ? "오토 캠핑장"
+                                            : ""}
+                                        {campPropsData.is_carvan
+                                            ? "카라반"
+                                            : ""}
+                                        {campPropsData.is_glamp ? "글램핑" : ""}
+                                    </li>
+                                    <li>{campPropsData.name}</li>
+                                    <li>{campPropsData.add1}</li>
+                                </ul>
+                            </div>
+                        </Link>
+                    </div>
                 </div>
-                <CampSelectCard isCampCard={true} campInfo={campPropsData} className="wrapCntBottom" />
                 <div className="myCampReserWrap">
                     <h4>예약 날짜</h4>
-                    <div>{`${printDate(reservData.start_date)} ~ ${printDate(reservData.end_date)}`}</div>
+                    <div>
+                        {SdataFomat || "정보 없음"} ~{" "}
+                        {EdataFomat || "정보 없음"}
+                    </div>
                 </div>
                 <div className="myCampReserWrap">
                     <h4>예약자 정보</h4>
                     <div className="myCampReserInfo">
                         <div>
-                            <span>이름</span> 최금쪽
+                            <span>이름</span> {state.nick_name || "정보 없음"}
                         </div>
                         <div>
-                            <span>연락처</span> 010-1234-5678
+                            <span>연락처</span>{" "}
+                            {reservData.phone || "정보 없음"}
                         </div>
                         <div>
-                            <span>요구사항</span> 좋은말로 할때 내 요구사항을 다
-                            들어라!
+                            <span>요구사항</span>{" "}
+                            {reservData.requirements || "정보 없음"}
                         </div>
                         <div>
-                            <span>차량번호</span> 1234
+                            <span>차량번호</span>{" "}
+                            {reservData.carNumber || "정보 없음"}
                         </div>
                     </div>
                 </div>
                 <div className="myCampReserWrap">
                     <h4>할인 적용</h4>
-                    <div></div>
+                    <div>
+                        {reservData && reservData.discount
+                            ? reservData.discount
+                            : "할인 정보 없음"}
+                    </div>
                 </div>
                 <div className="myCampReserWrap">
                     <h4>결제 금액</h4>
-                    <div></div>
+                    <div>
+                        {reservData && reservData.totalAmount
+                            ? `${reservData.totalAmount}원`
+                            : "결제 정보 없음"}
+                    </div>
                 </div>
             </div>
         </>
