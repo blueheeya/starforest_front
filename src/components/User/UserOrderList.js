@@ -17,7 +17,7 @@ function UserOrderList({ orderList }) {
   const navigate = useNavigate();
 
   const userOderViewMove = (productId) => {
-    navigate(`/user/store/order/view/${productId}`);
+    navigate(`/user/store/order/review/${productId}`);
   };
   const filteredOrderList = Array.isArray(orderList)
     ? orderList.filter((item) => item.product !== null)

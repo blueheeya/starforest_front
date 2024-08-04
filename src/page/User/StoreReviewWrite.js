@@ -7,10 +7,9 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 function StoreReviewWrite() {
-  const state = useSelector((state) => {
-    return state.loginSlice.nick_name;
+  const loginSlice = useSelector((state) => {
+    return state.loginSlice;
   });
-  console.log(state);
 
   const { productId } = useParams();
   const host = `${process.env.REACT_APP_SERVER_URL}`;
@@ -21,7 +20,6 @@ function StoreReviewWrite() {
   const backBtn = () => {
     navigate(-1);
   };
-  console.log(productId);
 
   useEffect(() => {
     getProduct();
@@ -38,14 +36,35 @@ function StoreReviewWrite() {
   };
   console.log(productData);
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async () => {
+    if (!review || review.trim() === "") {
+      setError("리뷰를 입력하세요.");
+      return;
+    }
+    const body = {
+      productId,
+      userEmail: loginSlice.email,
+      content: review.trim(),
+    };
+    console.log(body);
+
+    try {
+      const res = await axios.post(`${host}user/store/order/review`, body);
+      console.log(res.data);
+      movePage();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const movePage = () => {
+    alert("리뷰 등록이 완료되었습니다");
+    navigate("/user/store/review/list");
+  };
 
   return (
-    <div className="modalWrap" style={{ background: "none" }}>
-      <div
-        className="modal"
-        style={{ height: "calc(100% - 64px)", boxShadow: "none" }}
-      >
+    <div className="modalWrap" style={{ background: "none", top: 64 }}>
+      <div className="modal" style={{ top: 10, boxShadow: "none" }}>
         <div className="userReviewModalProduct">
           <img
             className="userReviewProductImg"
@@ -64,7 +83,7 @@ function StoreReviewWrite() {
         <div className="userReviewModalInputWrap">
           <div className="userReviewModalInfoBox">
             <div className="lavel lavel01">샛별</div>
-            <span className="userOrderNickname">{state}</span>
+            <span className="userOrderNickname">{loginSlice.nick_name}</span>
           </div>
           <div className="userReviewModalBody">
             <input

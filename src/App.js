@@ -301,7 +301,7 @@ function App() {
             element={<StoreOrderList />}
           ></Route>
           <Route
-            path="/user/store/order/view/:productId"
+            path="/user/store/order/review/:productId"
             index
             element={<StoreReviewWrite />}
           ></Route>
