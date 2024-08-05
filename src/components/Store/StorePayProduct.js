@@ -25,7 +25,7 @@ function StorePayProduct({ productInfo, handlequantity }) {
 
   };
   return (
-    <div className="storePayBox">
+    <div className="storePayBox" style={{ paddingTop: 80 }}>
       <div className="storePayInner">
         <div className="innerTitleEx">
           <span className="innerTitle">{productInfo?.brand_name}</span>
