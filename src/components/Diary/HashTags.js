@@ -41,10 +41,7 @@ function HashTags({ selectedHashTags, onHashTagToggle }) {
         flexWrap: "wrap",
       }}
     >
-      {/* <span key={index} className="hashTag">
-          #{tag}
-        </span> */}
-      {hashTags.map((HTag, index) => (
+      {(isDiaryListOrView ? selectedHashTags : hashTags).map((HTag, index) => (
         <label
           key={index}
           className={`hashTag ${
@@ -53,11 +50,10 @@ function HashTags({ selectedHashTags, onHashTagToggle }) {
         >
           <input
             type="checkbox"
-            checked={selectedHashTags.includes(HTag.text)}
-            onChange={() => {
-              onHashTagToggle(HTag);
-            }}
+            checked={selectedHashTags.includes(HTag)}
+            onChange={() => onHashTagToggle(HTag)}
             style={{ marginRight: "5px" }}
+            disabled={isDiaryListOrView} // 변경: DiaryList 또는 DiaryView에서는 비활성화
           />
           #{HTag}
         </label>

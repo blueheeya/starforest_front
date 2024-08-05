@@ -12,14 +12,14 @@ function Input({
     placeholder,
     type,
     isLink,
-    isOnclick
+    isOnclick,
 }) {
-    var temp = ""
+    var temp = "";
     //동일 수정
     const handleChange = (e) => {
-        temp += e.target.value
-        onChange(temp)
-    }
+        temp += e.target.value;
+        onChange(temp);
+    };
     //동일 수정
     return (
         <div className={`${className}`}>
