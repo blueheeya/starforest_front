@@ -98,7 +98,7 @@ function DiaryWrite() {
       navigate("/diary/list"); // 별숲기록 생성후 리스트 페이지로 이동
     } catch (error) {
       console.error("error create diary", error);
-      alert("별숲기록 생성 중 오류가 발생했습니다.");
+      alert("별숲기록 생성이 실패하였습니다. 다시시도해주세요.");
     }
   };
 
@@ -138,6 +138,7 @@ function DiaryWrite() {
             className="diaryWrite-input"
             placeholder="내용을 입력해주세요."
             value={content}
+            spellCheck={false}
             onChange={(e) => setContent(e.target.value)}
           />
 

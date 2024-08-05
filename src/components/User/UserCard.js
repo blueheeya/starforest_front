@@ -43,14 +43,14 @@ function UserCard({ className, onClick, value, userMyCard }) {
           <div className="textWrap">
             {getUserLevel(loginState.grade)}
             <div className="nickname">{loginState.nick_name}</div>
-            <div className="date">2분전</div>
+            {/* <div className="date">2분전</div> */}
             {/* <div className="lavel lavel01">샛별</div>
             <div className="nickname">세상에서가장빠른</div>
             <div className="date">2분전</div> */}
           </div>
-          <button onClick={`${onClick}`} value={`${value}`}>
+          {/* <button onClick={`${onClick}`} value={`${value}`}>
             <Icon iconName="btnClose" />
-          </button>
+          </button> */}
         </div>
       )}
     </>

@@ -168,21 +168,21 @@ $radiusSmall: 5px;
   // border: 1px solid $inputColor;
   // border-radius: $radiusDefault;
   // background-color: #ffffff;
-  background-color: skyblue;
+  //   background-color: skyblue;
 }
 .image-item {
   position: relative;
-  width: calc(33.33% - 7px);
+  width: calc(18% - 7px);
   aspect-ratio: 1 /1;
   border-radius: $radiusDefault;
   overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
-.image-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: $radiusDefault;
-}
+
 .remove-image {
   position: absolute;
   top: 5px;
@@ -204,36 +204,36 @@ $radiusSmall: 5px;
   }
 }
 // 이미지 개수에 따른 레이아웃 조정
-.uploaded-images.images-count-1 {
-  justify-content: center;
+// .uploaded-images.images-count-1 {
+//     justify-content: center;
 
-  .image-item {
-    width: 60%; // 첫 번째 이미지는 더 크게 표시
-  }
-}
+//     .image-item {
+//         width: 60%; // 첫 번째 이미지는 더 크게 표시
+//     }
+// }
 
-.uploaded-images.images-count-2 {
-  justify-content: space-between;
+// .uploaded-images.images-count-2 {
+//     justify-content: space-between;
 
-  .image-item {
-    width: calc(50% - 5px); // 2개 이미지를 균등하게 배치
-  }
-}
+//     .image-item {
+//         width: calc(50% - 5px); // 2개 이미지를 균등하게 배치
+//     }
+// }
 
-.uploaded-images.images-count-3 {
-  justify-content: space-between;
+// .uploaded-images.images-count-3 {
+//     justify-content: space-between;
 
-  .image-item {
-    width: calc(33.33% - 7px); // 3개 이미지를 균등하게 배치
-  }
-}
+//     .image-item {
+//         width: calc(33.33% - 7px); // 3개 이미지를 균등하게 배치
+//     }
+// }
 
-.uploaded-images.images-count-4,
-.uploaded-images.images-count-5 {
-  .image-item {
-    width: calc(50% - 5px); // 4, 5개 이미지는 2열로 배치
-  }
-}
+// .uploaded-images.images-count-4,
+// .uploaded-images.images-count-5 {
+//     .image-item {
+//         width: calc(50% - 5px); // 4, 5개 이미지는 2열로 배치
+//     }
+// }
 
 .diaryWrite-noticeWrap {
   display: flex;
