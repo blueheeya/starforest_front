@@ -66,6 +66,7 @@ function CampView() {
   //동일 수정끝
 
   //동일 수정
+
   const campScript = async () => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}camp/view/${id}`)

@@ -8,19 +8,6 @@ function ModalReview({ onClick, onSubmit, modalDTO }) {
   // onClick 제거, onClose와 onSubmit만 사용
   const [review, setReview] = useState("");
   const [error, setError] = useState("");
-  // const handleSubmit = () => {
-  //   if (review.trim() === "") {
-  //     setError("내용을 입력해주세요!");
-  //   } else {
-  //     setError("");
-  //     if (typeof onSubmit === "function") {
-  //       onSubmit(review);
-  //     } else {
-  //       console.error("onSubmit is not a function");
-  //     }
-  //     onClick();
-  //   }
-  // };
 
   //유니크한ID생성부분
   const generateUniQueId = () => {
