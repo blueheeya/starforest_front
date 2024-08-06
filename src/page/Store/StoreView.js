@@ -84,7 +84,7 @@ function StoreView(props) {
   // const { modalOpen } = useContext(ModalContext);
   const navigate = useNavigate();
   const usePurchaseMove = () => {
-    navigate("store/pay");
+    navigate(`/store/pay/${productId}`);
   };
 
   const getProductType = (type) => {
@@ -99,6 +99,7 @@ function StoreView(props) {
         return "알 수 없음";
     }
   };
+
   //axios________________________________________________________________________________
   // const handleButtonClick = async () => {
   //   if (product) {
@@ -151,21 +152,20 @@ function StoreView(props) {
   //상품세부정보가져오기
   useEffect(() => {
     fetchStoreDetail();
-  }, [productId]);
-  //리뷰가져오기
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const res = await axios.get(`${host}review/${productId}`);
-        console.log(res.data);
-        setReviewList(res.data);
-      } catch (error) {
-        console.error("Error fetching reviews", error);
-        setError("리뷰를 불러오는데 실패했습니다.");
-      }
-    };
     fetchReviews();
   }, [productId]);
+
+  //리뷰가져오기
+  const fetchReviews = async () => {
+    try {
+      const res = await axios.get(`${host}store/view/review/${productId}`);
+      console.log(res.data);
+      setReviewList(res.data);
+    } catch (error) {
+      console.error("Error fetching reviews", error);
+      setError("리뷰를 불러오는데 실패했습니다.");
+    }
+  };
 
   //리뷰삭제
   const deleteReview = async (reviewId) => {
@@ -229,38 +229,6 @@ function StoreView(props) {
           </div>
         );
       case "reviews":
-        //       return (
-        //         <div className="reviewContent">
-        //           {reviewList.map((review) => (
-        //             <div key={review.id} className="reviewItem">
-        //               <img
-        //                 className="reviewuserImg"
-        //                 src={process.env.PUBLIC_URL + `/assets/images/${review.img}`}
-        //                 alt={`${review.user}의 프로필`}
-        //               />
-        //               <div className="reviewWrap">
-        //                 <div className="reviewInfo">
-        //                   <div className="reviewUser">
-        //                     <p className={review.level}>{review.name}</p>
-        //                     <p className="reviewUser">{review.user}</p>
-        //                   </div>
-        //                   <p className="reviewText">{review.content}</p>
-        //                 </div>
-        //                 <button
-        //                   className="deleteReviewBtn"
-        //                   onClick={() => deleteReview(review.id)}
-        //                 >
-        //                   X
-        //                 </button>
-        //               </div>
-        //             </div>
-        //           ))}
-        //         </div>
-        //       );
-        //     default:
-        //       return null;
-        //   }
-        // };
         return <ReviewList reviews={reviewList} onDelete={deleteReview} />;
       default:
         return null;
@@ -337,7 +305,6 @@ function StoreView(props) {
           구매하기
         </Button>
       </div>
-
       <div>
         <div className="tabMenuWrap">
           <ul className="tabList">

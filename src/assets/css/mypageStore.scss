@@ -488,8 +488,11 @@ $radiusSmall: 5px;
   padding-left: 10px;
 }
 // mypage_reviewlist-------------------------------
-// .userReviewListContainer {
-// }
+.userReviewListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .userReviewListContainerTop {
   background-color: $backColor;
   width: 100%;
@@ -508,10 +511,10 @@ $radiusSmall: 5px;
   background-color: #fff;
   display: flex;
   align-items: center;
-  padding: 10px 32px 10px 32px;
+  padding: 15px 32px;
   gap: 10px;
   .userReviewListProductImg {
-    width: 45px;
+    width: 80px;
     border-radius: 5px;
   }
 }
@@ -567,11 +570,12 @@ $radiusSmall: 5px;
 }
 
 .userReviewItem {
+  // border: 1px solid #000;
   width: 100%;
   display: flex;
   align-items: center;
   gap: 18px;
-  padding: 10px 32px 10px 32px;
+  padding: 0px 32px 10px 32px;
   background-color: #fff;
 
   .userReviewImg {

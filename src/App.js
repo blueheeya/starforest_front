@@ -61,10 +61,11 @@ import React, { useContext, useEffect, useState } from "react";
 import ModalResions from "./components/Modal/ModalResions";
 import ModalReview from "./components/Modal/ModalReview";
 import ModalStore from "./components/Modal/ModalStore";
-import ModalContext from "./components/Modal/ModalContext";
+import { ModalContext } from "./components/Modal/ModalContext";
 import { useSelector } from "react-redux";
 import { ReviewProvider } from "./components/User/ReviewContext";
 import Loding from "./page/Loding";
+import StoreReviewWrite from "./page/User/StoreReviewWrite";
 
 const showMenuPath = ["/", "/diary/list", "/store/list", "/user/mypage"];
 
@@ -119,7 +120,6 @@ function LayoutType() {
     <ModalResions key="resions" />,
   ];
   const [modalDetail, setModalDetail] = useState(null);
-  // const [modalDetail, setModalDetail] = useState(null);
 
   function modalOpen(idx, data = null) {
     setModalView(true);

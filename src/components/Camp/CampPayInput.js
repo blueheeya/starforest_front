@@ -42,6 +42,12 @@ function CampPayInput({ reservInfo }) {
     },
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="campPayInput">
@@ -51,7 +57,7 @@ function CampPayInput({ reservInfo }) {
             <div className="boxName">
               이름<span>*</span>
             </div>
-            <input className="boxInput" type="text" placeholder="이름 입력" id="names"
+            <input className="boxInput" type="text" placeholder="이름 입력" id="names" onKeyDown={handleKeyDown}
               {...register("names", name)}
             />
           </div>
@@ -80,6 +86,7 @@ function CampPayInput({ reservInfo }) {
               type="text"
               placeholder="요청사항 입력"
               id="request"
+              onKeyDown={handleKeyDown}
               {...register("request")}
             />
           </div>
@@ -91,6 +98,7 @@ function CampPayInput({ reservInfo }) {
               type="text"
               placeholder="차량번호 입력"
               id="car_number"
+              onKeyDown={handleKeyDown}
               {...register("car_number")}
             />
           </div>
