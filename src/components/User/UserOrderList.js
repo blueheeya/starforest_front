@@ -12,6 +12,7 @@ function UserOrderList({ orderList }) {
     { id: 2, name: "상품2", price: 10000, quantity: 1, selected: false },
   ]);
 
+  const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();

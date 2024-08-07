@@ -35,5 +35,4 @@ function ModalProvider({ children }) {
 }
 
 export { ModalContext, ModalProvider };
-export default ModalContext
-
+export default ModalContext;
