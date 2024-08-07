@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import imgdefault from "../../assets/images/imgdefault.png";
 
+const tempNickname = "유저01";
 function ReviewList({ reviews, onDelete }) {
   return (
     <div className="reviewContent">
@@ -14,9 +15,13 @@ function ReviewList({ reviews, onDelete }) {
           <div className="reviewWrap">
             <div className="reviewInfo">
               <div className="reviewUser">
-                <p className>{review?.userNickName}</p>
+                <p className>
+                  {review?.userNickName ? review.userNickName : "김동일01 "}
+                </p>
               </div>
-              <p className="reviewText">{review?.content}</p>
+              <p className="reviewText">
+                {review?.content ? review.content : "너무 마음에 들어요옹~ "}
+              </p>
             </div>
             <button
               className="deleteReviewBtn"

@@ -19,33 +19,33 @@ function StoreReviewList() {
   console.log(email);
 
   //가짜데이터----------------------------------------------------------------------------------
-  const mockReviews = [
-    {
-      id: 1,
-      img: "userEx01",
-      level: "lavel lavel01",
-      name: "샛별",
-      user: "단비는순두부죠아해",
-      content: "캠핑가서 먹었는데 너무너무 맛있어서 다음에 또 구매하려구요",
-    },
-    {
-      id: 2,
-      img: "userEx02",
-      level: "lavel lavel03",
-      name: "뭇별",
-      user: "나신짱구",
-      content: "칼칼하고 맛나고 좋았어요~",
-    },
-  ];
+  // const mockReviews = [
+  //   {
+  //     id: 1,
+  //     img: "userEx01",
+  //     level: "lavel lavel01",
+  //     name: "샛별",
+  //     user: "단비는순두부죠아해",
+  //     content: "캠핑가서 먹었는데 너무너무 맛있어서 다음에 또 구매하려구요",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: "userEx02",
+  //     level: "lavel lavel03",
+  //     name: "뭇별",
+  //     user: "나신짱구",
+  //     content: "칼칼하고 맛나고 좋았어요~",
+  //   },
+  // ];
 
-  const [exReview, setExReview] = useState(mockReviews);
+  // const [exReview, setExReview] = useState(mockReviews);
 
-  // 리뷰 삭제 함수
-  const handleDelete = (id) => {
-    setExReview((prevMockReviews) =>
-      prevMockReviews.filter((review) => review.id !== idToDelete)
-    );
-  };
+  // // 리뷰 삭제 함수
+  // const handleDelete = (id) => {
+  //   setExReview((prevMockReviews) =>
+  //     prevMockReviews.filter((review) => mockReviews.id !== idToDelete)
+  //   );
+  // };
   //----------------------------------------------------------------------------------------------------
   useEffect(() => {
     const fetchReviews = async () => {
@@ -97,7 +97,7 @@ function StoreReviewList() {
                   </div>
                   <div
                     className="userReviewListCloseBtn"
-                    onClick={() => handleDelete(review.id)}
+                    // onClick={() => handleDelete(review.id)}
                   >
                     <Icon iconName="iconClose" />
                   </div>

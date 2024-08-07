@@ -230,6 +230,7 @@ function StoreView(props) {
         );
       case "reviews":
         return <ReviewList reviews={reviewList} onDelete={deleteReview} />;
+
       default:
         return null;
     }

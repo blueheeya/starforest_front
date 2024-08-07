@@ -23,7 +23,7 @@
 //   });
 
 //   //넘겨줄거
-//   //userEmail, productId, content,
+//   //userEmail, productId, conten        t,
 //   useEffect(() => {
 //     fetchProductData();
 //   }, [productId]);

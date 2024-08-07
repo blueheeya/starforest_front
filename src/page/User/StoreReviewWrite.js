@@ -59,7 +59,7 @@ function StoreReviewWrite() {
 
   const movePage = () => {
     alert("리뷰 등록이 완료되었습니다");
-    navigate("/user/store/review/list");
+    navigate("/user/mypage ");
   };
 
   return (
