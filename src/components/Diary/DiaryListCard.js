@@ -45,15 +45,17 @@ function DiaryListCard({ diary }) {
 
           {/* 태그 1 S*/}
           {userTags.length > 0 && (
-            <UserTags
-              selectedUserTags={userTags}
-              onUserTagToggle={() => {}} // 읽기 전용
-            />
+            <div className="diary-mb20">
+              <UserTags
+                selectedUserTags={userTags}
+                onUserTagToggle={() => {}} // 읽기 전용
+              />
+            </div>
           )}
 
           {/* 태그 1 E */}
           {/* content S */}
-          {content && <div className="diary-mb">{content}</div>}
+          {content && <div className="diary-mb20">{content}</div>}
           {/* content E */}
 
           {/* 태그 2 S */}

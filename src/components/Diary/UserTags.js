@@ -39,6 +39,9 @@ function UserTags({ selectedUserTags, onUserTagToggle }) {
           className={`userTag ${
             selectedUserTags.includes(UTag.text) ? "selected" : ""
           } ${!isDiaryListOrView ? "userTag-clickable" : ""}`} // 변경: 클릭 가능 여부 클래스 추가
+          style={{
+            borderColor: isDiaryListOrView ? "#dedede" : "",
+          }}
         >
           <input
             type="checkbox"

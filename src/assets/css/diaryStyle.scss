@@ -25,6 +25,9 @@ $radiusSmall: 5px;
 .diary-mb {
   margin-bottom: 10px;
 }
+.diary-mb20 {
+  margin-bottom: 20px;
+}
 
 .diary-bg {
   background-color: $backColor;
@@ -42,6 +45,9 @@ $radiusSmall: 5px;
   height: auto;
   // padding: 32px;
 }
+// .diaryList-form {
+//   height: 100%;
+// }
 .diary-Wrap {
   gap: 10px;
 }
@@ -251,12 +257,6 @@ $radiusSmall: 5px;
   gap: 5px;
   transition: 0.2s;
   user-select: none; // 글자 선택 불가능
-
-  // 글자 선택 불가능
-  // -webkit-user-select: none; /* Chrome, Safari, Opera */
-  // -moz-user-select: none; /* Firefox */
-  // -ms-user-select: none; /* Internet Explorer/Edge */
-  // user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 .hashTag {
   gap: 5px;
@@ -291,9 +291,6 @@ $radiusSmall: 5px;
 }
 .userTag.selected {
   border-color: $PrimaryColor;
-  // background-color: $PrimaryOff;
-  // color: $PrimaryOff;
-  // cursor: pointer;
 }
 .hashTag.selected {
   border-color: $PrimaryColor;

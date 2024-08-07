@@ -47,6 +47,9 @@ function HashTags({ selectedHashTags, onHashTagToggle }) {
           className={`hashTag ${
             selectedHashTags.includes(HTag) ? "selected" : ""
           } ${!isDiaryListOrView ? "hashTag-clickable" : ""}`}
+          style={{
+            borderColor: isDiaryListOrView ? "#dedede" : "",
+          }}
         >
           <input
             type="checkbox"
